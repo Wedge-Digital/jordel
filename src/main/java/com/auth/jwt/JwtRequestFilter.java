@@ -26,7 +26,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtService jwtService;
 
-    private static final String[] excludedEndpoints = new String[] {"/refresh", "/authenticate" };
+    private static final String[] excludedEndpoints = new String[] {"/refresh", "/login" };
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {

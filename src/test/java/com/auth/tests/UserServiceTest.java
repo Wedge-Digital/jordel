@@ -10,12 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest
 @ActiveProfiles("test")
 public class UserServiceTest {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService = new UserService();
 
     @Test
     void contextLoads() {

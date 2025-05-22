@@ -1,13 +1,13 @@
-package com.auth.db_model.mappers;
+package com.auth.persistance.mappers;
 
-import com.auth.db_model.User;
+import com.auth.persistance.User;
 import com.auth.domain.*;
 import com.auth.services.Result;
 import com.auth.services.errors.Error;
 
 import java.util.Vector;
 
-public class CoachFactory {
+public class CoachFromUser {
 
     private static Vector<Error> collectErrors(Result<?>... results) {
         Vector<Error> errors = new Vector<Error>();

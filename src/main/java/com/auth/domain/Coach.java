@@ -1,6 +1,5 @@
 package com.auth.domain;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 public class Coach {

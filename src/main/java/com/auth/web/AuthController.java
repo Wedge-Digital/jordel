@@ -1,10 +1,8 @@
-package com.auth.controller;
+package com.auth.web;
 
 import com.auth.jwt.JwtService;
 import com.auth.models.JwtTokens;
 import com.auth.models.CustomUser;
-import com.auth.web.AuthenticationRequest;
-import com.auth.web.RefreshTokenRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,7 +24,7 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<JwtTokens> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException {
 
         try {

@@ -1,6 +1,6 @@
 package com.auth.tests;
 
-import com.auth.db_model.User;
+import com.auth.persistance.User;
 import com.auth.domain.Coach;
 import com.auth.services.Result;
 import org.assertj.core.api.Assertions;
@@ -9,18 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Date;
-import com.auth.db_model.mappers.CoachFactory;
+import com.auth.persistance.mappers.CoachFromUser;
 
 
-@SpringBootTest
 @ActiveProfiles("test")
 public class UserDomainTest {
 
     @Test
     void contextLoads() {
     }
-
-
 
     @Test
     void TestMapDbUserObjectToUserDomainObject() {
@@ -34,7 +31,7 @@ public class UserDomainTest {
         user.setUpdatedAt(new Date());
         user.setLastLogin(new Date());
 
-        Result<Coach> coachCreationResult = CoachFactory.fromUserModel(user);
+        Result<Coach> coachCreationResult = CoachFromUser.fromUserModel(user);
         Assertions.assertThat(coachCreationResult.isSuccess()).isTrue();
         Assertions.assertThat(coachCreationResult.getValue()).isNotNull();
     }

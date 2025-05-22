@@ -1,7 +1,6 @@
-package com.auth.db_model;
+package com.auth.persistance;
 import jakarta.persistence.*;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 @Entity

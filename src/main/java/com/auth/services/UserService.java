@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
 
     private PasswordEncoder passwordEncoder;
 
-    UserService() {
+    public UserService() {
         passwordEncoder = new BCryptPasswordEncoder();
         ArrayList default_creds = new ArrayList<>();
         CustomUser user_one = new CustomUser("user_one", passwordEncoder.encode("password"), default_creds);

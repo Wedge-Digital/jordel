@@ -1,4 +1,4 @@
-package com.auth.db_model;
+package com.auth.persistance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

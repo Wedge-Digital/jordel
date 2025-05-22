@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@SpringBootTest
 class DateServiceTests {
 
     @Test
