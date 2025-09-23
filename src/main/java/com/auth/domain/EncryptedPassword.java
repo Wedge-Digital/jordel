@@ -6,7 +6,6 @@ import com.auth.domain.validators.CannotBeEmpty;
 import com.auth.domain.validators.CannotBeNull;
 import com.auth.domain.validators.ShallMatchRegExp;
 import com.auth.services.Result;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EncryptedPassword {

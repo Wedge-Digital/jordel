@@ -41,11 +41,11 @@ public class JwtRequestFilter extends AbstractFilter {
 
     private Result<String> checkAuthHeader(String header) {
         if (header == null) {
-            return Result.failure(new HeaderError(HeaderError.EMPTY_OR_NULL_HEADER));
+            return Result.failure(AuthHeaderError.EMPTY_OR_NULL_AUHTHEADER));
         }
 
         if (!header.startsWith("Bearer ")) {
-            return Result.failure(HeaderError.INVALID_HEADER.getMessage());
+            return Result.failure(HeaderError.INVALID_HEADER);
         }
 
         return Result.success(header);
