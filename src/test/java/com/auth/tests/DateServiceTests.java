@@ -1,10 +1,9 @@
 package com.auth.tests;
 
-import com.auth.services.DateService;
+import com.shared.services.DateService;
 import com.auth.services.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

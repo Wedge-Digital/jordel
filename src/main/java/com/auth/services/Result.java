@@ -1,16 +1,14 @@
 package com.auth.services;
 
-import com.auth.services.errors.Error;
-
 import java.util.Vector;
 
 public class Result<T> {
     private final T value;
-    private final Vector<Error> errors;
+    private final Vector<String> errors;
     private final boolean isSuccess;
 
     // Constructeur privé pour forcer l'utilisation des méthodes statiques
-    private Result(T value, Vector<Error> errors, boolean isSuccess) {
+    private Result(T value, Vector<String> errors, boolean isSuccess) {
         this.value = value;
         this.errors = errors;
         this.isSuccess = isSuccess;
@@ -22,13 +20,13 @@ public class Result<T> {
     }
 
     // Méthode statique pour créer un résultat échoué
-    public static <T> Result<T> failure(Error error) {
-        Vector<Error> errors = new Vector<>();
+    public static <T> Result<T> failure(String error) {
+        Vector<String> errors = new Vector<>();
         errors.add(error);
         return new Result<>(null, errors, false);
     }
 
-    public static <T> Result<T> failure(Vector<Error> errors) {
+    public static <T> Result<T> failure(Vector<String> errors) {
         return new Result<>(null, errors, false);
     }
 
@@ -49,14 +47,14 @@ public class Result<T> {
         return value;
     }
 
-    public Error getError() {
+    public String getError() {
         if (isSuccess) {
             throw new IllegalStateException("Cannot get error from a successful result");
         }
         return this.errors.firstElement();
     }
 
-    public Vector<Error> listErrors() {
+    public Vector<String> listErrors() {
         if (isSuccess) {
             throw new IllegalStateException("Cannot get errors from a successful result");
         }
@@ -68,7 +66,7 @@ public class Result<T> {
         if (isSuccess) {
             throw new IllegalStateException("Cannot get error message from a successful result");
         }
-        return this.getError().getMessage();
+        return this.getError();
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.auth.tests;
 
 import com.auth.jwt.JwtError;
 import com.auth.jwt.JwtService;
-import com.auth.services.DateService;
+import com.shared.services.DateService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

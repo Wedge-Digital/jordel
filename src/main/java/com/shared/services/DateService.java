@@ -1,6 +1,6 @@
-package com.auth.services;
+package com.shared.services;
 
-import com.auth.services.errors.FormatValidationError;
+import com.auth.services.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,8 +15,12 @@ public class DateService {
         try {
             computed = sdf.parse(mysqlDate);
         } catch (Exception e) {
-            return Result.failure(new FormatValidationError(e.getMessage()));
+            return Result.failure("Invalid date format");
         }
         return Result.success(computed);
+    }
+
+    public static Date now() {
+        return new Date();
     }
 }

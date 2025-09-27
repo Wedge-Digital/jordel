@@ -43,7 +43,9 @@ dependencies {
 	implementation 'org.mapstruct:mapstruct:1.6.3'
 	implementation 'dev.shamil:ulid4j:1.0'
 
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

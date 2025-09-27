@@ -15,6 +15,6 @@ public class ServletPathService {
             return Result.success(requestUri);
         }
 
-        return Result.failure(new NotFoundError("impossible to get servlet target"));
+        return Result.failure("impossible to get servlet target");
     }
 }

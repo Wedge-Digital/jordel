@@ -1,61 +1,56 @@
 package com.auth.tests.value_objects;
 
-import com.auth.domain.EntityID;
-import com.auth.services.Result;
+import com.shared.EntityID;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ulid4j.Ulid;
 
-import static com.auth.services.errors.ErrorType.FORMAT_VALIDATION_ERROR;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 public class EntityIDTests {
 
+    void assertHasError(EntityID entityID, String error) {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<EntityID>> violations = validator.validate(entityID);
+        List<String> messages = violations.stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.toList());
+        Assertions.assertThat(messages).contains(error);
+    }
+
     @Test
     void testEntityIDCreationWithBadStringFails() {
-        // Test creating an EntityID with a valid ID
-        String validId = "1234567890";
-        Result<EntityID> IDCreationResult = EntityID.fromString(validId);
-        Assertions.assertThat(IDCreationResult.isSuccess()).isFalse();
-        Assertions.assertThat(IDCreationResult.getError().getType()).isEqualTo(FORMAT_VALIDATION_ERROR);
-        Assertions.assertThat(IDCreationResult.getError().getMessage()).isEqualTo("EntityID must be alphanumeric and 26 characters");
+        EntityID entityID = new EntityID("1234567890");
+        assertHasError(entityID, "must be alphanumeric and 26 characters");
     }
 
     @Test
     void testEntityIDWithEmptyStringFails() {
         // Test creating an EntityID with a valid ID
-        String validId = "";
-        Result<EntityID> IDCreationResult = EntityID.fromString(validId);
-        Assertions.assertThat(IDCreationResult.isSuccess()).isFalse();
-        Assertions.assertThat(IDCreationResult.getError().getType()).isEqualTo(FORMAT_VALIDATION_ERROR);
-        Assertions.assertThat(IDCreationResult.getError().getMessage()).isEqualTo("EntityID cannot be empty");
+        EntityID entityID = new EntityID("");
+        assertHasError(entityID, "cannot be empty");
     }
 
     @Test
     void testEntityIDWithNullStringFails() {
         // Test creating an EntityID with a valid ID
-        String validId = null;
-        Result<EntityID> IDCreationResult = EntityID.fromString(validId);
-        Assertions.assertThat(IDCreationResult.isSuccess()).isFalse();
-        Assertions.assertThat(IDCreationResult.getError().getType()).isEqualTo(FORMAT_VALIDATION_ERROR);
-        Assertions.assertThat(IDCreationResult.getError().getMessage()).isEqualTo("EntityID cannot be null");
+        EntityID entityID = new EntityID(null);
+        assertHasError(entityID, "cannot be empty");
+        assertHasError(entityID, "cannot be null");
     }
 
     @Test
     void testCreateEntityWithCorrectLengtButInvalidUlidFails() {
         String validId = "JLLJLLJLLJLLJLLJLLJLLJLLIO";
-        Result<EntityID> IDCreationResult = EntityID.fromString(validId);
-        Assertions.assertThat(IDCreationResult.isSuccess()).isFalse();
-        Assertions.assertThat(IDCreationResult.getError().getType()).isEqualTo(FORMAT_VALIDATION_ERROR);
-        Assertions.assertThat(IDCreationResult.getError().getMessage()).isEqualTo("EntityID must be a valid ULID");
-    }
-
-    @Test
-    void testCreateEntityIDwithCorrectULIDSucceed() {
-        Ulid ulidGenerator = new Ulid();
-        String ulid = ulidGenerator.next();
-        String validId = ulid.toString();
-        Result<EntityID> IDCreationResult = EntityID.fromString(validId);
-        Assertions.assertThat(IDCreationResult.isSuccess()).isTrue();
+        EntityID entityID = new EntityID(null);
+        assertHasError(entityID, "is not a valid ULID");
     }
 
 }

@@ -3,7 +3,7 @@ package com.auth.tests;
 import com.auth.jwt.JwtService;
 import com.auth.models.JwtTokens;
 import com.auth.models.CustomUser;
-import com.auth.services.DateService;
+import com.shared.services.DateService;
 import com.auth.services.UserService;
 import com.auth.web.AuthenticationRequest;
 import com.auth.web.RefreshTokenRequest;
@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

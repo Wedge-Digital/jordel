@@ -2,12 +2,14 @@ package com.auth.security;
 
 import com.auth.jwt.JwtService;
 import com.auth.jwt.JwtValidationResult;
+import com.auth.persistance.User;
 import com.auth.security.routes.AuthOpenRoutes;
 import com.auth.services.Result;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,16 +25,16 @@ import java.util.stream.Stream;
 public class JwtRequestFilter extends AbstractFilter {
 
     private final JwtService jwtService;
+    private final MessageSource msgSources;
 
-    public JwtRequestFilter(JwtService jwtService) {
+    public JwtRequestFilter(JwtService jwtService, MessageSource msgSources) {
         this.jwtService = jwtService;
+        this.msgSources = msgSources;
     }
 
     @Override
     protected String[] getBypassRoutes() {
-        return Stream.of(AuthOpenRoutes.list())
-                .flatMap(Arrays::stream)
-                .toArray(String[]::new);
+        return new String[]{"/auth/login"};
     }
 
     private String extractJwtTokenFromHeader(String header) {
@@ -41,11 +43,11 @@ public class JwtRequestFilter extends AbstractFilter {
 
     private Result<String> checkAuthHeader(String header) {
         if (header == null) {
-            return Result.failure(AuthHeaderError.EMPTY_OR_NULL_AUHTHEADER));
+            return Result.failure(msgSources.getMessage("error.header.missing", null, null));
         }
 
         if (!header.startsWith("Bearer ")) {
-            return Result.failure(HeaderError.INVALID_HEADER);
+            return Result.failure("Invalid Header");
         }
 
         return Result.success(header);
@@ -84,7 +86,8 @@ public class JwtRequestFilter extends AbstractFilter {
         }
 
         UsernamePasswordAuthenticationToken springAuthToken = new UsernamePasswordAuthenticationToken(
-                userResult.getValue(), null, null);
+                new User()
+                , null, null);
 
         springAuthToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
