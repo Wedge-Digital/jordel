@@ -1,11 +1,13 @@
 package com.auth.jwt;
 
-import com.auth.models.JwtTokens;
-import io.jsonwebtoken.*;
+import com.td.aion.utils.Result;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -32,15 +34,6 @@ public class JwtService {
         this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public JwtTokens buildAuthTokens(String username) {
-        Date issuedAt = new Date();
-        Date accessExpiresAt = computeAccessExpirationDate(new Date());
-        Date refreshExpiresAt = computeRefreshExpirationDate(new Date());
-        String accessToken = generateToken(username, issuedAt, accessExpiresAt);
-        String refreshToken = generateToken(username, issuedAt, refreshExpiresAt);
-        return new JwtTokens(accessToken, refreshToken);
-    }
-
     public Date computeAccessExpirationDate(Date issuedAt) {
         return new Date(issuedAt.getTime() + accessExpirationOffset);
     }
@@ -59,52 +52,44 @@ public class JwtService {
 
 
     // Generate JWT token
-    public String generateToken(String username, Date issuedAt, Date expiresAt) {
+    public String generateToken(String userId, Date issuedAt, Date expiresAt) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(userId)
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiresAt)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
-    // Get username from JWT token
-    public String getUsernameFromToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(key).build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
-
-    public String renewAccessToken(String token) {
-        String username = getUsernameFromToken(token);
-        Date issuedAt = new Date();
-        Date expiresAt = computeAccessExpirationDate(new Date());
-        return generateToken(username, issuedAt, expiresAt);
-    }
-
-    public String extendRefreshToken(String token) {
-        String username = getUsernameFromToken(token);
-        Date issuedAt = new Date();
-        Date expiresAt = computeRefreshExpirationDate(new Date());
-        return generateToken(username, issuedAt, expiresAt);
-    }
 
     // Validate JWT token
-    public JwtValidationResult validateJwtToken(String token) {
-        try {
-            Jwts.parser().setSigningKey(key).build().parseClaimsJws(token);
-            return JwtValidationResult.success();
-        } catch (SecurityException e) {
-            return JwtValidationResult.failure(JwtError.INVALID_SIGNATURE);
-        } catch (MalformedJwtException e) {
-            return JwtValidationResult.failure(JwtError.INVALID_TOKEN);
-        } catch (ExpiredJwtException e) {
-            return JwtValidationResult.failure(JwtError.EXPIRED_TOKEN);
-        } catch (UnsupportedJwtException e) {
-            return JwtValidationResult.failure(JwtError.UNSUPPORTED_TOKEN);
-        } catch (IllegalArgumentException e) {
-            return JwtValidationResult.failure(JwtError.EMPTY_CLAIMS_STRING);
+    public Result<String> validateJwtToken(String token) {
+        return this.validateWithKey(token, key);
+    }
+
+    private Result<String> execeptionToFailure(Exception e) {
+        switch (e.getClass().getName()) {
+            case "java.lang.SecurityException":
+                return Result.failure(JwtError.INVALID_SIGNATURE.getMessage());
+            case "io.jsonwebtoken.MalformedJwtException":
+                return Result.failure(JwtError.INVALID_TOKEN.getMessage());
+            case "io.jsonwebtoken.ExpiredJwtException":
+                return Result.failure(JwtError.EXPIRED_TOKEN.getMessage());
+            case "io.jsonwebtoken.UnsupportedJwtException":
+                return Result.failure(JwtError.UNSUPPORTED_TOKEN.getMessage());
+            case "java.lang.IllegalArgumentException":
+                return Result.failure(JwtError.EMPTY_CLAIMS_STRING.getMessage());
+            default:
+                return Result.failure(JwtError.INVALID_TOKEN.getMessage());
         }
     }
+
+    public Result<String> validateWithKey(String token, SecretKey key) {
+        try {
+            Jwts.parser().setSigningKey(key).build().parseClaimsJws(token);
+            return Result.success(token);
+        } catch (Exception e) {
+            return execeptionToFailure(e);
+        }
+    }
+
 }

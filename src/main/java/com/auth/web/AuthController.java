@@ -1,66 +1,30 @@
 package com.auth.web;
 
-import com.auth.jwt.JwtService;
-import com.auth.models.JwtTokens;
-import com.auth.models.CustomUser;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.td.aion.io.web.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Auth", description = "API d'authentification des aidants via l'app mobile")
+@RequestMapping("/auth")
+@Profile("with-auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final UserService userService;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    private JwtService jwtService;
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<JwtTokens> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException {
-
-        try {
-            String username = authenticationRequest.getUsername();
-            String password = authenticationRequest.getPassword();
-            UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(username, password);
-            authenticationManager.authenticate(userToken);
-        } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Incorrect username or password", e);
-        }
-
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-
-        final JwtTokens tokens = this.jwtService.buildAuthTokens(userDetails.getUsername());
-
-        return ResponseEntity.ok(tokens);
+    public AuthController(UserService service) {
+        this.userService = service;
     }
 
-    @RequestMapping(value = "/refresh", method = RequestMethod.POST)
-    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
-        String token = refreshTokenRequest.getToken();
-        if (jwtService.validateJwtToken(token).isSuccess()) {
-            String username = jwtService.getUsernameFromToken(token);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            final JwtTokens tokens = this.jwtService.buildAuthTokens(userDetails.getUsername());
-            return ResponseEntity.ok(tokens);
-        } else {
-            String errorMessage = jwtService.validateJwtToken(token).getError().getMessage();
-            return ResponseEntity.badRequest().body(errorMessage);
-        }
+    @GetMapping(value = "/me")
+    @SecurityRequirement(name = "AuthJWT")
+    public ResponseEntity<?> getCurrentUser () {
+        return ResponseEntity.ok(this.userService.getCurrentUser());
     }
 
-    @RequestMapping(value = "/me", method = RequestMethod.GET)
-    public ResponseEntity<CustomUser> getCurrentUser(@RequestHeader("Authorization") String token) {
-        String username = jwtService.getUsernameFromToken(token.substring(7));
-        CustomUser userDetails = (CustomUser) userDetailsService.loadUserByUsername(username);
-        return ResponseEntity.ok(userDetails);
-    }
 }
