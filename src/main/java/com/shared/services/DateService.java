@@ -1,15 +1,16 @@
 package com.shared.services;
 
-import com.auth.services.Result;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateService {
+@Service
+public class DateService implements AbstractDateService {
 
-    DateService() {}
+    public DateService() {}
 
-    public static Result<Date> dateTimeFromMysql(String mysqlDate) {
+    public Result<Date> dateTimeFromMysql(String mysqlDate) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date computed = null;
         try {
@@ -20,7 +21,7 @@ public class DateService {
         return Result.success(computed);
     }
 
-    public static Date now() {
+    public Date now() {
         return new Date();
     }
 }

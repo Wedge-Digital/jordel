@@ -1,13 +1,14 @@
 package com.shared.coach;
 
-import com.auth.domain.Email;
+import com.auth.domain.user_account.values.Email;
+import com.shared.domain.AggregateRoot;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.util.Date;
 
-public class Coach {
+public class Coach extends AggregateRoot {
 
     @NotNull
     @Valid
@@ -34,5 +35,10 @@ public class Coach {
         this.coachName = coachName;
         this.email = email;
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String getId() {
+        return coachId.toString();
     }
 }

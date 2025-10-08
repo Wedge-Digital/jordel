@@ -1,3 +1,5 @@
+import org.flywaydb.gradle.task.FlywayMigrateTask
+
 buildscript {
 	repositories {
 		mavenCentral()
@@ -7,13 +9,11 @@ buildscript {
 	}
 }
 
-
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.4'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'org.flywaydb.flyway' version '11.8.0'
-	id 'co.uzzu.dotenv.gradle' version "4.0.0"
 }
 
 group = 'com.auth'
@@ -33,6 +33,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.security:spring-security-core:6.5.5'
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.12.6'
 
@@ -42,7 +43,7 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	implementation 'org.mapstruct:mapstruct:1.6.3'
 	implementation 'dev.shamil:ulid4j:1.0'
-
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.5'
     implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
 
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
@@ -54,11 +55,30 @@ dependencies {
 }
 
 flyway {
-	url = env.DB_URL.value
-	user = env.DB_USER.value
-	password = env.DB_PASSWORD.value
+	url =  System.getenv('DB_URL')
+	user = System.getenv('DB_USER')
+	password = System.getenv('DB_PASSWORD')
 	locations = ['filesystem:src/main/resources/db/migration']
 	cleanDisabled = false
+}
+
+tasks.register('flywayMigrateDev', FlywayMigrateTask) {
+    url = System.getenv('DB_URL')
+    user = System.getenv('DB_USER')
+    password = System.getenv('DB_PASSWORD')
+    locations = ['filesystem:src/main/resources/db/migration']
+}
+
+tasks.register('flywayMigrateTest', FlywayMigrateTask) {
+    url = 'jdbc:postgresql://localhost:5432/bb_db_test'
+    user = 'root'
+    password = 'root'
+    locations = ['filesystem:src/main/resources/db/migration']
+}
+
+// Exemple de tâche par défaut choisie selon profile
+tasks.register('flywayMigrateEnv') {
+    dependsOn execProfile == 'test' ? tasks.named('flywayMigrateTest') : tasks.named('flywayMigrateDev')
 }
 
 // we need to build classes before we can migrate

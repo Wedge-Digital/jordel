@@ -1,17 +1,19 @@
-CREATE TABLE access__account
+CREATE TABLE auth__user
 (
-    entity_id   CHAR(26)                 not null primary key,
-    coach_name   VARCHAR NOT NULL UNIQUE,
+    user_id     CHAR(26)                 not null primary key,
+    username    VARCHAR NOT NULL UNIQUE,
     email       VARCHAR UNIQUE,
     password    VARCHAR                  not null,
+    lang        VARCHAR                  not null,
     is_active   BOOLEAN                  not null,
-    last_login  TIMESTAMP WITH TIME ZONE,
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL,
-    updated_at  TIMESTAMP WITH TIME ZONE NOT NULL
+    updated_at  TIMESTAMP WITH TIME ZONE NOT NULL,
+    last_login  TIMESTAMP WITH TIME ZONE,
+    roles       JSONB                    NOT NULL
 );
 
 CREATE UNIQUE INDEX ix_access_account_email
-    ON access__account (email);
+    ON auth__user (username);
 
 CREATE INDEX ix_access_account_is_active
-    ON access__account (is_active);
+    ON auth__user (is_active);

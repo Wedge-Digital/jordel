@@ -18,20 +18,21 @@ public class DomainValidator {
         Set<ConstraintViolation<T>> violations = validator.validate(instanceToCheck);
         List<String> messages = violations.stream()
                 .map(ConstraintViolation::getMessage)
-                .collect(Collectors.toList());
+                .toList();
         return messages.isEmpty();
     }
 
-    public static <T> Map<String, List<String>> getErrors(T instanceToCheck) {
+    public static <T> Map<String, String> getErrors(T instanceToCheck) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
         Set<ConstraintViolation<T>> violations = validator.validate(instanceToCheck);
 
         return violations.stream()
-                .collect(Collectors.groupingBy(
-                        violation -> violation.getPropertyPath().toString(),
-                        Collectors.mapping(ConstraintViolation::getMessage, Collectors.toList())
+                .collect(Collectors.toMap(
+                        violation -> violation.getPropertyPath().toString().split("\\.")[0],
+                        ConstraintViolation::getMessage,
+                        (msg1, msg2) -> msg1 + "; " + msg2 // en cas de doublons, concaténer les messages
                 ));
     }
 

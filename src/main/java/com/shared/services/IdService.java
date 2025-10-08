@@ -1,10 +1,13 @@
 package com.shared.services;
 
+import org.springframework.stereotype.Service;
 import ulid4j.Ulid;
 
-public class IdService {
-    public static String getStringId() {
+
+@Service
+public class IdService implements AbstractIdService {
+    public String getStringId() {
         Ulid ulid = new Ulid();
-        return ulid.toString();
+        return ulid.create();
     }
 }

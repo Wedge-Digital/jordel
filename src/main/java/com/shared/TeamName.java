@@ -1,7 +1,5 @@
 package com.shared;
 
-import com.auth.services.Result;
-
 public class TeamName {
     private final String teamName;
 

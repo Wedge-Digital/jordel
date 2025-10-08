@@ -1,6 +1,6 @@
 package com.shared;
 
-import com.auth.domain.Email;
+import com.auth.domain.user_account.values.Email;
 import com.shared.services.DateService;
 import com.shared.coach.CoachID;
 import com.shared.coach.CoachName;
@@ -15,16 +15,19 @@ import java.util.Map;
 
 public class coachTests {
 
+    DateService ds = new DateService();
+    IdService ids = new IdService();
+
     @Test
     public void test_without_error_is_valid() {
         Coach coach = new Coach(
-                new CoachID(IdService.getStringId()),
+                new CoachID(ids.getStringId()),
                 new CoachName("toto"),
                 new Email("toto@gmail.com"),
-                DateService.now()
+                ds.now()
         );
         Assertions.assertNotNull(coach);
-        Assertions.assertTrue(DomainValidator.isValid(coach));
+        Assertions.assertFalse(coach.isNotValid());
     }
 
     @Test
@@ -33,13 +36,13 @@ public class coachTests {
                 new CoachID("123456789"),
                 new CoachName("toto"),
                 new Email("totogmail.com"),
-                DateService.now()
+                ds.now()
         );
         Assertions.assertNotNull(coach);
         Assertions.assertFalse(DomainValidator.isValid(coach));
-        Map<String, List<String>> errorMap = new HashMap<>();
-        errorMap.put("coachId.value", List.of("must be alphanumeric and 26 characters", "is not a valid ULID"));
-        errorMap.put("email.value", List.of("doit être une adresse électronique syntaxiquement correcte"));
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("coachId", "Identifiant non valide, doit être un ULID");
+        errorMap.put("email", "Adresse mail incorrecte");
         Assertions.assertEquals(DomainValidator.getErrors(coach), errorMap);
     }
 }
