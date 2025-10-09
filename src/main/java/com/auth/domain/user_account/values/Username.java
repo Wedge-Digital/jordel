@@ -25,4 +25,9 @@ public class Username extends ValueObject {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
+    @Override
+    public boolean equalsString(String id){
+        return this.value.equals(id);
+    }
 }

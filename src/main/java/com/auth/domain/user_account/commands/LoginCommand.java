@@ -1,4 +1,4 @@
-package com.auth.use_cases.login;
+package com.auth.domain.user_account.commands;
 
 public class LoginCommand {
     String  username;

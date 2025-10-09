@@ -1,4 +1,4 @@
-package com.auth.use_cases.event_receivers.user_account;
+package com.auth.use_cases.event_receivers;
 
 import com.auth.io.persistance.write.BusinessEventEntity;
 import com.auth.io.persistance.write.BusinessEventRepository;

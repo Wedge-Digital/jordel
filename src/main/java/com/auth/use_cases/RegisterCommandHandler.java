@@ -1,11 +1,10 @@
-package com.auth.use_cases.register;
+package com.auth.use_cases;
 
 import com.auth.domain.user_account.DraftUserAccount;
 import com.auth.domain.user_account.commands.RegisterCommand;
 import com.auth.use_cases.policies.EmailShallNotExistPolicy;
 import com.auth.use_cases.policies.UserShallNotExistPolicy;
 import com.shared.domain.events.AbstractEventDispatcher;
-import com.shared.domain.events.EventDispatcher;
 import com.shared.services.ResultMap;
 import org.springframework.stereotype.Component;
 

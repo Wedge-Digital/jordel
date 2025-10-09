@@ -1,9 +1,8 @@
-package com.auth.use_cases.login;
+package com.auth.use_cases;
 
-import com.shared.domain.events.EventDispatcher;
+import com.auth.domain.user_account.commands.LoginCommand;
 import com.shared.services.Result;
 import com.shared.use_cases.CommandResult;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 

@@ -2,6 +2,7 @@ package com.auth.use_cases.register;
 
 import com.auth.domain.user_account.commands.RegisterCommand;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
+import com.auth.use_cases.RegisterCommandHandler;
 import com.auth.use_cases.register.fake_policies.EmailAlwaysExistsPolicy;
 import com.auth.use_cases.register.fake_policies.EmailAlwaysNotExistsPolicy;
 import com.auth.use_cases.register.fake_policies.UserAlwaysExistsPolicy;

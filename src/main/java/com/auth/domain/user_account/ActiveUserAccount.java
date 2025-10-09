@@ -1,5 +1,7 @@
 package com.auth.domain.user_account;
 
+import com.auth.domain.user_account.commands.ValidateEmailCommand;
+import com.auth.domain.user_account.events.EmailValidatedEvent;
 import com.auth.domain.user_account.values.*;
 import com.shared.domain.AggregateRoot;
 import com.shared.services.MessageSourceConfig;
@@ -16,11 +18,20 @@ import java.util.Locale;
 
 public class ActiveUserAccount extends DraftUserAccount {
 
-
     @Past
     private Date lastLogin;
 
-    public ActiveUserAccount() {
+    @Past
+    private Date validatedAt;
+
+    public ActiveUserAccount(DraftUserAccount draft, Date validatedAt) {
+        super(draft.getId(),
+                draft.getUsername().toString(),
+                draft.getEmail().toString(),
+                draft.getPassword().toString(),
+                draft.getCreatedAt()
+                );
+        this.validatedAt = validatedAt;
     }
 
     public boolean login(String password){
@@ -28,7 +39,12 @@ public class ActiveUserAccount extends DraftUserAccount {
         return this.password.matches(password);
     }
 
-    public boolean isActive() {
+    @Override
+    public boolean isActivated() {
         return true;
+    }
+
+    @Override
+    public void confirmEmail(ValidateEmailCommand command){
     }
 }

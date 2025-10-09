@@ -5,13 +5,12 @@ import com.auth.io.models.JwtTokens;
 import com.auth.io.models.CustomUser;
 import com.auth.io.web.models.LoginRequest;
 import com.auth.io.web.models.RefreshTokenRequest;
-import com.auth.use_cases.login.LoginCommandHandler;
+import com.auth.use_cases.LoginCommandHandler;
 import com.shared.services.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 

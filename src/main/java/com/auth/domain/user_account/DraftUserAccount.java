@@ -1,7 +1,9 @@
 package com.auth.domain.user_account;
 
 import com.auth.domain.user_account.commands.RegisterCommand;
+import com.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
+import com.auth.domain.user_account.events.EmailValidatedEvent;
 import com.auth.domain.user_account.values.*;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.shared.services.ResultMap;
@@ -21,7 +23,7 @@ public class DraftUserAccount extends AbstractUserAccount {
 
     @Valid
     @NotNull
-    private UserAccountID userId;
+    protected UserAccountID userId;
 
     @Valid
     protected Username username;
@@ -34,15 +36,24 @@ public class DraftUserAccount extends AbstractUserAccount {
     @NotNull
     @Valid
     @Past
-    private Date createdAt;
+    protected Date createdAt;
 
     @NotNull
     @Size(min = 1, max = 5)
-    private List<UserRole> roles = new ArrayList<>(){{add(UserRole.SIMPLE_USER);}};
+    protected List<UserRole> roles = new ArrayList<>(){{add(UserRole.SIMPLE_USER);}};
 
-    public DraftUserAccount()
+    public DraftUserAccount() {
+        super();
+    }
+
+    public DraftUserAccount(String id, String username, String email, String password, Date createdAt)
     {
         super();
+        this.userId =new UserAccountID(id);
+        this.username = new Username(username);
+        this.email = new Email(email);
+        this.password = new Password(password);
+        this.createdAt = createdAt;
     }
 
     public ResultMap<String> register(RegisterCommand command) {
@@ -63,6 +74,20 @@ public class DraftUserAccount extends AbstractUserAccount {
             return ResultMap.success(this.getId());
         }
         return validationErrors();
+    }
+
+    @Override
+    public void confirmEmail(ValidateEmailCommand command){
+        // une confirmation arrivée là ne peux plus échouer
+        EmailValidatedEvent accountValidatedEvent = new EmailValidatedEvent(
+                this.userId.toString()
+        );
+        this.addEvent(accountValidatedEvent);
+    }
+
+    @Override
+    public boolean isActivated() {
+        return false;
     }
 
     public Username getUsername() {
@@ -89,4 +114,10 @@ public class DraftUserAccount extends AbstractUserAccount {
     public void setId(String id) {
         this.userId = new UserAccountID(id);
     }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+
 }

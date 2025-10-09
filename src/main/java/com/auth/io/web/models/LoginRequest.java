@@ -1,6 +1,6 @@
 package com.auth.io.web.models;
 
-import com.auth.use_cases.login.LoginCommand;
+import com.auth.domain.user_account.commands.LoginCommand;
 
 public class LoginRequest extends LoginCommand {
 

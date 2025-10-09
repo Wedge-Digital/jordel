@@ -16,9 +16,6 @@ public class AccountRegisteredEvent extends DomainEvent {
     private String  password;
     private Date createdAt;
 
-    public AccountRegisteredEvent() {
-    }
-
     public AccountRegisteredEvent(String id, String username, String email, String password, Date createdAt) {
         super(id);
         this.username = username;

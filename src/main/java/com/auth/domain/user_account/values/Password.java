@@ -23,5 +23,10 @@ public class Password extends ValueObject {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
         return encoder.matches(password, value);
     }
+
+    @Override
+    public boolean equalsString(String id){
+        return this.value.equals(id);
+    }
 }
 

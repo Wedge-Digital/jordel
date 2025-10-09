@@ -3,7 +3,7 @@ package com.auth.use_cases.events_receivers;
 import com.auth.domain.user_account.DraftUserAccount;
 import com.auth.domain.user_account.commands.RegisterCommand;
 import com.auth.io.persistance.write.BusinessEventRepository;
-import com.auth.use_cases.event_receivers.user_account.UserAccountEventDumper;
+import com.auth.use_cases.event_receivers.UserAccountEventDumper;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

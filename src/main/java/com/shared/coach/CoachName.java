@@ -19,5 +19,10 @@ public class CoachName extends ValueObject {
     public String toString() {
         return value;
     }
+
+    @Override
+    public boolean equalsString(String id){
+        return this.value.equals(id);
+    }
 }
 
