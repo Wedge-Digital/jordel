@@ -1,16 +1,16 @@
 package com.auth.use_cases.policies;
-import com.shared.services.ResultMap;
+import com.lib.services.ResultMap;
+import com.lib.use_cases.Policy;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
-@Service
-public class UserAccountShallExistPolicy implements Policy {
-    private final MessageSource msgSource;
+@Service("UserAccountShallExistPolicy")
+public class UserAccountShallExistPolicy extends Policy {
 
     public UserAccountShallExistPolicy(MessageSource msgSource) {
-        this.msgSource = msgSource;
+        super(msgSource);
     }
 
     public String getErrorMsg(String userAccountId) {

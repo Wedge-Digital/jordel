@@ -1,7 +1,7 @@
 package com.auth.domain.user_account.events;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.shared.domain.events.DomainEvent;
+import com.lib.domain.events.DomainEvent;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class AccountRegisteredEvent extends DomainEvent {
     private Date createdAt;
 
     public AccountRegisteredEvent(String id, String username, String email, String password, Date createdAt) {
-        super(id);
+        super(id, id);
         this.username = username;
         this.email = email;
         this.password = password;

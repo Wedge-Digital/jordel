@@ -1,7 +1,7 @@
 package com.auth.io.services;
 
 import com.auth.io.models.JwtTokens;
-import com.shared.services.Result;
+import com.lib.services.Result;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -14,31 +14,40 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
-import java.util.Locale;
 
 
 @Component
 public class JwtService {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
 
-    @Value("${jwt.expiration.access}")
-    private int accessExpirationOffset;
+    private final String jwtSecret;
 
-    @Value("${jwt.expiration.refresh}")
-    private long refreshExpirationOffset;
+
+    private final int accessExpirationOffset;
+
+
+    private final long refreshExpirationOffset;
 
     private SecretKey key;
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public JwtService(@Value("${jwt.secret}") String jwtSecret,
+                      @Value("${jwt.expiration.access}") int accessExpirationOffset,
+                      @Value("${jwt.expiration.refresh}") long refreshExpirationOffset,
+                      MessageSource messageSource) {
+        this.jwtSecret = jwtSecret;
+        this.accessExpirationOffset = accessExpirationOffset;
+        this.refreshExpirationOffset = refreshExpirationOffset;
+        this.messageSource = messageSource;
+    }
 
     // Initializes the key after the class is instantiated and the jwtSecret is injected,
     // preventing the repeated creation of the key and enhancing performance
     @PostConstruct
     public void init() {
-        this.key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+        byte[] keyBytes = jwtSecret.getBytes(StandardCharsets.UTF_8);
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public JwtTokens buildAuthTokens(String username) {
@@ -70,18 +79,19 @@ public class JwtService {
     // Generate JWT token
     public String generateToken(String username, Date issuedAt, Date expiresAt) {
         return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(issuedAt)
-                .setExpiration(expiresAt)
-                .signWith(key, SignatureAlgorithm.HS256)
+                .subject(username)
+                .issuedAt(issuedAt)
+                .expiration(expiresAt)
+                .signWith(key)
                 .compact();
     }
     // Get username from JWT token
     public String getUsernameFromToken(String token) {
         return Jwts.parser()
-                .setSigningKey(key).build()
-                .parseClaimsJws(token)
-                .getBody()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
                 .getSubject();
     }
 
@@ -102,7 +112,7 @@ public class JwtService {
     // Validate JWT token
     public Result<String> validateJwtToken(String token) {
         try {
-            Jwts.parser().setSigningKey(key).build().parseClaimsJws(token);
+            Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
             return Result.success("no pb");
         } catch (SecurityException e) {
             String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());

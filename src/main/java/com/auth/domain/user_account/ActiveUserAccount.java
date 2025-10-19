@@ -1,21 +1,16 @@
 package com.auth.domain.user_account;
 
 import com.auth.domain.user_account.commands.ValidateEmailCommand;
-import com.auth.domain.user_account.events.EmailValidatedEvent;
-import com.auth.domain.user_account.values.*;
-import com.shared.domain.AggregateRoot;
-import com.shared.services.MessageSourceConfig;
-import com.shared.services.ResultMap;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
-import org.apache.commons.lang3.LocaleUtils;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 public class ActiveUserAccount extends DraftUserAccount {
 
     @Past
@@ -32,6 +27,8 @@ public class ActiveUserAccount extends DraftUserAccount {
                 draft.getCreatedAt()
                 );
         this.validatedAt = validatedAt;
+        this.version = 1;
+
     }
 
     public boolean login(String password){

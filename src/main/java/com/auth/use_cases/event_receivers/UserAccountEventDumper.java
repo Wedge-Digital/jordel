@@ -1,22 +1,22 @@
 package com.auth.use_cases.event_receivers;
 
-import com.auth.io.persistance.write.BusinessEventEntity;
-import com.auth.io.persistance.write.BusinessEventRepository;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
-import com.shared.domain.events.AbstractEventDispatcher;
-import com.shared.domain.events.DomainEvent;
-import com.shared.domain.events.EventHandler;
+import com.lib.persistance.event_log.EventLogEntity;
+import com.lib.persistance.event_log.EventLogRepository;
+import com.lib.domain.events.AbstractEventDispatcher;
+import com.lib.domain.events.DomainEvent;
+import com.lib.domain.events.EventHandler;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserAccountEventDumper implements EventHandler {
 
-    private final BusinessEventRepository eventRepo;
+    private final EventLogRepository eventRepo;
 
     private final AbstractEventDispatcher eventBus;
 
-    public UserAccountEventDumper(BusinessEventRepository eventRepo, AbstractEventDispatcher eventBus) {
+    public UserAccountEventDumper(EventLogRepository eventRepo, AbstractEventDispatcher eventBus) {
         this.eventRepo = eventRepo;
         this.eventBus = eventBus;
     }
@@ -28,7 +28,7 @@ public class UserAccountEventDumper implements EventHandler {
 
     @Override
     public void receive(DomainEvent event) {
-        BusinessEventEntity eventEntity = new BusinessEventEntity(event);
+        EventLogEntity eventEntity = new EventLogEntity(event, event.getCreatedBy());
         eventRepo.save(eventEntity);
     }
 

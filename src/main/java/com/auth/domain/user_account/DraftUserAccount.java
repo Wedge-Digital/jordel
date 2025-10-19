@@ -6,13 +6,15 @@ import com.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.auth.domain.user_account.events.EmailValidatedEvent;
 import com.auth.domain.user_account.values.*;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.shared.services.ResultMap;
+import com.lib.services.ResultMap;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
@@ -54,13 +56,14 @@ public class DraftUserAccount extends AbstractUserAccount {
         this.email = new Email(email);
         this.password = new Password(password);
         this.createdAt = createdAt;
+        this.version = 0;
     }
 
     public ResultMap<String> register(RegisterCommand command) {
-        this.userId =new UserAccountID(command.getUserId());
-        this.username = new Username(command.getUsername());
-        this.email = new Email(command.getEmail());
-        this.password = new Password(command.getPassword());
+        this.userId =new UserAccountID(command.userId());
+        this.username = new Username(command.username());
+        this.email = new Email(command.email());
+        this.password = new Password(command.password());
         this.createdAt = new Date();
 
         if (isValid()) {

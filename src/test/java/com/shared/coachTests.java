@@ -1,16 +1,16 @@
 package com.shared;
 
 import com.auth.domain.user_account.values.Email;
-import com.shared.services.DateService;
+import com.shared.coach.Coach;
 import com.shared.coach.CoachID;
 import com.shared.coach.CoachName;
-import com.shared.coach.Coach;
-import com.shared.services.IdService;
-import com.shared.validators.DomainValidator;
+import com.lib.services.DateService;
+import com.lib.services.IdService;
+import com.lib.validators.DomainValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class coachTests {

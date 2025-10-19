@@ -2,30 +2,41 @@ package com.auth.use_cases;
 
 import com.auth.domain.user_account.DraftUserAccount;
 import com.auth.domain.user_account.commands.RegisterCommand;
-import com.auth.use_cases.policies.EmailShallNotExistPolicy;
-import com.auth.use_cases.policies.UserShallNotExistPolicy;
-import com.shared.domain.events.AbstractEventDispatcher;
-import com.shared.services.ResultMap;
+import com.lib.use_cases.Policy;
+import com.lib.domain.events.AbstractEventDispatcher;
+import com.lib.services.ResultMap;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RegisterCommandHandler {
 
-    private final UserShallNotExistPolicy userShallNotExistPolicy;
-    private final EmailShallNotExistPolicy emailShallNotExistPolicy;
+    @Qualifier("UserNameShallNotExistPolicy")
+    private final Policy userNameShallNotExistPolicy;
+
+    @Qualifier("IdShallNotExistPolicy")
+    private final Policy idShallNotExistPolicy;
+
+    @Qualifier("EmailShallNotExistPolicy")
+    private final Policy emailShallNotExistPolicy;
 
     private final AbstractEventDispatcher businessDispatcher;
 
-    public RegisterCommandHandler(UserShallNotExistPolicy userShallNotExistPolicy, EmailShallNotExistPolicy emailShallNotExistPolicy, AbstractEventDispatcher businessDispatcher) {
-        this.userShallNotExistPolicy = userShallNotExistPolicy;
+    public RegisterCommandHandler(@Qualifier("UserNameShallNotExistPolicy") Policy userNameShallNotExistPolicy,
+                                  @Qualifier("IdShallNotExistPolicy" ) Policy idShallNotExistPolicy,
+                                  @Qualifier("EmailShallNotExistPolicy") Policy emailShallNotExistPolicy,
+                                  AbstractEventDispatcher businessDispatcher) {
+        this.userNameShallNotExistPolicy = userNameShallNotExistPolicy;
+        this.idShallNotExistPolicy = idShallNotExistPolicy;
         this.emailShallNotExistPolicy = emailShallNotExistPolicy;
         this.businessDispatcher = businessDispatcher;
     }
 
     public ResultMap<String> handle(RegisterCommand command) {
-        ResultMap<String> usernameCheck = this.userShallNotExistPolicy.check(command.getUsername());
-        ResultMap<String> emailCheck = this.emailShallNotExistPolicy.check(command.getEmail());
-        ResultMap<String> allChecks = ResultMap.combine(usernameCheck, emailCheck);
+        ResultMap<String> userIdCheck = this.idShallNotExistPolicy.check(command.username());
+        ResultMap<String> usernameCheck = this.userNameShallNotExistPolicy.check(command.username());
+        ResultMap<String> emailCheck = this.emailShallNotExistPolicy.check(command.email());
+        ResultMap<String> allChecks = ResultMap.combine(userIdCheck, usernameCheck, emailCheck);
 
         if (allChecks.isFailure()) {
             return allChecks;
@@ -38,7 +49,7 @@ public class RegisterCommandHandler {
             return registerResult;
         }
 
-        businessDispatcher.dispatchAll(newAccount.domainEvents());
+        businessDispatcher.asyncDispatchList(newAccount.domainEvents());
 
         return registerResult;
     }

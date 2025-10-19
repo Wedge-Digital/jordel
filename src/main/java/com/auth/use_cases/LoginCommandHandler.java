@@ -1,7 +1,7 @@
 package com.auth.use_cases;
 
 import com.auth.domain.user_account.commands.LoginCommand;
-import com.shared.services.Result;
+import com.lib.services.Result;
 import com.shared.use_cases.CommandResult;
 import org.springframework.stereotype.Component;
 

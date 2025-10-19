@@ -1,6 +1,6 @@
 package com.auth.io.security.filters;
 
-import com.shared.services.Result;
+import com.lib.services.Result;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class ServletPathService {

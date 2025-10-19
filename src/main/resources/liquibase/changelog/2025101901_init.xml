@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2025052112000000-1" author="bbegouin">
+        <validCheckSum>9:16c87c15324802ab19ce1a77fac931ff</validCheckSum>
+        <createTable tableName="event_log">
+            <column name="id" type="varchar(26)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="source" type="varchar(255)"/>
+            <column name="type" type="varchar(255)"/>
+            <column name="spec_version" type="VARCHAR(255)"/>
+            <column name="time" type="timestamp with time zone" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="data_schema" type="VARCHAR(255)"/>
+            <column name="data_content_type" type="VARCHAR(255)"/>
+            <column name="data" type="json"/>
+            <column name="subject" type="VARCHAR(255)"/>
+        </createTable>
+        <createIndex tableName="event_log" indexName="idx_eventlog_id" unique="true">
+            <column name="id"/>
+        </createIndex>
+        <createTable tableName="read_cache">
+            <column name="id" type="varchar(26)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)"/>
+            <column name="version" type="INT"/>
+            <column name="data" type="json"/>
+            <column name="created_at" type="timestamp with time zone" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <createIndex tableName="read_cache" indexName="idx_read_cache_id" unique="true">
+            <column name="id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

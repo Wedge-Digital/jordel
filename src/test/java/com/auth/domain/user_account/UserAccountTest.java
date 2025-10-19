@@ -2,8 +2,8 @@ package com.auth.domain.user_account;
 
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.auth.domain.user_account.events.EmailValidatedEvent;
-import com.shared.domain.events.DomainEvent;
-import com.shared.services.Result;
+import com.lib.domain.events.DomainEvent;
+import com.lib.services.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

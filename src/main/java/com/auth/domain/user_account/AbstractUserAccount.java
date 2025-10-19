@@ -3,21 +3,12 @@ package com.auth.domain.user_account;
 import com.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.auth.domain.user_account.events.EmailValidatedEvent;
-import com.auth.domain.user_account.values.*;
-import com.shared.domain.AggregateRoot;
-import com.shared.domain.events.DomainEvent;
-import com.shared.services.Result;
-import com.shared.services.ResultMap;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
-import org.apache.commons.lang3.LocaleUtils;
+import com.lib.domain.AggregateRoot;
+import com.lib.domain.events.DomainEvent;
+import com.lib.services.Result;
 
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public abstract class AbstractUserAccount extends AggregateRoot {
 

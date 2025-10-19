@@ -1,5 +1,9 @@
 package com.auth.io.persistance.read;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -14,6 +18,9 @@ public class UserJpaEntity {
     @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
 
+    @Column(name = "version", nullable = false)
+    private Integer version;
+
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 
@@ -21,8 +28,6 @@ public class UserJpaEntity {
     private String email;
 
     private String password;
-
-    private String lang;
 
     private Boolean isActive;
 
@@ -93,19 +98,19 @@ public class UserJpaEntity {
         this.updatedAt = updatedAt;
     }
 
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
     public List<String> getRoles() {
         return roles;
     }
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

@@ -3,12 +3,13 @@ package com.auth.io.security.filters;
 import com.auth.domain.user_account.ActiveUserAccount;
 import com.auth.domain.user_account.values.UserRole;
 import com.auth.io.persistance.read.UserAccountReadRepository;
-import com.auth.io.services.JwtService;
 import com.auth.io.security.routes.AuthOpenRoutes;
 import com.auth.io.services.AbstractAuthService;
-import com.shared.services.AbstractDateService;
-import com.shared.services.AbstractIdService;
-import com.shared.services.Result;
+import com.auth.io.services.JwtService;
+import com.lib.auth.AbstractFilter;
+import com.lib.services.AbstractDateService;
+import com.lib.services.AbstractIdService;
+import com.lib.services.Result;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +37,9 @@ public class JwtRequestFilter extends AbstractFilter {
 
     private final JwtService jwtService;
 
-    public JwtRequestFilter(AbstractIdService idservice, AbstractAuthService authService, UserAccountReadRepository userRepo, AbstractDateService dateService, MessageSource messageSource, JwtService jwtService) {
+    public JwtRequestFilter(AbstractAuthService authService,
+                            MessageSource messageSource,
+                            JwtService jwtService) {
         this.authService = authService;
         this.messageSource = messageSource;
         this.jwtService = jwtService;

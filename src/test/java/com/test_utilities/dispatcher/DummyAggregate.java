@@ -1,6 +1,6 @@
 package com.test_utilities.dispatcher;
 
-import com.shared.domain.AggregateRoot;
+import com.lib.domain.AggregateRoot;
 
 public class DummyAggregate extends AggregateRoot {
     @Override

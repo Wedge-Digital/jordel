@@ -1,7 +1,7 @@
 package com.auth.io.security;
 
 import com.auth.io.security.filters.JwtRequestFilter;
-import com.auth.io.security.filters.TraceFilter;
+import com.lib.auth.filters.TraceFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

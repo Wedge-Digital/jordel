@@ -1,6 +1,6 @@
 package com.auth.domain.value_objects;
 
-import com.shared.EntityID;
+import com.lib.domain.EntityID;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

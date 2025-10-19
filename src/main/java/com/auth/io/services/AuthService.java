@@ -1,8 +1,7 @@
 package com.auth.io.services;
 
 import com.auth.domain.user_account.ActiveUserAccount;
-import com.shared.services.Result;
-import org.springframework.context.MessageSource;
+import com.lib.services.Result;
 import org.springframework.stereotype.Service;
 
 @Service

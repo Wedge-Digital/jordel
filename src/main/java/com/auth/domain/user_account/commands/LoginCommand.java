@@ -1,8 +1,8 @@
 package com.auth.domain.user_account.commands;
 
 public class LoginCommand {
-    String  username;
-    String password;
+    private final String username;
+    private final String password;
 
     public LoginCommand(String username, String password) {
         this.username = username;

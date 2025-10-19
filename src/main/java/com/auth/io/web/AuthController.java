@@ -1,13 +1,15 @@
 package com.auth.io.web;
 
-import com.auth.io.services.JwtService;
-import com.auth.io.models.JwtTokens;
+import com.auth.domain.user_account.commands.RegisterCommand;
 import com.auth.io.models.CustomUser;
+import com.auth.io.models.JwtTokens;
+import com.auth.io.services.JwtService;
 import com.auth.io.web.models.LoginRequest;
 import com.auth.io.web.models.RefreshTokenRequest;
 import com.auth.use_cases.LoginCommandHandler;
-import com.shared.services.Result;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.auth.use_cases.RegisterCommandHandler;
+import com.lib.services.Result;
+import com.lib.services.ResultMap;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,17 +17,20 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping("/auth/v1")
 public class AuthController {
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtService jwtService;
+    private final MessageSource messageSource;
+    private final LoginCommandHandler loginHandler;
+    private final RegisterCommandHandler registerHandler;
 
-
-    @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
-    private LoginCommandHandler loginHandler;
+    public AuthController(JwtService jwtService, MessageSource messageSource, LoginCommandHandler loginHandler, RegisterCommandHandler registerHandler) {
+        this.jwtService = jwtService;
+        this.messageSource = messageSource;
+        this.loginHandler = loginHandler;
+        this.registerHandler = registerHandler;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
@@ -51,6 +56,16 @@ public class AuthController {
         } else {
             String errorMessage = jwtService.validateJwtToken(token).getError();
             return ResponseEntity.badRequest().body(errorMessage);
+        }
+    }
+
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public ResponseEntity<?> registerUser(@RequestBody RegisterCommand candidateAccount) {
+        ResultMap<String> registration = this.registerHandler.handle(candidateAccount);
+        if (registration.isSuccess()) {
+            return ResponseEntity.ok(registration.getValue());
+        } else {
+            return ResponseEntity.badRequest().body(registration.listErrors());
         }
     }
 

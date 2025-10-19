@@ -1,7 +1,7 @@
 package com.shared.coach;
 
 import com.auth.domain.user_account.values.Email;
-import com.shared.domain.AggregateRoot;
+import com.lib.domain.AggregateRoot;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;

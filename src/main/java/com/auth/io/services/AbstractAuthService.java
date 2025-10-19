@@ -1,7 +1,7 @@
 package com.auth.io.services;
 
 import com.auth.domain.user_account.ActiveUserAccount;
-import com.shared.services.Result;
+import com.lib.services.Result;
 
 public abstract class AbstractAuthService {
 

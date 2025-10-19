@@ -1,6 +1,6 @@
 package com.shared.coach;
 
-import com.shared.ValueObject;
+import com.lib.domain.ValueObject;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 

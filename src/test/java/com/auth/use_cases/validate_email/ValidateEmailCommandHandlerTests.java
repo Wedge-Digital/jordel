@@ -6,10 +6,9 @@ import com.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.auth.domain.user_account.events.EmailValidatedEvent;
 import com.auth.use_cases.ValidateEmailCommandHandler;
-import com.shared.domain.events.DomainEvent;
-import com.shared.services.MessageSourceConfig;
-import com.shared.services.Result;
-import com.shared.services.ResultMap;
+import com.lib.domain.events.DomainEvent;
+import com.lib.services.MessageSourceConfig;
+import com.lib.services.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MessageSourceConfig.class)
@@ -55,16 +53,21 @@ public class ValidateEmailCommandHandlerTests {
         init_event();
         Result<AbstractUserAccount> accountHydratation = baseAccount.apply(registration);
         command = new ValidateEmailCommand("01K6TR3FQJRPBZMNN1TJP5D3YY");
-        ResultMap<String> emailConfirmation = accountHydratation.getValue().confirmEmail(command);
-        Assertions.assertTrue(emailConfirmation.isSuccess());
+        AbstractUserAccount userAccount = accountHydratation.getValue();
+        userAccount.confirmEmail(command);
+        Assertions.assertFalse(userAccount.domainEvents().isEmpty());
     }
 
     @Test
     public void test_validate_email_on_already_validated_account_has_no_effect() {
         init_event();
-        Result<AbstractUserAccount> accountHydratation = baseAccount.applyAll(List.of(registration, emailValidated));
+        ArrayList<DomainEvent> events = new ArrayList<>();
+        events.add(registration);
+        events.add(emailValidated);
+        Result<AbstractUserAccount> accountHydratation = baseAccount.applyAll(events);
         command = new ValidateEmailCommand("01K6TR3FQJRPBZMNN1TJP5D3YY");
-        ResultMap<String> emailConfirmation = accountHydratation.getValue().confirmEmail(command);
-        Assertions.assertTrue(emailConfirmation.isSuccess());
+        AbstractUserAccount userAccount = accountHydratation.getValue();
+        userAccount.confirmEmail(command);
+        Assertions.assertTrue(userAccount.domainEvents().isEmpty());
     }
 }

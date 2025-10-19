@@ -1,11 +1,9 @@
 package com.auth.domain.user_account.values;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.shared.ValueObject;
-import com.shared.domain.serializers.ValueObjectSerializer;
-import com.shared.validators.ULIDConstraint;
+import com.lib.domain.ValueObject;
+import com.lib.domain.serializers.ValueObjectSerializer;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
 public class Username extends ValueObject {

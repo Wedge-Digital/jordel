@@ -1,28 +1,35 @@
 package com.auth.use_cases.policies;
 
-import com.shared.services.MessageSourceConfig;
-import com.shared.services.Result;
-import com.shared.services.ResultMap;
+import com.lib.persistance.read_cache.ReadEntity;
+import com.lib.persistance.read_cache.ReadRepository;
+import com.lib.services.ResultMap;
+import com.lib.use_cases.Policy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
+import java.util.Optional;
 
-@Service
-public class EmailShallNotExistPolicy implements Policy {
+@Service("EmailShallNotExistPolicy")
+public class EmailShallNotExistPolicy extends Policy {
 
-    private final MessageSource msgSource;
+    private final ReadRepository readRepository;
 
-    public EmailShallNotExistPolicy(MessageSource msgSource) {
-        this.msgSource = msgSource;
+    public EmailShallNotExistPolicy(MessageSource msgSource, ReadRepository readRepository) {
+        super(msgSource);
+        this.readRepository = readRepository;
     }
 
     public String getErrorMsg(String email) {
-        return msgSource.getMessage("user_registration.email.already_exists", new Object[]{email}, Locale.getDefault());
+        return this.msgSource.getMessage("user_registration.email.already_exists", new Object[]{email}, Locale.getDefault());
     }
 
     public ResultMap<String> check(String email) {
-        return ResultMap.failure("email", getErrorMsg(email));
+        Optional<ReadEntity> result = this.readRepository.findUserAccountByEmail("USER_ACCOUNT", email);
+        if (result.isPresent()) {
+            return ResultMap.failure("email", getErrorMsg(email));
+        }
+        return ResultMap.success("no email found");
     }
 }

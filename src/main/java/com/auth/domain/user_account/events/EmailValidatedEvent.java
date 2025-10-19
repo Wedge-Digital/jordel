@@ -1,7 +1,7 @@
 package com.auth.domain.user_account.events;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.shared.domain.events.DomainEvent;
+import com.lib.domain.events.DomainEvent;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ public class EmailValidatedEvent extends DomainEvent {
     private Date validatedAt;
 
     public EmailValidatedEvent(String userId) {
-        super(userId);
+        super(userId, userId);
         this.validatedAt = new Date();
     }
 

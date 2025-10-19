@@ -1,10 +1,9 @@
 package com.test_utilities.dispatcher;
 
-import com.shared.domain.events.DomainEvent;
-import com.shared.domain.events.InvalidAggregateRoot;
+import com.lib.domain.events.DomainEvent;
 
 public class AnotherDummyEvent extends DomainEvent {
-    public AnotherDummyEvent() throws InvalidAggregateRoot {
-        super("anotherSource");
+    public AnotherDummyEvent() {
+        super("anotherSource", "createUserId");
     }
 }
