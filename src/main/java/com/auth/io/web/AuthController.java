@@ -6,6 +6,8 @@ import com.auth.io.models.JwtTokens;
 import com.auth.io.services.JwtService;
 import com.auth.io.web.models.LoginRequest;
 import com.auth.io.web.models.RefreshTokenRequest;
+import com.auth.io.web.requests.RegisterAccountMapper;
+import com.auth.io.web.requests.RegisterAccountRequest;
 import com.auth.use_cases.LoginCommandHandler;
 import com.auth.use_cases.RegisterCommandHandler;
 import com.lib.services.Result;
@@ -60,8 +62,9 @@ public class AuthController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ResponseEntity<?> registerUser(@RequestBody RegisterCommand candidateAccount) {
-        ResultMap<String> registration = this.registerHandler.handle(candidateAccount);
+    public ResponseEntity<?> registerUser(@RequestBody RegisterAccountRequest candidateAccountRequest) {
+        RegisterCommand candidateAccount = RegisterAccountMapper.INSTANCE.requestToCommand( candidateAccountRequest );
+        ResultMap<Void> registration = this.registerHandler.handle(candidateAccount);
         if (registration.isSuccess()) {
             return ResponseEntity.ok(registration.getValue());
         } else {

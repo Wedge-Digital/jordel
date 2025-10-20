@@ -59,11 +59,11 @@ public class DraftUserAccount extends AbstractUserAccount {
         this.version = 0;
     }
 
-    public ResultMap<String> register(RegisterCommand command) {
-        this.userId =new UserAccountID(command.userId());
-        this.username = new Username(command.username());
-        this.email = new Email(command.email());
-        this.password = new Password(command.password());
+    public ResultMap<Void> register(RegisterCommand command) {
+        this.userId =new UserAccountID(command.getUserId());
+        this.username = new Username(command.getUsername());
+        this.email = new Email(command.getEmail());
+        this.password = new Password(command.getPassword());
         this.createdAt = new Date();
 
         if (isValid()) {
@@ -74,7 +74,7 @@ public class DraftUserAccount extends AbstractUserAccount {
                     this.password.toString(),
                     this.createdAt);
             this.addEvent(registeredEvent);
-            return ResultMap.success(this.getId());
+            return ResultMap.success(null);
         }
         return validationErrors();
     }

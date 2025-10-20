@@ -1,6 +1,8 @@
 package com.auth.domain.user_account.commands;
 
-public record ValidateEmailCommand(String userId) {
+import com.lib.use_cases.Command;
+
+public record ValidateEmailCommand(String userId) implements Command {
 
     public String getAccountId() {
         return userId;

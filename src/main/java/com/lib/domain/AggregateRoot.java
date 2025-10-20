@@ -46,10 +46,10 @@ public abstract class AggregateRoot {
 
     public abstract String getId();
 
-    public ResultMap<String> validationErrors(){
+    public ResultMap<Void> validationErrors(){
         HashMap<String, String> errorMap = (HashMap<String, String>) DomainValidator.getErrors(this);
         if(errorMap.isEmpty()){
-            return ResultMap.success("");
+            return ResultMap.success(null);
         }
         return ResultMap.failure(errorMap);
     }

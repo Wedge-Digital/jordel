@@ -17,7 +17,7 @@ public class FailurePolicy extends Policy {
         return "Failure policy";
     }
 
-    public ResultMap<String> check(String username) {
+    public ResultMap<Void> check(String username) {
         return ResultMap.failure("fake policy", "failure policy");
     }
 }

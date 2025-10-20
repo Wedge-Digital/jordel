@@ -4,9 +4,7 @@ import com.WebApplication;
 import com.auth.domain.user_account.DraftUserAccount;
 import com.auth.domain.user_account.commands.RegisterCommand;
 import com.auth.domain.user_account.events.AccountRegisteredEvent;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.lib.persistance.event_log.EventLogRepository;
+import com.lib.persistance.event_store.EventStore;
 import com.auth.use_cases.event_receivers.UserAccountEventDumper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.HashMap;
@@ -31,7 +28,7 @@ public class UserAccountEventDumperTest {
 
 
     @Autowired
-    private EventLogRepository eventRepo;
+    private EventStore eventRepo;
 
     private FakeEventDispatcher fakeEventBus = new FakeEventDispatcher();
 

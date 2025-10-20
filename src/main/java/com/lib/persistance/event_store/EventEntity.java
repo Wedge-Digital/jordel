@@ -1,4 +1,4 @@
-package com.lib.persistance.event_log;
+package com.lib.persistance.event_store;
 
 import com.lib.domain.events.DomainEvent;
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "event_log")
-public class EventLogEntity {
+public class EventEntity {
 
     @Id
     @Column(name = "id", nullable = false, unique = true, updatable = false)
@@ -54,7 +54,7 @@ public class EventLogEntity {
     // subject (String) : sujet ou ressource cible (optionnel)
 
     // Constructeurs
-    public EventLogEntity(DomainEvent event, String creatorId){
+    public EventEntity(DomainEvent event, String creatorId){
         Ulid ulid = new Ulid();
         this.id = ulid.create();
         this.specVersion = "1.0";
@@ -65,7 +65,7 @@ public class EventLogEntity {
         this.time = Instant.now();
     }
 
-    public EventLogEntity() {
+    public EventEntity() {
     }
 
     // Getters & setters

@@ -1,12 +1,13 @@
-package com.auth.domain.user_account.commands;
+package com.auth.io.web.requests;
 
 import com.lib.use_cases.Command;
 import lombok.*;
 
 @AllArgsConstructor
-@Data
+@Getter
 @Setter
-public class RegisterCommand implements Command {
+@Builder
+public class RegisterAccountRequest {
     private String userId;
     private String username;
     private String email;

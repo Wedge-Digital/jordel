@@ -23,7 +23,7 @@ public class ReadEntity {
     @Id
     @Column(name = "id", nullable = false, unique = true)
     private String id;
-    // id (String) : identifiant unique de l’événement
+    // id (String) : identifiant unique de l'agrégat lié
 
     @Column(name = "version", nullable = false)
     private int version;

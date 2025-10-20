@@ -17,7 +17,7 @@ public class SuccessPolicy extends Policy {
         return "";
     }
 
-    public ResultMap<String> check(String username) {
-        return ResultMap.success("Yes");
+    public ResultMap<Void> check(String username) {
+        return ResultMap.success(null);
     }
 }

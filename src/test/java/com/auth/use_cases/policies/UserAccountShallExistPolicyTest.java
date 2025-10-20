@@ -1,10 +1,8 @@
 package com.auth.use_cases.policies;
 
-
 import com.WebApplication;
 import com.auth.domain.user_account.ActiveUserAccount;
 import com.auth.domain.user_account.DraftUserAccount;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lib.persistance.read_cache.ReadEntity;
 import com.lib.persistance.read_cache.ReadEntityType;
 import com.lib.persistance.read_cache.ReadRepository;
@@ -23,20 +21,21 @@ import java.util.Date;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ContextConfiguration(classes = WebApplication.class)
-@Import(EmailShallNotExistPolicy.class)
-public class EmailShallNotExistPolicyTest {
+@Import(UserAccountShallExistPolicy.class)
+public class UserAccountShallExistPolicyTest {
 
     @Autowired
     private ReadRepository readRepository;
 
     @Autowired
-    private EmailShallNotExistPolicy emailShallNotExistPolicy;
+    private UserAccountShallExistPolicy userAccountShallExistPolicy;
 
-    void loadPredefinedData(String email) {
+
+    void loadPredefinedData(String accountId) {
         DraftUserAccount draftAccount = new DraftUserAccount(
-                "01K7YW65AECNXFPTZKFB3281FJ",
+                accountId,
                 "my_username",
-                email,
+                "steve@farrel.com",
                 "my_password",
                 new Date());
         ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
@@ -45,11 +44,11 @@ public class EmailShallNotExistPolicyTest {
         Assertions.assertEquals(1, readRepository.findAll().size());
     }
 
-    void loadExternalData(String email) {
+    void loadExternalData(String accountId) {
         DraftUserAccount draftAccount = new DraftUserAccount(
-                "01K7YW65AECNXFPTZKFB3281FJ",
+                accountId,
                 "my_username",
-                email,
+                "steve@farrel.com",
                 "my_password",
                 new Date());
         ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
@@ -59,33 +58,33 @@ public class EmailShallNotExistPolicyTest {
     }
 
     @Test
-    void TestEmailShallNotExistPolicy_fails_when_email_already_exists() {
-        String email = "username_#1@gmail.com";
-        loadPredefinedData(email);
-        ResultMap<?> emailCheck = emailShallNotExistPolicy.check(email);
-        Assertions.assertTrue(emailCheck.isFailure());
+    void test_userAccountShallExistPolicy_fails_when_no_account_is_present() {
+        String userAccountId = "01K7YW65AECNXFPTZKFB3281FJ";
+        ResultMap<Void> userAccountCheck = userAccountShallExistPolicy.check(userAccountId);
+        Assertions.assertTrue(userAccountCheck.isFailure());
     }
 
     @Test
-    void TestEmailShallNotExistPolicy_succeed_when_email_does_not_exists() throws JsonProcessingException {
-        String email = "username_#1@gmail.com";
-        ResultMap<?> emailCheck = emailShallNotExistPolicy.check(email);
-        Assertions.assertTrue(emailCheck.isSuccess());
+    void test_userAccountShallExistPolicy_succeed_when_account_is_present() {
+        String userAccountId = "01K7YW65AECNXFPTZKFB3281FJ";
+        loadPredefinedData(userAccountId);
+        ResultMap<Void> userAccountCheck = userAccountShallExistPolicy.check(userAccountId);
+        Assertions.assertTrue(userAccountCheck.isSuccess());
     }
 
     @Test
-    void Test_email_shall_not_exist_policy_succeed_when_other_email_is_present() {
-        String email = "username_#1@gmail.com";
-        loadPredefinedData(email);
-        ResultMap<?> emailCheck = emailShallNotExistPolicy.check("gerard@hotmail.com");
-        Assertions.assertTrue(emailCheck.isSuccess());
+    void test_userAccountShallExistPolicy_fails_when_account_is_not_present_but_other_has_its_id() {
+        String userAccountId = "01K7YW65AECNXFPTZKFB3281FJ";
+        loadExternalData(userAccountId);
+        ResultMap<Void> userAccountCheck = userAccountShallExistPolicy.check(userAccountId);
+        Assertions.assertTrue(userAccountCheck.isFailure());
     }
 
     @Test
-    void test_email_shall_not_exist_policy_succeed_when_another_aggregate_is_present() {
-        String email = "username_#1@gmail.com";
-        loadExternalData(email);
-        ResultMap<?> emailCheck = emailShallNotExistPolicy.check(email);
-        Assertions.assertTrue(emailCheck.isSuccess());
+    void test_userAccountShallExistPolicy_fails_when_account_is_not_present_but_other_account_is_present() {
+        String userAccountId = "01K7YW65AECNXFPTZKFB3281FA";
+        loadExternalData(userAccountId);
+        ResultMap<Void> userAccountCheck = userAccountShallExistPolicy.check("01K7YW65AECNXFPTZKFB3281FJ");
+        Assertions.assertTrue(userAccountCheck.isFailure());
     }
 }

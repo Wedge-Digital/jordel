@@ -17,4 +17,14 @@ public interface ReadRepository extends JpaRepository<ReadEntity, String> {
             "AND data::jsonb ->> 'email' = :email", nativeQuery = true)
     Optional<ReadEntity> findUserAccountByEmail(@Param("type") String type, @Param("email") String email);
 
+    @Query(value = "SELECT * FROM read_cache " +
+            "WHERE type = :type " +
+            "AND data::jsonb ->> 'username' = :username", nativeQuery = true)
+    Optional<ReadEntity> findUserAccountByUsername(@Param("type") String type, @Param("username") String username);
+
+    @Query(value = "SELECT * FROM read_cache " +
+            "WHERE type = :type " +
+            "AND data::jsonb ->> 'id' = :userId", nativeQuery = true)
+    Optional<ReadEntity> findUserAccountByUserId(@Param("type") String type, @Param("userId") String userId);
+
 }

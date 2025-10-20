@@ -1,22 +1,20 @@
 package com.auth.use_cases;
 
 import com.auth.domain.user_account.AbstractUserAccount;
-import com.auth.domain.user_account.DraftUserAccount;
 import com.auth.domain.user_account.UserAccountHydrator;
 import com.auth.domain.user_account.commands.ValidateEmailCommand;
-import com.lib.persistance.event_log.EventLogEntity;
-import com.lib.persistance.event_log.EventLogRepository;
 import com.auth.use_cases.policies.UserAccountShallExistPolicy;
 import com.lib.domain.events.AbstractEventDispatcher;
 import com.lib.services.Result;
 import com.lib.services.ResultMap;
+import com.lib.use_cases.Command;
+import com.lib.use_cases.CommandHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
-import java.util.List;
 
 @Component
-public class ValidateEmailCommandHandler {
+public class ValidateEmailCommandHandler extends CommandHandler {
 
     private final UserAccountShallExistPolicy accountShallExistPolicy;
     private final AbstractEventDispatcher businessDispatcher;
@@ -29,8 +27,9 @@ public class ValidateEmailCommandHandler {
         this.userAccountHydrator = userAccountHydrator;
     }
 
-    public ResultMap<String> handle(ValidateEmailCommand command) {
-        ResultMap<String> userAccountCheck = this.accountShallExistPolicy.check(command.getAccountId());
+    public ResultMap<Void> handle(Command inputCommand) {
+        ValidateEmailCommand command  = (ValidateEmailCommand) inputCommand;
+        ResultMap<Void> userAccountCheck = this.accountShallExistPolicy.check(command.getAccountId());
 
         if (userAccountCheck.isFailure()) {
             return userAccountCheck;
@@ -49,6 +48,6 @@ public class ValidateEmailCommandHandler {
 
         businessDispatcher.asyncDispatchList(newAccount.domainEvents());
 
-        return ResultMap.success(command.getAccountId());
+        return ResultMap.success(null);
     }
 }

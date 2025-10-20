@@ -1,22 +1,12 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.liquibase:liquibase-core:4.31.1'
-    }
-}
-
-
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.4.4'
+    id 'org.springframework.boot' version '3.5.6'
     id 'io.spring.dependency-management' version '1.1.7'
-    id 'org.liquibase.gradle' version "3.0.2"
 }
 
-group = 'com.auth'
+group = 'com.td'
 version = '0.0.1-SNAPSHOT'
+description = 'TelecomDesign Care proxy project'
 
 java {
     toolchain {
@@ -24,121 +14,57 @@ java {
     }
 }
 
-bootRun {
-    jvmArgs([
-            '-Dliquibase.secureParsing=false'
-    ])
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
     mavenCentral()
-    google()
-    gradlePluginPortal()
-    mavenLocal()
-    flatDir {
-        dirs "libs"
-    }
 }
 
-configurations {
-    liquibaseRuntime.extendsFrom implementation
+ext {
+    springShellVersion = "3.4.1"
 }
+
 dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.42")
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.security:spring-security-core:6.5.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.liquibase:liquibase-core'
+    implementation 'org.projectlombok:lombok'
+    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+    implementation 'dev.shamil:ulid4j:1.0'
     implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.6'
-    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
-//    implementation 'org.flywaydb:flyway-core:11.8.0'
-//    implementation 'org.flywaydb:flyway-database-postgresql'
-    implementation 'org.postgresql:postgresql'
     implementation 'org.mapstruct:mapstruct:1.6.3'
-    implementation 'dev.shamil:ulid4j:1.0'
-    implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-    implementation 'org.springframework.shell:spring-shell-starter:3.2.3'
-    implementation 'org.liquibase.gradle:org.liquibase.gradle.gradle.plugin:3.0.2'
-    implementation 'org.liquibase:liquibase-core'
-    annotationProcessor("org.projectlombok:lombok:1.18.42")
+    implementation 'org.springframework.shell:spring-shell-starter'
+
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.postgresql:postgresql'
 
-    testCompileOnly("org.projectlombok:lombok:1.18.42")
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.shell:spring-shell-starter-test'
+
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.42")
-
-    liquibaseRuntime 'org.liquibase:liquibase-core:4.31.1'
-    liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:3.0.1'
-    liquibaseRuntime 'info.picocli:picocli:4.6.1'
-    liquibaseRuntime group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
-    liquibaseRuntime 'org.liquibase.ext:liquibase-hibernate5:3.6'
-    liquibaseRuntime 'org.postgresql:postgresql'
-    liquibaseRuntime sourceSets.main.output
 }
 
-//flyway {
-//    url = System.getenv('DB_URL')
-//    user = System.getenv('DB_USER')
-//    password = System.getenv('DB_PASSWORD')
-//    locations = ['filesystem:src/main/resources/db/migration']
-//    cleanDisabled = false
-//}
-//
-//tasks.register('flywayMigrateDev', org.flywaydb.gradle.task.FlywayMigrateTask) {
-//    url = System.getenv('DB_URL')
-//    user = System.getenv('DB_USER')
-//    password = System.getenv('DB_PASSWORD')
-//    locations = ['filesystem:src/main/resources/db/migration']
-//}
-//
-//tasks.register('flywayMigrateTest', org.flywaydb.gradle.task.FlywayMigrateTask) {
-//    url = 'jdbc:postgresql://localhost:5432/bb_db_test'
-//    user = 'root'
-//    password = 'root'
-//    locations = ['filesystem:src/main/resources/db/migration']
-//}
-//
-//// Tâche par défaut selon profil d'exécution
-//tasks.register('flywayMigrateEnv') {
-//    dependsOn = (project.hasProperty('execProfile') && project.execProfile == 'test') ?
-//            [tasks.named('flywayMigrateTest')] : [tasks.named('flywayMigrateDev')]
-//}
-
-// on s'assure de builder avant la migration flyway
-//flywayMigrate.dependsOn classes
-
-liquibase {
-    activities {
-        main {
-            changelogFile 'liquibase/master.xml'
-            url System.getenv('DB_URL')
-            username System.getenv('DB_USER')
-            password System.getenv('DB_PASSWORD')
-            driver 'org.postgresql.Driver'
-            searchPath 'src/main/resources'
-        }
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.shell:spring-shell-dependencies:${springShellVersion}"
     }
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-    doFirst {
-        jvmArgs([
-                //à partir des version 4.8+, pour pouvoir lire le fichier liquibase "dbchangelog-xx.xsd" LOCALEMENT
-                //faut rajouter cette option
-                '-Dliquibase.secureParsing=false',
-                '-Xms512m', '-Xmx2048m'
-        ])
-    }
-}
+
 
 tasks.named('test') {
     useJUnitPlatform()

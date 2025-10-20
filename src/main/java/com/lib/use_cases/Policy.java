@@ -16,5 +16,5 @@ public abstract class Policy {
 
     public abstract String getErrorMsg(String predicate);
 
-    public abstract ResultMap<String> check(String predicate);
+    public abstract ResultMap<Void> check(String predicate);
 }

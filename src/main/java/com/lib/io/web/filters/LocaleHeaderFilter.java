@@ -1,4 +1,4 @@
-package com.auth.io.web.filters;
+package com.lib.io.web.filters;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

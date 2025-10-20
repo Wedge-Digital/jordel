@@ -25,11 +25,11 @@ public class EmailShallNotExistPolicy extends Policy {
         return this.msgSource.getMessage("user_registration.email.already_exists", new Object[]{email}, Locale.getDefault());
     }
 
-    public ResultMap<String> check(String email) {
+    public ResultMap<Void> check(String email) {
         Optional<ReadEntity> result = this.readRepository.findUserAccountByEmail("USER_ACCOUNT", email);
         if (result.isPresent()) {
             return ResultMap.failure("email", getErrorMsg(email));
         }
-        return ResultMap.success("no email found");
+        return ResultMap.success(null);
     }
 }
