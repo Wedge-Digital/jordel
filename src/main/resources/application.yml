@@ -30,6 +30,12 @@ spring:
     encoding: UTF-8
     fallback-to-system-locale: false
 
+springdoc:
+  api-docs:
+    path: "/api-docs"
+  swagger-ui:
+    path: "/swagger-ui-custom.html"
+
 server:
   port: 7001
 

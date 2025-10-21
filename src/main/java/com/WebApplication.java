@@ -1,6 +1,6 @@
 package com;
 
-import com.lib.services.MessageSourceConfig;
+import com.bloodbowlclub.lib.config.MessageSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
