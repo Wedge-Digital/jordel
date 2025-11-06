@@ -2,6 +2,7 @@ package com.bloodbowlclub.auth.domain.user_account;
 
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.Result;
 import org.junit.jupiter.api.Assertions;
@@ -33,25 +34,26 @@ public class UserAccountTest {
         events.add(emailValidated);
     }
 
+
     @Test
     public void test_hydrate_user_account_from_registration_succeed() {
         init_events();
-        Result<AbstractUserAccount> hydratationResult = baseAccount.apply(registration);
+        Result<AggregateRoot> hydratationResult = baseAccount.apply(registration);
         Assertions.assertTrue(hydratationResult.isSuccess());
-        AbstractUserAccount hydrated = hydratationResult.getValue();
+        AggregateRoot hydrated = hydratationResult.getValue();
         Assertions.assertInstanceOf(DraftUserAccount.class, hydrated);
         DraftUserAccount casted = (DraftUserAccount) hydrated;
         Assertions.assertEquals(userId, casted.getId());
         Assertions.assertEquals(email, casted.getEmail().toString());
-        Assertions.assertFalse(hydrated.isActivated());
+        Assertions.assertFalse(casted.isActivated());
     }
 
     @Test
     public void test_hydrate_user_account_from_email_validated_succeed() {
         init_events();
-        Result<AbstractUserAccount> hydratationResult = baseAccount.applyAll(events);
+        Result<AggregateRoot> hydratationResult = baseAccount.reconstructFrom(events);
         Assertions.assertTrue(hydratationResult.isSuccess());
-        AbstractUserAccount hydrated = hydratationResult.getValue();
+        AbstractUserAccount hydrated = (AbstractUserAccount) hydratationResult.getValue();
         Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
         Assertions.assertTrue(hydrated.isActivated());
         ActiveUserAccount casted = (ActiveUserAccount) hydrated;
@@ -61,9 +63,9 @@ public class UserAccountTest {
     @Test
     public void test_hydrate_in_reverse_order_from_email_validated_succeed() {
         init_events();
-        Result<AbstractUserAccount> hydratationResult = baseAccount.applyAll(events.reversed());
+        Result<AggregateRoot> hydratationResult = baseAccount.reconstructFrom(events.reversed());
         Assertions.assertTrue(hydratationResult.isSuccess());
-        AbstractUserAccount hydrated = hydratationResult.getValue();
+        AbstractUserAccount hydrated = (AbstractUserAccount) hydratationResult.getValue();
         Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
         Assertions.assertTrue(hydrated.isActivated());
         ActiveUserAccount casted = (ActiveUserAccount) hydrated;

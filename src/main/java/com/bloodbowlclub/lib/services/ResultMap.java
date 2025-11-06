@@ -1,11 +1,15 @@
 package com.bloodbowlclub.lib.services;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class ResultMap<T> {
     private final T value;
     private final Map<String, String> errorsMap;
+    // Méthode pour vérifier si le résultat est un succès
+    @Getter
     private final boolean isSuccess;
 
     // Constructeur privé pour forcer l'utilisation des méthodes statiques
@@ -29,11 +33,6 @@ public class ResultMap<T> {
 
     public static <T> ResultMap<T> failure(Map<String, String> errors) {
         return new ResultMap<>(null, errors, false);
-    }
-
-    // Méthode pour vérifier si le résultat est un succès
-    public boolean isSuccess() {
-        return isSuccess;
     }
 
     public boolean isFailure() {

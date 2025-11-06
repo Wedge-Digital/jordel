@@ -2,6 +2,8 @@ package com.bloodbowlclub.shared.coach;
 
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.domain.events.DomainEvent;
+import com.bloodbowlclub.lib.services.Result;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -35,6 +37,11 @@ public class Coach extends AggregateRoot {
         this.coachName = coachName;
         this.email = email;
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public Result<AggregateRoot> apply(DomainEvent event) {
+        return null;
     }
 
     @Override

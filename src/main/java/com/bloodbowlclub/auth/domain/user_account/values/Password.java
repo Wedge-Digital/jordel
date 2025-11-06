@@ -1,5 +1,6 @@
 package com.bloodbowlclub.auth.domain.user_account.values;
 
+import com.bloodbowlclub.lib.services.Result;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
@@ -20,8 +21,11 @@ public class Password extends ValueObject {
         return value;
     }
 
-    public boolean matches(String password) {
-        return encoder.matches(password, value);
+    public Result<Void> matches(String password) {
+        if (encoder.matches(password, value)) {
+            return Result.success(null);
+        }
+        return Result.failure("Password does not match");
     }
 
     @Override

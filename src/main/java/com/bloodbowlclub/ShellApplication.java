@@ -1,4 +1,4 @@
-package com;
+package com.bloodbowlclub;
 
 import org.springframework.boot.SpringApplication;
 

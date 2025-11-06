@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.use_cases.events_receivers;
 
-import com.WebApplication;
+import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.RegisterCommand;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
@@ -14,6 +14,7 @@ import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,9 +26,8 @@ import java.util.HashMap;
 @ContextConfiguration(classes = WebApplication.class)
 public class UserAccountEventDumperTest {
 
-
-
     @Autowired
+    @Qualifier("EventStore")
     private EventStore eventRepo;
 
     private FakeEventDispatcher fakeEventBus = new FakeEventDispatcher();
@@ -52,7 +52,13 @@ public class UserAccountEventDumperTest {
         initUserAccount();
         Assertions.assertTrue(eventRepo.findBySubject(userId).isEmpty());
         UserAccountEventDumper eventDumper = new UserAccountEventDumper(eventRepo, fakeEventBus);
-        AccountRegisteredEvent event = new AccountRegisteredEvent(draftUserAccount.getId(), "testUsername", "may@me.com", "pwd", ds.dateTimeFromMysql("2020-08-10 00:22:11").getValue());
+        AccountRegisteredEvent event = AccountRegisteredEvent.builder()
+                .aggregateId(draftUserAccount.getId())
+                .username("testUsername")
+                .email("may@me.com")
+                .password("pwd")
+                .createdAt(ds.dateTimeFromMysql("2020-08-10 00:22:11").getValue())
+                .build();
         eventDumper.receive(event);
         Assertions.assertFalse(eventRepo.findBySubject(userId).isEmpty());
         AccountRegisteredEvent found = (AccountRegisteredEvent) eventRepo.findBySubject(userId).getFirst().getData();
@@ -63,7 +69,14 @@ public class UserAccountEventDumperTest {
     void Test_event_serializer() throws JsonProcessingException {
         initUserAccount();
         Assertions.assertTrue(eventRepo.findBySubject(userId).isEmpty());
-        AccountRegisteredEvent event = new AccountRegisteredEvent(draftUserAccount.getId(), "testUsername", "may@me.com", "pwd", ds.dateTimeFromMysql("2020-08-10 00:22:11").getValue());
+        AccountRegisteredEvent event = AccountRegisteredEvent.builder()
+                .aggregateId(draftUserAccount.getId())
+                .username("testUsername")
+                .email("may@me.com")
+                .password("pwd")
+                .createdAt(ds.dateTimeFromMysql("2020-08-10 00:22:11").getValue())
+                .build();
+
         ObjectMapperService mapperService = new ObjectMapperService();
         ObjectMapper mapper = mapperService.getMapper();
         var rawJson = mapper.writeValueAsString(event);

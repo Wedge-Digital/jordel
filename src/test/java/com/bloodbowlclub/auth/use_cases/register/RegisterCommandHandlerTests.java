@@ -22,6 +22,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.lang.Nullable;
 
 import java.util.HashMap;
@@ -37,8 +38,7 @@ import java.util.Locale;
 public class RegisterCommandHandlerTests {
     private RegisterCommand command;
 
-    @Autowired
-    private MessageSource messageSource;
+    protected MessageSource messageSource = messageSource();
 
     @Autowired
     private EventStore eventStore;
@@ -51,6 +51,14 @@ public class RegisterCommandHandlerTests {
                 "bagouze",
                 "bertrand.begouin@gmail.com",
                 "mon_password");
+    }
+
+    private ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
+        ms.setBasenames("messages", "i18n/messages"); // adaptez aux emplacements réels
+        ms.setDefaultEncoding("UTF-8");
+        ms.setFallbackToSystemLocale(false);
+        return ms;
     }
 
     private void ExpectErrorMessage(ResultMap<String> result,String messageCode, String expectedMessageCode, @Nullable Object[] args) {
@@ -67,7 +75,9 @@ public class RegisterCommandHandlerTests {
                 successPolicy,
                 successPolicy,
                 successPolicy,
-                new EventDispatcher()
+                new EventDispatcher(),
+                messageSource
+
         );
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());
@@ -84,7 +94,8 @@ public class RegisterCommandHandlerTests {
                 successPolicy,
                 successPolicy,
                 successPolicy,
-                eventDispatcher
+                eventDispatcher,
+                messageSource
         );
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());
@@ -100,7 +111,8 @@ public class RegisterCommandHandlerTests {
                 failurePolicy,
                 successPolicy,
                 successPolicy,
-                new EventDispatcher());
+                new EventDispatcher(),
+                messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
 //        ExpectErrorMessage(commandHandlingResult, "username", "user_registration.username.already_exists", new Object[]{command.username()});
@@ -114,7 +126,8 @@ public class RegisterCommandHandlerTests {
                 successPolicy,
                 successPolicy,
                 failurePolicy,
-                new EventDispatcher());
+                new EventDispatcher(),
+                messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
 //        ExpectErrorMessage(commandHandlingResult, "email", "user_registration.email.already_exists", new Object[]{command.email()});
@@ -131,7 +144,8 @@ public class RegisterCommandHandlerTests {
                 successPolicy,
                 successPolicy,
                 successPolicy,
-                new EventDispatcher());
+                new EventDispatcher(),
+                messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
         HashMap<String, String> expectedResult = new HashMap<>();
@@ -151,8 +165,8 @@ public class RegisterCommandHandlerTests {
                 successPolicy,
                 successPolicy,
                 successPolicy,
-                new EventDispatcher()
-        );
+                new EventDispatcher(),
+                messageSource);
 
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());

@@ -1,9 +1,13 @@
 package com.bloodbowlclub.auth.use_cases.policies;
 
 
-import com.WebApplication;
+import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.domain.user_account.ActiveUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.values.Email;
+import com.bloodbowlclub.auth.domain.user_account.values.Password;
+import com.bloodbowlclub.auth.domain.user_account.values.UserAccountID;
+import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.persistance.read_cache.ReadEntity;
 import com.bloodbowlclub.lib.persistance.read_cache.ReadEntityType;
 import com.bloodbowlclub.lib.persistance.read_cache.ReadRepository;
@@ -25,8 +29,6 @@ import java.util.Date;
 @Import(IdShallNotExistPolicy.class)
 public class IdShallNotExistPolicyTest {
 
-    private final ObjectMapperService mapperService = new ObjectMapperService();
-
     @Autowired
     private ReadRepository readRepository;
 
@@ -34,27 +36,24 @@ public class IdShallNotExistPolicyTest {
     private IdShallNotExistPolicy idShallNotExistPolicy;
 
     void loadPredefinedData(String id) {
-        DraftUserAccount draftAccount = new DraftUserAccount(
-                id,
-                "my_username",
-                "bertran@bagouze.net",
-                "my_password",
-                new Date());
-        ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
-        ReadEntity readEntity = new ReadEntity(ReadEntityType.USER_ACCOUNT, account);
-        readRepository.save(readEntity);
-        Assertions.assertEquals(1, readRepository.findAll().size());
-    }
+        DraftUserAccount draftAccount = DraftUserAccount.builder()
+                .userId(new UserAccountID(id))
+                .username(new Username("my_username"))
+                .email(new Email( "bertran@bagouze.net"))
+                .password(new Password("my_password"))
+                .createdAt(new Date())
+                .build();
 
-    void loadExternalData(String userId) {
-        DraftUserAccount draftAccount = new DraftUserAccount(
-                userId,
-                "my_username",
-                "bertran@bagouze.net",
-                "my_password",
-                new Date());
-        ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
-        ReadEntity readEntity = new ReadEntity(ReadEntityType.TEAM, account);
+        ActiveUserAccount account = ActiveUserAccount.builder()
+                .userId(new UserAccountID(id))
+                .username(new Username("my_username"))
+                .email(new Email( "bertran@bagouze.net"))
+                .password(new Password("my_password"))
+                .createdAt(new Date())
+                .validatedAt(new Date())
+                .build();
+
+        ReadEntity readEntity = new ReadEntity(account);
         readRepository.save(readEntity);
         Assertions.assertEquals(1, readRepository.findAll().size());
     }

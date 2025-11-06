@@ -1,4 +1,4 @@
-package com;
+package com.bloodbowlclub;
 
 import com.bloodbowlclub.lib.config.MessageSourceConfig;
 import org.springframework.boot.SpringApplication;

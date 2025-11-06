@@ -1,12 +1,12 @@
 package com.bloodbowlclub.auth.use_cases.validate_email;
 
-import com.bloodbowlclub.auth.domain.user_account.AbstractUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
 import com.bloodbowlclub.auth.use_cases.ValidateEmailCommandHandler;
 import com.bloodbowlclub.lib.config.MessageSourceConfig;
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.Result;
 import org.junit.jupiter.api.Assertions;
@@ -17,6 +17,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,24 +39,28 @@ public class ValidateEmailCommandHandlerTests {
     private DraftUserAccount baseAccount = new DraftUserAccount();
 
     private void init_event() {
-        registration = new AccountRegisteredEvent(
-                userId,
-                "Bagouze",
-                "bagouze@me.com",
-                "my_password",
-                new Date()
-        );
-        emailValidated = new EmailValidatedEvent(userId);
+        registration = AccountRegisteredEvent.builder()
+                .aggregateId(userId)
+                .username("Bagouze")
+                .email("bagouze@me.com")
+                .password("my_password")
+                .createdAt(new Date())
+                .build();
+
+        emailValidated = EmailValidatedEvent.builder()
+                .aggregateId(userId)
+                .timeStampedAt(Instant.now())
+                .build();
     }
 
     @Test
     public void test_validate_email_command_handler_succeeds() {
         init_event();
-        Result<AbstractUserAccount> accountHydratation = baseAccount.apply(registration);
+        Result<AggregateRoot> accountHydratation = baseAccount.apply(registration);
         command = new ValidateEmailCommand("01K6TR3FQJRPBZMNN1TJP5D3YY");
-        AbstractUserAccount userAccount = accountHydratation.getValue();
-        userAccount.confirmEmail(command);
-        Assertions.assertFalse(userAccount.domainEvents().isEmpty());
+        DraftUserAccount casted = (DraftUserAccount) accountHydratation.getValue();
+        casted.confirmEmail(command);
+        Assertions.assertFalse(casted.domainEvents().isEmpty());
     }
 
     @Test
@@ -64,10 +69,10 @@ public class ValidateEmailCommandHandlerTests {
         ArrayList<DomainEvent> events = new ArrayList<>();
         events.add(registration);
         events.add(emailValidated);
-        Result<AbstractUserAccount> accountHydratation = baseAccount.applyAll(events);
+        Result<AggregateRoot> accountHydratation = baseAccount.reconstruct(events);
         command = new ValidateEmailCommand("01K6TR3FQJRPBZMNN1TJP5D3YY");
-        AbstractUserAccount userAccount = accountHydratation.getValue();
-        userAccount.confirmEmail(command);
-        Assertions.assertTrue(userAccount.domainEvents().isEmpty());
+        DraftUserAccount casted = (DraftUserAccount) accountHydratation.getValue();
+        casted.confirmEmail(command);
+        Assertions.assertTrue(casted.domainEvents().isEmpty());
     }
 }

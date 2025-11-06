@@ -1,6 +1,10 @@
 package com.bloodbowlclub.lib.persistance.event_store.fake;
 
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
+import com.bloodbowlclub.lib.persistance.event_store.EventStore;
+import com.bloodbowlclub.lib.persistance.read_cache.ReadEntity;
+import com.bloodbowlclub.lib.services.Result;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class FakeEventStore implements JpaRepository<EventEntity, String> {
+public class FakeEventStore implements EventStore {
     @Override
     public void flush() {
 
@@ -161,5 +165,30 @@ public class FakeEventStore implements JpaRepository<EventEntity, String> {
     @Override
     public Page<EventEntity> findAll(Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public List<EventEntity> findBySubject(String agregateId) {
+        return List.of();
+    }
+
+    @Override
+    public List<EventEntity> findBySource(String userId) {
+        return List.of();
+    }
+
+    @Override
+    public List<EventEntity> findBySourceAndSubject(String source, String subject) {
+        return List.of();
+    }
+
+    @Override
+    public Optional<ReadEntity> findUserAccountByEmail(String email) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ReadEntity> findUserAccountByUsername(String username) {
+        return Optional.empty();
     }
 }

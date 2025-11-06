@@ -1,8 +1,44 @@
 package com.bloodbowlclub.lib.use_cases;
 
+import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
+import com.bloodbowlclub.lib.domain.events.DomainEvent;
+import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
+import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.ResultMap;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class CommandHandler {
+    @Qualifier("EventStore")
+    protected final EventStore eventStore;
+
+    @Qualifier("EventDispatcher")
+    private final AbstractEventDispatcher businessDispatcher;
+
+    protected final MessageSource messageSource;
+
+    protected CommandHandler(EventStore eventStore,
+                             AbstractEventDispatcher businessDispatcher,
+                             MessageSource messageSource) {
+        this.eventStore = eventStore;
+        this.businessDispatcher = businessDispatcher;
+        this.messageSource = messageSource;
+    }
+
     public abstract ResultMap<Void> handle(Command command);
+
+    protected void saveAndDispatch(List<DomainEvent> eventList) {
+        List<EventEntity> entities = eventList.stream()
+                .map(domainEvent -> new EventEntity(domainEvent, null))
+                .collect(Collectors.toList());
+        eventStore.saveAll(entities);
+
+        businessDispatcher.asyncDispatchList(eventList);
+
+    }
 
 }

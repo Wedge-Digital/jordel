@@ -86,8 +86,6 @@ public class JwtRequestFilter extends AbstractFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        chain.doFilter(request, response);
-
         final String authorizationHeader = request.getHeader("Authorization");
         logger.debug("Authorization header: {}", authorizationHeader);
 

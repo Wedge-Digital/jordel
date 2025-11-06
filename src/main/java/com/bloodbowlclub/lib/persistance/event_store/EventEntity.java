@@ -60,7 +60,8 @@ public class EventEntity {
         this.specVersion = "1.0";
         this.source = creatorId;
         this.subject = event.getAggregateId();
-        this.type = event.getClass().getTypeName();
+        this.type = event.getClass().getSimpleName();
+        this.dataContentType = event.getClass().getTypeName();
         this.data = event;
         this.time = Instant.now();
     }

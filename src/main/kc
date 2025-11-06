@@ -1,0 +1,27 @@
+KEYCLOAK_PASSWORD: Xh9DE@AS@4Lo!f
+KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
+DB_VENDOR: POSTGRES
+DB_ADDR: postgres_cs_auth_staging
+DB_DATABASE: keycloak_staging
+DB_USER: keycloak
+DB_SCHEMA: public
+DB_PASSWORD: fA33T5@s!q84x
+KEYCLOAK_USER: admin
+
+KEYCLOAK_ADMIN:admin
+KEYCLOAK_ADMIN_PASSWORD:admin
+DB_PASSWORD:4m5^u4Ga26f%F6
+LOG_LEVEL:INFO
+
+CAAREA_CSBACK_URL: https://staging-api.caarea-solutions.com
+CAAREA_PORTAL_URL: https://staging.caarea-solutions.com
+CAAREA_PRODUCTS_URL: https://staging-actuary.caarea-solutions.com
+CAAREA_SALES_URL: https://staging-sales.caarea-solutions.com
+CAAREA_MYCAAREA_URL: https://staging-my-caarea.caarea-solutions.com
+CAAREA_CLAIMS_URL: https://staging-claims.caarea-solutions.com
+CAAREA_API_PORTAL_URL: https://staging-api-portal.caarea-solutions.com
+CAAREA_FINANCE_URL: https://staging-finance.caarea-solutions.com
+CAAREA_SMTP_HOST: mailhog
+CAAREA_SMTP_PORT: 1025
+CAAREA_EMAIL_NOREPLY: noreply@fake.com
+CAAREA_CSBACK_SECRET: SGGIGm3PUD7HofA5rKNQqbor5ebll1mN

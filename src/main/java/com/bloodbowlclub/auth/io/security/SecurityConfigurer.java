@@ -29,7 +29,7 @@ import static com.bloodbowlclub.auth.domain.user_account.values.UserRole.SUPER_A
 
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfigurer {
 
     @Value("${cors.allowed_hosts}")
@@ -66,12 +66,12 @@ public class SecurityConfigurer {
                 .build();
     }
 
-//    @Bean
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         logger.info("------------------------------------------------------");
         logger.info("Loading CorsConfigurationSource");
         logger.info("------------------------------------------------------");
-        logger.info(allowedHosts.toString());
+        allowedHosts.stream().forEach(logger::info);
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(allowedHosts); // ou "*" pour tout autoriser
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

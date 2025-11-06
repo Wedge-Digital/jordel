@@ -1,8 +1,8 @@
 package com.bloodbowlclub.auth.io.security.routes;
 
 public class AuthOpenRoutes {
-    public static final String AUTH_REFRESH = "/auth/refresh";
-    public static final String AUTH_LOGIN = "/auth/login";
+    public static final String AUTH_REFRESH = "/swagger-ui-custom.html/**";
+    public static final String AUTH_LOGIN = "/**";
 
 
     private AuthOpenRoutes() {}

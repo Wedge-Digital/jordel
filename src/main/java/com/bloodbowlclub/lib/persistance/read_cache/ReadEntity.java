@@ -1,12 +1,13 @@
 package com.bloodbowlclub.lib.persistance.read_cache;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
-import com.bloodbowlclub.lib.services.ObjectMapperService;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.With;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -27,36 +28,27 @@ public class ReadEntity {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @Getter
+    @Setter
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "data", columnDefinition = "TEXT", updatable = false)
-    private String data;
+    private AggregateRoot data;
+
     // data (String) : données JSON sérialisées (payload)
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     // Constructeurs
-    public ReadEntity(ReadEntityType type, AggregateRoot aggregateRoot) {
+    public ReadEntity(AggregateRoot aggregateRoot) {
         this.id = aggregateRoot.getId();
-        this.type = type.name();
+        this.type = "";
         this.version = aggregateRoot.getVersion();
-        ObjectMapperService mapperService = new ObjectMapperService();
-        ObjectMapper mapper = mapperService.getMapper();
-        String json = null;
-        try {
-            json = mapper.writeValueAsString(aggregateRoot);
-        } catch (Exception e) {
-            if (e instanceof NullPointerException) {
-                throw new NullPointerException("The data object is null");
-            } else {
-                throw new RuntimeException("Error while serializing the data object");
-            }
-        }
-        this.data = json;
+        this.data = aggregateRoot;
         this.createdAt = Instant.now();
     }
 
     public ReadEntity() {
-
     }
+
 }

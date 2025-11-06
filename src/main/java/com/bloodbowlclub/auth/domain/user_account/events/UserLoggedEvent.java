@@ -1,8 +1,8 @@
 package com.bloodbowlclub.auth.domain.user_account.events;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -14,8 +14,12 @@ import java.util.Date;
         property = "@class"
 )
 @Data
-@AllArgsConstructor
 @SuperBuilder
-public class EmailValidatedEvent extends DomainEvent {
-    private Date validatedAt;
+public class UserLoggedEvent extends DomainEvent {
+    private Date loggedAt;
+
+    public UserLoggedEvent(String agregateId, String createdBy,  Date loggedAt) {
+        super(agregateId, createdBy);
+        this.loggedAt = loggedAt;
+    }
 }

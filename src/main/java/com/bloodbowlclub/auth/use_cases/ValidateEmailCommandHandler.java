@@ -1,14 +1,18 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.AbstractUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.UserAccountHydrator;
+import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.bloodbowlclub.auth.use_cases.policies.UserAccountShallExistPolicy;
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
+import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.Result;
 import com.bloodbowlclub.lib.services.ResultMap;
 import com.bloodbowlclub.lib.use_cases.Command;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -19,12 +23,12 @@ public class ValidateEmailCommandHandler extends CommandHandler {
     private final UserAccountShallExistPolicy accountShallExistPolicy;
     private final AbstractEventDispatcher businessDispatcher;
 
-    private final UserAccountHydrator userAccountHydrator;
-
-    public ValidateEmailCommandHandler(UserAccountShallExistPolicy accountShallExistPolicy, AbstractEventDispatcher businessDispatcher, UserAccountHydrator userAccountHydrator) {
+    public ValidateEmailCommandHandler(UserAccountShallExistPolicy accountShallExistPolicy,
+                                       @Qualifier("EventStore") EventStore eventStore,
+                                       AbstractEventDispatcher businessDispatcher, MessageSource messageSource) {
+        super(eventStore, businessDispatcher, messageSource);
         this.accountShallExistPolicy = accountShallExistPolicy;
         this.businessDispatcher = businessDispatcher;
-        this.userAccountHydrator = userAccountHydrator;
     }
 
     public ResultMap<Void> handle(Command inputCommand) {
@@ -35,7 +39,7 @@ public class ValidateEmailCommandHandler extends CommandHandler {
             return userAccountCheck;
         }
 
-        Result<AbstractUserAccount> agregateHydratation = userAccountHydrator.hydrate(command.getAccountId());
+        Result<AggregateRoot> agregateHydratation = eventStore.hydrate(command.getAccountId());
 
         if (agregateHydratation.isFailure()) {
             HashMap<String, String> errorMap = new HashMap<>();
@@ -43,7 +47,11 @@ public class ValidateEmailCommandHandler extends CommandHandler {
             return ResultMap.failure(errorMap);
         }
 
-        AbstractUserAccount newAccount = agregateHydratation.getValue();
+        AggregateRoot hydrated =  agregateHydratation.getValue();
+        if (!(hydrated instanceof DraftUserAccount newAccount)) {
+            return ResultMap.failure("account", "hydratation error");
+        }
+
         newAccount.confirmEmail(command);
 
         businessDispatcher.asyncDispatchList(newAccount.domainEvents());

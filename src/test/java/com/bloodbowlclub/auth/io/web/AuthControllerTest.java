@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.io.web;
 
-import com.WebApplication;
+import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

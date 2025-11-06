@@ -1,7 +1,7 @@
 package com.bloodbowlclub.auth.use_cases.policies;
 
 
-import com.WebApplication;
+import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.domain.user_account.ActiveUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -42,7 +42,7 @@ public class UsernameShallNotExistPolicyTest {
                 "my_password",
                 new Date());
         ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
-        ReadEntity readEntity = new ReadEntity(ReadEntityType.USER_ACCOUNT, account);
+        ReadEntity readEntity = new ReadEntity(account);
         readRepository.save(readEntity);
         Assertions.assertEquals(1, readRepository.findAll().size());
     }
@@ -55,7 +55,7 @@ public class UsernameShallNotExistPolicyTest {
                 "my_password",
                 new Date());
         ActiveUserAccount account = new ActiveUserAccount(draftAccount, new Date());
-        ReadEntity readEntity = new ReadEntity(ReadEntityType.TEAM, account);
+        ReadEntity readEntity = new ReadEntity(account);
         readRepository.save(readEntity);
         Assertions.assertEquals(1, readRepository.findAll().size());
     }

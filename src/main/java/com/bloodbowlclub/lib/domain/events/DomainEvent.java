@@ -1,6 +1,7 @@
 package com.bloodbowlclub.lib.domain.events;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
 
@@ -9,6 +10,7 @@ import java.time.Instant;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
+@SuperBuilder
 public abstract class DomainEvent {
     private final String aggregateId;
 
