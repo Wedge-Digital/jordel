@@ -74,7 +74,7 @@ public class AuthController {
         if (registration.isSuccess()) {
             return ResponseEntity.ok(registration.getValue());
         } else {
-            return ResponseEntity.badRequest().body(registration.listErrors());
+            return ResponseEntity.badRequest().body(registration.errorMap());
         }
     }
 

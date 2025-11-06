@@ -71,7 +71,7 @@ public class ResultMap<T> {
         return error.getKey()+":"+error.getValue();
     }
 
-    public Map<String, String> listErrors() {
+    public Map<String, String> errorMap() {
         if (isSuccess) {
             throw new IllegalStateException("Cannot get errors from a successful result");
         }

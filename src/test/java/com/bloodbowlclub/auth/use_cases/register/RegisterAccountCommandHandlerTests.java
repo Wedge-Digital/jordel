@@ -121,7 +121,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         Assertions.assertTrue(commandHandlingResult.isFailure());
         HashMap<String, String> expectedResult = new HashMap<>();
         expectedResult.put("email", messageSource.getMessage("email.invalid",null, Locale.getDefault()));
-        Assertions.assertEquals(expectedResult, commandHandlingResult.listErrors());
+        Assertions.assertEquals(expectedResult, commandHandlingResult.errorMap());
     }
 
     @Test

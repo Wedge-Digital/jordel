@@ -33,7 +33,7 @@ public class RegisterCommandHandler extends CommandHandler {
         ResultMap<Void> usernameCheck = this.userNameShallNotExistPolicy.check(command.getUsername());
 
         if (usernameCheck.isFailure()) {
-            return usernameCheck;
+            return ResultMap.failure("username", usernameCheck.errorMap().get("aggregateId"));
         }
 
         DraftUserAccount newAccount = new DraftUserAccount(command.getUsername());
