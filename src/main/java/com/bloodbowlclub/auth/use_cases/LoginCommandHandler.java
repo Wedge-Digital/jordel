@@ -1,40 +1,30 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.LoginUserCommand;
+import com.bloodbowlclub.lib.Command;
+import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
+import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.use_cases.CommandHandler;
+import com.bloodbowlclub.lib.use_cases.UserCommand;
 import com.bloodbowlclub.shared.use_cases.CommandResult;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class LoginCommandHandler {
-//    private final UserRepository userRepository;
-//    private final MessageSource msgSource;
-//    private final EventDispatcher domainDispatcher;
-//
-//    public LoginCommandHandler(UserRepository userRepository, MessageSource msgSource, EventDispatcher domainDispatcher) {
-//        this.userRepository = userRepository;
-//        this.msgSource = msgSource;
-//        this.domainDispatcher = domainDispatcher;
-//    }
-//
+public class LoginCommandHandler extends CommandHandler {
 
-    public Result<CommandResult> handle(LoginCommand command) {
+    protected LoginCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+                                  AbstractEventDispatcher businessDispatcher,
+                                  MessageSource messageSource) {
+        super(eventStore, businessDispatcher, messageSource);
+    }
+
+    @Override
+    public ResultMap<Void> handle(Command userCommand) {
         return null;
-//        Optional<ActiveUserAccount> userSearch = userRepository.findDomainUserByName(command.getUsername());
-//        if (userSearch.isEmpty()) {
-//            String errorMessage =msgSource.getMessage("user_account.not_existing", null, LocaleContextHolder.getLocale());
-//            return Result.failure(errorMessage);
-//        }
-//
-//        ActiveUserAccount user = userSearch.get();
-//        boolean loginResult = user.login(command.getPassword());
-//        if (loginResult) {
-//            domainDispatcher.dispatch(user.getDomainEvents());
-//            return Result.success(null);
-//        }
-//
-//        String errorMessage =msgSource.getMessage("user_account.bad_credentials", new String[]{user.getUsername().toString()}, LocaleContextHolder.getLocale());
-//        return Result.failure(errorMessage);
     }
 }

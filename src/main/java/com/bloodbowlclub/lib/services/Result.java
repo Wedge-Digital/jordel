@@ -1,9 +1,12 @@
 package com.bloodbowlclub.lib.services;
 
+import org.slf4j.LoggerFactory;
+
 public class Result<T> {
     private final T value;
     private final String errors;
     private final boolean isSuccess;
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(Result.class);
 
     // Constructeur privé pour forcer l'utilisation des méthodes statiques
     private Result(T value, String errors, boolean isSuccess) {
@@ -19,6 +22,7 @@ public class Result<T> {
 
     // Méthode statique pour créer un résultat échoué
     public static <T> Result<T> failure(String error) {
+        logger.error("##### RESULT ERROR ######### " + error);
         return new Result<>(null, error, false);
     }
 

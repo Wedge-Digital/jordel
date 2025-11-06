@@ -1,12 +1,10 @@
 package com.bloodbowlclub.auth.domain.user_account.events;
 
-import com.bloodbowlclub.lib.domain.events.DomainEvent;
+import com.bloodbowlclub.auth.domain.user_account.values.Username;
+import com.bloodbowlclub.lib.domain.events.UserDomainEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
@@ -14,12 +12,9 @@ import java.util.Date;
         property = "@class"
 )
 @Data
-@SuperBuilder
-public class UserLoggedEvent extends DomainEvent {
-    private Date loggedAt;
+public class UserLoggedEvent extends UserDomainEvent {
 
-    public UserLoggedEvent(String agregateId, String createdBy,  Date loggedAt) {
+    public UserLoggedEvent(String agregateId, Username createdBy) {
         super(agregateId, createdBy);
-        this.loggedAt = loggedAt;
     }
 }

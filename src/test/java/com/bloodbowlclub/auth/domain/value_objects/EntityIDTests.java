@@ -1,6 +1,7 @@
 package com.bloodbowlclub.auth.domain.value_objects;
 
 import com.bloodbowlclub.lib.domain.EntityID;
+import com.bloodbowlclub.lib.validators.DomainValidator;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -8,7 +9,9 @@ import jakarta.validation.ValidatorFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 public class EntityIDTests {
 
     void assertHasError(EntityID entityID, String error) {
+        Map<String, String> errors = DomainValidator.getErrors(entityID);
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<EntityID>> violations = validator.validate(entityID);

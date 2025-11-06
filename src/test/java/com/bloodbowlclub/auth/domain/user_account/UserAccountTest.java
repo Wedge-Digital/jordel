@@ -2,6 +2,9 @@ package com.bloodbowlclub.auth.domain.user_account;
 
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
+import com.bloodbowlclub.auth.domain.user_account.values.Email;
+import com.bloodbowlclub.auth.domain.user_account.values.Password;
+import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.Result;
@@ -16,59 +19,39 @@ public class UserAccountTest {
     private ArrayList<DomainEvent> events = new ArrayList<>();
     private AccountRegisteredEvent registration;
     private EmailValidatedEvent emailValidated;
-    private final String userId = "01K6TR3FQJRPBZMNN1TJP5D3YY";
     private final String email = "bagouze@me.com";
 
-    private DraftUserAccount baseAccount = new DraftUserAccount();
+    private DraftUserAccount baseAccount;
 
-    private void init_events() {
+    private void init_events(String username) {
         registration = new AccountRegisteredEvent(
-                userId,
-                "Bagouze",
-                email,
-                "my_password",
-                new Date()
+                username,
+                new Email(email),
+                new Password("my_password")
         );
         events.add(registration);
-        emailValidated = new EmailValidatedEvent(userId);
+        emailValidated = new EmailValidatedEvent(username, new Username("creator"));
         events.add(emailValidated);
     }
 
 
     @Test
     public void test_hydrate_user_account_from_registration_succeed() {
-        init_events();
-        Result<AggregateRoot> hydratationResult = baseAccount.apply(registration);
+        //Given
+        init_events("Bagouze");
+        baseAccount = new DraftUserAccount("Bagouze");
+
+        // When
+        Result<AggregateRoot> hydratationResult = baseAccount.hydrate(events);
+
+        // Then
         Assertions.assertTrue(hydratationResult.isSuccess());
         AggregateRoot hydrated = hydratationResult.getValue();
-        Assertions.assertInstanceOf(DraftUserAccount.class, hydrated);
-        DraftUserAccount casted = (DraftUserAccount) hydrated;
-        Assertions.assertEquals(userId, casted.getId());
+        Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
+        DraftUserAccount casted = (ActiveUserAccount) hydrated;
+
+        Assertions.assertEquals("Bagouze", casted.getId());
         Assertions.assertEquals(email, casted.getEmail().toString());
-        Assertions.assertFalse(casted.isActivated());
     }
 
-    @Test
-    public void test_hydrate_user_account_from_email_validated_succeed() {
-        init_events();
-        Result<AggregateRoot> hydratationResult = baseAccount.reconstructFrom(events);
-        Assertions.assertTrue(hydratationResult.isSuccess());
-        AbstractUserAccount hydrated = (AbstractUserAccount) hydratationResult.getValue();
-        Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
-        Assertions.assertTrue(hydrated.isActivated());
-        ActiveUserAccount casted = (ActiveUserAccount) hydrated;
-        Assertions.assertNotNull(casted.getCreatedAt());
-    }
-
-    @Test
-    public void test_hydrate_in_reverse_order_from_email_validated_succeed() {
-        init_events();
-        Result<AggregateRoot> hydratationResult = baseAccount.reconstructFrom(events.reversed());
-        Assertions.assertTrue(hydratationResult.isSuccess());
-        AbstractUserAccount hydrated = (AbstractUserAccount) hydratationResult.getValue();
-        Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
-        Assertions.assertTrue(hydrated.isActivated());
-        ActiveUserAccount casted = (ActiveUserAccount) hydrated;
-        Assertions.assertNotNull(casted.getCreatedAt());
-    }
 }

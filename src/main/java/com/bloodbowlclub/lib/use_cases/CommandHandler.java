@@ -1,5 +1,6 @@
 package com.bloodbowlclub.lib.use_cases;
 
+import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
@@ -7,7 +8,6 @@ import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.ResultMap;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +29,7 @@ public abstract class CommandHandler {
         this.messageSource = messageSource;
     }
 
-    public abstract ResultMap<Void> handle(Command command);
+    public abstract ResultMap<Void> handle(Command userCommand);
 
     protected void saveAndDispatch(List<DomainEvent> eventList) {
         List<EventEntity> entities = eventList.stream()

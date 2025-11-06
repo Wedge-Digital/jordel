@@ -78,4 +78,20 @@ public abstract class AggregateRoot {
             return Result.failure("Erreur d'application de l'événement : " + e.getMessage());
         }
     }
+
+    public Result<AggregateRoot> hydrate(List<DomainEvent> eventList) {
+        // l'hydratation doit se faire en ordre chronologique
+        List<DomainEvent> chronologicalEvents = eventList.stream()
+                .sorted(Comparator.comparing(DomainEvent::getTimeStampedAt))
+                .toList();
+        AggregateRoot root = this;
+        for (DomainEvent event : chronologicalEvents) {
+            Result<AggregateRoot> currentApplication = root.apply(event);
+            if (currentApplication.isFailure()) {
+                return currentApplication;
+            }
+            root = currentApplication.getValue();
+        }
+        return Result.success(root);
+    }
 }

@@ -21,27 +21,4 @@ public interface EventStore extends JpaRepository<EventEntity, String> {
 
     List<EventEntity> findBySourceAndSubject(String source, String subject);
 
-    @Query(value = "SELECT * FROM event_log " +
-            "WHERE type = AccountRegisteredEvent " +
-            "AND data::jsonb ->> 'email' = :email", nativeQuery = true)
-    Optional<ReadEntity> findUserAccountByEmail(@Param("email") String email);
-
-    @Query(value = "SELECT * FROM event_log " +
-            "WHERE type = AccountRegisteredEvent " +
-            "AND data::jsonb ->> 'username' = :username", nativeQuery = true)
-    Optional<ReadEntity> findUserAccountByUsername(@Param("username") String username);
-
-    default  Result<AggregateRoot> hydrate(String accountId) {
-        List<EventEntity> eventEntityList = this.findBySubject(accountId);
-        AggregateRoot account = new DraftUserAccount();
-
-        for (EventEntity event : eventEntityList) {
-            Result<AggregateRoot> currentApplication = account.apply(event.getData());
-            if (currentApplication.isFailure()) {
-                return currentApplication;
-            }
-            account = currentApplication.getValue();
-        }
-        return Result.success(account);
-    }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class FailurePolicy extends Policy {
 
     public FailurePolicy(MessageSource msgSource) {
-        super(msgSource);
+        super(msgSource, null);
     }
 
     @Override

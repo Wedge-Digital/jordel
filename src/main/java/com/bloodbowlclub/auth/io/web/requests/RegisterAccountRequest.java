@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class RegisterAccountRequest {
-    private String userId;
     private String username;
     private String email;
     private String password;

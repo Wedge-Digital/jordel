@@ -3,7 +3,6 @@ package com.bloodbowlclub.lib.domain.events;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
 
@@ -13,18 +12,13 @@ import java.time.Instant;
         property = "@class"
 )
 @Data
-public abstract class DomainEvent {
-    private final String aggregateId;
+public abstract class UserDomainEvent extends DomainEvent {
 
-    private Instant timeStampedAt;
+    private Username createdBy;
 
-    public DomainEvent() {
-        this.aggregateId = null;
-    }
-
-    public DomainEvent(String agregateId) {
-        this.aggregateId = agregateId;
-        this.timeStampedAt = Instant.now();
+    public UserDomainEvent(String agregateId, Username createdBy) {
+        super(agregateId);
+        this.createdBy = createdBy;
     }
 
 }

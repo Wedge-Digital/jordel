@@ -1,13 +1,11 @@
 package com.bloodbowlclub.auth.use_cases.register;
 
-import com.bloodbowlclub.auth.domain.user_account.commands.RegisterCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountCommand;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
-import com.bloodbowlclub.auth.use_cases.policies.EmailShallNotExistPolicy;
-import com.bloodbowlclub.auth.use_cases.policies.IdShallNotExistPolicy;
-import com.bloodbowlclub.auth.use_cases.policies.UsernameShallNotExistPolicy;
 import com.bloodbowlclub.auth.use_cases.register.fake_policies.FailurePolicy;
 import com.bloodbowlclub.auth.use_cases.register.fake_policies.SuccessPolicy;
+import com.bloodbowlclub.lib.tests.TestCase;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.bloodbowlclub.lib.domain.events.EventDispatcher;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
@@ -17,37 +15,21 @@ import com.bloodbowlclub.lib.services.ResultMap;
 import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.lang.Nullable;
 
 import java.util.HashMap;
 import java.util.Locale;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({RegisterCommandHandler.class,
-        EmailShallNotExistPolicy.class,
-        UsernameShallNotExistPolicy.class,
-        IdShallNotExistPolicy.class,
-        EventDispatcher.class})
-public class RegisterCommandHandlerTests {
-    private RegisterCommand command;
 
-    protected MessageSource messageSource = messageSource();
-
-    @Autowired
-    private EventStore eventStore;
-
+public class RegisterAccountCommandHandlerTests extends TestCase {
+    private RegisterAccountCommand command;
+    private final EventStore eventStore = new FakeEventStore();
     SuccessPolicy successPolicy = new SuccessPolicy(messageSource);
     FailurePolicy failurePolicy = new FailurePolicy(messageSource);
 
     private void init_command() {
-        command = new RegisterCommand("01K6TR3FQJRPBZMNN1TJP5D3YY",
+        command = new RegisterAccountCommand(
                 "bagouze",
                 "bertrand.begouin@gmail.com",
                 "mon_password");
@@ -73,8 +55,6 @@ public class RegisterCommandHandlerTests {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                successPolicy,
-                successPolicy,
                 new EventDispatcher(),
                 messageSource
 
@@ -92,8 +72,6 @@ public class RegisterCommandHandlerTests {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                successPolicy,
-                successPolicy,
                 eventDispatcher,
                 messageSource
         );
@@ -109,8 +87,6 @@ public class RegisterCommandHandlerTests {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 failurePolicy,
-                successPolicy,
-                successPolicy,
                 new EventDispatcher(),
                 messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
@@ -123,36 +99,28 @@ public class RegisterCommandHandlerTests {
         init_command();
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
-                successPolicy,
-                successPolicy,
                 failurePolicy,
                 new EventDispatcher(),
                 messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
-//        ExpectErrorMessage(commandHandlingResult, "email", "user_registration.email.already_exists", new Object[]{command.email()});
     }
 
     @Test
     public void test_register_a_user_with_invalid_user_datas_shall_fail() throws JsonProcessingException {
-        command = new RegisterCommand("01K6TR3FQJRPBZMNN1TJP5D3",
+        command = new RegisterAccountCommand(
                 "bagouze",
                 "bertrand.begouin",
                 "mon_password");
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                successPolicy,
-                successPolicy,
                 new EventDispatcher(),
                 messageSource);
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
         HashMap<String, String> expectedResult = new HashMap<>();
-        String email_error = messageSource.getMessage("email.invalid",null, Locale.getDefault());
-        expectedResult.put("email", email_error);
-        String id_error = messageSource.getMessage("ULID.invalid", null, Locale.getDefault());
-        expectedResult.put("userId", id_error);
+        expectedResult.put("email", messageSource.getMessage("email.invalid",null, Locale.getDefault()));
         Assertions.assertEquals(expectedResult, commandHandlingResult.listErrors());
     }
 
@@ -163,8 +131,6 @@ public class RegisterCommandHandlerTests {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 eventStore,
                 successPolicy,
-                successPolicy,
-                successPolicy,
                 new EventDispatcher(),
                 messageSource);
 
@@ -173,9 +139,8 @@ public class RegisterCommandHandlerTests {
         Assertions.assertEquals(1, eventStore.findAll().size());
         EventEntity eventEntity = eventStore.findAll().getFirst();
         Assertions.assertEquals(AccountRegisteredEvent.class, eventEntity.getData().getClass());
-        Assertions.assertEquals("01K6TR3FQJRPBZMNN1TJP5D3YY", eventEntity.getData().getAggregateId());
+        Assertions.assertEquals("bagouze", eventEntity.getData().getAggregateId());
         AccountRegisteredEvent castedEvent = (AccountRegisteredEvent) eventEntity.getData();
-        Assertions.assertEquals("bertrand.begouin@gmail.com", castedEvent.getEmail());
-        Assertions.assertEquals("bagouze", castedEvent.getUsername());
+        Assertions.assertEquals("bertrand.begouin@gmail.com", castedEvent.getEmail().toString());
     }
 }

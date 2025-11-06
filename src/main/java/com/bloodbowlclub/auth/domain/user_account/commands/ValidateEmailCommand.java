@@ -1,10 +1,15 @@
 package com.bloodbowlclub.auth.domain.user_account.commands;
 
-import com.bloodbowlclub.lib.use_cases.Command;
+import com.bloodbowlclub.auth.domain.user_account.values.Username;
+import com.bloodbowlclub.lib.use_cases.UserCommand;
+import lombok.Getter;
 
-public record ValidateEmailCommand(String userId) implements Command {
+@Getter
+public class ValidateEmailCommand extends UserCommand {
+    private String emailToValidate;
 
-    public String getAccountId() {
-        return userId;
+    protected ValidateEmailCommand(Username creator,  String emailToValidate) {
+        super(creator);
+        this.emailToValidate = emailToValidate;
     }
 }

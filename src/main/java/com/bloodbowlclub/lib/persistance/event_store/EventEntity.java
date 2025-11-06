@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import ulid4j.Ulid;
@@ -13,6 +15,8 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "event_log")
+@Data
+@NoArgsConstructor
 public class EventEntity {
 
     @Id
@@ -64,82 +68,5 @@ public class EventEntity {
         this.dataContentType = event.getClass().getTypeName();
         this.data = event;
         this.time = Instant.now();
-    }
-
-    public EventEntity() {
-    }
-
-    // Getters & setters
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getSpecVersion() {
-        return specVersion;
-    }
-
-    public void setSpecVersion(String specVersion) {
-        this.specVersion = specVersion;
-    }
-
-    public Instant getTime() {
-        return time;
-    }
-
-    public void setTime(Instant time) {
-        this.time = time;
-    }
-
-    public String getDataSchema() {
-        return dataSchema;
-    }
-
-    public void setDataSchema(String dataSchema) {
-        this.dataSchema = dataSchema;
-    }
-
-    public String getDataContentType() {
-        return dataContentType;
-    }
-
-    public void setDataContentType(String dataContentType) {
-        this.dataContentType = dataContentType;
-    }
-
-    public DomainEvent getData() {
-        return data;
-    }
-
-    public void setData(DomainEvent data) {
-        this.data = data;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 }

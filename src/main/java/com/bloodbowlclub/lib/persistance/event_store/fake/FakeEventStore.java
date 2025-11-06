@@ -12,11 +12,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.FluentQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
 public class FakeEventStore implements EventStore {
+
+    private final List<EventEntity> eventEntities =  new ArrayList<>();
     @Override
     public void flush() {
 
@@ -69,7 +72,7 @@ public class FakeEventStore implements EventStore {
 
     @Override
     public <S extends EventEntity> List<S> findAll(Example<S> example) {
-        return List.of();
+        return (List<S>) this.eventEntities;
     }
 
     @Override
@@ -99,13 +102,16 @@ public class FakeEventStore implements EventStore {
 
     @Override
     public <S extends EventEntity> S save(S entity) {
-        return null;
+        this.eventEntities.add(entity);
+        return entity;
     }
 
     @Override
     public <S extends EventEntity> List<S> saveAll(Iterable<S> entities) {
-        return List.of();
+        entities.forEach(this.eventEntities::add);
+        return (List<S>) this.eventEntities;
     }
+
 
     @Override
     public Optional<EventEntity> findById(String s) {
@@ -119,7 +125,7 @@ public class FakeEventStore implements EventStore {
 
     @Override
     public List<EventEntity> findAll() {
-        return List.of();
+        return this.eventEntities;
     }
 
     @Override
@@ -169,7 +175,7 @@ public class FakeEventStore implements EventStore {
 
     @Override
     public List<EventEntity> findBySubject(String agregateId) {
-        return List.of();
+        return this.eventEntities.stream().filter(evt -> evt.getSubject().equals(agregateId) ).toList();
     }
 
     @Override
@@ -180,15 +186,5 @@ public class FakeEventStore implements EventStore {
     @Override
     public List<EventEntity> findBySourceAndSubject(String source, String subject) {
         return List.of();
-    }
-
-    @Override
-    public Optional<ReadEntity> findUserAccountByEmail(String email) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<ReadEntity> findUserAccountByUsername(String username) {
-        return Optional.empty();
     }
 }

@@ -1,10 +1,10 @@
 package com.bloodbowlclub.auth.io.web.models;
 
-import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
 
-public class LoginRequest extends LoginCommand {
+import lombok.Data;
 
-    public LoginRequest(String username, String password) {
-        super(username, password);
-    }
+@Data
+public class LoginRequest {
+    private String username;
+    private String password;
 }

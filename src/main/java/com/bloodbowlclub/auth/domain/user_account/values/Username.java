@@ -28,4 +28,5 @@ public class Username extends ValueObject {
     public boolean equalsString(String id){
         return this.value.equals(id);
     }
+
 }
