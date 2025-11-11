@@ -2,13 +2,16 @@ package com.bloodbowlclub.auth.domain.user_account;
 
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
+import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.Result;
+import io.jsonwebtoken.lang.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -52,6 +55,32 @@ public class UserAccountTest {
 
         Assertions.assertEquals("Bagouze", casted.getId());
         Assertions.assertEquals(email, casted.getEmail().toString());
+    }
+
+    @Test
+    @DisplayName("Try to apply registration, then login, and then login, should succeed with latest login")
+    void test_hydratation_successives() {
+        registration = new AccountRegisteredEvent(
+                "Bagouze",
+                new Email(email),
+                new Password("my_password")
+        );
+        events.add(registration);
+        UserLoggedEvent userLoggedEvent = new UserLoggedEvent("Bagouze", new Username("creator"));
+        events.add(userLoggedEvent);
+        UserLoggedEvent userLoggedEvent2 = new UserLoggedEvent("Bagouze", new Username("creator#2"));
+        events.add(userLoggedEvent);
+
+        baseAccount = new DraftUserAccount("Bagouze");
+
+        // When
+        Result<AggregateRoot> hydratationResult = baseAccount.hydrate(events);
+        Assertions.assertTrue(hydratationResult.isSuccess());
+        AggregateRoot hydrated = hydratationResult.getValue();
+        Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
+        ActiveUserAccount casted = (ActiveUserAccount) hydrated;
+        Assertions.assertNotNull(casted.getLastLogin());
+
     }
 
 }

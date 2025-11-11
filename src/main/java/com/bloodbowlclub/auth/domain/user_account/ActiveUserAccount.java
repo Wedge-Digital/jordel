@@ -37,20 +37,6 @@ public class ActiveUserAccount extends DraftUserAccount {
         this.roles = draftAccount.getRoles();
     }
 
-    public Result<Void> login(String password){
-        this.lastLogin = new Date();
-        Result<Void> loginSuccess = this.password.matches(password);
-        if (loginSuccess.isFailure()) {
-            return loginSuccess;
-        }
-        UserLoggedEvent  userLoggedEvent = new UserLoggedEvent(
-                this.username.toString(),
-                new Username(this.username.toString()));
-        this.addEvent(userLoggedEvent);
-        return loginSuccess;
-    }
-
-
     public Result<AggregateRoot> apply(UserLoggedEvent event) {
         this.lastLogin = Date.from(event.getTimeStampedAt());
         return Result.success(this);

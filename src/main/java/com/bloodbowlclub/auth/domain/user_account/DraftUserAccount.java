@@ -4,6 +4,7 @@ import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountComman
 import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
+import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.*;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.Result;
@@ -66,6 +67,18 @@ public class DraftUserAccount extends AggregateRoot {
         this.addEvent(accountValidatedEvent);
     }
 
+    public Result<Void> login(String password){
+        Result<Void> loginSuccess = this.password.matches(password);
+        if (loginSuccess.isFailure()) {
+            return loginSuccess;
+        }
+        UserLoggedEvent  userLoggedEvent = new UserLoggedEvent(
+                this.username.toString(),
+                new Username(this.username.toString()));
+        this.addEvent(userLoggedEvent);
+        return loginSuccess;
+    }
+
     @Override
     public String getId() {
         return this.username.toString();
@@ -75,12 +88,19 @@ public class DraftUserAccount extends AggregateRoot {
         this.username = new Username(event.getAggregateId());
         this.email = event.getEmail();
         this.password = event.getPassword();
+        this.roles = List.of(UserRole.SIMPLE_USER);
         return Result.success(this);
     }
 
     public Result<AggregateRoot> apply(EmailValidatedEvent event) {
         ActiveUserAccount active = new ActiveUserAccount(this);
         active.setValidatedAt(Date.from(event.getTimeStampedAt()));
+        return Result.success(active);
+    }
+
+    public Result<AggregateRoot> apply(UserLoggedEvent event) {
+        ActiveUserAccount active = new ActiveUserAccount(this);
+        active.setLastLogin(Date.from(event.getTimeStampedAt()));
         return Result.success(active);
     }
 

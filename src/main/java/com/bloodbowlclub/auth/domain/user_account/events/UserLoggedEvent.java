@@ -11,7 +11,6 @@ import lombok.Data;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
-@Data
 public class UserLoggedEvent extends UserDomainEvent {
 
     public UserLoggedEvent(String agregateId, Username createdBy) {
