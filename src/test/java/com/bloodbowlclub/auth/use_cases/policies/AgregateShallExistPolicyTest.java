@@ -26,8 +26,10 @@ import java.util.Date;
 
 public class AgregateShallExistPolicyTest extends TestCase {
 
-    private FakeEventStore eventStore = new FakeEventStore();
-    private AgregateShallExistPolicy agregateShallExistPolicy = new AgregateShallExistPolicy(messageSource, eventStore);
+    private final FakeEventStore eventStore = new FakeEventStore();
+    private final AgregateShallExistPolicy agregateShallExistPolicy = new AgregateShallExistPolicy(messageSource, eventStore);
+
+    private final EventEntityFactory eventFactory = new EventEntityFactory();
 
 
     void loadPredefinedData(String username) {
@@ -36,7 +38,7 @@ public class AgregateShallExistPolicyTest extends TestCase {
                 new Email( "bertran@bagouze.net"),
                 new Password("my_password")
         );
-        eventStore.save(EventEntityFactory.AnonymousEventEntity(account));
+        eventStore.save(eventFactory.build(account));
         Assertions.assertEquals(1, eventStore.findAll().size());
     }
 

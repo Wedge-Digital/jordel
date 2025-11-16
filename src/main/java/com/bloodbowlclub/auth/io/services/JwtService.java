@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.io.services;
 
-import com.bloodbowlclub.auth.io.models.JwtTokens;
+import com.bloodbowlclub.auth.io.web.JwtTokensResponse;
 import com.bloodbowlclub.lib.services.Result;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -52,13 +52,13 @@ public class JwtService {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public JwtTokens buildAuthTokens(String username) {
+    public JwtTokensResponse buildAuthTokens(String username) {
         Date issuedAt = new Date();
         Date accessExpiresAt = computeAccessExpirationDate(new Date());
         Date refreshExpiresAt = computeRefreshExpirationDate(new Date());
         String accessToken = generateToken(username, issuedAt, accessExpiresAt);
         String refreshToken = generateToken(username, issuedAt, refreshExpiresAt);
-        return new JwtTokens(accessToken, refreshToken);
+        return new JwtTokensResponse(accessToken, refreshToken);
     }
 
     public Date computeAccessExpirationDate(Date issuedAt) {

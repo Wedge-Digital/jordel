@@ -1,9 +1,12 @@
 package com.bloodbowlclub.lib.services;
 
 import lombok.Getter;
+import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.HashMap.newHashMap;
 
 public class ResultMap<T> {
     private final T value;
@@ -93,5 +96,14 @@ public class ResultMap<T> {
         } else {
             return "Result{errorMessage='" + this.getErrorMessage() + "'}";
         }
+    }
+
+    public ResponseEntity<Map<String,String>> toResponse() {
+        HashMap<String, String> res = new HashMap<>();
+        if (isSuccess()) {
+            res.put("result", "success");
+            return ResponseEntity.ok(res);
+        }
+        return ResponseEntity.badRequest().body(this.errorsMap);
     }
 }

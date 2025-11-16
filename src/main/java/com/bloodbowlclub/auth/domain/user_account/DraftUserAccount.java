@@ -15,6 +15,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,9 +32,11 @@ import java.util.List;
 public class DraftUserAccount extends AggregateRoot {
 
     @Valid
+    @NotNull
     protected Username username;
 
     @Valid
+    @NotNull
     protected Email email;
 
     @NotNull
@@ -67,14 +71,15 @@ public class DraftUserAccount extends AggregateRoot {
         this.addEvent(accountValidatedEvent);
     }
 
-    public Result<Void> login(String password){
+    public Result<Void> login(String password) {
+        if (this.password == null){
+            return Result.failure(null);
+        }
         Result<Void> loginSuccess = this.password.matches(password);
         if (loginSuccess.isFailure()) {
             return loginSuccess;
         }
-        UserLoggedEvent  userLoggedEvent = new UserLoggedEvent(
-                this.username.toString(),
-                new Username(this.username.toString()));
+        UserLoggedEvent  userLoggedEvent = new UserLoggedEvent(this.username.toString());
         this.addEvent(userLoggedEvent);
         return loginSuccess;
     }

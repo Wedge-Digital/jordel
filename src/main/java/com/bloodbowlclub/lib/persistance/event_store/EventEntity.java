@@ -66,6 +66,7 @@ public class EventEntity {
         this.subject = event.getAggregateId();
         this.type = event.getClass().getSimpleName();
         this.dataContentType = event.getClass().getTypeName();
+        this.dataSchema = event.getClass().getTypeName();
         this.data = event;
         this.time = Instant.now();
     }

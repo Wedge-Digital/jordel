@@ -1,8 +1,8 @@
-package com.bloodbowlclub.auth.io.models;
+package com.bloodbowlclub.auth.io.web;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JwtTokens {
+public class JwtTokensResponse {
 
     @JsonProperty("accessToken")
     String accessToken;
@@ -10,7 +10,7 @@ public class JwtTokens {
     @JsonProperty("refreshToken")
     String refreshToken;
 
-    public JwtTokens(String accessToken, String refreshToken) {
+    public JwtTokensResponse(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }

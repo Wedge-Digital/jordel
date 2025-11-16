@@ -2,16 +2,17 @@ package com.bloodbowlclub.auth.io.web;
 
 import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
+import com.bloodbowlclub.JsonAssertions;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 @SpringBootTest(classes = WebApplication.class)
@@ -22,7 +23,7 @@ public class AuthControllerTest {
 
     @Test
     @Transactional
-    void test_regsiter_account_with_valid_data_succeeds() {
+    void test_regsiter_account_with_valid_data_succeeds() throws IOException {
         RegisterAccountRequest request = RegisterAccountRequest.builder()
                         .password("mon_gros_password")
                         .email("bertrand.begouin@gmail.com")
@@ -31,6 +32,10 @@ public class AuthControllerTest {
 
         ResponseEntity<?> response = authController.registerUser(request);
         Assertions.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
+        JsonAssertions.assertEqualsFixture(
+                response.getBody(),
+                null
+        );
     }
 
     @Test

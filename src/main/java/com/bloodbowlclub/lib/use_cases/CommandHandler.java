@@ -4,6 +4,7 @@ import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
+import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.ResultMap;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,8 @@ public abstract class CommandHandler {
 
     protected final MessageSource messageSource;
 
+    private EventEntityFactory factory = new EventEntityFactory();
+
     protected CommandHandler(EventStore eventStore,
                              AbstractEventDispatcher businessDispatcher,
                              MessageSource messageSource) {
@@ -33,7 +36,7 @@ public abstract class CommandHandler {
 
     protected void saveAndDispatch(List<DomainEvent> eventList) {
         List<EventEntity> entities = eventList.stream()
-                .map(domainEvent -> new EventEntity(domainEvent, null))
+                .map(domainEvent -> factory.build(domainEvent))
                 .collect(Collectors.toList());
         eventStore.saveAll(entities);
 

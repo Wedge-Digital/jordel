@@ -1,4 +1,4 @@
-package com.td.lib.services;
+package com.bloodbowlclub.lib.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Service
 public class JsonService {
-    private static final String fixturePath = "src/test/_fixtures/resultsets/java/com/td/telecareproxy/";
+    private static final String fixturePath = "src/test/_fixtures/resultsets/java/com/bloodbowlclub/";
 
     public String asJsonString(final Object obj) {
         try {
@@ -80,6 +80,8 @@ public class JsonService {
 
     private void removeMetaFieldsRecursively(JsonNode node, List<String> fieldsToExclude) {
         if (node == null) return;
+        if (fieldsToExclude == null || fieldsToExclude.isEmpty()) return;
+
         if (node.isObject()) {
             ObjectNode obj = (ObjectNode) node;
             // Remove both spellings to cover DomainEvent's timeStampedAt and a potential timestampedAt

@@ -1,22 +1,23 @@
 package com.bloodbowlclub.auth.io.web;
 
-import com.bloodbowlclub.auth.domain.user_account.commands.LoginUserCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
 import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountCommand;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.auth.io.models.CustomUser;
-import com.bloodbowlclub.auth.io.models.JwtTokens;
 import com.bloodbowlclub.auth.io.services.JwtService;
-import com.bloodbowlclub.auth.io.web.models.LoginRequest;
-import com.bloodbowlclub.auth.io.web.models.RefreshTokenRequest;
+import com.bloodbowlclub.auth.io.web.login.LoginRequest;
+import com.bloodbowlclub.auth.io.web.refresh_token.RefreshTokenRequest;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountMapper;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
-import com.bloodbowlclub.auth.use_cases.LoginCommandHandler;
 import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
 import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.use_cases.CommandHandler;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @RestController
@@ -25,11 +26,16 @@ public class AuthController {
 
     private final JwtService jwtService;
     private final MessageSource messageSource;
-    private final LoginCommandHandler loginHandler;
+
+    @Qualifier("loginCommandHandler")
+    private final CommandHandler loginHandler;
     private final RegisterCommandHandler registerHandler;
     private RegisterAccountMapper mapper = RegisterAccountMapper.INSTANCE;
 
-    public AuthController(JwtService jwtService, MessageSource messageSource, LoginCommandHandler loginHandler, RegisterCommandHandler registerHandler) {
+    public AuthController(JwtService jwtService,
+                          MessageSource messageSource,
+                          @Qualifier("loginCommandHandler") CommandHandler loginHandler,
+                          RegisterCommandHandler registerHandler) {
         this.jwtService = jwtService;
         this.messageSource = messageSource;
         this.loginHandler = loginHandler;
@@ -37,10 +43,9 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
 
-        LoginUserCommand cmd = new LoginUserCommand(
-                new Username(loginRequest.getUsername()),
+        LoginCommand cmd = new LoginCommand(
                 loginRequest.getUsername(),
                 loginRequest.getPassword());
         ResultMap<Void> loginResult = loginHandler.handle(cmd);
@@ -48,7 +53,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(loginRequest);
         }
 
-        final JwtTokens tokens = this.jwtService.buildAuthTokens(loginRequest.getUsername());
+        final JwtTokensResponse tokens = this.jwtService.buildAuthTokens(loginRequest.getUsername());
         return ResponseEntity.ok(tokens);
     }
 
@@ -68,14 +73,10 @@ public class AuthController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ResponseEntity<?> registerUser(@RequestBody RegisterAccountRequest candidateAccountRequest) {
+    public ResponseEntity<Map<String,String>> registerUser(@RequestBody RegisterAccountRequest candidateAccountRequest) {
         RegisterAccountCommand candidateAccount = mapper.requestToCommand( candidateAccountRequest );
         ResultMap<Void> registration = this.registerHandler.handle(candidateAccount);
-        if (registration.isSuccess()) {
-            return ResponseEntity.ok(registration.getValue());
-        } else {
-            return ResponseEntity.badRequest().body(registration.errorMap());
-        }
+        return registration.toResponse();
     }
 
     @RequestMapping(value = "/me", method = RequestMethod.GET)

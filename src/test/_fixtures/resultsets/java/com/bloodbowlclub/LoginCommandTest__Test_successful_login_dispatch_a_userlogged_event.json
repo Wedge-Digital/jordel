@@ -1,0 +1,24 @@
+[ {
+  "source" : "Anonymous",
+  "type" : "AccountRegisteredEvent",
+  "specVersion" : "1.0",
+  "dataSchema" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
+  "dataContentType" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
+  "data" : {
+    "@class" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
+    "aggregateId" : "Bagouze",
+    "email" : "bertrand.begouin@gmail.com"
+  },
+  "subject" : "Bagouze"
+}, {
+  "source" : "Anonymous",
+  "type" : "UserLoggedEvent",
+  "specVersion" : "1.0",
+  "dataSchema" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
+  "dataContentType" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
+  "data" : {
+    "@class" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
+    "aggregateId" : "Bagouze"
+  },
+  "subject" : "Bagouze"
+} ]

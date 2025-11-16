@@ -66,10 +66,10 @@ public class UserAccountTest {
                 new Password("my_password")
         );
         events.add(registration);
-        UserLoggedEvent userLoggedEvent = new UserLoggedEvent("Bagouze", new Username("creator"));
+        UserLoggedEvent userLoggedEvent = new UserLoggedEvent("Bagouze");
         events.add(userLoggedEvent);
-        UserLoggedEvent userLoggedEvent2 = new UserLoggedEvent("Bagouze", new Username("creator#2"));
-        events.add(userLoggedEvent);
+        UserLoggedEvent userLoggedEvent2 = new UserLoggedEvent("Bagouze");
+        events.add(userLoggedEvent2);
 
         baseAccount = new DraftUserAccount("Bagouze");
 

@@ -1,4 +1,4 @@
-package com.bloodbowlclub.auth.io.web.models;
+package com.bloodbowlclub.auth.io.web.refresh_token;
 
 public class RefreshTokenRequest {
     private final String token;
