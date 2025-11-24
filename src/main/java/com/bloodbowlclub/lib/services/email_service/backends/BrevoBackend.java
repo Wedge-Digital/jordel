@@ -14,10 +14,11 @@ import brevo.ApiException;
 import brevo.Configuration;
 import brevoApi.TransactionalEmailsApi;
 
+@Component("brevoBackend")
 public class BrevoBackend implements EmailBackend {
 
     @Value("${brevo.api.key}")
-    private String brevoApiKey;
+    private String brevoApiKey = "z2MX4EaG3J7qsBpr";
 
     @Value("${brevo.sender.email}")
     private String senderEmail;

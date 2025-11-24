@@ -1,12 +1,11 @@
-package com.bloodbowlclub.lib.services;
+package com.bloodbowlclub.lib.services.result;
 
+import com.bloodbowlclub.lib.services.result.exceptions.ResultException;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static java.util.HashMap.newHashMap;
 
 public class ResultMap<T> {
     private final T value;
@@ -15,27 +14,30 @@ public class ResultMap<T> {
     @Getter
     private final boolean isSuccess;
 
+    private final ErrorCode errorCode;
+
     // Constructeur privé pour forcer l'utilisation des méthodes statiques
-    private ResultMap(T value, Map<String, String> errors, boolean isSuccess) {
+    private ResultMap(T value, Map<String, String> errors, boolean isSuccess, ErrorCode errorCode) {
         this.value = value;
         this.errorsMap = errors;
         this.isSuccess = isSuccess;
+        this.errorCode = errorCode;
     }
 
     // Méthode statique pour créer un résultat réussi
     public static <T> ResultMap<T> success(T value) {
-        return new ResultMap<>(value, null, true);
+        return new ResultMap<>(value, null, true, null);
     }
 
     // Méthode statique pour créer un résultat échoué
-    public static <T> ResultMap<T> failure(String key, String error) {
+    public static <T> ResultMap<T> failure(String key, String error, ErrorCode code) {
         Map<String, String> errors = new HashMap<>();
         errors.put(key, error);
-        return new ResultMap<>(null, errors, false);
+        return new ResultMap<>(null, errors, false, code);
     }
 
-    public static <T> ResultMap<T> failure(Map<String, String> errors) {
-        return new ResultMap<>(null, errors, false);
+    public static <T> ResultMap<T> failure(Map<String, String> errors, ErrorCode code) {
+        return new ResultMap<>(null, errors, false, code);
     }
 
     public boolean isFailure() {
@@ -54,7 +56,7 @@ public class ResultMap<T> {
             // On suppose que le success prend une valeur par défaut ou null
             return ResultMap.success(null);
         } else {
-            return new ResultMap<>(null, errors, false);
+            return new ResultMap<>(null, errors, false, ErrorCode.BAD_REQUEST);
         }
     }
 
@@ -98,12 +100,26 @@ public class ResultMap<T> {
         }
     }
 
-    public ResponseEntity<Map<String,String>> toResponse() {
+    public ResponseEntity<Map<String,String>> toResponse() throws ResultException {
         HashMap<String, String> res = new HashMap<>();
         if (isSuccess()) {
             res.put("result", "success");
             return ResponseEntity.ok(res);
         }
-        return ResponseEntity.badRequest().body(this.errorsMap);
+        // Amélioration: instanciation correcte de l'exception avec le constructeur (Map<String,String>)
+        Class<? extends ResultException> exClass = ErrorToException.get(errorCode);
+        if (exClass == null) {
+            // Fallback si aucun mapping n'est défini pour ce code d'erreur
+            throw new ResultException(this.errorsMap);
+        }
+        try {
+            java.lang.reflect.Constructor<? extends ResultException> ctor = exClass.getDeclaredConstructor(Map.class);
+            throw ctor.newInstance(this.errorsMap);
+        } catch (ResultException e) {
+            throw e;
+        } catch (ReflectiveOperationException e) {
+            // Fallback si la réflexion échoue pour une raison quelconque
+            throw new ResultException(this.errorsMap);
+        }
     }
 }

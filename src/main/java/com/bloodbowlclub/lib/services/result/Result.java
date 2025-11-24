@@ -1,4 +1,4 @@
-package com.bloodbowlclub.lib.services;
+package com.bloodbowlclub.lib.services.result;
 
 import org.slf4j.LoggerFactory;
 

@@ -5,6 +5,7 @@ import com.bloodbowlclub.lib.services.email_service.EmailRequest;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
+@Component("consoleBackend")
 public class ConsoleBackend implements EmailBackend {
 
     @Override

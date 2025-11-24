@@ -1,10 +1,16 @@
 package com.bloodbowlclub.lib.services.email_service;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class TemplateEngine {
 
     public String processTemplate(String templateContent, Map<String, Object> variables) {
@@ -28,9 +34,20 @@ public class TemplateEngine {
     }
 
     public String processTemplateFromFile(String templateName, Map<String, Object> variables) {
-        // In a real implementation, this would read from file system or database
-        // For now, returning a simple template based on name
-        String templateContent = "<html><body><h1>Hello {{name}}</h1><p>Your order {{order_id}} is {{status}}.</p></body></html>";
+        String templateContent = null;
+        try {
+            ClassPathResource resource = new ClassPathResource("email_template/" + templateName);
+            if (resource.exists()) {
+                templateContent = new String(Files.readAllBytes(Paths.get(resource.getURI())));
+            }
+        } catch (IOException e) {
+            // Fall through to default content
+        }
+
+        if (templateContent == null) {
+            templateContent = "<html><body><h1>Hello {{name}}</h1><p>Your order {{username}} is {{var_1}}.</p></body></html>";
+        }
+
         return processTemplate(templateContent, variables);
     }
 }

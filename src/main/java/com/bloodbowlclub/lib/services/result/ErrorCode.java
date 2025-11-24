@@ -1,0 +1,19 @@
+package com.bloodbowlclub.lib.services.result;
+
+public enum ErrorCode {
+    NOT_FOUND,
+    BAD_REQUEST,
+    UNAUTHORIZED,
+    FORBIDDEN,
+    ALREADY_EXISTS,
+    CONFLICT,
+    UNKNOWN_ERROR,
+    INVALID_CREDENTIALS,
+    EXPIRED_TOKEN,
+    INVALID_TOKEN,
+    PERMISSION_DENIED,
+    INTERNAL_SERVER_ERROR,
+    UNPROCESSABLE_ENTITY,
+    UNKNOWN_ERROR_CODE;
+
+}
