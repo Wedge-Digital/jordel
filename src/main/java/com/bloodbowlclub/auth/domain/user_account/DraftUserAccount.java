@@ -7,18 +7,15 @@ import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.*;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.io.security.filters;
 
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class ServletPathService {

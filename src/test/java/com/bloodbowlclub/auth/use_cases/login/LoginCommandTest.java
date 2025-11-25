@@ -12,7 +12,7 @@ import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
@@ -81,7 +81,7 @@ public class LoginCommandTest extends TestCase {
         Assertions.assertTrue(handling.isFailure());
 
         HashMap<String, String> errors = new HashMap<>();
-        String expectedError = messageSource.getMessage("user_account.bad_credentials", new String[]{username}, LocaleContextHolder.getLocale());
+        String expectedError = messageSource.getMessage("user_account.bad_credentials", new Object[]{username}, LocaleContextHolder.getLocale());
         errors.put("password", expectedError);
         Assertions.assertEquals(errors, handling.errorMap());
     }
@@ -93,7 +93,7 @@ public class LoginCommandTest extends TestCase {
         ResultMap<Void> handling = handler.handle(new LoginCommand(username, "password"));
         Assertions.assertTrue(handling.isFailure());
         HashMap<String, String> errors = new HashMap<>();
-        String expectedError = messageSource.getMessage("user_account.not_existing", new String[]{username}, LocaleContextHolder.getLocale());
+        String expectedError = messageSource.getMessage("user_account.not_existing", new Object[]{username}, LocaleContextHolder.getLocale());
         errors.put("login", expectedError);
         Assertions.assertEquals(errors, handling.errorMap());
     }

@@ -1,15 +1,11 @@
 package com.bloodbowlclub.lib.persistance.event_store.fake;
 
-import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
-import com.bloodbowlclub.lib.persistance.read_cache.ReadEntity;
-import com.bloodbowlclub.lib.services.Result;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.FluentQuery;
 
 import java.util.ArrayList;

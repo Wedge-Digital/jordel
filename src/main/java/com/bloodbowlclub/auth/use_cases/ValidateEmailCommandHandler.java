@@ -9,8 +9,9 @@ import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
-import com.bloodbowlclub.lib.services.Result;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
@@ -45,7 +46,7 @@ public class ValidateEmailCommandHandler extends CommandHandler {
         DraftUserAccount userAccount = new DraftUserAccount(username);
         List<EventEntity> eventList = eventStore.findBySubject(username);
         if (eventList.isEmpty()) {
-            return ResultMap.failure("Account", "no history for account");
+            return ResultMap.failure("Account", "no history for account", ErrorCode.NOT_FOUND);
         }
         List<DomainEvent> domainEvents = eventList.stream().map(EventEntity::getData).toList();
         Result<AggregateRoot> agregateHydratation = userAccount.hydrate(domainEvents);
@@ -53,12 +54,12 @@ public class ValidateEmailCommandHandler extends CommandHandler {
         if (agregateHydratation.isFailure()) {
             HashMap<String, String> errorMap = new HashMap<>();
             errorMap.put("user_account", agregateHydratation.getError());
-            return ResultMap.failure(errorMap);
+            return ResultMap.failure(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
         }
 
         AggregateRoot hydrated =  agregateHydratation.getValue();
         if (!(hydrated instanceof DraftUserAccount newAccount)) {
-            return ResultMap.failure("account", "hydratation error");
+            return ResultMap.failure("account", "hydratation error", ErrorCode.UNPROCESSABLE_ENTITY);
         }
 
         newAccount.validate(command);

@@ -1,27 +1,14 @@
 package com.bloodbowlclub.auth.use_cases.policies;
 
-import com.bloodbowlclub.WebApplication;
-import com.bloodbowlclub.auth.domain.user_account.ActiveUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
-import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
-import com.bloodbowlclub.lib.persistance.read_cache.ReadEntity;
-import com.bloodbowlclub.lib.persistance.read_cache.ReadRepository;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ContextConfiguration;
-
-import java.util.Date;
 
 
 public class AgregateShallExistPolicyTest extends TestCase {

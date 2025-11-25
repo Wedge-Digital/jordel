@@ -1,9 +1,10 @@
 package com.bloodbowlclub.lib.domain;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.validators.DomainValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,7 +53,7 @@ public abstract class AggregateRoot {
         if(errorMap.isEmpty()){
             return ResultMap.success(null);
         }
-        return ResultMap.failure(errorMap);
+        return ResultMap.failure(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
     }
 
     public Result<AggregateRoot> reconstruct(List<DomainEvent> domainEvents) {

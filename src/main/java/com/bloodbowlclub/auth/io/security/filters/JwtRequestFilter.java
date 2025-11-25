@@ -6,7 +6,7 @@ import com.bloodbowlclub.auth.io.security.routes.AuthOpenRoutes;
 import com.bloodbowlclub.auth.io.services.AbstractAuthService;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.lib.auth.AbstractFilter;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

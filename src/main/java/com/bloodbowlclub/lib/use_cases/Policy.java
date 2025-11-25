@@ -1,7 +1,7 @@
 package com.bloodbowlclub.lib.use_cases;
 
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;

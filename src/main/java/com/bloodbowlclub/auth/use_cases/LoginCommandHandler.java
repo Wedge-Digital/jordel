@@ -2,14 +2,13 @@ package com.bloodbowlclub.auth.use_cases;
 
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
-import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
-import com.bloodbowlclub.lib.services.Result;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
@@ -43,12 +42,12 @@ public class LoginCommandHandler extends CommandHandler {
         Result<AggregateRoot> agregateSearch = eventStore.findUser(username);
         DraftUserAccount userAccount = (DraftUserAccount) agregateSearch.getValue();
         if (userAccount.isNotValid()) {
-            return ResultMap.failure("login", getAccountNotExistMessage(username));
+            return ResultMap.failure("username", getAccountNotExistMessage(username), ErrorCode.UNPROCESSABLE_ENTITY);
         }
 
         Result<Void> loginResult = userAccount.login(cmd.getPassword());
         if (loginResult.isFailure()) {
-            return ResultMap.failure("password", getBadPasswordMessage(username));
+            return ResultMap.failure("password", getBadPasswordMessage(username), ErrorCode.BAD_REQUEST);
         }
         saveAndDispatch(userAccount.domainEvents());
         return ResultMap.success(null);

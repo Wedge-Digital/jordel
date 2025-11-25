@@ -5,13 +5,14 @@ import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
 import com.bloodbowlclub.auth.use_cases.register.fake_policies.FailurePolicy;
 import com.bloodbowlclub.auth.use_cases.register.fake_policies.SuccessPolicy;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.bloodbowlclub.lib.domain.events.EventDispatcher;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
     private RegisterAccountCommand command;
     private final EventStore eventStore = new FakeEventStore();
     SuccessPolicy successPolicy = new SuccessPolicy(messageSource);
-    FailurePolicy failurePolicy = new FailurePolicy(messageSource);
+    FailurePolicy failurePolicy = new FailurePolicy(messageSource, ErrorCode.BAD_REQUEST);
 
     private void init_command() {
         command = new RegisterAccountCommand(

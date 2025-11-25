@@ -6,7 +6,7 @@ import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 

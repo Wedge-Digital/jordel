@@ -1,7 +1,7 @@
 package com.bloodbowlclub.auth.io.services;
 
 import com.bloodbowlclub.auth.io.web.JwtTokensResponse;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;

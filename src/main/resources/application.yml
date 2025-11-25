@@ -29,6 +29,22 @@ spring:
     basename: "lang/messages,lang/error"
     encoding: UTF-8
     fallback-to-system-locale: false
+  mail:
+    host: smtp-relay.brevo.com
+    port: 587
+    username: ${SMTP_USER}
+    password: ${SMTP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp-relay.brevo.com
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 
 logging:
   level:
@@ -47,3 +63,16 @@ jwt:
 
 cors:
   allowed_hosts: ${ALLOWED_HOSTS}
+
+brevo:
+  api:
+    key: k4dHO9JpsatADPMx
+  sender:
+    email: "bloodbowlclub@gmail.com"
+    name: "BloodBowl Club"
+
+email:
+  default:
+    sender:
+      name: "BloodBowl Club"
+      email: "bloodbowlclub@gmail.com"

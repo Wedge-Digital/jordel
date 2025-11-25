@@ -2,7 +2,7 @@ package com.bloodbowlclub.test_utilities.dispatcher;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 
 public class AnotherDummyAggregate extends AggregateRoot {
     @Override

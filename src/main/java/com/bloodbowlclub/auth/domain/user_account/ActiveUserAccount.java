@@ -1,11 +1,8 @@
 package com.bloodbowlclub.auth.domain.user_account;
 
-import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
-import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Past;

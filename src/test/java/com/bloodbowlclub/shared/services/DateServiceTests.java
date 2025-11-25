@@ -1,7 +1,7 @@
 package com.bloodbowlclub.shared.services;
 
 import com.bloodbowlclub.lib.services.DateService;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

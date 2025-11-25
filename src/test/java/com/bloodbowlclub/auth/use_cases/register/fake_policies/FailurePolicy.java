@@ -1,15 +1,17 @@
 package com.bloodbowlclub.auth.use_cases.register.fake_policies;
 
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.Policy;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-@Service
 public class FailurePolicy extends Policy {
+    private final ErrorCode code;
 
-    public FailurePolicy(MessageSource msgSource) {
+    public FailurePolicy(MessageSource msgSource, ErrorCode code) {
         super(msgSource, null);
+        this.code = code;
     }
 
     @Override
@@ -18,6 +20,6 @@ public class FailurePolicy extends Policy {
     }
 
     public ResultMap<Void> check(String username) {
-        return ResultMap.failure("fake policy", "failure policy");
+        return ResultMap.failure("fake policy", "failure policy", code);
     }
 }

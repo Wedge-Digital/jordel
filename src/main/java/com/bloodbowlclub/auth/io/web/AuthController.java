@@ -1,15 +1,17 @@
 package com.bloodbowlclub.auth.io.web;
 
 import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.LostLoginCommand;
 import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountCommand;
 import com.bloodbowlclub.auth.io.models.CustomUser;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.auth.io.web.login.LoginRequest;
 import com.bloodbowlclub.auth.io.web.refresh_token.RefreshTokenRequest;
+import com.bloodbowlclub.auth.io.web.requests.LostLoginRequest;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountMapper;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
-import com.bloodbowlclub.lib.services.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
@@ -17,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -30,16 +33,21 @@ public class AuthController {
     @Qualifier("loginCommandHandler")
     private final CommandHandler loginHandler;
     private final RegisterCommandHandler registerHandler;
+
+    @Qualifier("lostLoginCommandHandler")
+    private final CommandHandler lostLoginHandler;
     private RegisterAccountMapper mapper = RegisterAccountMapper.INSTANCE;
 
     public AuthController(JwtService jwtService,
                           MessageSource messageSource,
                           @Qualifier("loginCommandHandler") CommandHandler loginHandler,
-                          RegisterCommandHandler registerHandler) {
+                          RegisterCommandHandler registerHandler,
+                          @Qualifier("lostLoginCommandHandler") CommandHandler lostLoginHandler) {
         this.jwtService = jwtService;
         this.messageSource = messageSource;
         this.loginHandler = loginHandler;
         this.registerHandler = registerHandler;
+        this.lostLoginHandler = lostLoginHandler;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -50,7 +58,7 @@ public class AuthController {
                 loginRequest.getPassword());
         ResultMap<Void> loginResult = loginHandler.handle(cmd);
         if (loginResult.isFailure()) {
-            return ResponseEntity.badRequest().body(loginRequest);
+            return ResponseEntity.badRequest().body(loginResult.errorMap());
         }
 
         final JwtTokensResponse tokens = this.jwtService.buildAuthTokens(loginRequest.getUsername());
@@ -85,5 +93,13 @@ public class AuthController {
 //        CustomUser userDetails = (CustomUser) userDetailsService.loadUserByUsername(username);
 //        return ResponseEntity.ok(userDetails);
         return ResponseEntity.ok(null);
+    }
+
+    @RequestMapping(value = "/lostpwd", method = RequestMethod.POST)
+    public ResponseEntity<String> lostPassword(@RequestBody LostLoginRequest loginRequest) {
+        LostLoginCommand cmd = new LostLoginCommand(loginRequest.getUsername());
+        lostLoginHandler.handle(cmd);
+        String msg = messageSource.getMessage("lostlogin.finish",null, Locale.getDefault());
+        return ResponseEntity.ok(msg);
     }
 }

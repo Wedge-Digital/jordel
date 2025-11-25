@@ -1,7 +1,7 @@
 package com.bloodbowlclub.lib.auth;
 
 import com.bloodbowlclub.auth.io.security.filters.ServletPathService;
-import com.bloodbowlclub.lib.services.Result;
+import com.bloodbowlclub.lib.services.result.Result;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.LoggerFactory;

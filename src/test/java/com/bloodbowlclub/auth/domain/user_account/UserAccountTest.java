@@ -8,14 +8,12 @@ import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import com.bloodbowlclub.lib.services.Result;
-import io.jsonwebtoken.lang.Assert;
+import com.bloodbowlclub.lib.services.result.Result;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserAccountTest {
 

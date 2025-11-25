@@ -27,6 +27,7 @@ public class AuthControllerLoginTest extends TestCase {
             jwtService,
             messageSource,
             loginHandler,
+            null,
             null
             );
 
@@ -46,6 +47,5 @@ public class AuthControllerLoginTest extends TestCase {
         Assertions.assertNotNull(resp.getBody());
         Assertions.assertNotNull(((JwtTokensResponse)resp.getBody()).accessToken);
         Assertions.assertNotNull(((JwtTokensResponse)resp.getBody()).refreshToken);
-
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component( "EventDispatcher")
+@Component( "eventDispatcher")
 public class EventDispatcher implements AbstractEventDispatcher{
 
     // Map du type d'event vers liste des subscribers (handlers)
