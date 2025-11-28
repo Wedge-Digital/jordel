@@ -6,6 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class LostLoginCommand implements Command {
+public class StartResetPasswordCommand implements Command {
     private final String username;
 }

@@ -5,8 +5,8 @@ import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.io.repositories.LostLoginTokenEntity;
 import com.bloodbowlclub.auth.io.services.JwtService;
-import com.bloodbowlclub.auth.io.web.requests.LostLoginRequest;
-import com.bloodbowlclub.auth.use_cases.LostPasswordCommandHandler;
+import com.bloodbowlclub.auth.io.web.requests.StartResetPasswordRequest;
+import com.bloodbowlclub.auth.use_cases.StartResetPasswordCommandHandler;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
-public class AuthControllerLostPasswordTest extends TestCase {
+public class CompleteResetPasswordTest extends TestCase {
 
     private final JwtService jwtService = new JwtService("my_secret", 10, 100L, messageSource);
 
@@ -31,7 +31,7 @@ public class AuthControllerLostPasswordTest extends TestCase {
 
     ConsoleEmailService emailService = new ConsoleEmailService(messageSource);
 
-    private final LostPasswordCommandHandler cmdHandler = new LostPasswordCommandHandler(
+    private final StartResetPasswordCommandHandler cmdHandler = new StartResetPasswordCommandHandler(
             eventStore,
             dispatcher,
             messageSource,
@@ -43,7 +43,7 @@ public class AuthControllerLostPasswordTest extends TestCase {
     @Test
     @DisplayName("assert a lost login on not existing account, retrieves a succss message")
     void test_lost_password_on_non_existing_account_returns_success() {
-        LostLoginRequest req = new LostLoginRequest("unknown_user");
+        StartResetPasswordRequest req = new StartResetPasswordRequest("unknown_user");
         ResponseEntity<String> resp = ctrl.lostPassword(req);
         Assertions.assertTrue(resp.getStatusCode().is2xxSuccessful());
         Assertions.assertEquals("Nous avons bien reçu votre demande, si votre compte existe, vous recevrez très vite un email pour changer votre mot de passe", resp.getBody());
@@ -61,14 +61,14 @@ public class AuthControllerLostPasswordTest extends TestCase {
     }
 
     @Test
-    @DisplayName("Asseert a lost login on existing account, create a change token")
+    @DisplayName("Assert a lost login on existing account, create a change token")
     void test_lost_password_on_existing_account_creates_token() {
         //given
         Assertions.assertTrue(fakeTokenRepos.findAll().isEmpty());
         createUser("a-simple-username");
 
         // when
-        LostLoginRequest req = new LostLoginRequest("a-simple-username");
+        StartResetPasswordRequest req = new StartResetPasswordRequest("a-simple-username");
         ResponseEntity<String> resp = ctrl.lostPassword(req);
         Assertions.assertTrue(resp.getStatusCode().is2xxSuccessful());
 
@@ -85,7 +85,7 @@ public class AuthControllerLostPasswordTest extends TestCase {
         createUser("a-simple-username");
 
         // when
-        LostLoginRequest req = new LostLoginRequest("a-simple-username");
+        StartResetPasswordRequest req = new StartResetPasswordRequest("a-simple-username");
         ResponseEntity<String> resp = ctrl.lostPassword(req);
         ResponseEntity<String> resp2 = ctrl.lostPassword(req);
         Assertions.assertTrue(resp.getStatusCode().is2xxSuccessful());
@@ -104,13 +104,20 @@ public class AuthControllerLostPasswordTest extends TestCase {
         createUser("a-simple-username");
 
         // when
-        LostLoginRequest req = new LostLoginRequest("a-simple-username");
+        StartResetPasswordRequest req = new StartResetPasswordRequest("a-simple-username");
         ResponseEntity<String> resp = ctrl.lostPassword(req);
 
         // then a token shall be create
         Assertions.assertEquals(1, fakeTokenRepos.findAll().size());
         LostLoginTokenEntity token = fakeTokenRepos.findAll().getFirst();
         Assertions.assertSame("a-simple-username", token.getUsername());
+        //TBD Check that the console email is displayed
+    }
+
+    @Test
+    @DisplayName("Assert a complete reset password command can succed")
+    void test_complete_reset_password_command_can_succeed() {
+
     }
 
 }

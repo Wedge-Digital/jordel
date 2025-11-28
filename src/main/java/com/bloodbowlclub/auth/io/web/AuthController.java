@@ -1,15 +1,17 @@
 package com.bloodbowlclub.auth.io.web;
 
+import com.bloodbowlclub.auth.domain.user_account.commands.CompleteResetPasswordCommand;
 import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
-import com.bloodbowlclub.auth.domain.user_account.commands.LostLoginCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.StartResetPasswordCommand;
 import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountCommand;
 import com.bloodbowlclub.auth.io.models.CustomUser;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.auth.io.web.login.LoginRequest;
 import com.bloodbowlclub.auth.io.web.refresh_token.RefreshTokenRequest;
-import com.bloodbowlclub.auth.io.web.requests.LostLoginRequest;
+import com.bloodbowlclub.auth.io.web.requests.StartResetPasswordRequest;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountMapper;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
+import com.bloodbowlclub.auth.io.web.requests.CompleteResetPasswordRequest;
 import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
@@ -34,20 +36,25 @@ public class AuthController {
     private final CommandHandler loginHandler;
     private final RegisterCommandHandler registerHandler;
 
-    @Qualifier("lostLoginCommandHandler")
-    private final CommandHandler lostLoginHandler;
+    @Qualifier("startResetPasswordCommandHandler")
+    private final CommandHandler startResetPasswordHandler;
+
+    @Qualifier("completeResetPasswordCommandHandler")
+    private final CommandHandler completeResetPasswordHandler;
     private RegisterAccountMapper mapper = RegisterAccountMapper.INSTANCE;
 
     public AuthController(JwtService jwtService,
                           MessageSource messageSource,
                           @Qualifier("loginCommandHandler") CommandHandler loginHandler,
                           RegisterCommandHandler registerHandler,
-                          @Qualifier("lostLoginCommandHandler") CommandHandler lostLoginHandler) {
+                          @Qualifier("startResetPasswordCommandHandler") CommandHandler startResetPasswordHandler,
+                          @Qualifier("completeResetPasswordCommandHandler") CommandHandler completeResetPasswordHandler
+                          ) {
         this.jwtService = jwtService;
         this.messageSource = messageSource;
         this.loginHandler = loginHandler;
         this.registerHandler = registerHandler;
-        this.lostLoginHandler = lostLoginHandler;
+        this.startResetPasswordHandler = startResetPasswordHandler;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -96,10 +103,19 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/lostpwd", method = RequestMethod.POST)
-    public ResponseEntity<String> lostPassword(@RequestBody LostLoginRequest loginRequest) {
-        LostLoginCommand cmd = new LostLoginCommand(loginRequest.getUsername());
-        lostLoginHandler.handle(cmd);
+    public ResponseEntity<String> lostPassword(@RequestBody StartResetPasswordRequest loginRequest) {
+        StartResetPasswordCommand cmd = new StartResetPasswordCommand(loginRequest.getUsername());
+        startResetPasswordHandler.handle(cmd);
         String msg = messageSource.getMessage("lostlogin.finish",null, Locale.getDefault());
         return ResponseEntity.ok(msg);
+    }
+
+    @RequestMapping(value = "/reset_password", method = RequestMethod.POST)
+    public ResponseEntity<String> resetPassword(@RequestBody CompleteResetPasswordRequest completeResetPasswordRequest) {
+        CompleteResetPasswordCommand cmd = new CompleteResetPasswordCommand(
+                completeResetPasswordRequest.getNew_password(),
+                completeResetPasswordRequest.getToken());
+        ResultMap<Void> res = completeResetPasswordHandler.handle(cmd);
+        return res.toResponse();
     }
 }

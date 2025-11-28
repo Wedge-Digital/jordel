@@ -1,10 +1,9 @@
 package com.bloodbowlclub.auth.use_cases;
 
 import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.commands.LostLoginCommand;
+import com.bloodbowlclub.auth.domain.user_account.commands.StartResetPasswordCommand;
 import com.bloodbowlclub.auth.io.repositories.LostLoginTokenEntity;
 import com.bloodbowlclub.auth.io.repositories.LostLoginTokenRepository;
-import com.bloodbowlclub.auth.io.security.filters.JwtRequestFilter;
 import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
@@ -20,19 +19,19 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import java.util.Optional;
 
-@Component("lostLoginCommandHandler")
-public class LostPasswordCommandHandler extends CommandHandler {
+@Component("startResetPasswordCommandHandler")
+public class StartResetPasswordCommandHandler extends CommandHandler {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LostPasswordCommandHandler.class);
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(StartResetPasswordCommandHandler.class);
     private final LostLoginTokenRepository lostLoginTokenRepository;
     @Qualifier("emailService")
     private final AbstractEmailService mailService;
 
-    public LostPasswordCommandHandler(@Qualifier("EventStore") EventStore eventStore,
-                                      @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
-                                      MessageSource messageSource,
-                                      LostLoginTokenRepository lostLoginTokenRepository,
-                                      AbstractEmailService mailService
+    public StartResetPasswordCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+                                            @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
+                                            MessageSource messageSource,
+                                            LostLoginTokenRepository lostLoginTokenRepository,
+                                            @Qualifier("emailService") AbstractEmailService mailService
     ) {
         super(eventStore, businessDispatcher, messageSource);
         this.lostLoginTokenRepository = lostLoginTokenRepository;
@@ -41,7 +40,7 @@ public class LostPasswordCommandHandler extends CommandHandler {
 
     @Override
     public ResultMap<Void> handle(Command command) {
-        LostLoginCommand cmd = (LostLoginCommand) command;
+        StartResetPasswordCommand cmd = (StartResetPasswordCommand) command;
         Result<AggregateRoot> foundUserAccount = eventStore.findUser(cmd.getUsername());
         if (foundUserAccount.isFailure()) {
             return ResultMap.success(null);
@@ -54,7 +53,7 @@ public class LostPasswordCommandHandler extends CommandHandler {
             return ResultMap.success(null);
         }
 
-        LostLoginTokenEntity token = new LostLoginTokenEntity(((LostLoginCommand) command).getUsername());
+        LostLoginTokenEntity token = new LostLoginTokenEntity(((StartResetPasswordCommand) command).getUsername());
         lostLoginTokenRepository.save(token);
 
         String recoverUrl = "https://bloodbowlclub.com/reset_password?token="+token.getToken();

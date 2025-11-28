@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class LostLoginRequest {
+public class StartResetPasswordRequest {
     private String username;
 }
