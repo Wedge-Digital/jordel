@@ -12,17 +12,15 @@ import com.bloodbowlclub.auth.io.web.requests.StartResetPasswordRequest;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountMapper;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import com.bloodbowlclub.auth.io.web.requests.CompleteResetPasswordRequest;
-import com.bloodbowlclub.auth.use_cases.RegisterCommandHandler;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.result.ResultToResponse;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Locale;
-import java.util.Map;
 
 
 @RestController
@@ -30,35 +28,29 @@ import java.util.Map;
 public class AuthController {
 
     private final JwtService jwtService;
-    private final MessageSource messageSource;
-
-    @Qualifier("loginCommandHandler")
     private final CommandHandler loginHandler;
-    private final RegisterCommandHandler registerHandler;
-
-    @Qualifier("startResetPasswordCommandHandler")
+    private final CommandHandler registerHandler;
     private final CommandHandler startResetPasswordHandler;
-
-    @Qualifier("completeResetPasswordCommandHandler")
     private final CommandHandler completeResetPasswordHandler;
     private RegisterAccountMapper mapper = RegisterAccountMapper.INSTANCE;
 
+    private final ResultToResponse<Void> commandConverter =  new ResultToResponse<Void>();
+
     public AuthController(JwtService jwtService,
-                          MessageSource messageSource,
                           @Qualifier("loginCommandHandler") CommandHandler loginHandler,
-                          RegisterCommandHandler registerHandler,
+                          @Qualifier("registerCommandHandler") CommandHandler registerHandler,
                           @Qualifier("startResetPasswordCommandHandler") CommandHandler startResetPasswordHandler,
                           @Qualifier("completeResetPasswordCommandHandler") CommandHandler completeResetPasswordHandler
                           ) {
         this.jwtService = jwtService;
-        this.messageSource = messageSource;
         this.loginHandler = loginHandler;
         this.registerHandler = registerHandler;
         this.startResetPasswordHandler = startResetPasswordHandler;
+        this.completeResetPasswordHandler = completeResetPasswordHandler;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws BadCredentialsException {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) throws BadCredentialsException {
 
         LoginCommand cmd = new LoginCommand(
                 loginRequest.getUsername(),
@@ -73,7 +65,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/refresh", method = RequestMethod.POST)
-    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest) {
+    public ResponseEntity<?> refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         String token = refreshTokenRequest.getToken();
         if (jwtService.validateJwtToken(token).isSuccess()) {
             String username = jwtService.getUsernameFromToken(token);
@@ -88,34 +80,35 @@ public class AuthController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ResponseEntity<Map<String,String>> registerUser(@RequestBody RegisterAccountRequest candidateAccountRequest) {
+    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterAccountRequest candidateAccountRequest) {
         RegisterAccountCommand candidateAccount = mapper.requestToCommand( candidateAccountRequest );
         ResultMap<Void> registration = this.registerHandler.handle(candidateAccount);
-        return registration.toResponse();
+        return commandConverter.toResponse(registration);
     }
 
     @RequestMapping(value = "/me", method = RequestMethod.GET)
-    public ResponseEntity<CustomUser> getCurrentUser(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<CustomUser> getCurrentUser(@Valid @RequestHeader("Authorization") String token) {
         String username = jwtService.getUsernameFromToken(token.substring(7));
 //        CustomUser userDetails = (CustomUser) userDetailsService.loadUserByUsername(username);
 //        return ResponseEntity.ok(userDetails);
         return ResponseEntity.ok(null);
     }
 
-    @RequestMapping(value = "/lostpwd", method = RequestMethod.POST)
-    public ResponseEntity<String> lostPassword(@RequestBody StartResetPasswordRequest loginRequest) {
+    @RequestMapping(value = "/start-reset-password", method = RequestMethod.POST)
+    public ResponseEntity<Void> startResetPassword(@Valid @RequestBody StartResetPasswordRequest loginRequest) {
         StartResetPasswordCommand cmd = new StartResetPasswordCommand(loginRequest.getUsername());
         startResetPasswordHandler.handle(cmd);
-        String msg = messageSource.getMessage("lostlogin.finish",null, Locale.getDefault());
-        return ResponseEntity.ok(msg);
+        return ResponseEntity.ok(null);
     }
 
-    @RequestMapping(value = "/reset_password", method = RequestMethod.POST)
-    public ResponseEntity<String> resetPassword(@RequestBody CompleteResetPasswordRequest completeResetPasswordRequest) {
+    @RequestMapping(value = "/complete-reset-password", method = RequestMethod.POST)
+    public ResponseEntity<Void> completeResetPassword(@Valid @RequestBody CompleteResetPasswordRequest completeResetPasswordRequest) {
         CompleteResetPasswordCommand cmd = new CompleteResetPasswordCommand(
-                completeResetPasswordRequest.getNew_password(),
-                completeResetPasswordRequest.getToken());
+                completeResetPasswordRequest.getUsername(),
+                completeResetPasswordRequest.getToken(),
+                completeResetPasswordRequest.getNew_password()
+        );
         ResultMap<Void> res = completeResetPasswordHandler.handle(cmd);
-        return res.toResponse();
+        return commandConverter.toResponse(res);
     }
 }

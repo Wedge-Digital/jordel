@@ -1,5 +1,6 @@
 package com.bloodbowlclub.lib.services;
 
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class DateService implements AbstractDateService {
         try {
             computed = sdf.parse(mysqlDate);
         } catch (Exception e) {
-            return Result.failure("Invalid date format");
+            return Result.failure("Invalid date format", ErrorCode.UNPROCESSABLE_ENTITY);
         }
         return Result.success(computed);
     }

@@ -6,6 +6,7 @@ import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
+import com.bloodbowlclub.auth.io.web.UserTestUtils;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.result.Result;
@@ -22,16 +23,18 @@ public class UserAccountTest {
     private EmailValidatedEvent emailValidated;
     private final String email = "bagouze@me.com";
 
-    private DraftUserAccount baseAccount;
+    private BaseUserAccount baseAccount;
 
     private void init_events(String username) {
-        registration = new AccountRegisteredEvent(
-                username,
-                new Email(email),
-                new Password("my_password")
-        );
+        BaseUserAccount userAccount = BaseUserAccount.builder()
+                .username(new Username(username))
+                .email(new Email(email))
+                .password(new Password("my_password"))
+                .build();
+
+        registration = new AccountRegisteredEvent(userAccount);
         events.add(registration);
-        emailValidated = new EmailValidatedEvent(username, new Username("creator"));
+        emailValidated = new EmailValidatedEvent(userAccount);
         events.add(emailValidated);
     }
 
@@ -40,7 +43,7 @@ public class UserAccountTest {
     public void test_hydrate_user_account_from_registration_succeed() {
         //Given
         init_events("Bagouze");
-        baseAccount = new DraftUserAccount("Bagouze");
+        baseAccount = new BaseUserAccount("Bagouze");
 
         // When
         Result<AggregateRoot> hydratationResult = baseAccount.hydrate(events);
@@ -49,7 +52,7 @@ public class UserAccountTest {
         Assertions.assertTrue(hydratationResult.isSuccess());
         AggregateRoot hydrated = hydratationResult.getValue();
         Assertions.assertInstanceOf(ActiveUserAccount.class, hydrated);
-        DraftUserAccount casted = (ActiveUserAccount) hydrated;
+        BaseUserAccount casted = (ActiveUserAccount) hydrated;
 
         Assertions.assertEquals("Bagouze", casted.getId());
         Assertions.assertEquals(email, casted.getEmail().toString());
@@ -58,18 +61,20 @@ public class UserAccountTest {
     @Test
     @DisplayName("Try to apply registration, then login, and then login, should succeed with latest login")
     void test_hydratation_successives() {
-        registration = new AccountRegisteredEvent(
-                "Bagouze",
-                new Email(email),
-                new Password("my_password")
-        );
+        BaseUserAccount userAccount = BaseUserAccount.builder()
+                .username(new Username("Bagouze"))
+                .email(new Email(email))
+                .password(new Password("my_password"))
+                .build();
+
+        registration = new AccountRegisteredEvent(userAccount);
         events.add(registration);
-        UserLoggedEvent userLoggedEvent = new UserLoggedEvent("Bagouze");
+        UserLoggedEvent userLoggedEvent = new UserLoggedEvent(userAccount);
         events.add(userLoggedEvent);
-        UserLoggedEvent userLoggedEvent2 = new UserLoggedEvent("Bagouze");
+        UserLoggedEvent userLoggedEvent2 = new UserLoggedEvent(userAccount);
         events.add(userLoggedEvent2);
 
-        baseAccount = new DraftUserAccount("Bagouze");
+        baseAccount = new BaseUserAccount("Bagouze");
 
         // When
         Result<AggregateRoot> hydratationResult = baseAccount.hydrate(events);

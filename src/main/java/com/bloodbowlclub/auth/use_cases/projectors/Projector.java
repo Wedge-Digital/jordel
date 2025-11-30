@@ -4,6 +4,7 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.read_cache.ReadEntity;
 import com.bloodbowlclub.lib.persistance.read_cache.ReadRepository;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class Projector {
             ReadEntity readEntity = target.get();
             Result<AggregateRoot> updatedAgregate = readEntity.getData().apply(event);
             if (updatedAgregate.isSuccess()) {
-                return Result.failure(updatedAgregate.getError());
+                return Result.failure(updatedAgregate.getError(), ErrorCode.INTERNAL_ERROR);
             }
             readEntity.setData(updatedAgregate.getValue());
             readRepository.save(readEntity);

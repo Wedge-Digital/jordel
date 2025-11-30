@@ -1,9 +1,7 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.StartResetPasswordCommand;
-import com.bloodbowlclub.auth.io.repositories.LostLoginTokenEntity;
-import com.bloodbowlclub.auth.io.repositories.LostLoginTokenRepository;
 import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
@@ -12,30 +10,21 @@ import com.bloodbowlclub.lib.services.email_service.AbstractEmailService;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
-import jakarta.mail.MessagingException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
-import java.util.Optional;
 
 @Component("startResetPasswordCommandHandler")
 public class StartResetPasswordCommandHandler extends CommandHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(StartResetPasswordCommandHandler.class);
-    private final LostLoginTokenRepository lostLoginTokenRepository;
-    @Qualifier("emailService")
-    private final AbstractEmailService mailService;
 
     public StartResetPasswordCommandHandler(@Qualifier("EventStore") EventStore eventStore,
                                             @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
-                                            MessageSource messageSource,
-                                            LostLoginTokenRepository lostLoginTokenRepository,
-                                            @Qualifier("emailService") AbstractEmailService mailService
+                                            MessageSource messageSource
     ) {
         super(eventStore, businessDispatcher, messageSource);
-        this.lostLoginTokenRepository = lostLoginTokenRepository;
-        this.mailService = mailService;
     }
 
     @Override
@@ -46,26 +35,15 @@ public class StartResetPasswordCommandHandler extends CommandHandler {
             return ResultMap.success(null);
         }
 
-        DraftUserAccount userAccount = (DraftUserAccount) foundUserAccount.getValue();
+        BaseUserAccount userAccount = (BaseUserAccount) foundUserAccount.getValue();
 
-        Optional<LostLoginTokenEntity> existingTokenSearch = lostLoginTokenRepository.findByUsername(cmd.getUsername());
-        if (existingTokenSearch.isPresent()) {
-            return ResultMap.success(null);
+        ResultMap<Void> res =  userAccount.startResetPassword();
+
+        if (res.isFailure()) {
+            return res;
         }
 
-        LostLoginTokenEntity token = new LostLoginTokenEntity(((StartResetPasswordCommand) command).getUsername());
-        lostLoginTokenRepository.save(token);
-
-        String recoverUrl = "https://bloodbowlclub.com/reset_password?token="+token.getToken();
-        try {
-            mailService.sendLostPasswordEmail(
-                    userAccount.getEmail().toString(),
-                    userAccount.getId(),
-                    recoverUrl
-            );
-        } catch (MessagingException exc) {
-            logger.error("exception in email sending : {}", exc.toString());
-        }
+        this.saveAndDispatch(userAccount.domainEvents());
 
         return ResultMap.success(null);
     }

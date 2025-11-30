@@ -4,6 +4,7 @@ package com.bloodbowlclub.auth.use_cases.policies;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
+import com.bloodbowlclub.auth.io.web.UserTestUtils;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
 import com.bloodbowlclub.lib.services.result.ResultMap;
@@ -15,21 +16,10 @@ public class AgregateShallNotExistPolicyTest extends TestCase {
 
     private final FakeEventStore fakeEventStore =  new FakeEventStore();
     private final AgregateShallNotExistPolicy agregateShallNotExistPolicy = new AgregateShallNotExistPolicy(messageSource, fakeEventStore);
-    private final EventEntityFactory factory = new EventEntityFactory();
-
-    void loadPredefinedData(String username) {
-        AccountRegisteredEvent evt = new AccountRegisteredEvent(
-                username,
-                new Email("toto"),
-                new Password("no_pwd")
-        );
-        fakeEventStore.save(factory.build(evt));
-        Assertions.assertEquals(1, fakeEventStore.findAll().size());
-    }
 
     @Test
     void TestuserIdShallNotExistPolicy_fails_when_id_already_exists() {
-        loadPredefinedData("Bagzz");
+        UserTestUtils.createUser("Bagzz", fakeEventStore);
         ResultMap<?> emailCheck = agregateShallNotExistPolicy.check("Bagzz");
         Assertions.assertTrue(emailCheck.isFailure());
     }
@@ -42,7 +32,7 @@ public class AgregateShallNotExistPolicyTest extends TestCase {
 
     @Test
     void Test_email_shall_not_exist_policy_succeed_when_other_email_is_present() {
-        loadPredefinedData("Bagouze");
+        UserTestUtils.createUser("Bagzz", fakeEventStore);
         ResultMap<?> emailCheck = agregateShallNotExistPolicy.check("Castor");
         Assertions.assertTrue(emailCheck.isSuccess());
     }

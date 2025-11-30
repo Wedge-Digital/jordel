@@ -1,5 +1,6 @@
 package com.bloodbowlclub.auth.domain.user_account.events;
 
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
@@ -17,16 +18,9 @@ import java.util.Date;
         property = "@class"
 )
 @Getter
-public class AccountRegisteredEvent extends DomainEvent {
-    private Email email;
-    private Password password;
-
-    public AccountRegisteredEvent(String username,
-                           Email email,
-                           Password password) {
-        super(username);
-        this.email = email;
-        this.password = password;
+public class AccountRegisteredEvent extends UserAccountEvent {
+    public AccountRegisteredEvent(BaseUserAccount userAccount) {
+        super(userAccount);
     }
 
 

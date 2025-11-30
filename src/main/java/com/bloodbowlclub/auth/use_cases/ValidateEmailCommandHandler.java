@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.bloodbowlclub.auth.use_cases.policies.AgregateShallExistPolicy;
 import com.bloodbowlclub.lib.Command;
@@ -43,7 +43,7 @@ public class ValidateEmailCommandHandler extends CommandHandler {
         }
 
         String username = command.getCreator().toString();
-        DraftUserAccount userAccount = new DraftUserAccount(username);
+        BaseUserAccount userAccount = new BaseUserAccount(username);
         List<EventEntity> eventList = eventStore.findBySubject(username);
         if (eventList.isEmpty()) {
             return ResultMap.failure("Account", "no history for account", ErrorCode.NOT_FOUND);
@@ -58,7 +58,7 @@ public class ValidateEmailCommandHandler extends CommandHandler {
         }
 
         AggregateRoot hydrated =  agregateHydratation.getValue();
-        if (!(hydrated instanceof DraftUserAccount newAccount)) {
+        if (!(hydrated instanceof BaseUserAccount newAccount)) {
             return ResultMap.failure("account", "hydratation error", ErrorCode.UNPROCESSABLE_ENTITY);
         }
 

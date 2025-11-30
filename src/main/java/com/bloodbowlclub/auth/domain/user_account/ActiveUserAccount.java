@@ -7,10 +7,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Past;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
         include = JsonTypeInfo.As.PROPERTY,
@@ -18,7 +21,8 @@ import java.util.Date;
 )
 @Data
 @SuperBuilder
-public class ActiveUserAccount extends DraftUserAccount {
+@NoArgsConstructor
+public class ActiveUserAccount extends BaseUserAccount {
 
     @Past
     @Valid
@@ -27,7 +31,7 @@ public class ActiveUserAccount extends DraftUserAccount {
     @Past
     private Date validatedAt;
 
-    public ActiveUserAccount(DraftUserAccount draftAccount) {
+    public ActiveUserAccount(BaseUserAccount draftAccount) {
         super(draftAccount.getUsername().toString());
         this.email =  draftAccount.getEmail();
         this.password = draftAccount.getPassword();

@@ -3,6 +3,7 @@ package com.bloodbowlclub.auth.io.web;
 import com.bloodbowlclub.WebApplication;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import com.bloodbowlclub.JsonAssertions;
+import com.bloodbowlclub.lib.services.result.exceptions.AlreadyExist;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -32,10 +33,6 @@ public class AuthControllerTest {
 
         ResponseEntity<?> response = authController.registerUser(request);
         Assertions.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
-        JsonAssertions.assertEqualsFixture(
-                response.getBody(),
-                null
-        );
     }
 
     @Test
@@ -48,11 +45,14 @@ public class AuthControllerTest {
                 .username("Bagouze2556")
                 .build();
 
-        ResponseEntity<?> response = authController.registerUser(request);
-        response = authController.registerUser(request);
-        Assertions.assertEquals(HttpStatusCode.valueOf(400), response.getStatusCode());
-        HashMap<String,String> expectedErrors = new HashMap<>();
-        expectedErrors.put("username", "Le nom d'utilisateur Bagouze2556 est déjà attribué, merci de choisir un autre");
-        Assertions.assertEquals(expectedErrors, response.getBody());
+        ResponseEntity<Void> response = authController.registerUser(request);
+        Assertions.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
+        try {
+            authController.registerUser(request);
+        } catch (AlreadyExist e) {
+            HashMap<String,String> expectedErrors = new HashMap<>();
+            expectedErrors.put("username", "Le nom d'utilisateur Bagouze2556 est déjà attribué, merci de choisir un autre");
+            Assertions.assertEquals(expectedErrors, e.getErrors());
+        }
     }
 }

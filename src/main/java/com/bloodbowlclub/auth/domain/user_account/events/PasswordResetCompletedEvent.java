@@ -1,13 +1,11 @@
 package com.bloodbowlclub.auth.domain.user_account.events;
 
 import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
-import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import com.bloodbowlclub.lib.domain.events.UserDomainEvent;
+import com.bloodbowlclub.auth.domain.user_account.values.PasswordResetToken;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.Data;
+import jakarta.validation.Valid;
+import lombok.Getter;
 
 
 @JsonTypeInfo(
@@ -15,9 +13,12 @@ import lombok.Data;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
-public class UserLoggedEvent extends UserAccountEvent {
+@Getter
+public class PasswordResetCompletedEvent extends UserAccountEvent {
+    Password newPassword;
 
-    public UserLoggedEvent(BaseUserAccount userAccount) {
+    public PasswordResetCompletedEvent(BaseUserAccount userAccount, Password newPassword) {
         super(userAccount);
+        this.newPassword = newPassword;
     }
 }

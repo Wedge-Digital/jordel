@@ -6,6 +6,7 @@ import com.bloodbowlclub.auth.io.security.routes.AuthOpenRoutes;
 import com.bloodbowlclub.auth.io.services.AbstractAuthService;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.lib.auth.AbstractFilter;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -54,12 +55,12 @@ public class JwtRequestFilter extends AbstractFilter {
     private Result<String> checkAuthHeader(String header) {
         if (header == null) {
             String errorMessage = messageSource.getMessage("http.header.missing", null, Locale.getDefault());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         }
 
         if (!header.startsWith("Bearer ")) {
             String errorMessage = messageSource.getMessage("user_account.bad_format", null, Locale.getDefault());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         }
 
         return Result.success(header);

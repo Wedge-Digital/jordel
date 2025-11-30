@@ -142,6 +142,6 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         Assertions.assertEquals(AccountRegisteredEvent.class, eventEntity.getData().getClass());
         Assertions.assertEquals("bagouze", eventEntity.getData().getAggregateId());
         AccountRegisteredEvent castedEvent = (AccountRegisteredEvent) eventEntity.getData();
-        Assertions.assertEquals("bertrand.begouin@gmail.com", castedEvent.getEmail().toString());
+        Assertions.assertEquals("bertrand.begouin@gmail.com", castedEvent.getUserAccount().getEmail().toString());
     }
 }

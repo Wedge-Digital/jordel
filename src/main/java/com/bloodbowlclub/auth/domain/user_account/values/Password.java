@@ -1,5 +1,6 @@
 package com.bloodbowlclub.auth.domain.user_account.values;
 
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.bloodbowlclub.lib.domain.ValueObject;
@@ -25,7 +26,7 @@ public class Password extends ValueObject {
         if (encoder.matches(password, value)) {
             return Result.success(null);
         }
-        return Result.failure("Password does not match");
+        return Result.failure("Password does not match", ErrorCode.BAD_REQUEST);
     }
 
     @Override

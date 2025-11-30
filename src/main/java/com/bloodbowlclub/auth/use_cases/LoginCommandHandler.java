@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
 import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
@@ -40,7 +40,11 @@ public class LoginCommandHandler extends CommandHandler {
         String username = cmd.getUsername();
 
         Result<AggregateRoot> agregateSearch = eventStore.findUser(username);
-        DraftUserAccount userAccount = (DraftUserAccount) agregateSearch.getValue();
+        if (agregateSearch.isFailure()) {
+            return ResultMap.failure("username", getAccountNotExistMessage(username), ErrorCode.NOT_FOUND);
+        }
+
+        BaseUserAccount userAccount = (BaseUserAccount) agregateSearch.getValue();
         if (userAccount.isNotValid()) {
             return ResultMap.failure("username", getAccountNotExistMessage(username), ErrorCode.UNPROCESSABLE_ENTITY);
         }

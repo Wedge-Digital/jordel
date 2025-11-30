@@ -1,5 +1,6 @@
 package com.bloodbowlclub.auth.io.security.filters;
 
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -14,6 +15,6 @@ public class ServletPathService {
             return Result.success(requestUri);
         }
 
-        return Result.failure("impossible to get servlet target");
+        return Result.failure("impossible to get servlet target",  ErrorCode.UNPROCESSABLE_ENTITY);
     }
 }

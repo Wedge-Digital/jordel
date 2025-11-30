@@ -1,6 +1,5 @@
 package com.bloodbowlclub.lib.services.email_service;
 
-import com.bloodbowlclub.lib.config.MessageSourceConfig;
 import jakarta.mail.MessagingException;
 import org.springframework.context.MessageSource;
 
@@ -13,7 +12,7 @@ public abstract class AbstractEmailService {
     private HashMap<MailTemplate, String> templateRepository = new HashMap<>();
     private final MessageSource messageSource;
 
-    AbstractEmailService(MessageSource messageSource) {
+    public AbstractEmailService(MessageSource messageSource) {
         this.messageSource = messageSource;
         templateRepository.put(MailTemplate.WELCOME, null);
         templateRepository.put(MailTemplate.LOST_PASSWORD, "lost_login.html");
@@ -28,7 +27,7 @@ public abstract class AbstractEmailService {
 
     }
 
-    public void sendLostPasswordEmail(String to, String coachname, String recoverLoginUrl) throws MessagingException {
+    public void sendResetPasswordEmail(String to, String coachname, String recoverLoginUrl) throws MessagingException {
         String mailSubject = messageSource.getMessage("mail.lost_login.subject", null, Locale.getDefault());
         String template = Locale.getDefault().toString() + "/lost_login.html";
         HashMap<String, Object> vars = new HashMap<>();
@@ -41,10 +40,10 @@ public abstract class AbstractEmailService {
 
     }
 
-    abstract void sendTemplatizedMessage(String to, String subject, HashMap<String, Object> vars, String templatePath) throws MessagingException;
+    protected abstract void sendTemplatizedMessage(String to, String subject, HashMap<String, Object> vars, String templatePath) throws MessagingException;
 
-    abstract void sendRawMessage(String to, String subject, String text);
+    protected abstract void sendRawMessage(String to, String subject, String text);
 
-    abstract void sendRawHtmlMessage(String to, String subject, String htmlBody) throws MessagingException;
+    protected abstract void sendRawHtmlMessage(String to, String subject, String htmlBody) throws MessagingException;
 
 }

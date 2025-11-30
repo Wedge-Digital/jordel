@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.Map;
 
 @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-public class ResultUnprocessableEntityException extends ResultException{
-    public ResultUnprocessableEntityException(Map<String, String> errors) {
+public class UnprocessableEntity extends ResultException{
+    public UnprocessableEntity(Map<String, String> errors) {
         super(errors);
     }
 }

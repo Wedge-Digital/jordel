@@ -1,6 +1,7 @@
 package com.bloodbowlclub.auth.io.services;
 
 import com.bloodbowlclub.auth.io.web.JwtTokensResponse;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -118,19 +119,19 @@ public class JwtService {
             return Result.success("no pb");
         } catch (SecurityException e) {
             String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         } catch (MalformedJwtException e) {
             String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         } catch (ExpiredJwtException e) {
             String errorMessage = messageSource.getMessage("jwt.expired_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         } catch (UnsupportedJwtException e) {
             String errorMessage = messageSource.getMessage("jwt.unknown_jwt_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         } catch (IllegalArgumentException e) {
             String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage);
+            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         }
     }
 

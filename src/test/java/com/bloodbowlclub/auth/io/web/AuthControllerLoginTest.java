@@ -25,8 +25,8 @@ public class AuthControllerLoginTest extends TestCase {
 
     AuthController ctrl = new AuthController(
             jwtService,
-            messageSource,
             loginHandler,
+            null,
             null,
             null
             );

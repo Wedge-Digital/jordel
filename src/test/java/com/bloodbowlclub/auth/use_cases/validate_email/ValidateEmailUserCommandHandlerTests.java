@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.use_cases.validate_email;
 
-import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.ValidateEmailCommand;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.EmailValidatedEvent;
@@ -19,7 +19,7 @@ public class ValidateEmailUserCommandHandlerTests extends TestCase {
     private AccountRegisteredEvent registration;
     private EmailValidatedEvent emailValidated;
 
-    private DraftUserAccount baseAccount = new DraftUserAccount("Bagouze");
+    private BaseUserAccount baseAccount = new BaseUserAccount("Bagouze");
 
     @Test
     public void test_validate_email_command_handler_succeeds() {

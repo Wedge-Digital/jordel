@@ -1,6 +1,6 @@
 package com.bloodbowlclub.auth.use_cases;
 
-import com.bloodbowlclub.auth.domain.user_account.DraftUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.commands.RegisterAccountCommand;
 import com.bloodbowlclub.lib.Command;
 import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("registerCommandHandler")
 public class RegisterCommandHandler extends CommandHandler {
 
     @Qualifier("UserNameShallNotExistPolicy")
@@ -37,7 +37,7 @@ public class RegisterCommandHandler extends CommandHandler {
             return ResultMap.failure("username", usernameCheck.errorMap().get("aggregateId"), ErrorCode.ALREADY_EXISTS);
         }
 
-        DraftUserAccount newAccount = new DraftUserAccount(command.getUsername());
+        BaseUserAccount newAccount = new BaseUserAccount(command.getUsername());
         ResultMap<Void> registerResult = newAccount.registerSimpleUser(command);
 
         if (registerResult.isFailure()) {

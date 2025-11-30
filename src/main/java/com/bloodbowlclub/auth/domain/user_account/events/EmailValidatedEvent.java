@@ -1,5 +1,8 @@
 package com.bloodbowlclub.auth.domain.user_account.events;
 
+import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
+import com.bloodbowlclub.auth.domain.user_account.values.Email;
+import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.domain.events.UserDomainEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -15,8 +18,8 @@ import java.util.Date;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
-public class EmailValidatedEvent extends UserDomainEvent {
-    public EmailValidatedEvent(String agregateId, Username createdBy) {
-        super(agregateId, createdBy);
+public class EmailValidatedEvent extends UserAccountEvent {
+    public EmailValidatedEvent(BaseUserAccount userAccount) {
+        super(userAccount);
     }
 }

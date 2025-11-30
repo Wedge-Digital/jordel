@@ -7,6 +7,7 @@ import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
+import com.bloodbowlclub.auth.io.web.UserTestUtils;
 import com.bloodbowlclub.auth.use_cases.LoginCommandHandler;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
@@ -33,30 +34,22 @@ public class LoginCommandTest extends TestCase {
     EventEntityFactory factory = new EventEntityFactory();
 
 
-    private void initDb() {
-        AccountRegisteredEvent  registration = new AccountRegisteredEvent(
-                "Bagouze",
-                new Email("bertrand.begouin@gmail.com"),
-                new Password("password")
-        );
-        fakeEventStore.save(factory.build(registration));
-    }
 
     @Test
     @DisplayName("Test a login attempts with ok password succeed")
     void Test_successful_login() {
-        initDb();
         String username = "Bagouze";
-        ResultMap<Void> handling = handler.handle(new LoginCommand(username, "password"));
+        UserTestUtils.createUser(username, fakeEventStore);
+        ResultMap<Void> handling = handler.handle(new LoginCommand(username, "no-password"));
         Assertions.assertTrue(handling.isSuccess());
     }
 
     @Test
     @DisplayName("Test a successful login retrieves a couple of jwt token")
     void Test_successful_login_dispatch_a_userlogged_event() throws IOException {
-        initDb();
         String username = "Bagouze";
-        ResultMap<Void> handling = handler.handle(new LoginCommand(username, "password"));
+        UserTestUtils.createUser(username, fakeEventStore);
+        ResultMap<Void> handling = handler.handle(new LoginCommand(username, "no-password"));
         Assertions.assertTrue(handling.isSuccess());
 
         List<DomainEvent> dispatchedEvents = fakeEventDispatcher.getDispatchedEvents();
@@ -75,8 +68,8 @@ public class LoginCommandTest extends TestCase {
     @Test
     @DisplayName("check a login with a wrong password fails, and return a failure")
     public void testLoginFails() {
-        initDb();
         String username = "Bagouze";
+        UserTestUtils.createUser(username, fakeEventStore);
         ResultMap<Void> handling = handler.handle(new LoginCommand(username, "coincoin33"));
         Assertions.assertTrue(handling.isFailure());
 
@@ -94,7 +87,7 @@ public class LoginCommandTest extends TestCase {
         Assertions.assertTrue(handling.isFailure());
         HashMap<String, String> errors = new HashMap<>();
         String expectedError = messageSource.getMessage("user_account.not_existing", new Object[]{username}, LocaleContextHolder.getLocale());
-        errors.put("login", expectedError);
+        errors.put("username", expectedError);
         Assertions.assertEquals(errors, handling.errorMap());
     }
 

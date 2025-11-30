@@ -1,9 +1,7 @@
 package com.bloodbowlclub.lib.domain.events;
 
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
-import lombok.experimental.SuperBuilder;
 
 import java.time.Instant;
 

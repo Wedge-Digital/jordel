@@ -72,11 +72,12 @@ public abstract class AggregateRoot {
             // Appeler la méthode spécifique et retourner le résultat
             return (Result<AggregateRoot>) method.invoke(this, event);
         } catch (NoSuchMethodException e) {
-            // Pas de méthode apply spécifique, on renvoie une erreur ou succès neutre
-            return Result.failure("Aucune méthode apply pour cet événement : " + event.getClass().getSimpleName());
+            // Pas de méthode apply spécifique, on continue sans appliquer l'évènement
+//            return Result.success(this);
+            return Result.failure("Aucune méthode apply pour cet événement : " + event.getClass().getSimpleName(), ErrorCode.UNPROCESSABLE_ENTITY);
         } catch (Exception e) {
             // Autres erreurs lors de l'invocation
-            return Result.failure("Erreur d'application de l'événement : " + e.getMessage());
+            return Result.failure("Erreur d'application de l'événement : " + e.getMessage(), ErrorCode.UNPROCESSABLE_ENTITY);
         }
     }
 

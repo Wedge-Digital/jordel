@@ -1,7 +1,6 @@
 package com.bloodbowlclub.lib;
 
 import com.bloodbowlclub.lib.services.email_service.EmailService;
-import com.bloodbowlclub.lib.services.email_service.TemplateEngine;
 import jakarta.mail.MessagingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,7 @@ public class EmailClientTest {
     @Test
     @DisplayName("test send lostLogin template")
     void test_send_lost_login_template() throws MessagingException {
-       emailService.sendLostPasswordEmail("bertrand.begouin@gmail.com", "Gouze", "https://bloodbowlclub.com/reset_password?token=1234567890");
+       emailService.sendResetPasswordEmail("bertrand.begouin@gmail.com", "Gouze", "https://bloodbowlclub.com/reset_password?token=1234567890");
     }
 
 }
