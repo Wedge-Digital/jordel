@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
+import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
 @JsonTypeInfo(
@@ -20,7 +20,7 @@ import lombok.experimental.SuperBuilder;
         property = "@class"
 )
 @Data
-@SuperBuilder
+@NoArgsConstructor
 public class WaitingPasswordResetUserAccount extends ActiveUserAccount {
 
     @Valid
@@ -51,8 +51,13 @@ public class WaitingPasswordResetUserAccount extends ActiveUserAccount {
     }
 
     public Result<AggregateRoot> apply(PasswordResetCompletedEvent event) {
-        this.password = event.getNewPassword();
-        return Result.success((ActiveUserAccount) this);
+        ActiveUserAccount active = ActiveUserAccount.builder()
+                .username(this.username)
+                .email(this.email)
+                .password(event.getNewPassword())
+                .roles(this.roles)
+                .build();
+        return Result.success(active);
     }
 
 }

@@ -1,4 +1,6 @@
 package com.bloodbowlclub.lib.domain;
+import com.bloodbowlclub.auth.domain.user_account.events.*;
+import com.bloodbowlclub.auth.io.security.filters.JwtRequestFilter;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -9,8 +11,8 @@ import com.bloodbowlclub.lib.validators.DomainValidator;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 @JsonTypeInfo(
@@ -21,6 +23,8 @@ import java.util.*;
 @NoArgsConstructor
 @SuperBuilder
 public abstract class AggregateRoot {
+
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AggregateRoot.class);
 
     @Getter
     protected int version;
@@ -63,22 +67,43 @@ public abstract class AggregateRoot {
         return Result.success(this);
     }
 
+    /**
+     * Point d'entrée pour l'application d'un événement (double dispatch)
+     * Délègue à l'événement qui appellera la méthode apply typée appropriée
+     */
     public Result<AggregateRoot> apply(DomainEvent event) {
-        try {
-            // Trouver la méthode apply avec paramètre du type exact de l'événement
-            Method method = this.getClass().getDeclaredMethod("apply", event.getClass());
-            // Rendre accessible si méthode privée/protégée
-            method.setAccessible(true);
-            // Appeler la méthode spécifique et retourner le résultat
-            return (Result<AggregateRoot>) method.invoke(this, event);
-        } catch (NoSuchMethodException e) {
-            // Pas de méthode apply spécifique, on continue sans appliquer l'évènement
-//            return Result.success(this);
-            return Result.failure("Aucune méthode apply pour cet événement : " + event.getClass().getSimpleName(), ErrorCode.UNPROCESSABLE_ENTITY);
-        } catch (Exception e) {
-            // Autres erreurs lors de l'invocation
-            return Result.failure("Erreur d'application de l'événement : " + e.getMessage(), ErrorCode.UNPROCESSABLE_ENTITY);
-        }
+        return event.applyTo(this);
+    }
+
+    /**
+     * Méthodes apply typées pour chaque type d'événement
+     * Implémentations par défaut qui loggent un warning si l'événement n'est pas géré
+     * Les sous-classes peuvent override ces méthodes pour gérer les événements spécifiques
+     */
+
+    public Result<AggregateRoot> apply(AccountRegisteredEvent event) {
+        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
+        return Result.success(this);
+    }
+
+    public Result<AggregateRoot> apply(EmailValidatedEvent event) {
+        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
+        return Result.success(this);
+    }
+
+    public Result<AggregateRoot> apply(UserLoggedEvent event) {
+        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
+        return Result.success(this);
+    }
+
+    public Result<AggregateRoot> apply(PasswordResetStartedEvent event) {
+        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
+        return Result.success(this);
+    }
+
+    public Result<AggregateRoot> apply(PasswordResetCompletedEvent event) {
+        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
+        return Result.success(this);
     }
 
     public Result<AggregateRoot> hydrate(List<DomainEvent> eventList) {

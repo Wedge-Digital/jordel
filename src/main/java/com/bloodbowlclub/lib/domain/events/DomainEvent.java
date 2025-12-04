@@ -1,5 +1,7 @@
 package com.bloodbowlclub.lib.domain.events;
 
+import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 
@@ -24,5 +26,12 @@ public abstract class DomainEvent {
         this.aggregateId = agregateId;
         this.timeStampedAt = Instant.now();
     }
+
+    /**
+     * Applique cet événement à un agrégat (premier dispatch du double dispatch)
+     * @param aggregate l'agrégat sur lequel appliquer l'événement
+     * @return le résultat de l'application (nouvel état de l'agrégat ou erreur)
+     */
+    public abstract Result<AggregateRoot> applyTo(AggregateRoot aggregate);
 
 }

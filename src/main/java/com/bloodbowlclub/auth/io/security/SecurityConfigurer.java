@@ -60,6 +60,7 @@ public class SecurityConfigurer {
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/customer/**").hasRole(SUPER_ADMIN.toString())
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/authoring/**").authenticated()
                         .requestMatchers("/**").permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -56,7 +56,7 @@ public class EmailService extends AbstractEmailService {
 
         helper.setFrom("bloodbowlclub@gmail.com");
         helper.setTo(to);
-        helper.setSubject("template");
+        helper.setSubject(subject);
         helper.setText(htmlContent, true); // true pour indiquer que c'est du HTML
 
         emailBackend.send(message);

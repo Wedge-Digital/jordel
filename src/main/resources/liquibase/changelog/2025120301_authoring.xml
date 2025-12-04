@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2025120301-1" author="bbegouin">
+        <comment>Create authoring tables for blog functionality</comment>
+
+        <!-- Table authoring_article -->
+        <createTable tableName="authoring_article">
+            <column name="id" type="varchar(26)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="author_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_photo_url" type="varchar(500)"/>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp with time zone" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="varchar(500)"/>
+            <column name="lead_paragraph" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Index for sorting by creation date -->
+        <createIndex tableName="authoring_article" indexName="idx_article_created_at">
+            <column name="created_at" descending="true"/>
+        </createIndex>
+
+        <!-- Table authoring_paragraph -->
+        <createTable tableName="authoring_paragraph">
+            <column name="id" type="varchar(26)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="article_id" type="varchar(26)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_index" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Foreign key and index for paragraph to article -->
+        <addForeignKeyConstraint
+            baseTableName="authoring_paragraph"
+            baseColumnNames="article_id"
+            constraintName="fk_paragraph_article"
+            referencedTableName="authoring_article"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+
+        <createIndex tableName="authoring_paragraph" indexName="idx_paragraph_article_id">
+            <column name="article_id"/>
+        </createIndex>
+
+        <!-- Table authoring_comment -->
+        <createTable tableName="authoring_comment">
+            <column name="id" type="varchar(26)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="article_id" type="varchar(26)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_photo_url" type="varchar(500)"/>
+            <column name="created_at" type="timestamp with time zone" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Foreign key and index for comment to article -->
+        <addForeignKeyConstraint
+            baseTableName="authoring_comment"
+            baseColumnNames="article_id"
+            constraintName="fk_comment_article"
+            referencedTableName="authoring_article"
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+
+        <createIndex tableName="authoring_comment" indexName="idx_comment_article_id">
+            <column name="article_id"/>
+        </createIndex>
+
+        <!-- Index for sorting comments by creation date -->
+        <createIndex tableName="authoring_comment" indexName="idx_comment_created_at">
+            <column name="created_at"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

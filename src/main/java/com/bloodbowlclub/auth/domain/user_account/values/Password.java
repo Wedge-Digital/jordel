@@ -2,19 +2,25 @@ package com.bloodbowlclub.auth.domain.user_account.values;
 
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
+@JsonDeserialize(using = PasswordDeserializer.class)
 public class Password extends ValueObject {
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     private final String value;
 
     public Password(String value) {
-        this.value = encoder.encode(value);;
+        this(value, true);
+    }
+
+    Password(String value, boolean shouldEncode) {
+        this.value = shouldEncode ? encoder.encode(value) : value;
     }
 
     @Override

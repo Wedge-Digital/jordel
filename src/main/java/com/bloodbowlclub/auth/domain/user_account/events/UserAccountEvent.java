@@ -6,6 +6,7 @@ import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
@@ -13,13 +14,13 @@ import lombok.Getter;
         property = "@class"
 )
 @Getter
-public class UserAccountEvent extends DomainEvent {
+@NoArgsConstructor
+public abstract class UserAccountEvent extends DomainEvent {
     private BaseUserAccount userAccount;
 
     public UserAccountEvent(BaseUserAccount userAccount) {
         super(userAccount.getId());
         this.userAccount = userAccount;
     }
-
 
 }

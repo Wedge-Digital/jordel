@@ -4,7 +4,9 @@ import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;
 import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.domain.user_account.values.PasswordResetToken;
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -24,5 +26,10 @@ public class PasswordResetStartedEvent extends UserAccountEvent {
     public PasswordResetStartedEvent(BaseUserAccount userAccount) {
         super(userAccount);
         this.passwordToken = PasswordResetToken.New();
+    }
+
+    @Override
+    public Result<AggregateRoot> applyTo(AggregateRoot aggregate) {
+        return aggregate.apply(this);
     }
 }

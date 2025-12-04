@@ -5,12 +5,12 @@ import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.domain.events.EventHandler;
 import com.bloodbowlclub.lib.services.email_service.AbstractEmailService;
+import jakarta.annotation.PostConstruct;
 import jakarta.mail.MessagingException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 
 @Component
 public class StartResetPasswordEventHandler extends EventHandler {
@@ -49,6 +49,7 @@ public class StartResetPasswordEventHandler extends EventHandler {
     @Override
     @PostConstruct
     public void initSubscription() {
+        logger.info("Subscribing to reset password link ==============================================================");
         this.dispatcher.subscribe(PasswordResetStartedEvent.class, this);
     }
 }
