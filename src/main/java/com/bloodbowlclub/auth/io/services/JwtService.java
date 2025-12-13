@@ -125,7 +125,7 @@ public class JwtService {
             return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
         } catch (ExpiredJwtException e) {
             String errorMessage = messageSource.getMessage("jwt.expired_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
+            return Result.failure(errorMessage, ErrorCode.EXPIRED_TOKEN);
         } catch (UnsupportedJwtException e) {
             String errorMessage = messageSource.getMessage("jwt.unknown_jwt_token", null, LocaleContextHolder.getLocale());
             return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);

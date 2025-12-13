@@ -14,7 +14,7 @@ import java.util.Locale;
 @Service("aggregateShallExistPolicy")
 public class AgregateShallExistPolicy extends Policy {
 
-    public AgregateShallExistPolicy(MessageSource msgSource, @Qualifier("EventStore") EventStore eventStore) {
+    public AgregateShallExistPolicy(MessageSource msgSource, @Qualifier("eventStore") EventStore eventStore) {
         super(msgSource, eventStore);
     }
 

@@ -19,7 +19,7 @@ public class RegisterCommandHandler extends CommandHandler {
     @Qualifier("UserNameShallNotExistPolicy")
     private final Policy userNameShallNotExistPolicy;
 
-    public RegisterCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+    public RegisterCommandHandler(@Qualifier("eventStore") EventStore eventStore,
                                   @Qualifier("aggregateShallNotExistPolicy") Policy userNameShallNotExistPolicy,
                                   AbstractEventDispatcher businessDispatcher,
                                   MessageSource messageSource

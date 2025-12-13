@@ -1,8 +1,7 @@
 package com.bloodbowlclub.auth.io.web;
 
-import com.bloodbowlclub.WebApplication;
+import com.bloodbowlclub.BBCApplication;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
-import com.bloodbowlclub.JsonAssertions;
 import com.bloodbowlclub.lib.services.result.exceptions.AlreadyExist;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import java.io.IOException;
 import java.util.HashMap;
 
-@SpringBootTest(classes = WebApplication.class)
+@SpringBootTest(classes = BBCApplication.class)
 public class AuthControllerTest {
 
     @Autowired

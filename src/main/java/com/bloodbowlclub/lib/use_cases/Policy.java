@@ -12,10 +12,10 @@ public abstract class Policy {
 
     protected final MessageSource msgSource;
 
-    @Qualifier("EventStore")
+    @Qualifier("eventStore")
     protected final EventStore eventStore;
 
-    public Policy(MessageSource msgSource, @Qualifier("EventStore") EventStore eventStore) {
+    public Policy(MessageSource msgSource, @Qualifier("eventStore") EventStore eventStore) {
         this.msgSource = msgSource;
         this.eventStore = eventStore;
     }

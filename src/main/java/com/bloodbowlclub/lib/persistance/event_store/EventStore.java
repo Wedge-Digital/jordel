@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("EventStore")
+@Repository("eventStore")
 public interface EventStore extends JpaRepository<EventEntity, String> {
 
     List<EventEntity> findBySubject(String agregateId);

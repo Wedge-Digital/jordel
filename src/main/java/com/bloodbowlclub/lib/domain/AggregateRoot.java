@@ -1,6 +1,5 @@
 package com.bloodbowlclub.lib.domain;
 import com.bloodbowlclub.auth.domain.user_account.events.*;
-import com.bloodbowlclub.auth.io.security.filters.JwtRequestFilter;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +21,7 @@ import java.util.*;
 )
 @NoArgsConstructor
 @SuperBuilder
-public abstract class AggregateRoot {
+public abstract class AggregateRoot extends DomainEventApplier {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AggregateRoot.class);
 
@@ -75,36 +74,6 @@ public abstract class AggregateRoot {
         return event.applyTo(this);
     }
 
-    /**
-     * Méthodes apply typées pour chaque type d'événement
-     * Implémentations par défaut qui loggent un warning si l'événement n'est pas géré
-     * Les sous-classes peuvent override ces méthodes pour gérer les événements spécifiques
-     */
-
-    public Result<AggregateRoot> apply(AccountRegisteredEvent event) {
-        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
-        return Result.success(this);
-    }
-
-    public Result<AggregateRoot> apply(EmailValidatedEvent event) {
-        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
-        return Result.success(this);
-    }
-
-    public Result<AggregateRoot> apply(UserLoggedEvent event) {
-        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
-        return Result.success(this);
-    }
-
-    public Result<AggregateRoot> apply(PasswordResetStartedEvent event) {
-        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
-        return Result.success(this);
-    }
-
-    public Result<AggregateRoot> apply(PasswordResetCompletedEvent event) {
-        logger.warn("Événement {} non géré par {}", event.getClass().getSimpleName(), this.getClass().getSimpleName());
-        return Result.success(this);
-    }
 
     public Result<AggregateRoot> hydrate(List<DomainEvent> eventList) {
         // l'hydratation doit se faire en ordre chronologique

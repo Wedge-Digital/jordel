@@ -27,7 +27,7 @@ public class ValidateEmailCommandHandler extends CommandHandler {
     private final AbstractEventDispatcher businessDispatcher;
 
     public ValidateEmailCommandHandler(AgregateShallExistPolicy accountShallExistPolicy,
-                                       @Qualifier("EventStore") EventStore eventStore,
+                                       @Qualifier("eventStore") EventStore eventStore,
                                        AbstractEventDispatcher businessDispatcher, MessageSource messageSource) {
         super(eventStore, businessDispatcher, messageSource);
         this.accountShallExistPolicy = accountShallExistPolicy;

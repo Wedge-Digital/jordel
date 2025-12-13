@@ -1,4 +1,4 @@
-package com.bloodbowlclub.events;
+package com.bloodbowlclub.lib.events;
 
 import com.bloodbowlclub.lib.domain.events.EventDispatcher;
 import com.bloodbowlclub.test_utilities.dispatcher.AnotherDummyEvent;

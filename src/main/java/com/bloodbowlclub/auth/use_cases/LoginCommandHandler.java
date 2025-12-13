@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component("loginCommandHandler")
 public class LoginCommandHandler extends CommandHandler {
 
-    public LoginCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+    public LoginCommandHandler(@Qualifier("eventStore") EventStore eventStore,
                                AbstractEventDispatcher businessDispatcher,
                                MessageSource messageSource) {
         super(eventStore, businessDispatcher, messageSource);

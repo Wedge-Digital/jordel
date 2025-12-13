@@ -20,7 +20,7 @@ public class StartResetPasswordCommandHandler extends CommandHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(StartResetPasswordCommandHandler.class);
 
-    public StartResetPasswordCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+    public StartResetPasswordCommandHandler(@Qualifier("eventStore") EventStore eventStore,
                                             @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
                                             MessageSource messageSource
     ) {

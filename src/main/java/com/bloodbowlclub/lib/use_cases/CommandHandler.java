@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class CommandHandler {
-    @Qualifier("EventStore")
+    @Qualifier("eventStore")
     protected final EventStore eventStore;
 
     @Qualifier("EventDispatcher")

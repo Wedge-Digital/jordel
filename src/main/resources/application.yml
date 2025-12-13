@@ -29,6 +29,9 @@ spring:
     basename: "lang/messages,lang/error"
     encoding: UTF-8
     fallback-to-system-locale: false
+  shell:
+    interactive:
+      enabled: false
   mail:
     host: smtp-relay.brevo.com
     port: 587

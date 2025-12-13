@@ -24,7 +24,7 @@ public class CompleteResetPasswordCommandHandler extends CommandHandler {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CompleteResetPasswordCommandHandler.class);
 
-    public CompleteResetPasswordCommandHandler(@Qualifier("EventStore") EventStore eventStore,
+    public CompleteResetPasswordCommandHandler(@Qualifier("eventStore") EventStore eventStore,
                                                @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
                                                MessageSource messageSource
     ) {

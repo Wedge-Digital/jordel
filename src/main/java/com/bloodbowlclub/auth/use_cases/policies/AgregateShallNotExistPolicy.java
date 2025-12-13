@@ -15,7 +15,7 @@ import java.util.Locale;
 public class AgregateShallNotExistPolicy extends Policy {
 
 
-    public AgregateShallNotExistPolicy(MessageSource msgSource, @Qualifier("EventStore") EventStore eventStore) {
+    public AgregateShallNotExistPolicy(MessageSource msgSource, @Qualifier("eventStore") EventStore eventStore) {
         super(msgSource, eventStore);
     }
 
