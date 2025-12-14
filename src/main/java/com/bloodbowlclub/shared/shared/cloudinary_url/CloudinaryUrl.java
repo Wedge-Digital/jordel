@@ -17,7 +17,7 @@ public class CloudinaryUrl extends ValueObject<String> {
 
     @Override
     public String toString() {
-        return "";
+        return value;
     }
 
     @Override

@@ -1,9 +1,8 @@
 {
   "@class" : "com.bloodbowlclub.team_building.domain.RosterChosenTeam",
   "version" : 0,
-  "teamId" : "01KCAA6DBY2B3M8TKEV7GH5JNN",
   "name" : "Team Name",
-  "logoUrl" : "",
+  "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
   "roster" : {
     "@class" : "com.bloodbowlclub.team_building.domain.Roster",
     "version" : 0,

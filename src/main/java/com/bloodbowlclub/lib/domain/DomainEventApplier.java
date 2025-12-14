@@ -2,6 +2,7 @@ package com.bloodbowlclub.lib.domain;
 
 import com.bloodbowlclub.auth.domain.user_account.events.*;
 import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -71,4 +72,10 @@ public class DomainEventApplier {
         String err = "Event not handled by " + this.getClass().getSimpleName();
         return Result.failure(err, INTERNAL_ERROR);
     }
+
+    public Result<AggregateRoot> apply(CreationRulesetSelectedEvent event) {
+        String err = "Event not handled by " + this.getClass().getSimpleName();
+        return Result.failure(err, INTERNAL_ERROR);
+    }
+
 }

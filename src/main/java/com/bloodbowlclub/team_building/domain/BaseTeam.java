@@ -30,6 +30,7 @@ public class BaseTeam extends AggregateRoot {
 
     @Valid
     @NotNull
+    @JsonIgnore
     private TeamID teamId;
 
     @Valid
@@ -88,6 +89,11 @@ public class BaseTeam extends AggregateRoot {
 
     @JsonIgnore
     public boolean isRosterChosen() {
+        return false;
+    }
+
+    @JsonIgnore
+    public boolean isRulesetChosen() {
         return false;
     }
 

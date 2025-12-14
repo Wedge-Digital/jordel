@@ -3,6 +3,7 @@ package com.bloodbowlclub.team_building.domain;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
@@ -39,13 +40,25 @@ public class DraftTeam extends BaseTeam {
     public ResultMap<Void> chooseRoster(Roster roster) {
 
         if (roster.isNotValid()) {
-            return validationErrors();
+            return roster.validationErrors();
         }
 
         RosterChosenEvent event = new RosterChosenEvent(this, roster);
         this.addEvent(event);
 
         return ResultMap.success(null);
+    }
+
+    public ResultMap<Void> selectCreationRuleset(TeamCreationRuleset ruleset) {
+        if (ruleset.isNotValid()) {
+            return ruleset.validationErrors();
+        }
+
+        CreationRulesetSelectedEvent event = new CreationRulesetSelectedEvent(this, ruleset);
+        this.addEvent(event);
+
+        return ResultMap.success(null);
+
     }
 
     //===============================================================================================================
@@ -57,6 +70,11 @@ public class DraftTeam extends BaseTeam {
     public Result<AggregateRoot> apply(RosterChosenEvent event) {
         RosterChosenTeam draftTeam = new RosterChosenTeam(event.getTeam(), event.getRoster());
         return Result.success(draftTeam);
+    }
+
+    public Result<AggregateRoot> apply(CreationRulesetSelectedEvent event) {
+        CreationRulesetChosenTeam rulesetChosentTeam = new CreationRulesetChosenTeam(event.getTeam(), event.getRuleset());
+        return Result.success(rulesetChosentTeam);
     }
 
 }

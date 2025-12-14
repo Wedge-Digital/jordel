@@ -18,7 +18,7 @@ public class EmailClientTest {
     @Test
     @DisplayName("bare client")
     void test_bare_client() throws MessagingException {
-        emailService.sendRawHtmlMessage("bertrand.begouin@gmail.com", "hellooooo", "<html><body><h1>Hello {{name}}</h1><p>Your order {{username}} is {{var_1}}.</p></body></html>");
+//        emailService.sendRawHtmlMessage("bertrand.begouin@gmail.com", "hellooooo", "<html><body><h1>Hello {{name}}</h1><p>Your order {{username}} is {{var_1}}.</p></body></html>");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class EmailClientTest {
     @Test
     @DisplayName("test send lostLogin template")
     void test_send_lost_login_template() throws MessagingException {
-       emailService.sendResetPasswordEmail("bertrand.begouin@gmail.com", "Gouze", "https://bloodbowlclub.com/reset_password?token=1234567890");
+//       emailService.sendResetPasswordEmail("bertrand.begouin@gmail.com", "Gouze", "https://bloodbowlclub.com/reset_password?token=1234567890");
     }
 
 }
