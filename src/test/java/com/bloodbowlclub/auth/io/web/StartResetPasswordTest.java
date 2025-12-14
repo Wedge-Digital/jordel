@@ -16,8 +16,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
-import javax.naming.SizeLimitExceededException;
-
 public class StartResetPasswordTest extends TestCase {
 
     private final JwtService jwtService = new JwtService("my_secret", 10, 100L, messageSource);

@@ -27,6 +27,7 @@ import java.util.*;
 @Setter
 @Slf4j
 public class TestCase {
+
     private static Path baseDir;
     private static String fixtureDirCache; // cache de "test/_fixtures"
     public DateService dateService = new FakeDateService("2025-11-03T16:59:05");

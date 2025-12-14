@@ -4,7 +4,6 @@ import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.Policy;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Service;
 
 public class FailurePolicy extends Policy {
     private final ErrorCode code;

@@ -8,6 +8,7 @@ import com.bloodbowlclub.auth.use_cases.ValidateEmailCommandHandler;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.tests.TestCase;
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 
 public class ValidateEmailUserCommandHandlerTests extends TestCase {

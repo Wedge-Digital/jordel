@@ -2,7 +2,6 @@ package com.bloodbowlclub.lib.persistance.event_store;
 
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.domain.events.UserDomainEvent;
-import org.springframework.context.MessageSource;
 
 public class EventEntityFactory {
 

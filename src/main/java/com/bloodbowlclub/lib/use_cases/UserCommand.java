@@ -3,7 +3,6 @@ package com.bloodbowlclub.lib.use_cases;
 import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.lib.Command;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 public abstract class UserCommand implements Command {

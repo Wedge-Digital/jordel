@@ -1,0 +1,15 @@
+{
+  "@class" : "com.bloodbowlclub.team_building.domain.RosterChosenTeam",
+  "version" : 0,
+  "teamId" : "01KCAA6DBY2B3M8TKEV7GH5JNN",
+  "name" : "Team Name",
+  "logoUrl" : "",
+  "roster" : {
+    "@class" : "com.bloodbowlclub.team_building.domain.Roster",
+    "version" : 0,
+    "rosterId" : "01KCE7R74NGMWMVYV76CFXZ70T",
+    "rosterName" : "anotherRoster",
+    "id" : "01KCE7R74NGMWMVYV76CFXZ70T"
+  },
+  "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"
+}

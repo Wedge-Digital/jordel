@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Coach extends AggregateRoot {
 
@@ -24,14 +24,14 @@ public class Coach extends AggregateRoot {
     @NotNull
     @Past
     @Valid
-    private final Date createdAt;
+    private final LocalDateTime createdAt;
 
 
     public Coach(
             CoachID entityId,
             CoachName coachName,
             Email email,
-            Date createdAt
+            LocalDateTime createdAt
     ) {
         this.coachId = entityId;
         this.coachName = coachName;

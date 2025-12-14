@@ -2,7 +2,6 @@ package com.bloodbowlclub.team_building;
 
 import com.bloodbowlclub.lib.validators.DomainValidator;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
-import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrlConstraint;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,12 +1,8 @@
 package com.bloodbowlclub.auth.io.security.filters;
 
-import com.bloodbowlclub.auth.domain.user_account.ActiveUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.values.UserRole;
-import com.bloodbowlclub.auth.io.security.routes.AuthOpenRoutes;
-import com.bloodbowlclub.auth.io.services.AbstractAuthService;
 import com.bloodbowlclub.auth.io.services.JwtService;
-import com.bloodbowlclub.lib.auth.AbstractFilter;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;

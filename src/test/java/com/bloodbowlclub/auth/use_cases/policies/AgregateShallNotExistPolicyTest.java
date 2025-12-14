@@ -1,11 +1,7 @@
 package com.bloodbowlclub.auth.use_cases.policies;
 
 
-import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
-import com.bloodbowlclub.auth.domain.user_account.values.Email;
-import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.io.web.UserTestUtils;
-import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;

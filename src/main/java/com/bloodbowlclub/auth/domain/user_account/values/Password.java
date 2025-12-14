@@ -1,11 +1,11 @@
 package com.bloodbowlclub.auth.domain.user_account.values;
 
+import com.bloodbowlclub.lib.domain.ValueObject;
+import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.bloodbowlclub.lib.domain.ValueObject;
-import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @JsonSerialize(using = ValueObjectSerializer.class)

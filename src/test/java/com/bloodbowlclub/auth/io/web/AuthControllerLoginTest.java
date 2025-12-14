@@ -1,6 +1,5 @@
 package com.bloodbowlclub.auth.io.web;
 
-import com.bloodbowlclub.JsonAssertions;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.auth.io.web.login.LoginRequest;
 import com.bloodbowlclub.lib.tests.SucceedCommandHandler;
@@ -8,7 +7,6 @@ import com.bloodbowlclub.lib.tests.TestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

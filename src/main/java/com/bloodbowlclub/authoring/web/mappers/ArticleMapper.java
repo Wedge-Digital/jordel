@@ -2,7 +2,6 @@ package com.bloodbowlclub.authoring.web.mappers;
 
 import com.bloodbowlclub.authoring.domain.ArticleEntity;
 import com.bloodbowlclub.authoring.domain.ParagraphEntity;
-import com.bloodbowlclub.authoring.web.dto.requests.ParagraphRequest;
 import com.bloodbowlclub.authoring.web.dto.responses.ArticleDetailDto;
 import com.bloodbowlclub.authoring.web.dto.responses.ArticleSummaryDto;
 import com.bloodbowlclub.authoring.web.dto.responses.ParagraphDto;

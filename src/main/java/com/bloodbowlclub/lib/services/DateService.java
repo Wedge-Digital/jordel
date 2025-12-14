@@ -5,6 +5,7 @@ import com.bloodbowlclub.lib.services.result.Result;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -23,7 +24,7 @@ public class DateService implements AbstractDateService {
         return Result.success(computed);
     }
 
-    public Date now() {
-        return new Date();
+    public LocalDateTime now() {
+        return LocalDateTime.now();
     }
 }

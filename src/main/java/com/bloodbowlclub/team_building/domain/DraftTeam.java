@@ -1,15 +1,10 @@
 package com.bloodbowlclub.team_building.domain;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
-import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
-import com.bloodbowlclub.shared.team.TeamID;
-import com.bloodbowlclub.shared.team.TeamName;
-import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
-import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
+import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -30,8 +25,38 @@ public class DraftTeam extends BaseTeam {
         super(team.getTeamId(), team.getName(), team.getLogoUrl());
     }
 
+    @Override
     public boolean isDraftTeam() {
         return true;
+    }
+
+    //===============================================================================================================
+    //
+    // Méthodes métier
+    //
+    //===============================================================================================================
+
+    public ResultMap<Void> chooseRoster(Roster roster) {
+
+        if (roster.isNotValid()) {
+            return validationErrors();
+        }
+
+        RosterChosenEvent event = new RosterChosenEvent(this, roster);
+        this.addEvent(event);
+
+        return ResultMap.success(null);
+    }
+
+    //===============================================================================================================
+    //
+    // Application des évènements
+    //
+    //===============================================================================================================
+
+    public Result<AggregateRoot> apply(RosterChosenEvent event) {
+        RosterChosenTeam draftTeam = new RosterChosenTeam(event.getTeam(), event.getRoster());
+        return Result.success(draftTeam);
     }
 
 }

@@ -3,10 +3,7 @@ package com.bloodbowlclub.auth.use_cases.login;
 
 import com.bloodbowlclub.JsonAssertions;
 import com.bloodbowlclub.auth.domain.user_account.commands.LoginCommand;
-import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
-import com.bloodbowlclub.auth.domain.user_account.values.Email;
-import com.bloodbowlclub.auth.domain.user_account.values.Password;
 import com.bloodbowlclub.auth.io.web.UserTestUtils;
 import com.bloodbowlclub.auth.use_cases.LoginCommandHandler;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
@@ -20,7 +17,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-
 
 import java.io.IOException;
 import java.util.HashMap;

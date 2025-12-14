@@ -1,8 +1,8 @@
 package com.bloodbowlclub.auth.domain.user_account.values;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotEmpty;
 
 @JsonSerialize(using = ValueObjectSerializer.class)

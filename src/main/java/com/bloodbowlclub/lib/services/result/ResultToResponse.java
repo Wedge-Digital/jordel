@@ -1,6 +1,6 @@
 package com.bloodbowlclub.lib.services.result;
 
-import com.bloodbowlclub.lib.services.result.exceptions.*;
+import com.bloodbowlclub.lib.services.result.exceptions.ResultException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;

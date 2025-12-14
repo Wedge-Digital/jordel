@@ -1,7 +1,11 @@
 package com.bloodbowlclub.shared.shared.cloudinary_url;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
+import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+
+@JsonSerialize(using = ValueObjectSerializer.class)
 public class CloudinaryUrl extends ValueObject<String> {
 
     @CloudinaryUrlConstraint()

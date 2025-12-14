@@ -1,22 +1,14 @@
 package com.bloodbowlclub.auth.io.web;
 
 import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
-import com.bloodbowlclub.auth.domain.user_account.values.Email;
-import com.bloodbowlclub.auth.domain.user_account.values.Password;
-import com.bloodbowlclub.auth.domain.user_account.values.Username;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.auth.io.web.login.LoginRequest;
 import com.bloodbowlclub.auth.io.web.requests.CompleteResetPasswordRequest;
-import com.bloodbowlclub.auth.io.web.requests.StartResetPasswordRequest;
 import com.bloodbowlclub.auth.use_cases.CompleteResetPasswordCommandHandler;
 import com.bloodbowlclub.auth.use_cases.LoginCommandHandler;
-import com.bloodbowlclub.auth.use_cases.StartResetPasswordCommandHandler;
-import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
-import com.bloodbowlclub.lib.services.email_service.ConsoleEmailService;
 import com.bloodbowlclub.lib.services.result.exceptions.BadRequest;
 import com.bloodbowlclub.lib.services.result.exceptions.NotFound;
 import com.bloodbowlclub.lib.tests.TestCase;

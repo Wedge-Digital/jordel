@@ -1,10 +1,13 @@
 package com.bloodbowlclub.shared.team;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
+import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class TeamName extends ValueObject {
+@JsonSerialize(using = ValueObjectSerializer.class)
+public class TeamName extends ValueObject<String> {
 
     @NotEmpty
     @Size(min = 3, max = 100, message = "must be between 3 and 100 characters")

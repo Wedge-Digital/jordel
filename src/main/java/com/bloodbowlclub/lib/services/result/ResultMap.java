@@ -1,9 +1,6 @@
 package com.bloodbowlclub.lib.services.result;
 
-import com.bloodbowlclub.lib.services.result.exceptions.ResultException;
-import lombok.Getter;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;

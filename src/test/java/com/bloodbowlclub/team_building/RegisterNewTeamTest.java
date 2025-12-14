@@ -5,10 +5,10 @@ import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.team_building.domain.BaseTeam;
-import com.bloodbowlclub.team_building.domain.DraftTeam;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
+import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,27 +19,17 @@ import java.util.Map;
 
 public class RegisterNewTeamTest {
 
-    private BaseTeam createValidTeam() {
-        BaseTeam baseTeam = new BaseTeam();
-        Assertions.assertEquals(0, baseTeam.domainEvents().size());
-        RegisterNewTeamCommand newTeamCommand = new RegisterNewTeamCommand("01KCAA6DBY2B3M8TKEV7GH5JNN", "Team Name", CloudinaryUrlBuilder.validUrl);
-        ResultMap<Void> teamRegistration = baseTeam.registerNewTeam(newTeamCommand);
-        Assertions.assertTrue(teamRegistration.isSuccess());
-        Assertions.assertEquals(1, baseTeam.domainEvents().size());
-        return baseTeam;
-    }
-
     @Test
     @DisplayName("When creating a new team, I should be able to choose a name, and a Logo")
     public void testTeamCreation() {
-        DomainEvent domainEvent = createValidTeam().domainEvents().get(0);
+        DomainEvent domainEvent = TeamCreator.createBaseTeam().domainEvents().get(0);
         Assertions.assertEquals("DraftTeamRegisteredEvent", domainEvent.getClass().getSimpleName());
     }
 
     @Test
     @DisplayName("When hydrating a BaseTeam from a single DraftTeamRegisteredEvent, shall have a draft team")
     public void TestDraftTeamHydratation() {
-        DraftTeamRegisteredEvent domainEvent = (DraftTeamRegisteredEvent) createValidTeam().domainEvents().get(0);
+        DraftTeamRegisteredEvent domainEvent = (DraftTeamRegisteredEvent) TeamCreator.createBaseTeam().domainEvents().get(0);
         BaseTeam freshteam = new BaseTeam();
         Result<AggregateRoot> hydratation = freshteam.hydrate(List.of(domainEvent));
         BaseTeam hydrated = (BaseTeam) hydratation.getValue();

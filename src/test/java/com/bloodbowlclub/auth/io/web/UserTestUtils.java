@@ -1,7 +1,6 @@
 package com.bloodbowlclub.auth.io.web;
 
 import com.bloodbowlclub.auth.domain.user_account.BaseUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.WaitingPasswordResetUserAccount;
 import com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent;
 import com.bloodbowlclub.auth.domain.user_account.events.PasswordResetStartedEvent;
 import com.bloodbowlclub.auth.domain.user_account.values.Email;

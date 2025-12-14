@@ -1,16 +1,14 @@
 package com.bloodbowlclub.team_building.domain;
 
-import com.bloodbowlclub.auth.domain.user_account.WaitingPasswordResetUserAccount;
-import com.bloodbowlclub.auth.domain.user_account.events.PasswordResetStartedEvent;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
-import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrlConstraint;
 import com.bloodbowlclub.shared.team.TeamID;
 import com.bloodbowlclub.shared.team.TeamName;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -81,7 +79,15 @@ public class BaseTeam extends AggregateRoot {
         return Result.success(draftTeam);
     }
 
+    //===============================================================================================================
+
+    @JsonIgnore
     public boolean isDraftTeam() {
+        return false;
+    }
+
+    @JsonIgnore
+    public boolean isRosterChosen() {
         return false;
     }
 

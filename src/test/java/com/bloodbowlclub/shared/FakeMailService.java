@@ -5,9 +5,7 @@ import jakarta.mail.MessagingException;
 import lombok.Getter;
 import org.springframework.context.MessageSource;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Getter
 public class FakeMailService extends AbstractEmailService {
