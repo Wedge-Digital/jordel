@@ -1,17 +1,13 @@
 package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.lib.services.result.ResultMap;
-import com.bloodbowlclub.team_building.domain.BaseTeam;
-import com.bloodbowlclub.team_building.domain.DraftTeam;
-import com.bloodbowlclub.team_building.domain.Roster;
-import com.bloodbowlclub.team_building.domain.RosterChosenTeam;
+import com.bloodbowlclub.team_building.domain.*;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
+import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import org.junit.jupiter.api.Assertions;
-
-import java.util.List;
 
 public class TeamCreator {
     public static BaseTeam createBaseTeam() {
@@ -24,17 +20,31 @@ public class TeamCreator {
         return baseTeam;
     }
 
-    public static DraftTeam hydrateDraftTeam() {
-        DraftTeamRegisteredEvent regEvent = new DraftTeamRegisteredEvent(createBaseTeam());
-        BaseTeam baseTeam = new BaseTeam();
-        return (DraftTeam) baseTeam.hydrate(List.of(regEvent)).getValue();
-    }
-
-    public static RosterChosenTeam hydrateChosenRosterTeam() {
-        Roster chaos = RosterCreator.CreateRoster();
+    public static DraftTeam createDraftTeam() {
         BaseTeam baseTeam = createBaseTeam();
         DraftTeamRegisteredEvent regEvent = new DraftTeamRegisteredEvent(baseTeam);
-        RosterChosenEvent rcEvent = new RosterChosenEvent(regEvent.getTeam(), chaos);
-        return (RosterChosenTeam) baseTeam.hydrate(List.of(regEvent, rcEvent)).getValue();
+        return (DraftTeam) baseTeam.apply(regEvent).getValue();
     }
+
+    public static CreationRulesetChosenTeam createRulesetChosenTeam() {
+        TeamCreationRuleset ruleset = TeamCreationRulesetCreator.createTeamCreationRulset();
+
+        DraftTeam draftTeam = createDraftTeam();
+        CreationRulesetSelectedEvent rcEvent = new CreationRulesetSelectedEvent(draftTeam, ruleset);
+
+        return (CreationRulesetChosenTeam) draftTeam.apply(rcEvent).getValue();
+    }
+    public static CreationRulesetChosenTeam createRulesetChosenTeam(TeamCreationRuleset ruleset) {
+        DraftTeam draftTeam = createDraftTeam();
+        CreationRulesetSelectedEvent rcEvent = new CreationRulesetSelectedEvent(draftTeam, ruleset);
+        return (CreationRulesetChosenTeam) draftTeam.apply(rcEvent).getValue();
+    }
+
+    public static RosterChosenTeam createRosterChosenTeam() {
+        Roster chaos = RosterCreator.createRoster();
+        CreationRulesetChosenTeam team = createRulesetChosenTeam();
+        RosterChosenEvent rcEvent = new RosterChosenEvent(team, chaos);
+        return (RosterChosenTeam) team.apply(rcEvent).getValue();
+    }
+
 }

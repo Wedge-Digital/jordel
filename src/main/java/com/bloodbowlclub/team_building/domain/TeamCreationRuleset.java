@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @EqualsAndHashCode(callSuper = true)
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
@@ -25,8 +27,27 @@ public class TeamCreationRuleset extends AggregateRoot {
     @JsonIgnore
     TeamCreationRulesetID rulesetID;
 
+    @Valid
+    @NotNull
+    RulesetName name;
+
+    @Valid
+    @NotNull
+    List<RosterTier> tierList;
+
     @Override
     public String getId() {
         return rulesetID.toString();
+    }
+
+    public boolean isRosterNotAllowed(Roster candidate) {
+        return !isRosterAllowed(candidate);
+    }
+
+    public boolean isRosterAllowed(Roster candidate) {
+        if (this.tierList == null) {
+            return false;
+        }
+        return tierList.stream().filter(tier -> tier.contains(candidate)).toList().isEmpty() == false;
     }
 }

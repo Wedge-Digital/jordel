@@ -3,6 +3,11 @@
   "version" : 0,
   "name" : "Team Name",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
+  "ruleset" : {
+    "@class" : "com.bloodbowlclub.team_building.domain.TeamCreationRuleset",
+    "version" : 0,
+    "id" : "01KCE8V76ZB6Y1EP0N2N4X1W90"
+  },
   "roster" : {
     "@class" : "com.bloodbowlclub.team_building.domain.Roster",
     "version" : 0,

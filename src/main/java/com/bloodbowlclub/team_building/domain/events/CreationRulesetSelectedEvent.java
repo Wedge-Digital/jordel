@@ -1,9 +1,9 @@
 package com.bloodbowlclub.team_building.domain.events;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.result.Result;
-import com.bloodbowlclub.team_building.domain.BaseTeam;
-import com.bloodbowlclub.team_building.domain.Roster;
+import com.bloodbowlclub.team_building.domain.DraftTeam;
 import com.bloodbowlclub.team_building.domain.TeamCreationRuleset;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
@@ -16,11 +16,12 @@ import lombok.NoArgsConstructor;
 )
 @Getter
 @NoArgsConstructor
-public class CreationRulesetSelectedEvent extends TeamCreationEvent{
-    TeamCreationRuleset ruleset;
+public class CreationRulesetSelectedEvent extends DomainEvent {
+    private DraftTeam team;
+    private TeamCreationRuleset ruleset;
 
-    public CreationRulesetSelectedEvent(BaseTeam team, TeamCreationRuleset ruleset) {
-        super(team);
+    public CreationRulesetSelectedEvent(DraftTeam team, TeamCreationRuleset ruleset) {
+        this.team = team;
         this.ruleset = ruleset;
     }
 
@@ -28,4 +29,5 @@ public class CreationRulesetSelectedEvent extends TeamCreationEvent{
     public Result<AggregateRoot> applyTo(AggregateRoot aggregate) {
         return aggregate.apply(this);
     }
+
 }

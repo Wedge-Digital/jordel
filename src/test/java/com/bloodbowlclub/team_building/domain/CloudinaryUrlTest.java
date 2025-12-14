@@ -1,4 +1,4 @@
-package com.bloodbowlclub.team_building;
+package com.bloodbowlclub.team_building.domain;
 
 import com.bloodbowlclub.lib.validators.DomainValidator;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;

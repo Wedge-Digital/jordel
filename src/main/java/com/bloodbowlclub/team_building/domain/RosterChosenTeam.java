@@ -18,13 +18,13 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class RosterChosenTeam extends DraftTeam {
+public class RosterChosenTeam extends CreationRulesetChosenTeam {
 
     @NotNull
     @Valid
     Roster roster;
 
-    public RosterChosenTeam(BaseTeam team, Roster roster) {
+    public RosterChosenTeam(CreationRulesetChosenTeam team, Roster roster) {
         super(team);
         this.roster = roster;
     }

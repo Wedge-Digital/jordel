@@ -37,17 +37,6 @@ public class DraftTeam extends BaseTeam {
     //
     //===============================================================================================================
 
-    public ResultMap<Void> chooseRoster(Roster roster) {
-
-        if (roster.isNotValid()) {
-            return roster.validationErrors();
-        }
-
-        RosterChosenEvent event = new RosterChosenEvent(this, roster);
-        this.addEvent(event);
-
-        return ResultMap.success(null);
-    }
 
     public ResultMap<Void> selectCreationRuleset(TeamCreationRuleset ruleset) {
         if (ruleset.isNotValid()) {

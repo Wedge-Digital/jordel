@@ -18,8 +18,10 @@ public class EntityID extends ValueObject<String> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return this.value.equals(o.toString());
     }
 
     @Override
