@@ -31,7 +31,7 @@ public class CreationRulesetChosenTeam extends DraftTeam {
     @Valid
     TeamCreationRuleset ruleset;
 
-    public CreationRulesetChosenTeam(BaseTeam team, TeamCreationRuleset ruleset) {
+    public CreationRulesetChosenTeam(DraftTeam team, TeamCreationRuleset ruleset) {
         super(team);
         this.ruleset = ruleset;
     }

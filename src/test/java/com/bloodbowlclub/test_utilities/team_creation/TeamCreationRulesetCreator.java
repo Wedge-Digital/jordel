@@ -11,6 +11,7 @@ public class TeamCreationRulesetCreator {
         return TeamCreationRuleset.builder()
                 .rulesetID(new TeamCreationRulesetID("01KCE8V76ZB6Y1EP0N2N4X1W90"))
                 .name(new RulesetName("Basic Ruleset"))
+                .tierList(List.of())
                 .build();
     }
 
@@ -46,6 +47,14 @@ public class TeamCreationRulesetCreator {
     public TeamCreationRulesetCreator withDarkies() {
         Roster darkies = RosterCreator.createDarkElves();
         RosterTier topTier = TierCreator.createTier(List.of(darkies));
+        current.tierList(List.of(topTier));
+        return this;
+    }
+
+    public TeamCreationRulesetCreator withWoodiesAndDarkies() {
+        Roster darkies = RosterCreator.createDarkElves();
+        Roster woodies = RosterCreator.createWoodElves();
+        RosterTier topTier = TierCreator.createTier(List.of(woodies, darkies));
         current.tierList(List.of(topTier));
         return this;
     }

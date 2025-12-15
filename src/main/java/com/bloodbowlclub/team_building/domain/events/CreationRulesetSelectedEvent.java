@@ -21,6 +21,7 @@ public class CreationRulesetSelectedEvent extends DomainEvent {
     private TeamCreationRuleset ruleset;
 
     public CreationRulesetSelectedEvent(DraftTeam team, TeamCreationRuleset ruleset) {
+        super(team.getId());
         this.team = team;
         this.ruleset = ruleset;
     }

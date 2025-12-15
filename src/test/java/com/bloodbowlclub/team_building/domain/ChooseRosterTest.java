@@ -1,8 +1,12 @@
 package com.bloodbowlclub.team_building.domain;
 
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
+import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
+import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
@@ -13,45 +17,54 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ChooseRosterTest extends TestCase {
 
     TeamCreationRulesetCreator creator = new TeamCreationRulesetCreator();
+    Roster woodies = RosterCreator.createWoodElves();
+    Roster darkies = RosterCreator.createDarkElves();
+    TeamCreationRuleset fullRuleset = creator.builder().withWoodiesAndDarkies().build();
+    CreationRulesetChosenTeam teamWithFullRuleset = TeamCreator.createRulesetChosenTeam(fullRuleset);
 
     @Test
     @DisplayName("")
     void testChooseRosterSucceed() {
-        Roster chaos = RosterCreator.createRoster();
-        CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam();
-        AssertLib.AssertHasNoDomainEvent(team);
-        ResultMap<Void> rosterChoice = team.chooseRoster(chaos, null);
+        AssertLib.AssertHasNoDomainEvent(teamWithFullRuleset);
+        ResultMap<Void> rosterChoice = teamWithFullRuleset.chooseRoster(woodies, messageSource);
         Assertions.assertTrue(rosterChoice.isSuccess());
-        AssertLib.AssertHasDomainEventOfType(team, RosterChosenEvent.class);
+        AssertLib.AssertHasDomainEventOfType(teamWithFullRuleset, RosterChosenEvent.class);
     }
 
     @Test
-    @DisplayName("change roster shall be possible")
+    @DisplayName("Change roster shall be possible")
     void testChangeRosterSucceed() {
-        RosterChosenTeam rcTeam = TeamCreator.createRosterChosenTeam();
-        AssertLib.AssertHasNoDomainEvent(rcTeam);
-        Roster anotherRoster = RosterCreator.createRoster("AnotherRoster");
-        ResultMap<Void> rosterChoice = rcTeam.chooseRoster(anotherRoster, null);
-        Assertions.assertTrue(rosterChoice.isSuccess());
-        AssertLib.AssertHasDomainEventOfType(rcTeam, RosterChosenEvent.class);
+        AssertLib.AssertHasNoDomainEvent(teamWithFullRuleset);
+        teamWithFullRuleset.chooseRoster(woodies, messageSource);
+        Assertions.assertEquals(1, teamWithFullRuleset.domainEvents().size());
+
+        ResultMap<Void> rosterChange = teamWithFullRuleset.chooseRoster(darkies, messageSource);
+        Assertions.assertTrue(rosterChange.isSuccess());
+        Assertions.assertEquals(2, teamWithFullRuleset.domainEvents().size());
     }
 
     @Test
     @DisplayName("Hydratation of a team with changed roster shall be ok")
     void testChangeRosterHydratationShallBeOk() {
-        Roster anotherRoster = RosterCreator.createRoster("anotherRoster");
 
-        RosterChosenTeam team = TeamCreator.createRosterChosenTeam();
+        DraftTeam team = TeamCreator.createDraftTeam();
 
-        RosterChosenEvent rcEvent2 = new RosterChosenEvent(team, anotherRoster);
+        DraftTeamRegisteredEvent regEvent = new DraftTeamRegisteredEvent(team);
+        CreationRulesetSelectedEvent rulesetEvent = new CreationRulesetSelectedEvent(team, fullRuleset);
+        RosterChosenEvent rcEvent = new RosterChosenEvent(new CreationRulesetChosenTeam(team, fullRuleset), woodies);
+        RosterChosenEvent rcEvent2 = new RosterChosenEvent(new CreationRulesetChosenTeam(team, fullRuleset), darkies);
 
-        RosterChosenTeam hydrated = (RosterChosenTeam) team.apply(rcEvent2).getValue();
-        Assertions.assertTrue(hydrated.getRoster().getRosterName().equalsString("anotherRoster"));
+        BaseTeam bt = TeamCreator.createBaseTeam();
+        Result<AggregateRoot> hydratation = bt.hydrate(List.of(regEvent, rulesetEvent, rcEvent, rcEvent2));
+        Assertions.assertTrue(hydratation.isSuccess());
+        RosterChosenTeam hydrated = (RosterChosenTeam) hydratation.getValue();
+        Assertions.assertTrue(hydrated.getRoster().getRosterName().equalsString("Dark Elves"));
         assertEqualsResultset(hydrated);
     }
 
@@ -60,9 +73,8 @@ public class ChooseRosterTest extends TestCase {
     void checkRosterIsPresentInRuleset() {
         TeamCreationRuleset ruleset = creator.builder("My Ruleset").withDarkies().build();
 
-        Roster woodElves = RosterCreator.createWoodElves();
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
-        ResultMap<Void> rosterSelection = team.chooseRoster(woodElves, messageSource);
+        ResultMap<Void> rosterSelection = team.chooseRoster(woodies, messageSource);
         Assertions.assertTrue(rosterSelection.isFailure());
         Assertions.assertEquals(ErrorCode.INTERNAL_ERROR, rosterSelection.getErrorCode());
         Map<String, String> errors = rosterSelection.errorMap();

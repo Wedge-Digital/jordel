@@ -12,6 +12,7 @@ import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
+import com.bloodbowlclub.lib.tests.TestCaseOptions;
 import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -55,9 +56,8 @@ public class LoginCommandTest extends TestCase {
 
         List<EventEntity> allEvent = fakeEventStore.findAll();
         Assertions.assertEquals(2, allEvent.size());
-        JsonAssertions.assertEqualsFixture(
-                allEvent,
-               List.of("id","time","timeStampedAt","password")
+        assertEqualsResultset(allEvent,
+                TestCaseOptions.builder().fieldToExclude(List.of("id","time","timeStampedAt","password")).build()
         );
     }
 

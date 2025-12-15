@@ -46,5 +46,4 @@ public class TeamCreator {
         RosterChosenEvent rcEvent = new RosterChosenEvent(team, chaos);
         return (RosterChosenTeam) team.apply(rcEvent).getValue();
     }
-
 }

@@ -20,6 +20,7 @@ public class DraftTeamRegisteredEvent extends DomainEvent {
     BaseTeam team;
 
     public DraftTeamRegisteredEvent(BaseTeam team) {
+        super(team.getId());
         this.team = team;
     }
 

@@ -7,8 +7,11 @@
     "@class" : "com.bloodbowlclub.team_building.domain.TeamCreationRuleset",
     "version" : 0,
     "name" : "Basic Ruleset",
-    "tierList" : [ ],
-    "id" : "01KCE8V76ZB6Y1EP0N2N4X1W90"
+    "tierList" : [ {
+      "@class" : "com.bloodbowlclub.team_building.domain.RosterTier",
+      "id" : "01KCF2B2NQKT312ZQJC5ZVYTQ2"
+    } ],
+    "id" : "01KCF1RZPXTHZWXXJTC1BPKB33"
   },
   "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"
 }

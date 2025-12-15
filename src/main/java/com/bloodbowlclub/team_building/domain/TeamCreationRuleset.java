@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -21,6 +22,7 @@ import java.util.List;
 @Data
 @SuperBuilder
 @NoArgsConstructor
+@Getter
 public class TeamCreationRuleset extends AggregateRoot {
     @Valid
     @NotNull

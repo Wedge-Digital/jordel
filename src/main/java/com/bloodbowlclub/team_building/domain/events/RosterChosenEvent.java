@@ -21,6 +21,7 @@ public class RosterChosenEvent extends DomainEvent {
     Roster roster;
 
     public RosterChosenEvent(CreationRulesetChosenTeam team, Roster roster) {
+        super(team.getId());
         this.team = team;
         this.roster = roster;
 

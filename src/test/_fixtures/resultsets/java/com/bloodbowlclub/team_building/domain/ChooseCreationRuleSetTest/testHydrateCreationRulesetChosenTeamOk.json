@@ -6,6 +6,8 @@
   "ruleset" : {
     "@class" : "com.bloodbowlclub.team_building.domain.TeamCreationRuleset",
     "version" : 0,
+    "name" : "Basic Ruleset",
+    "tierList" : [ ],
     "id" : "01KCE8V76ZB6Y1EP0N2N4X1W90"
   },
   "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"

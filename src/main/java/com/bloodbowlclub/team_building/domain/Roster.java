@@ -3,17 +3,16 @@ package com.bloodbowlclub.team_building.domain;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.CLASS,
         include = JsonTypeInfo.As.PROPERTY,
@@ -26,6 +25,7 @@ public class Roster extends AggregateRoot {
 
     @Valid
     @NotNull
+    @JsonIgnore
     RosterID rosterId;
 
     @Valid
