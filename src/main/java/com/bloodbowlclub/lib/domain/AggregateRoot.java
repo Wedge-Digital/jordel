@@ -1,10 +1,7 @@
 package com.bloodbowlclub.lib.domain;
 
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
-import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
-import com.bloodbowlclub.lib.services.result.ResultMap;
-import com.bloodbowlclub.lib.validators.DomainValidator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
@@ -21,7 +18,7 @@ import java.util.*;
 )
 @NoArgsConstructor
 @SuperBuilder
-public abstract class AggregateRoot extends DomainEventApplier {
+public abstract class AggregateRoot extends DomainEventApplier implements Validable {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AggregateRoot.class);
 
@@ -39,25 +36,7 @@ public abstract class AggregateRoot extends DomainEventApplier {
         return Collections.unmodifiableList(domainEvents);
     }
 
-    @JsonIgnore
-    public boolean isNotValid(){
-        return !DomainValidator.isValid(this);
-    }
-
-    @JsonIgnore
-    public boolean isValid(){
-        return !isNotValid();
-    }
-
     public abstract String getId();
-
-    public ResultMap<Void> validationErrors(){
-        HashMap<String, String> errorMap = (HashMap<String, String>) DomainValidator.getErrors(this);
-        if(errorMap.isEmpty()){
-            return ResultMap.success(null);
-        }
-        return ResultMap.failure(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
-    }
 
     public Result<AggregateRoot> reconstruct(List<DomainEvent> domainEvents) {
         this.domainEvents.clear();

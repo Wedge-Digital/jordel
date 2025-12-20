@@ -34,6 +34,10 @@ public class RosterTier extends Entity {
     @NotNull
     List<Roster> rosterList;
 
+    @Valid
+    @NotNull
+    CreationBudget teamBudget;
+
     public String getId() {
         return this.tierID.toString();
     }

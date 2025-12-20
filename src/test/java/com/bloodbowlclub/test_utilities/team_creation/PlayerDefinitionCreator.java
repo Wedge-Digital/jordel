@@ -102,4 +102,13 @@ public class PlayerDefinitionCreator {
                 .maxQuantity(new PlayerMaxQuantity(1))
                 .build();
     }
+
+    public PlayerDefinition createProElfBlitzer() {
+        return PlayerDefinition.builder()
+                .playerDefinitionID( new PlayerDefinitionID("01KCXWFJ5NTW31BNFS5K7APTR1"))
+                .name(new PlayerDefinitionName("Pro Elf Blitzer"))
+                .price(new PlayerPrice(110))
+                .maxQuantity(new PlayerMaxQuantity(2))
+                .build();
+    }
 }

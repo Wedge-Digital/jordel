@@ -13,7 +13,7 @@
       "rosterList" : [ {
         "@class" : "com.bloodbowlclub.team_building.domain.Roster",
         "version" : 0,
-        "rosterName" : "Wood Elves",
+        "name" : "Wood Elves",
         "playerDefinitions" : [ {
           "@class" : "com.bloodbowlclub.team_building.domain.PlayerDefinition",
           "name" : "Wardancer",
@@ -26,7 +26,7 @@
       }, {
         "@class" : "com.bloodbowlclub.team_building.domain.Roster",
         "version" : 0,
-        "rosterName" : "Dark Elves",
+        "name" : "Dark Elves",
         "playerDefinitions" : [ {
           "@class" : "com.bloodbowlclub.team_building.domain.PlayerDefinition",
           "name" : "Witch Elf",
@@ -55,6 +55,7 @@
         "crossLimit" : null,
         "id" : "01KCF8ZPZMWRX0KDQ6AW3AMQVZ"
       } ],
+      "teamBudget" : null,
       "id" : "01KCF2B2NQKT312ZQJC5ZVYTQ2"
     } ],
     "id" : "01KCF1RZPXTHZWXXJTC1BPKB33"
@@ -62,7 +63,7 @@
   "roster" : {
     "@class" : "com.bloodbowlclub.team_building.domain.Roster",
     "version" : 0,
-    "rosterName" : "Dark Elves",
+    "name" : "Dark Elves",
     "playerDefinitions" : [ {
       "@class" : "com.bloodbowlclub.team_building.domain.PlayerDefinition",
       "name" : "Witch Elf",

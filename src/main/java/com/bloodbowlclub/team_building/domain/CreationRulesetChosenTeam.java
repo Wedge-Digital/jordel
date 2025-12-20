@@ -1,6 +1,8 @@
 package com.bloodbowlclub.team_building.domain;
 
+import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -46,7 +48,7 @@ public class CreationRulesetChosenTeam extends DraftTeam {
     @Override
     @JsonIgnore
     public boolean isRulesetChosen() {
-        return true;
+        return ruleset != null;
     }
 
     //===============================================================================================================
@@ -60,7 +62,7 @@ public class CreationRulesetChosenTeam extends DraftTeam {
         }
 
         if (ruleset.isRosterNotAllowed(roster)) {
-            return ResultMap.failure("team", msg.getMessage("team_creation.roster_not_allowed", new Object[]{roster.getRosterName(), ruleset.getName()}, Locale.getDefault()), ErrorCode.INTERNAL_ERROR);
+            return ResultMap.failure("team", msg.getMessage("team_creation.roster_not_allowed", new Object[]{roster.getName(), ruleset.getName()}, Locale.getDefault()), ErrorCode.INTERNAL_ERROR);
         }
 
         if (roster.isNotValid()) {
@@ -72,5 +74,18 @@ public class CreationRulesetChosenTeam extends DraftTeam {
 
         return ResultMap.success(null);
     }
+
+    //===============================================================================================================
+    //
+    // Application des évènements
+    //
+    //===============================================================================================================
+
+    public Result<AggregateRoot> apply(RosterChosenEvent event) {
+        RosterChosenTeam draftTeam = new RosterChosenTeam(event.getTeam(), event.getRoster());
+        return Result.success(draftTeam);
+    }
+
+
 
 }

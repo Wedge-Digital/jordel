@@ -1,14 +1,14 @@
 package com.bloodbowlclub.team_building.domain;
 
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
-import com.bloodbowlclub.test_utilities.team_creation.TeamCreationRulesetCreator;
+import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class TeamCreationRulesetTest {
 
-    TeamCreationRulesetCreator creator = new TeamCreationRulesetCreator();
+    RulesetCreator creator = new RulesetCreator();
     RosterCreator rosterCreator = new RosterCreator();
 
 

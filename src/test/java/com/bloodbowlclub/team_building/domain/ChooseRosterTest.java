@@ -10,7 +10,7 @@ import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
-import com.bloodbowlclub.test_utilities.team_creation.TeamCreationRulesetCreator;
+import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class ChooseRosterTest extends TestCase {
 
-    TeamCreationRulesetCreator creator = new TeamCreationRulesetCreator();
+    RulesetCreator creator = new RulesetCreator();
     RosterCreator rosterCreator = new RosterCreator();
     Roster woodies = rosterCreator.createWoodElves();
     Roster darkies = rosterCreator.createDarkElves();
@@ -65,7 +65,7 @@ public class ChooseRosterTest extends TestCase {
         Result<AggregateRoot> hydratation = bt.hydrate(List.of(regEvent, rulesetEvent, rcEvent, rcEvent2));
         Assertions.assertTrue(hydratation.isSuccess());
         RosterChosenTeam hydrated = (RosterChosenTeam) hydratation.getValue();
-        Assertions.assertTrue(hydrated.getRoster().getRosterName().equalsString("Dark Elves"));
+        Assertions.assertTrue(hydrated.getRoster().getName().equalsString("Dark Elves"));
         assertEqualsResultset(hydrated);
     }
 
@@ -100,7 +100,7 @@ public class ChooseRosterTest extends TestCase {
     @Test
     @DisplayName("Roster selection shall be ok, even with ruleset with two tier")
     void checkRosterSelectionIsOkWithTwoTierlist() {
-        TeamCreationRuleset ruleset = creator.builder().withTwoTiers().build();
+        TeamCreationRuleset ruleset = creator.createRulesetWithTwoTiers();
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
         Roster proElves = rosterCreator.createProElves();

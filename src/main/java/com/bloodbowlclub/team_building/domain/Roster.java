@@ -1,6 +1,9 @@
 package com.bloodbowlclub.team_building.domain;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.result.ErrorCode;
+import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,8 +14,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.springframework.context.MessageSource;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @JsonTypeInfo(
@@ -32,9 +37,10 @@ public class Roster extends AggregateRoot {
 
     @Valid
     @NotNull
-    private RosterName rosterName;
+    private RosterName name;
 
     @NotEmpty
+    @Valid
     private List<PlayerDefinition> playerDefinitions;
 
     @Override
@@ -61,7 +67,6 @@ public class Roster extends AggregateRoot {
     public boolean hasNoCrossLimits() {
         return this.crossLimit == null;
     }
-
 
     //===============================================================================================================
     //

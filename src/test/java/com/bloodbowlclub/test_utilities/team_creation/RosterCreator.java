@@ -16,17 +16,20 @@ public class RosterCreator {
     private PlayerDefinition assassin = playerCreator.createAssassin();
     private PlayerDefinition lineman = playerCreator.createLineman();
 
-    public static Roster createBasicRoster() {
+
+    public Roster createChaosChosen() {
+        PlayerDefinition minotaur = playerCreator.createMinotaur();
         return Roster.builder()
                 .rosterId(new RosterID("01KCCH67VJYCMKEN0R43F8KVWD"))
-                .rosterName(new RosterName("Chaos Chosen"))
+                .name(new RosterName("Chaos Chosen"))
+                .playerDefinitions(List.of(minotaur))
                 .build();
     }
 
     public Roster createWoodElves() {
         return Roster.builder()
                 .rosterId(new RosterID("01KCEZ8SA4XBZF11V4QC0F8AJ3"))
-                .rosterName(new RosterName("Wood Elves"))
+                .name(new RosterName("Wood Elves"))
                 .playerDefinitions(List.of(warDancer))
                 .build();
     }
@@ -38,15 +41,17 @@ public class RosterCreator {
         PlayerDefinition linemens = playerCreator.createLineman();
         return Roster.builder()
                 .rosterId(new RosterID("01KCF8ZPZMWRX0KDQ6AW3AMQVZ"))
-                .rosterName(new RosterName("Dark Elves"))
+                .name(new RosterName("Dark Elves"))
                 .playerDefinitions(List.of(witches, blitzer, assassin, linemens))
                 .build();
     }
 
     public Roster createProElves() {
+        PlayerDefinition proElfBlitzer = playerCreator.createProElfBlitzer();
         return Roster.builder()
                 .rosterId(new RosterID("01KCHTAHAJGV5DGV72XFPA79A0"))
-                .rosterName(new RosterName("Pro Elves"))
+                .name(new RosterName("Pro Elves"))
+                .playerDefinitions(List.of(proElfBlitzer))
                 .build();
     }
 
@@ -62,7 +67,7 @@ public class RosterCreator {
                 .build();
         return Roster.builder()
                 .rosterId(new RosterID("01KCSGB4E6XWNQNVAQN3PSXKGB"))
-                .rosterName(new RosterName("Chaos Pact"))
+                .name(new RosterName("Chaos Pact"))
                 .playerDefinitions(List.of(human, minotaur, ogre, troll, ratOgre))
                 .crossLimit(limit)
                 .build();

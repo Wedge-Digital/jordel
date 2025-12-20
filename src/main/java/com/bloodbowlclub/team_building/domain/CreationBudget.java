@@ -4,20 +4,19 @@ import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import lombok.Getter;
 
 import static com.bloodbowlclub.shared.constants.MAX_PLAYER_COUNT;
 
+@Getter
 @JsonSerialize(using = ValueObjectSerializer.class)
-public class PlayerMaxQuantity extends ValueObject {
+public class CreationBudget extends ValueObject<Integer> {
 
     @Positive
-    @Max(value = MAX_PLAYER_COUNT, message = "{player_qty.max}")
     private final int value;
 
-    public PlayerMaxQuantity(int value) {
+    public CreationBudget(int value) {
         this.value = value;
     }
 
@@ -32,7 +31,4 @@ public class PlayerMaxQuantity extends ValueObject {
         return String.valueOf(this.value).equals(other);
     }
 
-    public int getValue() {
-        return this.value;
-    }
 }

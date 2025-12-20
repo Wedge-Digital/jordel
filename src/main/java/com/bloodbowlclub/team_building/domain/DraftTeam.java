@@ -56,10 +56,6 @@ public class DraftTeam extends BaseTeam {
     //
     //===============================================================================================================
 
-    public Result<AggregateRoot> apply(RosterChosenEvent event) {
-        RosterChosenTeam draftTeam = new RosterChosenTeam(event.getTeam(), event.getRoster());
-        return Result.success(draftTeam);
-    }
 
     public Result<AggregateRoot> apply(CreationRulesetSelectedEvent event) {
         CreationRulesetChosenTeam rulesetChosentTeam = new CreationRulesetChosenTeam(event.getTeam(), event.getRuleset());
