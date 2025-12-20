@@ -12,6 +12,13 @@ import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEven
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.PlayerHiredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
+import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
+import com.bloodbowlclub.team_building.domain.team.BaseTeam;
+import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.DraftTeam;
+import com.bloodbowlclub.team_building.domain.team.RosterChosenTeam;
 import com.bloodbowlclub.test_utilities.team_creation.PlayerDefinitionCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
@@ -134,7 +141,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire player should fail if there is not enough remaining budget")
     void hiringShouldFailIfRemainingBudgetIsNotEnough() {
         Roster darkElfs = rosterCreator.createDarkElves();
-        TeamCreationRuleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         RosterChosenTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition witch = playerCreator.createWitchElf();
         PlayerDefinition blitzer = playerCreator.createBlitzer();
@@ -150,7 +157,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire 5 players, shall record 5 events")
     void testHireFivePlayersShallRecordFiveEvents() {
         Roster darkElfs = rosterCreator.createDarkElves();
-        TeamCreationRuleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         RosterChosenTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition witch = playerCreator.createWitchElf();
         PlayerDefinition blitzer = playerCreator.createBlitzer();
@@ -172,7 +179,7 @@ public class HirePlayerTest extends TestCase {
                 .build();
 
 
-        TeamCreationRuleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         Roster roster = rosterCreator.createDarkElves();
 
         CreationRulesetChosenTeam rulesetChosenTeam = new  CreationRulesetChosenTeam(team, ruleset);

@@ -5,6 +5,9 @@ import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
+import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.DraftTeam;
 import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
@@ -20,7 +23,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
     @DisplayName("a Draft Team shall be given valid team creation ruleSet, shall succeed")
     void testChooseCreationRuleSetOk() {
         DraftTeam team = TeamCreator.createDraftTeam();
-        TeamCreationRuleset ruleSet = rulesetCreator.createBasicRuleset();
+        Ruleset ruleSet = rulesetCreator.createBasicRuleset();
         AssertLib.AssertHasNoDomainEvent(team);
         ResultMap<Void> rulesetSelection = team.selectCreationRuleset(ruleSet);
         Assertions.assertTrue(rulesetSelection.isSuccess());
@@ -31,7 +34,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
     @DisplayName("a Draft Team shall be given valid team creation ruleSet, shall fail if ruleset is not valid")
     void testChooseCreationRuleSetKO() {
         DraftTeam team = TeamCreator.createDraftTeam();
-        TeamCreationRuleset ruleSet = RulesetCreator.createBadTeamCreationRulset();
+        Ruleset ruleSet = RulesetCreator.createBadTeamCreationRulset();
         AssertLib.AssertHasNoDomainEvent(team);
         ResultMap<Void> rulesetSelection = team.selectCreationRuleset(ruleSet);
         Assertions.assertTrue(rulesetSelection.isFailure());
@@ -42,7 +45,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
     @DisplayName("A CreationRulesetChosenTeam shall be hydrated correctly")
     void testHydrateCreationRulesetChosenTeamOk() {
         DraftTeam baseTeam = TeamCreator.createDraftTeam();
-        TeamCreationRuleset ruleset = rulesetCreator.createBasicRuleset();
+        Ruleset ruleset = rulesetCreator.createBasicRuleset();
 
         CreationRulesetSelectedEvent tcEvt = new CreationRulesetSelectedEvent(baseTeam, ruleset);
 

@@ -2,7 +2,10 @@ package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
-import com.bloodbowlclub.team_building.domain.*;
+import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
+import com.bloodbowlclub.team_building.domain.roster.CrossLimitID;
+import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
 
 import java.util.List;
 
@@ -62,6 +65,7 @@ public class RosterCreator {
         PlayerDefinition troll = playerCreator.createTroll();
         PlayerDefinition ratOgre = playerCreator.createRatOgre();
         CrossLimit limit = CrossLimit.builder()
+                .crossLimitID(new CrossLimitID("01KCZ08V7R2GRCKSYBCCRKDGDT"))
                 .limitedPlayers(List.of(minotaur,ogre,troll,ratOgre))
                 .limit(3)
                 .build();

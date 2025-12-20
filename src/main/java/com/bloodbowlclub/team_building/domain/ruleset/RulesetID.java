@@ -1,12 +1,12 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.ruleset;
 
 import com.bloodbowlclub.lib.domain.EntityID;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
-public class CrossLimitID extends EntityID {
-    public CrossLimitID(String id) {
+public class RulesetID extends EntityID {
+    public RulesetID(String id) {
         super(id);
     }
 }

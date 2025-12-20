@@ -7,6 +7,7 @@ import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
+import com.bloodbowlclub.team_building.domain.team.BaseTeam;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;

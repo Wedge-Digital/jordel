@@ -1,10 +1,10 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.team;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
-import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,7 +38,7 @@ public class DraftTeam extends BaseTeam {
     //===============================================================================================================
 
 
-    public ResultMap<Void> selectCreationRuleset(TeamCreationRuleset ruleset) {
+    public ResultMap<Void> selectCreationRuleset(Ruleset ruleset) {
         if (ruleset.isNotValid()) {
             return ruleset.validationErrors();
         }

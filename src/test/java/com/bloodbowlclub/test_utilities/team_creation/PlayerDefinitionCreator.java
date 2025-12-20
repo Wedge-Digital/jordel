@@ -1,6 +1,6 @@
 package com.bloodbowlclub.test_utilities.team_creation;
 
-import com.bloodbowlclub.team_building.domain.*;
+import com.bloodbowlclub.team_building.domain.roster.*;
 
 public class PlayerDefinitionCreator {
 

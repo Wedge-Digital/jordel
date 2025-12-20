@@ -1,9 +1,11 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.team;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -16,7 +18,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.context.MessageSource;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 @EqualsAndHashCode(callSuper = true)
@@ -33,9 +34,9 @@ public class CreationRulesetChosenTeam extends DraftTeam {
 
     @NotNull
     @Valid
-    TeamCreationRuleset ruleset;
+    Ruleset ruleset;
 
-    public CreationRulesetChosenTeam(DraftTeam team, TeamCreationRuleset ruleset) {
+    public CreationRulesetChosenTeam(DraftTeam team, Ruleset ruleset) {
         super(team);
         this.ruleset = ruleset;
     }
@@ -62,7 +63,9 @@ public class CreationRulesetChosenTeam extends DraftTeam {
         }
 
         if (ruleset.isRosterNotAllowed(roster)) {
-            return ResultMap.failure("team", msg.getMessage("team_creation.roster_not_allowed", new Object[]{roster.getName(), ruleset.getName()}, Locale.getDefault()), ErrorCode.INTERNAL_ERROR);
+            return ResultMap.failure("team",
+                    msg.getMessage("team_creation.roster_not_allowed",
+                            new Object[]{roster.getId(), roster.getName(), ruleset.getId(), ruleset.getName()}, Locale.getDefault()), ErrorCode.INTERNAL_ERROR);
         }
 
         if (roster.isNotValid()) {

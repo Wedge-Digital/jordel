@@ -3,8 +3,8 @@ package com.bloodbowlclub.team_building.domain.events;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.result.Result;
-import com.bloodbowlclub.team_building.domain.DraftTeam;
-import com.bloodbowlclub.team_building.domain.TeamCreationRuleset;
+import com.bloodbowlclub.team_building.domain.team.DraftTeam;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreationRulesetSelectedEvent extends DomainEvent {
     private DraftTeam team;
-    private TeamCreationRuleset ruleset;
+    private Ruleset ruleset;
 
-    public CreationRulesetSelectedEvent(DraftTeam team, TeamCreationRuleset ruleset) {
+    public CreationRulesetSelectedEvent(DraftTeam team, Ruleset ruleset) {
         super(team.getId());
         this.team = team;
         this.ruleset = ruleset;

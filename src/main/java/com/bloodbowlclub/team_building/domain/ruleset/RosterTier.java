@@ -1,6 +1,7 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.ruleset;
 
 import  com.bloodbowlclub.lib.domain.Entity;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;

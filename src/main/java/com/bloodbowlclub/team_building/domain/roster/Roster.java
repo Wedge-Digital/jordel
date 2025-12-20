@@ -1,9 +1,6 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.roster;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
-import com.bloodbowlclub.lib.services.result.ErrorCode;
-import com.bloodbowlclub.lib.services.result.Result;
-import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,10 +11,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.context.MessageSource;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 @JsonTypeInfo(
@@ -74,7 +69,7 @@ public class Roster extends AggregateRoot {
     //
     //===============================================================================================================
 
-    boolean doesNotContainPlayer(PlayerDefinition player) {
+    public boolean doesNotContainPlayer(PlayerDefinition player) {
         if (this.playerDefinitions == null || this.playerDefinitions.isEmpty()) {
             return true;
         }

@@ -1,8 +1,9 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.ruleset;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
@@ -27,11 +28,11 @@ import java.util.Locale;
 @SuperBuilder
 @NoArgsConstructor
 @Getter
-public class TeamCreationRuleset extends AggregateRoot {
+public class Ruleset extends AggregateRoot {
     @Valid
     @NotNull
     @JsonIgnore
-    TeamCreationRulesetID rulesetID;
+    RulesetID rulesetID;
 
     @Valid
     @NotNull

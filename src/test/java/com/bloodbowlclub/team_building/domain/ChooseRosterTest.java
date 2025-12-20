@@ -8,6 +8,12 @@ import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
+import com.bloodbowlclub.team_building.domain.team.BaseTeam;
+import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.DraftTeam;
+import com.bloodbowlclub.team_building.domain.team.RosterChosenTeam;
 import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
@@ -22,11 +28,12 @@ import java.util.Map;
 
 public class ChooseRosterTest extends TestCase {
 
-    RulesetCreator creator = new RulesetCreator();
     RosterCreator rosterCreator = new RosterCreator();
     Roster woodies = rosterCreator.createWoodElves();
     Roster darkies = rosterCreator.createDarkElves();
-    TeamCreationRuleset fullRuleset = creator.builder().withWoodiesAndDarkies().build();
+
+    RulesetCreator rulesetCreator = new RulesetCreator();
+    Ruleset fullRuleset = rulesetCreator.createBasicRuleset();
     CreationRulesetChosenTeam teamWithFullRuleset = TeamCreator.createRulesetChosenTeam(fullRuleset);
 
     @Test
@@ -72,7 +79,7 @@ public class ChooseRosterTest extends TestCase {
     @Test
     @DisplayName("Roster selection shall not be possible, if roster is not available in creation ruleset")
     void checkRosterIsPresentInRuleset() {
-        TeamCreationRuleset ruleset = creator.builder("My Ruleset").withDarkies().build();
+        Ruleset ruleset = rulesetCreator.createChoasPactRuleset();
 
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
         ResultMap<Void> rosterSelection = team.chooseRoster(woodies, messageSource);
@@ -80,15 +87,14 @@ public class ChooseRosterTest extends TestCase {
         Assertions.assertEquals(ErrorCode.INTERNAL_ERROR, rosterSelection.getErrorCode());
         Map<String, String> errors = rosterSelection.errorMap();
         HashMap<String,String> expectedErrors = new HashMap<>();
-        expectedErrors.put("team", "Le roster Wood Elves n'est pas autorisé par les règles de création \"My Ruleset\", impossible de valider la sélection du roster.");
+        expectedErrors.put("team", "Le roster 01KCEZ8SA4XBZF11V4QC0F8AJ3/Wood Elves n'est pas autorisé par les règles de création \"01KCYZ78YX2FHC3H3KD2Q0YE96/Chaos Pact Ruleset\", impossible de valider la sélection du roster.");
         Assertions.assertEquals(expectedErrors, errors);
-
     }
 
     @Test
     @DisplayName("Roster selection shall be possible, if roster is available in creation ruleset")
     void checkRosterIsPresentInRulesetHydratation() {
-        TeamCreationRuleset ruleset = creator.builder().withDarkies().build();
+        Ruleset ruleset = rulesetCreator.createBasicRuleset();
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
         Roster darkies = rosterCreator.createDarkElves();
@@ -100,7 +106,7 @@ public class ChooseRosterTest extends TestCase {
     @Test
     @DisplayName("Roster selection shall be ok, even with ruleset with two tier")
     void checkRosterSelectionIsOkWithTwoTierlist() {
-        TeamCreationRuleset ruleset = creator.createRulesetWithTwoTiers();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
         Roster proElves = rosterCreator.createProElves();

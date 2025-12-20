@@ -1,11 +1,13 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.team;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.team_building.domain.ruleset.CreationBudget;
+import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
+import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.events.PlayerHiredEvent;
-import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
@@ -53,7 +55,8 @@ public class RosterChosenTeam extends CreationRulesetChosenTeam {
         return true;
     }
 
-    int getHiredPlayerCount() {
+    @JsonIgnore
+    public int getHiredPlayerCount() {
         return this.hiredPlayers.size();
     }
 
@@ -67,7 +70,7 @@ public class RosterChosenTeam extends CreationRulesetChosenTeam {
         return this.getHiredPlayerCount() >= MAX_PLAYER_COUNT;
     }
 
-    ResultMap<Void> hireManyPlayers(List<PlayerDefinition> hiringList, MessageSource msg) {
+    public ResultMap<Void> hireManyPlayers(List<PlayerDefinition> hiringList, MessageSource msg) {
         List<ResultMap<Void>> results = hiringList.stream()
                 .map(playerToHire -> hirePlayer(playerToHire, msg))
                 .toList();

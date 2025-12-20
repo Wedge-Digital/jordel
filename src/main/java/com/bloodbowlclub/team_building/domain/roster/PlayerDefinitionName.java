@@ -1,36 +1,30 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.roster;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
-public class PlayerPrice extends ValueObject<Integer> {
+public class PlayerDefinitionName extends ValueObject<String> {
 
-    @Positive
-    @Max(value = 500, message = "{player_price.max}")
-    private final int value;
+    @NotEmpty
+    @Size(min = 3, max = 50, message = "must be between 3 and 100 characters")
+    private final String value;
 
-    public PlayerPrice(int value) {
+    public PlayerDefinitionName(String value) {
         this.value = value;
     }
 
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return value;
     }
 
     @Override
     public boolean equalsString(String other) {
-        return String.valueOf(this.value).equals(other);
-    }
-
-    public int getValue() {
-        return value;
+        return this.value.equals(other);
     }
 }

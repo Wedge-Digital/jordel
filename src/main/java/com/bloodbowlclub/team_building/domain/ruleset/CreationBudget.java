@@ -1,13 +1,10 @@
-package com.bloodbowlclub.team_building.domain;
+package com.bloodbowlclub.team_building.domain.ruleset;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
-
-import static com.bloodbowlclub.shared.constants.MAX_PLAYER_COUNT;
 
 @Getter
 @JsonSerialize(using = ValueObjectSerializer.class)
