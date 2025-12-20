@@ -6,8 +6,9 @@ import java.util.List;
 
 public class TeamCreationRulesetCreator {
     private static TeamCreationRuleset.TeamCreationRulesetBuilder<?, ?> current;
+    private static final RosterCreator rosterCreator = new RosterCreator();
 
-    public static TeamCreationRuleset createTeamCreationRulset() {
+    public static TeamCreationRuleset createBasicRulset() {
         return TeamCreationRuleset.builder()
                 .rulesetID(new TeamCreationRulesetID("01KCE8V76ZB6Y1EP0N2N4X1W90"))
                 .name(new RulesetName("Basic Ruleset"))
@@ -38,24 +39,33 @@ public class TeamCreationRulesetCreator {
     }
 
     public TeamCreationRulesetCreator withWoodies() {
-        Roster woodies = RosterCreator.createWoodElves();
+        Roster woodies = rosterCreator.createWoodElves();
         RosterTier topTier = TierCreator.createTier(List.of(woodies));
         current.tierList(List.of(topTier));
         return this;
     }
 
     public TeamCreationRulesetCreator withDarkies() {
-        Roster darkies = RosterCreator.createDarkElves();
+        Roster darkies = rosterCreator.createDarkElves();
         RosterTier topTier = TierCreator.createTier(List.of(darkies));
         current.tierList(List.of(topTier));
         return this;
     }
 
     public TeamCreationRulesetCreator withWoodiesAndDarkies() {
-        Roster darkies = RosterCreator.createDarkElves();
-        Roster woodies = RosterCreator.createWoodElves();
+        Roster darkies = rosterCreator.createDarkElves();
+        Roster woodies = rosterCreator.createWoodElves();
         RosterTier topTier = TierCreator.createTier(List.of(woodies, darkies));
         current.tierList(List.of(topTier));
+        return this;
+    }
+
+    public TeamCreationRulesetCreator withTwoTiers() {
+        Roster proElves = rosterCreator.createProElves();
+        Roster woodies = rosterCreator.createWoodElves();
+        RosterTier topTier = TierCreator.createTier(List.of(woodies));
+        RosterTier middleTier = TierCreator.createTier(List.of(proElves));
+        current.tierList(List.of(topTier, middleTier));
         return this;
     }
 

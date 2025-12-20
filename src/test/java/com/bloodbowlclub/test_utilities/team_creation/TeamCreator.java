@@ -1,6 +1,8 @@
 package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.shared.team.TeamID;
+import com.bloodbowlclub.shared.team.TeamName;
 import com.bloodbowlclub.team_building.domain.*;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
 import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
@@ -9,7 +11,11 @@ import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.ArrayList;
+
 public class TeamCreator {
+    RosterCreator rosterCreator = new RosterCreator();
+    PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
     public static BaseTeam createBaseTeam() {
         BaseTeam baseTeam = new BaseTeam();
         Assertions.assertEquals(0, baseTeam.domainEvents().size());
@@ -27,7 +33,7 @@ public class TeamCreator {
     }
 
     public static CreationRulesetChosenTeam createRulesetChosenTeam() {
-        TeamCreationRuleset ruleset = TeamCreationRulesetCreator.createTeamCreationRulset();
+        TeamCreationRuleset ruleset = TeamCreationRulesetCreator.createBasicRulset();
 
         DraftTeam draftTeam = createDraftTeam();
         CreationRulesetSelectedEvent rcEvent = new CreationRulesetSelectedEvent(draftTeam, ruleset);
@@ -41,9 +47,34 @@ public class TeamCreator {
     }
 
     public static RosterChosenTeam createRosterChosenTeam() {
-        Roster chaos = RosterCreator.createRoster();
+        Roster chaos = RosterCreator.createBasicRoster();
         CreationRulesetChosenTeam team = createRulesetChosenTeam();
         RosterChosenEvent rcEvent = new RosterChosenEvent(team, chaos);
         return (RosterChosenTeam) team.apply(rcEvent).getValue();
+    }
+
+    public RosterChosenTeam createRosterChosenTeam(Roster roster) {
+        RosterChosenTeam team = RosterChosenTeam.builder()
+                .teamId(new TeamID("01KCSHJS1K5M8JTW9D5A58VY1S"))
+                .name(new TeamName("teamName"))
+                .roster(roster)
+                .build();
+        return team;
+    }
+
+    public RosterChosenTeam createRosterTeamWith16Player() {
+        ArrayList<PlayerDefinition> defs = new ArrayList<>();
+        PlayerDefinition lineman = playerCreator.createWoodElfLineman();
+        for (int cpt=0; cpt<16; cpt++) {
+            defs.add(lineman);
+        }
+
+        RosterChosenTeam team = RosterChosenTeam.builder()
+                .teamId(new TeamID("01KCSJRWAFMN3T35AVZDX1ASXP"))
+                .name(new TeamName("teamName"))
+                .roster(rosterCreator.createWoodElves())
+                .hiredPlayers(defs)
+                .build();
+        return team;
     }
 }

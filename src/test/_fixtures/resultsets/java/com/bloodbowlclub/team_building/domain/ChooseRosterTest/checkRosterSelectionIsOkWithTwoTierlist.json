@@ -1,0 +1,34 @@
+{
+  "@class" : "com.bloodbowlclub.team_building.domain.CreationRulesetChosenTeam",
+  "version" : 0,
+  "name" : "Team Name",
+  "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
+  "ruleset" : {
+    "@class" : "com.bloodbowlclub.team_building.domain.TeamCreationRuleset",
+    "version" : 0,
+    "name" : "Basic Ruleset",
+    "tierList" : [ {
+      "@class" : "com.bloodbowlclub.team_building.domain.RosterTier",
+      "name" : "Top Tier",
+      "rosterList" : [ {
+        "@class" : "com.bloodbowlclub.team_building.domain.Roster",
+        "version" : 0,
+        "rosterName" : "Wood Elves",
+        "id" : "01KCEZ8SA4XBZF11V4QC0F8AJ3"
+      } ],
+      "id" : "01KCF2B2NQKT312ZQJC5ZVYTQ2"
+    }, {
+      "@class" : "com.bloodbowlclub.team_building.domain.RosterTier",
+      "name" : "Top Tier",
+      "rosterList" : [ {
+        "@class" : "com.bloodbowlclub.team_building.domain.Roster",
+        "version" : 0,
+        "rosterName" : "Pro Elves",
+        "id" : "01KCHTAHAJGV5DGV72XFPA79A0"
+      } ],
+      "id" : "01KCF2B2NQKT312ZQJC5ZVYTQ2"
+    } ],
+    "id" : "01KCF1RZPXTHZWXXJTC1BPKB33"
+  },
+  "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"
+}

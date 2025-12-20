@@ -20,7 +20,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
     @DisplayName("a Draft Team shall be given valid team creation ruleSet, shall succeed")
     void testChooseCreationRuleSetOk() {
         DraftTeam team = TeamCreator.createDraftTeam();
-        TeamCreationRuleset ruleSet = TeamCreationRulesetCreator.createTeamCreationRulset();
+        TeamCreationRuleset ruleSet = TeamCreationRulesetCreator.createBasicRulset();
         AssertLib.AssertHasNoDomainEvent(team);
         ResultMap<Void> rulesetSelection = team.selectCreationRuleset(ruleSet);
         Assertions.assertTrue(rulesetSelection.isSuccess());
@@ -42,7 +42,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
     @DisplayName("A CreationRulesetChosenTeam shall be hydrated correctly")
     void testHydrateCreationRulesetChosenTeamOk() {
         DraftTeam baseTeam = TeamCreator.createDraftTeam();
-        TeamCreationRuleset ruleset = TeamCreationRulesetCreator.createTeamCreationRulset();
+        TeamCreationRuleset ruleset = TeamCreationRulesetCreator.createBasicRulset();
 
         CreationRulesetSelectedEvent tcEvt = new CreationRulesetSelectedEvent(baseTeam, ruleset);
 

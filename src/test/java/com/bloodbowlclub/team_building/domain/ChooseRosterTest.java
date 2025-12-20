@@ -23,8 +23,9 @@ import java.util.Map;
 public class ChooseRosterTest extends TestCase {
 
     TeamCreationRulesetCreator creator = new TeamCreationRulesetCreator();
-    Roster woodies = RosterCreator.createWoodElves();
-    Roster darkies = RosterCreator.createDarkElves();
+    RosterCreator rosterCreator = new RosterCreator();
+    Roster woodies = rosterCreator.createWoodElves();
+    Roster darkies = rosterCreator.createDarkElves();
     TeamCreationRuleset fullRuleset = creator.builder().withWoodiesAndDarkies().build();
     CreationRulesetChosenTeam teamWithFullRuleset = TeamCreator.createRulesetChosenTeam(fullRuleset);
 
@@ -90,10 +91,23 @@ public class ChooseRosterTest extends TestCase {
         TeamCreationRuleset ruleset = creator.builder().withDarkies().build();
         CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
-        Roster darkies = RosterCreator.createDarkElves();
+        Roster darkies = rosterCreator.createDarkElves();
         ResultMap<Void> rosterSelection = team.chooseRoster(darkies, messageSource);
         Assertions.assertTrue(rosterSelection.isSuccess());
         AssertLib.AssertHasDomainEventOfType(team, RosterChosenEvent.class);
+    }
+
+    @Test
+    @DisplayName("Roster selection shall be ok, even with ruleset with two tier")
+    void checkRosterSelectionIsOkWithTwoTierlist() {
+        TeamCreationRuleset ruleset = creator.builder().withTwoTiers().build();
+        CreationRulesetChosenTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
+
+        Roster proElves = rosterCreator.createProElves();
+        ResultMap<Void> rosterSelection = team.chooseRoster(proElves, messageSource);
+        Assertions.assertTrue(rosterSelection.isSuccess());
+        AssertLib.AssertHasDomainEventOfType(team, RosterChosenEvent.class);
+        assertEqualsResultset(team);
     }
 
 

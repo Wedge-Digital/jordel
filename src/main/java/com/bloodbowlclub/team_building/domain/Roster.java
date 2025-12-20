@@ -6,11 +6,13 @@ import com.bloodbowlclub.shared.roster.RosterName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
 import java.util.Objects;
 
 @JsonTypeInfo(
@@ -26,17 +28,21 @@ public class Roster extends AggregateRoot {
     @Valid
     @NotNull
     @JsonIgnore
-    RosterID rosterId;
+    private RosterID rosterId;
 
     @Valid
     @NotNull
-    RosterName rosterName;
+    private RosterName rosterName;
 
+    @NotEmpty
+    private List<PlayerDefinition> playerDefinitions;
 
     @Override
     public String getId() {
         return rosterId.toString();
     }
+
+    private CrossLimit crossLimit;
 
     @Override
     public boolean equals(Object o) {
@@ -51,6 +57,31 @@ public class Roster extends AggregateRoot {
     public int hashCode() {
         return Objects.hash(rosterId.toString());
     }
+
+    public boolean hasNoCrossLimits() {
+        return this.crossLimit == null;
+    }
+
+
+    //===============================================================================================================
+    //
+    // Méthodes métier
+    //
+    //===============================================================================================================
+
+    boolean doesNotContainPlayer(PlayerDefinition player) {
+        if (this.playerDefinitions == null || this.playerDefinitions.isEmpty()) {
+            return true;
+        }
+        return this.playerDefinitions.stream().filter(lines -> lines.equals(player)).toList().isEmpty();
+    }
+
+
+    //===============================================================================================================
+    //
+    // Application d'évènements
+    //
+    //===============================================================================================================
 
 
 }

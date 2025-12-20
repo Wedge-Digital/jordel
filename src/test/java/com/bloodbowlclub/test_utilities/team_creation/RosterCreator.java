@@ -2,34 +2,69 @@ package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
-import com.bloodbowlclub.team_building.domain.Roster;
+import com.bloodbowlclub.team_building.domain.*;
+
+import java.util.List;
 
 public class RosterCreator {
 
-    public static Roster createRoster() {
+    private PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
+    private PlayerDefinition human = playerCreator.createHuman();
+    private PlayerDefinition warDancer = playerCreator.createWardancer();
+    private PlayerDefinition witchElves = playerCreator.createWitchElf();
+    private PlayerDefinition blitzer = playerCreator.createBlitzer();
+    private PlayerDefinition assassin = playerCreator.createAssassin();
+    private PlayerDefinition lineman = playerCreator.createLineman();
+
+    public static Roster createBasicRoster() {
         return Roster.builder()
                 .rosterId(new RosterID("01KCCH67VJYCMKEN0R43F8KVWD"))
                 .rosterName(new RosterName("Chaos Chosen"))
                 .build();
     }
-    public static Roster createRoster(String rosterName) {
-        return Roster.builder()
-                .rosterId(new RosterID("01KCE7R74NGMWMVYV76CFXZ70T"))
-                .rosterName(new RosterName(rosterName))
-                .build();
-    }
 
-    public static Roster createWoodElves() {
+    public Roster createWoodElves() {
         return Roster.builder()
                 .rosterId(new RosterID("01KCEZ8SA4XBZF11V4QC0F8AJ3"))
                 .rosterName(new RosterName("Wood Elves"))
+                .playerDefinitions(List.of(warDancer))
                 .build();
     }
 
-    public static Roster createDarkElves() {
+    public Roster createDarkElves() {
+        PlayerDefinition witches = playerCreator.createWitchElf();
+        PlayerDefinition blitzer = playerCreator.createBlitzer();
+        PlayerDefinition assassin = playerCreator.createAssassin();
+        PlayerDefinition linemens = playerCreator.createLineman();
         return Roster.builder()
                 .rosterId(new RosterID("01KCF8ZPZMWRX0KDQ6AW3AMQVZ"))
                 .rosterName(new RosterName("Dark Elves"))
+                .playerDefinitions(List.of(witches, blitzer, assassin, linemens))
+                .build();
+    }
+
+    public Roster createProElves() {
+        return Roster.builder()
+                .rosterId(new RosterID("01KCHTAHAJGV5DGV72XFPA79A0"))
+                .rosterName(new RosterName("Pro Elves"))
+                .build();
+    }
+
+    public Roster createChaosPact() {
+        PlayerDefinition human = playerCreator.createHuman();
+        PlayerDefinition minotaur = playerCreator.createMinotaur();
+        PlayerDefinition ogre = playerCreator.createOgre();
+        PlayerDefinition troll = playerCreator.createTroll();
+        PlayerDefinition ratOgre = playerCreator.createRatOgre();
+        CrossLimit limit = CrossLimit.builder()
+                .limitedPlayers(List.of(minotaur,ogre,troll,ratOgre))
+                .limit(3)
+                .build();
+        return Roster.builder()
+                .rosterId(new RosterID("01KCSGB4E6XWNQNVAQN3PSXKGB"))
+                .rosterName(new RosterName("Chaos Pact"))
+                .playerDefinitions(List.of(human, minotaur, ogre, troll, ratOgre))
+                .crossLimit(limit)
                 .build();
     }
 }

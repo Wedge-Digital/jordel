@@ -9,12 +9,15 @@ import org.junit.jupiter.api.Test;
 class TeamCreationRulesetTest {
 
     TeamCreationRulesetCreator creator = new TeamCreationRulesetCreator();
+    RosterCreator rosterCreator = new RosterCreator();
+
+
     @Test
     @DisplayName("Check a roster in allowed roster, is allowed")
     void testAllowedRoster() {
         TeamCreationRuleset ruleset = creator.builder().withWoodies().build();
-        Roster woodies = RosterCreator.createWoodElves();
-        Roster darkElves = RosterCreator.createDarkElves();
+        Roster woodies = rosterCreator.createWoodElves();
+        Roster darkElves = rosterCreator.createDarkElves();
 
         Assertions.assertTrue(ruleset.isRosterNotAllowed(darkElves));
         Assertions.assertTrue(ruleset.isRosterAllowed(woodies));

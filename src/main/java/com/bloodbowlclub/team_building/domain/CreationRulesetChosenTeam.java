@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.springframework.context.MessageSource;
@@ -25,6 +26,7 @@ import java.util.Locale;
 @Data
 @SuperBuilder
 @NoArgsConstructor
+@Getter
 public class CreationRulesetChosenTeam extends DraftTeam {
 
     @NotNull
