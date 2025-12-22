@@ -3,7 +3,6 @@ package com.bloodbowlclub.team_building.domain;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.JsonService;
 import com.bloodbowlclub.lib.services.result.Result;
-import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
 import com.bloodbowlclub.shared.team.TeamID;
@@ -16,10 +15,10 @@ import com.bloodbowlclub.team_building.domain.team.BaseTeam;
 import com.bloodbowlclub.team_building.domain.team.DraftTeam;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
 import com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam;
-import com.bloodbowlclub.test_utilities.team_creation.PlayerDefinitionCreator;
-import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
-import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
-import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
+import com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Apothecary;
+import com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Cheerleaders;
+import com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.CoachAssistant;
+import com.bloodbowlclub.test_utilities.team_creation.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +32,12 @@ public class TeamCreationHydratation extends TestCase {
 
     RulesetCreator rulesetCreator = new RulesetCreator();
     PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
+
+    StaffCreator staffCreator = new StaffCreator();
+
+    Cheerleaders cheerleader = staffCreator.createCheerleaders();
+    Apothecary apo = staffCreator.createApothecary();
+    CoachAssistant assistant = staffCreator.createCoachAssistant();
 
     private DraftTeam hydrateToDraftTeam() {
         DraftTeam team = DraftTeam.builder()
@@ -108,6 +113,41 @@ public class TeamCreationHydratation extends TestCase {
         return (RosterSelectedTeam) hydratation.getValue();
     }
 
+    private RosterSelectedTeam hydrateToTeamStaffPurchased(RosterSelectedTeam team) {
+        TeamStaffPurchasedEvent cheerleaderPurchased = new TeamStaffPurchasedEvent(team, cheerleader);
+        TeamStaffPurchasedEvent apoPurchased = new TeamStaffPurchasedEvent(team, apo);
+        TeamStaffPurchasedEvent assistantPurchased = new TeamStaffPurchasedEvent(team, assistant);
+
+        Result<AggregateRoot> hydratation = team.hydrate(List.of(
+                cheerleaderPurchased,
+                cheerleaderPurchased,
+                cheerleaderPurchased,
+                cheerleaderPurchased,
+                apoPurchased,
+                assistantPurchased,
+                assistantPurchased
+        ));
+
+        Assertions.assertTrue(hydratation.isSuccess());
+        return (RosterSelectedTeam) hydratation.getValue();
+    }
+
+    private RosterSelectedTeam hydrateToStaffRemoval(RosterSelectedTeam team) {
+        TeamStaffRemovedEvent cheerleaderRemoved = new TeamStaffRemovedEvent(team, cheerleader);
+        TeamStaffRemovedEvent apoRemoved = new TeamStaffRemovedEvent(team, apo);
+        TeamStaffRemovedEvent assistantRemoved = new TeamStaffRemovedEvent(team, assistant);
+
+        Result<AggregateRoot> hydratation = team.hydrate(List.of(
+                cheerleaderRemoved,
+                cheerleaderRemoved,
+                apoRemoved,
+                assistantRemoved
+        ));
+
+        Assertions.assertTrue(hydratation.isSuccess());
+        return (RosterSelectedTeam) hydratation.getValue();
+    }
+
     private RosterSelectedTeam hydrateFromFullHistory(Ruleset ruleset, Roster roster) {
         DraftTeam team = hydrateToDraftTeam();
         RulesetSelectedTeam rulesetSelectedTeam = hydrateToRulesetSelected(team, ruleset);
@@ -129,6 +169,16 @@ public class TeamCreationHydratation extends TestCase {
         RosterSelectedTeam rosterSelectedTeam = hydrateToRosterSelected(rulesetSelectedTeam, initialRoster);
         RosterSelectedTeam teamWithPlayers = hydratePlayerHiringHistory(rosterSelectedTeam);
         return hydrateToPlayerRemoval(teamWithPlayers);
+    }
+
+    private RosterSelectedTeam hydrateWithStaffPurchasedAndCanceled(Ruleset ruleset, Roster roster) {
+        DraftTeam team = hydrateToDraftTeam();
+        RulesetSelectedTeam rulesetSelectedTeam = hydrateToRulesetSelected(team, ruleset);
+        RosterSelectedTeam rosterSelectedTeam = hydrateToRosterSelected(rulesetSelectedTeam, roster);
+        RosterSelectedTeam teamWithPlayers = hydratePlayerHiringHistory(rosterSelectedTeam);
+        RosterSelectedTeam teamWithRemovedPlayer = hydrateToPlayerRemoval(teamWithPlayers);
+        RosterSelectedTeam teamWithFullStaff = hydrateToTeamStaffPurchased(teamWithRemovedPlayer);
+        return hydrateToStaffRemoval(teamWithFullStaff);
     }
 
     private RosterSelectedTeam buildReferenceTeam(Ruleset ruleset, Roster roster ) {
@@ -164,6 +214,23 @@ public class TeamCreationHydratation extends TestCase {
         rosterChosenTeam.removePlayer(blitzer, messageSource);
         rosterChosenTeam.removePlayer(blitzer, messageSource);
         return rosterChosenTeam;
+    }
+
+    private RosterSelectedTeam buildRefTeamWithStaff(Ruleset ruleset, Roster roster) {
+        RosterSelectedTeam team = buildRefTeamWithRemoval(ruleset, roster);
+        team.buyStaff(cheerleader, messageSource);
+        team.buyStaff(cheerleader, messageSource);
+        team.buyStaff(cheerleader, messageSource);
+        team.buyStaff(cheerleader, messageSource);
+        team.buyStaff(apo, messageSource);
+        team.buyStaff(assistant, messageSource);
+        team.buyStaff(assistant, messageSource);
+
+        team.removeStaff(cheerleader, messageSource);
+        team.removeStaff(cheerleader, messageSource);
+        team.removeStaff(apo, messageSource);
+        team.removeStaff(assistant, messageSource);
+        return team;
     }
 
     @Test
@@ -225,6 +292,26 @@ public class TeamCreationHydratation extends TestCase {
 
         // then
         Assertions.assertEquals(hydratedTeam.getHiredPlayerCount(), 5);
+        JsonService jsonService = new JsonService();
+        String refTeam = jsonService.asJsonString(referenceTeam);
+        String hydratedString = jsonService.asJsonString(hydratedTeam);
+        Assertions.assertEquals(refTeam, hydratedString);
+        assertEqualsResultset(hydratedTeam);
+    }
+
+    @Test
+    @DisplayName("hydrate team from full history, including player removal, staff purchase / cancel succeed")
+    void testFullHydratationSucceed() {
+        // Given
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        Roster darkies = rosterCreator.createDarkElves();
+
+        // when
+        RosterSelectedTeam referenceTeam = buildRefTeamWithStaff(ruleset, darkies);
+        RosterSelectedTeam hydratedTeam = hydrateWithStaffPurchasedAndCanceled(ruleset, darkies);
+
+        // then
+        Assertions.assertEquals(hydratedTeam.getHiredStaff(), hydratedTeam.getHiredStaff());
         JsonService jsonService = new JsonService();
         String refTeam = jsonService.asJsonString(referenceTeam);
         String hydratedString = jsonService.asJsonString(hydratedTeam);

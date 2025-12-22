@@ -3,6 +3,7 @@ package com.bloodbowlclub.team_building.domain.roster;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
+import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
@@ -38,12 +39,16 @@ public class Roster extends AggregateRoot {
     @Valid
     private List<PlayerDefinition> playerDefinitions;
 
+    @NotEmpty
+    @Valid
+    private List<TeamStaff> allowedTeamStaff;
+
+    private CrossLimit crossLimit;
+
     @Override
     public String getId() {
         return rosterId.toString();
     }
-
-    private CrossLimit crossLimit;
 
     @Override
     public boolean equals(Object o) {

@@ -111,4 +111,37 @@ public class PlayerDefinitionCreator {
                 .maxQuantity(new PlayerMaxQuantity(2))
                 .build();
     }
+
+    public PlayerDefinition createZombie(){
+        return PlayerDefinition.builder()
+                .playerDefinitionID( new PlayerDefinitionID("01KD3P063XS6K4YXM5MH0VWBQM"))
+                .name(new PlayerDefinitionName("Zombie"))
+                .price(new PlayerPrice(40))
+                .maxQuantity(new PlayerMaxQuantity(16))
+                .build();
+    }
+    public PlayerDefinition createGhoul(){
+        return PlayerDefinition.builder()
+                .playerDefinitionID( new PlayerDefinitionID("01KD3P2TRW6DG66Y1PCMWQK2VA"))
+                .name(new PlayerDefinitionName("Ghoul"))
+                .price(new PlayerPrice(75))
+                .maxQuantity(new PlayerMaxQuantity(2))
+                .build();
+    }
+    public PlayerDefinition createRevenant(){
+        return PlayerDefinition.builder()
+                .playerDefinitionID( new PlayerDefinitionID("01KD3P3P87GB1H8CA9XXGQ44V9"))
+                .name(new PlayerDefinitionName("Revenant"))
+                .price(new PlayerPrice(95))
+                .maxQuantity(new PlayerMaxQuantity(2))
+                .build();
+    }
+    public PlayerDefinition createMummy(){
+        return PlayerDefinition.builder()
+                .playerDefinitionID( new PlayerDefinitionID("01KD3P49K9YG2C9Z9PQ6VMF7W5"))
+                .name(new PlayerDefinitionName("Mummy"))
+                .price(new PlayerPrice(125))
+                .maxQuantity(new PlayerMaxQuantity(2))
+                .build();
+    }
 }

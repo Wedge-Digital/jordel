@@ -1,0 +1,30 @@
+package com.bloodbowlclub.team_building.domain.team_stuff;
+
+import com.bloodbowlclub.lib.domain.ValueObject;
+import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+@JsonSerialize(using = ValueObjectSerializer.class)
+public class StuffName extends ValueObject<String> {
+
+    @NotEmpty
+    @Size(min = 3, max = 100, message = "must be between 3 and 100 characters")
+    private final String value;
+
+    public StuffName(String value) {
+        this.value = value;
+    }
+
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equalsString(String other) {
+        return this.value.equals(other);
+    }
+}

@@ -17,7 +17,9 @@ public class RulesetCreator {
         Roster woodies = rosterCreator.createWoodElves();
         Roster darkies = rosterCreator.createDarkElves();
         Roster chaosPact = rosterCreator.createChaosPact();
-        RosterTier tier = tierCreator.createInfiniteBudgetTier(List.of(woodies, darkies, chaosPact));
+        Roster undead = rosterCreator.createUndead();
+        Roster chaos = rosterCreator.createChaosChosen();
+        RosterTier tier = tierCreator.createInfiniteBudgetTier(List.of(woodies, darkies, chaosPact, undead, chaos ));
         return Ruleset.builder()
                 .rulesetID(new RulesetID("01KCE8V76ZB6Y1EP0N2N4X1W90"))
                 .name(new RulesetName("Basic Ruleset"))

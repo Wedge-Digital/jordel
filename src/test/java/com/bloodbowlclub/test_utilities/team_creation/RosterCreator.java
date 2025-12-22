@@ -6,6 +6,7 @@ import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
 import com.bloodbowlclub.team_building.domain.roster.CrossLimitID;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
 
 import java.util.List;
 
@@ -19,6 +20,15 @@ public class RosterCreator {
     private PlayerDefinition assassin = playerCreator.createAssassin();
     private PlayerDefinition lineman = playerCreator.createLineman();
 
+    private StaffCreator staffCreator = new StaffCreator();
+
+    private List<TeamStaff> getFullTeamStaff() {
+        TeamStaff cheers = staffCreator.createCheerleaders();
+        TeamStaff apo = staffCreator.createApothecary();
+        TeamStaff assistants = staffCreator.createCoachAssistant();
+        return List.of(cheers, apo, assistants);
+    }
+
 
     public Roster createChaosChosen() {
         PlayerDefinition minotaur = playerCreator.createMinotaur();
@@ -26,6 +36,7 @@ public class RosterCreator {
                 .rosterId(new RosterID("01KCCH67VJYCMKEN0R43F8KVWD"))
                 .name(new RosterName("Chaos Chosen"))
                 .playerDefinitions(List.of(minotaur))
+                .allowedTeamStaff(getFullTeamStaff())
                 .build();
     }
 
@@ -34,6 +45,7 @@ public class RosterCreator {
                 .rosterId(new RosterID("01KCEZ8SA4XBZF11V4QC0F8AJ3"))
                 .name(new RosterName("Wood Elves"))
                 .playerDefinitions(List.of(warDancer))
+                .allowedTeamStaff(getFullTeamStaff())
                 .build();
     }
 
@@ -46,6 +58,7 @@ public class RosterCreator {
                 .rosterId(new RosterID("01KCF8ZPZMWRX0KDQ6AW3AMQVZ"))
                 .name(new RosterName("Dark Elves"))
                 .playerDefinitions(List.of(witches, blitzer, assassin, linemens))
+                .allowedTeamStaff(getFullTeamStaff())
                 .build();
     }
 
@@ -55,6 +68,7 @@ public class RosterCreator {
                 .rosterId(new RosterID("01KCHTAHAJGV5DGV72XFPA79A0"))
                 .name(new RosterName("Pro Elves"))
                 .playerDefinitions(List.of(proElfBlitzer))
+                .allowedTeamStaff(getFullTeamStaff())
                 .build();
     }
 
@@ -74,6 +88,25 @@ public class RosterCreator {
                 .name(new RosterName("Chaos Pact"))
                 .playerDefinitions(List.of(human, minotaur, ogre, troll, ratOgre))
                 .crossLimit(limit)
+                .allowedTeamStaff(getFullTeamStaff())
                 .build();
+    }
+
+    public Roster createUndead() {
+        PlayerDefinition zombie = playerCreator.createZombie();
+        PlayerDefinition ghoul = playerCreator.createGhoul();
+        PlayerDefinition revenant = playerCreator.createRevenant();
+        PlayerDefinition Mummy = playerCreator.createMummy();
+
+        TeamStaff cheerleadr = staffCreator.createCheerleaders();
+        TeamStaff coachAssistant = staffCreator.createCoachAssistant();
+        return Roster.builder()
+                .rosterId(new RosterID("01KCSGB4E6XWNQNVAQN3PSXKGB"))
+                .name(new RosterName("Chaos Pact"))
+                .playerDefinitions(List.of(zombie, ghoul, revenant, Mummy))
+                .crossLimit(null)
+                .allowedTeamStaff(List.of(cheerleadr, coachAssistant))
+                .build();
+
     }
 }

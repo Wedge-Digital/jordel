@@ -1,0 +1,20 @@
+package com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail;
+
+import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+@EqualsAndHashCode(callSuper = true)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
+@Data
+@SuperBuilder
+@NoArgsConstructor
+public class Apothecary extends TeamStaff {
+}

@@ -14,6 +14,7 @@ import com.bloodbowlclub.team_building.domain.team.BaseTeam;
 import com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam;
 import com.bloodbowlclub.team_building.domain.team.DraftTeam;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
+import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import org.junit.jupiter.api.Assertions;
 
@@ -23,6 +24,8 @@ public class TeamCreator {
     RosterCreator rosterCreator = new RosterCreator();
     PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
     RulesetCreator rulesetCreator = new RulesetCreator();
+
+    StaffCreator teamStaffCreator = new StaffCreator();
 
     public static BaseTeam createBaseTeam() {
         BaseTeam baseTeam = new BaseTeam();
@@ -56,6 +59,7 @@ public class TeamCreator {
                 .roster(chaos)
                 .ruleset(ruleset)
                 .hiredPlayers(new ArrayList<>())
+                .hiredStaff(new ArrayList<>())
                 .build();
     }
 
@@ -68,6 +72,7 @@ public class TeamCreator {
                 .roster(roster)
                 .ruleset(ruleset)
                 .hiredPlayers(new ArrayList<>())
+                .hiredStaff(new ArrayList<>())
                 .build();
         return team;
     }
@@ -78,6 +83,7 @@ public class TeamCreator {
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
                 .hiredPlayers(new ArrayList<>())
+                .hiredStaff(new ArrayList<>())
                 .ruleset(ruleset)
                 .roster(roster)
                 .build();
@@ -92,14 +98,84 @@ public class TeamCreator {
             defs.add(lineman);
         }
 
-        RosterSelectedTeam team = RosterSelectedTeam.builder()
+        return RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCSJRWAFMN3T35AVZDX1ASXP"))
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
                 .roster(rosterCreator.createWoodElves())
                 .hiredPlayers(defs)
+                .hiredStaff(new ArrayList<>())
                 .ruleset(ruleset)
                 .build();
-        return team;
+    }
+
+    public RosterSelectedTeam createTeamWithoutBudgetLeft() {
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        ArrayList<PlayerDefinition> defs = new ArrayList<>();
+        PlayerDefinition witchElf = playerCreator.createWitchElf();
+        PlayerDefinition blitzer = playerCreator.createBlitzer();
+        PlayerDefinition assassin = playerCreator.createAssassin();
+        PlayerDefinition lineman = playerCreator.createLineman();
+        defs.add(witchElf);
+        defs.add(witchElf);
+        defs.add(blitzer);
+        defs.add(blitzer);
+        defs.add(assassin);
+        defs.add(assassin);
+        defs.add(lineman);
+        defs.add(lineman);
+        defs.add(lineman);
+        defs.add(lineman);
+        defs.add(lineman);
+        defs.add(lineman);
+        defs.add(lineman);
+
+
+        return RosterSelectedTeam.builder()
+                .teamId(new TeamID("01KCSJRWAFMN3T35AVZDX1ASXP"))
+                .name(new TeamName("teamName"))
+                .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .roster(rosterCreator.createDarkElves())
+                .hiredPlayers(defs)
+                .hiredStaff(new ArrayList<>())
+                .ruleset(ruleset)
+                .build();
+    }
+
+    public RosterSelectedTeam createTeamWithMaxCheerleaders() {
+        Ruleset ruleset = rulesetCreator.createBasicRuleset();
+        ArrayList<PlayerDefinition> defs = new ArrayList<>();
+        TeamStaff cheerleaders = teamStaffCreator.createCheerleaders();
+        ArrayList<TeamStaff> stuffs = new ArrayList<>();
+        stuffs.add(cheerleaders);
+        stuffs.add(cheerleaders);
+        stuffs.add(cheerleaders);
+        stuffs.add(cheerleaders);
+        stuffs.add(cheerleaders);
+        stuffs.add(cheerleaders);
+
+
+        return RosterSelectedTeam.builder()
+                .teamId(new TeamID("01KCSJRWAFMN3T35AVZDX1ASXP"))
+                .name(new TeamName("teamName"))
+                .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .roster(rosterCreator.createDarkElves())
+                .hiredPlayers(defs)
+                .hiredStaff(stuffs)
+                .ruleset(ruleset)
+                .build();
+    }
+
+    public RosterSelectedTeam createUndeadCandidateTeam() {
+        Ruleset basic = rulesetCreator.createBasicRuleset();
+        return RosterSelectedTeam.builder()
+                .teamId(new TeamID("01KD3NKX4S6FYBYZDN59YQDZ8J"))
+                .name(new TeamName("undead team"))
+                .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .roster(rosterCreator.createUndead())
+                .hiredPlayers(new ArrayList<>())
+                .hiredStaff(new ArrayList<>())
+                .ruleset(basic)
+                .build();
     }
 }
