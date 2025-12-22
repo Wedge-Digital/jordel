@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 )
 @Getter
 @NoArgsConstructor
-public class CreationRulesetSelectedEvent extends DomainEvent {
+public class RulesetSelectedEvent extends DomainEvent {
     private DraftTeam team;
     private Ruleset ruleset;
 
-    public CreationRulesetSelectedEvent(DraftTeam team, Ruleset ruleset) {
+    public RulesetSelectedEvent(DraftTeam team, Ruleset ruleset) {
         super(team.getId());
         this.team = team;
         this.ruleset = ruleset;

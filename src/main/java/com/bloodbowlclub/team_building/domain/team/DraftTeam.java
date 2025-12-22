@@ -4,7 +4,7 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
-import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
+import com.bloodbowlclub.team_building.domain.events.RulesetSelectedEvent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -43,7 +43,7 @@ public class DraftTeam extends BaseTeam {
             return ruleset.validationErrors();
         }
 
-        CreationRulesetSelectedEvent event = new CreationRulesetSelectedEvent(this, ruleset);
+        RulesetSelectedEvent event = new RulesetSelectedEvent(this, ruleset);
         this.addEvent(event);
 
         return ResultMap.success(null);
@@ -57,8 +57,8 @@ public class DraftTeam extends BaseTeam {
     //===============================================================================================================
 
 
-    public Result<AggregateRoot> apply(CreationRulesetSelectedEvent event) {
-        CreationRulesetChosenTeam rulesetChosentTeam = new CreationRulesetChosenTeam(event.getTeam(), event.getRuleset());
+    public Result<AggregateRoot> apply(RulesetSelectedEvent event) {
+        RulesetSelectedTeam rulesetChosentTeam = new RulesetSelectedTeam(event.getTeam(), event.getRuleset());
         return Result.success(rulesetChosentTeam);
     }
 

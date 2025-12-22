@@ -5,15 +5,15 @@ import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
 import com.bloodbowlclub.shared.team.TeamID;
 import com.bloodbowlclub.shared.team.TeamName;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
-import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
+import com.bloodbowlclub.team_building.domain.events.RulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.bloodbowlclub.team_building.domain.team.BaseTeam;
-import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam;
 import com.bloodbowlclub.team_building.domain.team.DraftTeam;
-import com.bloodbowlclub.team_building.domain.team.RosterChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import org.junit.jupiter.api.Assertions;
 
@@ -40,16 +40,16 @@ public class TeamCreator {
         return (DraftTeam) baseTeam.apply(regEvent).getValue();
     }
 
-    public static CreationRulesetChosenTeam createRulesetChosenTeam(Ruleset ruleset) {
+    public static RulesetSelectedTeam createRulesetChosenTeam(Ruleset ruleset) {
         DraftTeam draftTeam = createDraftTeam();
-        CreationRulesetSelectedEvent rcEvent = new CreationRulesetSelectedEvent(draftTeam, ruleset);
-        return (CreationRulesetChosenTeam) draftTeam.apply(rcEvent).getValue();
+        RulesetSelectedEvent rcEvent = new RulesetSelectedEvent(draftTeam, ruleset);
+        return (RulesetSelectedTeam) draftTeam.apply(rcEvent).getValue();
     }
 
-    public RosterChosenTeam createChaosTeam() {
+    public RosterSelectedTeam createChaosTeam() {
         Roster chaos = rosterCreator.createChaosChosen();
         Ruleset ruleset = rulesetCreator.createBasicRuleset();
-        return RosterChosenTeam.builder()
+        return RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCYR7RR53308AA6TEMSVN15M"))
                 .name(new TeamName("Chaos Team"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
@@ -59,9 +59,9 @@ public class TeamCreator {
                 .build();
     }
 
-    public RosterChosenTeam createChaosTeam(Roster roster) {
+    public RosterSelectedTeam createChaosTeam(Roster roster) {
         Ruleset ruleset = rulesetCreator.createBasicRuleset();
-        RosterChosenTeam team = RosterChosenTeam.builder()
+        RosterSelectedTeam team = RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCSHJS1K5M8JTW9D5A58VY1S"))
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
@@ -72,8 +72,8 @@ public class TeamCreator {
         return team;
     }
 
-    public RosterChosenTeam createTeam(Roster roster, Ruleset ruleset) {
-        RosterChosenTeam team = RosterChosenTeam.builder()
+    public RosterSelectedTeam createTeam(Roster roster, Ruleset ruleset) {
+        RosterSelectedTeam team = RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCSHJS1K5M8JTW9D5A58VY1S"))
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
@@ -84,7 +84,7 @@ public class TeamCreator {
         return team;
     }
 
-    public RosterChosenTeam createRosterTeamWith16Player() {
+    public RosterSelectedTeam createRosterTeamWith16Player() {
         ArrayList<PlayerDefinition> defs = new ArrayList<>();
         PlayerDefinition lineman = playerCreator.createWoodElfLineman();
         Ruleset ruleset = rulesetCreator.createBasicRuleset();
@@ -92,7 +92,7 @@ public class TeamCreator {
             defs.add(lineman);
         }
 
-        RosterChosenTeam team = RosterChosenTeam.builder()
+        RosterSelectedTeam team = RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCSJRWAFMN3T35AVZDX1ASXP"))
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))

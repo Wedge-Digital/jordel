@@ -4,9 +4,9 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
-import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
+import com.bloodbowlclub.team_building.domain.events.RulesetSelectedEvent;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
-import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam;
 import com.bloodbowlclub.team_building.domain.team.DraftTeam;
 import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
@@ -27,7 +27,7 @@ public class ChooseCreationRuleSetTest extends TestCase {
         AssertLib.AssertHasNoDomainEvent(team);
         ResultMap<Void> rulesetSelection = team.selectCreationRuleset(ruleSet);
         Assertions.assertTrue(rulesetSelection.isSuccess());
-        AssertLib.AssertHasDomainEventOfType(team, CreationRulesetSelectedEvent.class);
+        AssertLib.AssertHasDomainEventOfType(team, RulesetSelectedEvent.class);
     }
 
     @Test
@@ -47,12 +47,12 @@ public class ChooseCreationRuleSetTest extends TestCase {
         DraftTeam baseTeam = TeamCreator.createDraftTeam();
         Ruleset ruleset = rulesetCreator.createBasicRuleset();
 
-        CreationRulesetSelectedEvent tcEvt = new CreationRulesetSelectedEvent(baseTeam, ruleset);
+        RulesetSelectedEvent tcEvt = new RulesetSelectedEvent(baseTeam, ruleset);
 
         Result<AggregateRoot> hydratation = baseTeam.hydrate(List.of(tcEvt));
         Assertions.assertTrue(hydratation.isSuccess());
 
-        CreationRulesetChosenTeam hydrated =(CreationRulesetChosenTeam) hydratation.getValue();
+        RulesetSelectedTeam hydrated =(RulesetSelectedTeam) hydratation.getValue();
         Assertions.assertTrue(hydrated.isValid());
         assertEqualsResultset(hydrated);
     }

@@ -1,24 +1,12 @@
 package com.bloodbowlclub.team_building.domain;
 
-import com.bloodbowlclub.lib.domain.AggregateRoot;
-import com.bloodbowlclub.lib.services.JsonService;
-import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
-import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
-import com.bloodbowlclub.shared.team.TeamID;
-import com.bloodbowlclub.shared.team.TeamName;
-import com.bloodbowlclub.team_building.domain.events.CreationRulesetSelectedEvent;
-import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
-import com.bloodbowlclub.team_building.domain.events.PlayerHiredEvent;
-import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
+import com.bloodbowlclub.team_building.domain.events.*;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
-import com.bloodbowlclub.team_building.domain.team.BaseTeam;
-import com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam;
-import com.bloodbowlclub.team_building.domain.team.DraftTeam;
-import com.bloodbowlclub.team_building.domain.team.RosterChosenTeam;
+import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
 import com.bloodbowlclub.test_utilities.team_creation.PlayerDefinitionCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
@@ -41,7 +29,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("hiring a player should be ok, if no player are previously drafted, and player definition exist in roster")
     void testHirePlayerOk() {
         Roster chaosPact = rosterCreator.createChaosPact();
-        RosterChosenTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
+        RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
         PlayerDefinition toHire = chaosPact.getPlayerDefinitions().getFirst();
         ResultMap<Void> hiring = rcTeam.hirePlayer(toHire, messageSource);
         Assertions.assertTrue(hiring.isSuccess());
@@ -50,7 +38,7 @@ public class HirePlayerTest extends TestCase {
     @Test
     @DisplayName("hiring a player should be failing, if this player definition doesn't exist in roster")
     void testHirePlayerWithEmptyRosterFails() {
-        RosterChosenTeam rcTeam =  teamCreator.createChaosTeam();
+        RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam();
         PlayerDefinition line = playerCreator.createWardancer();
         ResultMap<Void> hiring = rcTeam.hirePlayer(line, messageSource);
         Assertions.assertTrue(hiring.isFailure());
@@ -61,7 +49,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire player should fail if player definition is not in chosen roster")
     void hireBadPlayerShouldFails() {
         Roster chaosPact = rosterCreator.createChaosPact();
-        RosterChosenTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
+        RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
 
         Roster woodies = rosterCreator.createWoodElves();
         PlayerDefinition warDancer = woodies.getPlayerDefinitions().getFirst();
@@ -74,7 +62,7 @@ public class HirePlayerTest extends TestCase {
     @Test
     @DisplayName("Hire player should fail if 16 players are already hired in team")
     void hiringShouldFailIfPlayerIs16() {
-        RosterChosenTeam with16Players = teamCreator.createRosterTeamWith16Player();
+        RosterSelectedTeam with16Players = teamCreator.createRosterTeamWith16Player();
         PlayerDefinition warDancer = playerCreator.createWardancer();
 
         ResultMap<Void> hiring = with16Players.hirePlayer(warDancer, messageSource);
@@ -85,7 +73,7 @@ public class HirePlayerTest extends TestCase {
     @Test
     @DisplayName("Hire player should fail if team is invalid")
     void hiringShouldFailIfTeamIsInvalid() {
-        RosterChosenTeam with16Players = teamCreator.createRosterTeamWith16Player();
+        RosterSelectedTeam with16Players = teamCreator.createRosterTeamWith16Player();
         PlayerDefinition warDancer = playerCreator.createWardancer();
 
         ResultMap<Void> hiring = with16Players.hirePlayer(warDancer, messageSource);
@@ -97,7 +85,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire many player should succed")
     void hireManyPlayerShoudSucceed() {
         Roster darkies = rosterCreator.createDarkElves();
-        RosterChosenTeam teamWithDarkies = teamCreator.createChaosTeam(darkies);
+        RosterSelectedTeam teamWithDarkies = teamCreator.createChaosTeam(darkies);
         PlayerDefinition witches = playerCreator.createWitchElf();
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition assassin = playerCreator.createAssassin();
@@ -111,7 +99,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire player should fail if max of player of type is already reached")
     void hiringShouldFailMaxOfTypeAlreadyHired() {
         Roster darkies = rosterCreator.createDarkElves();
-        RosterChosenTeam teamWithDarkies = teamCreator.createChaosTeam(darkies);
+        RosterSelectedTeam teamWithDarkies = teamCreator.createChaosTeam(darkies);
         PlayerDefinition witches = playerCreator.createWitchElf();
         teamWithDarkies.hireManyPlayers(List.of(witches, witches), messageSource);
         ResultMap<Void> hiring = teamWithDarkies.hirePlayer(witches, messageSource);
@@ -124,7 +112,7 @@ public class HirePlayerTest extends TestCase {
     @DisplayName("Hire player should fail if player of type 'one in' already hired")
     void hiringOfMoreOneOfTypeShouldFail() {
         Roster chaosPact = rosterCreator.createChaosPact();
-        RosterChosenTeam teamWithChaosPact = teamCreator.createChaosTeam(chaosPact);
+        RosterSelectedTeam teamWithChaosPact = teamCreator.createChaosTeam(chaosPact);
         PlayerDefinition minotaur = playerCreator.createMinotaur();
         PlayerDefinition troll = playerCreator.createTroll();
         PlayerDefinition ratOgre = playerCreator.createRatOgre();
@@ -142,7 +130,7 @@ public class HirePlayerTest extends TestCase {
     void hiringShouldFailIfRemainingBudgetIsNotEnough() {
         Roster darkElfs = rosterCreator.createDarkElves();
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
-        RosterChosenTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition witch = playerCreator.createWitchElf();
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition lineman = playerCreator.createLineman();
@@ -158,7 +146,7 @@ public class HirePlayerTest extends TestCase {
     void testHireFivePlayersShallRecordFiveEvents() {
         Roster darkElfs = rosterCreator.createDarkElves();
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
-        RosterChosenTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition witch = playerCreator.createWitchElf();
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition assassin = playerCreator.createAssassin();
@@ -170,58 +158,61 @@ public class HirePlayerTest extends TestCase {
     }
 
     @Test
-    @DisplayName("hydrate team from full history, succeed")
-    void testHydrateTeamFromFullHistorySucceed() {
-        DraftTeam team = DraftTeam.builder()
-                .teamId(new TeamID("01KCYVJSQS3CZ9R16ENT7XX20B"))
-                .name(new TeamName("Bloody Beet Roots"))
-                .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
-                .build();
-
-
+    @DisplayName("change roster shall reset player list")
+    void ChangeRosterShallResetPlayerList() {
+        Roster darkElfs = rosterCreator.createDarkElves();
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
-        Roster roster = rosterCreator.createDarkElves();
-
-        CreationRulesetChosenTeam rulesetChosenTeam = new  CreationRulesetChosenTeam(team, ruleset);
-        RosterChosenTeam rosterChosenTeam = new RosterChosenTeam(rulesetChosenTeam, roster);
-        PlayerDefinition witch = playerCreator.createWitchElf();
-        PlayerDefinition blitzer = playerCreator.createBlitzer();
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition lineman = playerCreator.createLineman();
-        PlayerDefinition assassin = playerCreator.createAssassin();
-        rosterChosenTeam.hireManyPlayers(List.of(witch,witch,blitzer,blitzer,lineman,lineman,lineman,assassin), messageSource);
-        JsonService jsonService = new JsonService();
-        String refTeam = jsonService.asJsonString(rosterChosenTeam);
 
-        DraftTeamRegisteredEvent creationEvent = new DraftTeamRegisteredEvent(team);
-        CreationRulesetSelectedEvent rulesetSelectedEvent = new CreationRulesetSelectedEvent(team, ruleset);
-        RosterChosenEvent rosterChosenEvent = new RosterChosenEvent(rulesetChosenTeam, roster);
-        PlayerHiredEvent witch1Hired = new PlayerHiredEvent(rosterChosenTeam, witch);
-        PlayerHiredEvent witch2Hired = new PlayerHiredEvent(rosterChosenTeam, witch);
-        PlayerHiredEvent blitzer1 = new PlayerHiredEvent(rosterChosenTeam, blitzer);
-        PlayerHiredEvent blitzer2 = new PlayerHiredEvent(rosterChosenTeam, blitzer);
-        PlayerHiredEvent lineman1 = new PlayerHiredEvent(rosterChosenTeam, lineman);
-        PlayerHiredEvent lineman2 = new PlayerHiredEvent(rosterChosenTeam, lineman);
-        PlayerHiredEvent lineman3 = new PlayerHiredEvent(rosterChosenTeam, lineman);
-        PlayerHiredEvent assassin1 = new PlayerHiredEvent(rosterChosenTeam, assassin);
-        BaseTeam base = new BaseTeam();
-        Result<AggregateRoot> hydrated = base.hydrate(List.of(
-                creationEvent,
-                rulesetSelectedEvent,
-                rosterChosenEvent,
-                witch1Hired,
-                witch2Hired,
-                blitzer1,
-                blitzer2,
-                lineman1,
-                lineman2,
-                lineman3,
-                assassin1
-                ));
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        Assertions.assertTrue(playerHiring.isSuccess());
+        Assertions.assertEquals(3, teamOfDarkElfs.domainEvents().size());
 
-        Assertions.assertTrue(hydrated.isSuccess());
-        String hydratedTeam = jsonService.asJsonString(hydrated.getValue());
-        Assertions.assertEquals(refTeam, hydratedTeam);
-        assertEqualsResultset(hydrated.getValue());
+        // change with same roster, doesn't do anything
+        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs, messageSource);
+        Assertions.assertTrue(sameRosterChanging.isSuccess());
+        Assertions.assertEquals(3, teamOfDarkElfs.domainEvents().size());
+
+        // change with another roster shall record an event and reset players hired list
+        Roster proElves = rosterCreator.createProElves();
+        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        Assertions.assertTrue(anotherRosterSelecting.isSuccess());
+        Assertions.assertEquals(4, teamOfDarkElfs.domainEvents().size());
+        Assertions.assertEquals(0, teamOfDarkElfs.getHiredPlayers().size());
+    }
+
+    @Test
+    @DisplayName("Remove player should success")
+    void RemovePlayerFromTeamShouldSuccess() {
+        Roster darkElfs = rosterCreator.createDarkElves();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+        PlayerDefinition lineman = playerCreator.createLineman();
+
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        Assertions.assertTrue(playerHiring.isSuccess());
+
+        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(lineman, messageSource);
+        Assertions.assertTrue(playerFiring.isSuccess());
+        Assertions.assertEquals(2,teamOfDarkElfs.getHiredPlayers().size());
+        Assertions.assertEquals(teamOfDarkElfs.domainEvents().size(), 4);
+        Assertions.assertEquals(PlayerRemovedEvent.class, teamOfDarkElfs.domainEvents().getLast().getClass());
+    }
+
+    @Test
+    @DisplayName("Remove not hired player should fail")
+    void RmoveNotHiredPlayerShouldFail() {
+        Roster darkElfs = rosterCreator.createDarkElves();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+        PlayerDefinition lineman = playerCreator.createLineman();
+        PlayerDefinition witch = playerCreator.createWitchElf();
+
+        teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(witch, messageSource);
+        Assertions.assertTrue(playerFiring.isFailure());
+        Assertions.assertEquals("team:Le joueur 01KCVWCDHJVZAW5XC1TZ96QDTZ/Witch Elf n'a pas été recruté, impossible de le supprimer", playerFiring.getError());
     }
 
 }

@@ -1,7 +1,7 @@
 {
-  "@class" : "com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam",
+  "@class" : "com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam",
   "version" : 0,
-  "name" : "Team Name",
+  "name" : "Bloody Beet Roots",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
   "ruleset" : {
     "@class" : "com.bloodbowlclub.team_building.domain.ruleset.Ruleset",
@@ -82,16 +82,17 @@
   "roster" : {
     "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
     "version" : 0,
-    "name" : "Pro Elves",
+    "name" : "Wood Elves",
     "playerDefinitions" : [ {
       "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
-      "name" : "Pro Elf Blitzer",
+      "name" : "Wardancer",
       "maxQuantity" : "2",
-      "price" : "110",
-      "id" : "01KCXWFJ5NTW31BNFS5K7APTR1"
+      "price" : "120",
+      "id" : "01KCSHX7EPNSF162TQE59BHW3P"
     } ],
     "crossLimit" : null,
-    "id" : "01KCHTAHAJGV5DGV72XFPA79A0"
+    "id" : "01KCEZ8SA4XBZF11V4QC0F8AJ3"
   },
-  "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"
+  "hiredPlayers" : [ ],
+  "id" : "01KCYVJSQS3CZ9R16ENT7XX20B"
 }

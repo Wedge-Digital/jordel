@@ -30,18 +30,20 @@ import java.util.Locale;
 @SuperBuilder
 @NoArgsConstructor
 @Getter
-public class CreationRulesetChosenTeam extends DraftTeam {
+public class RulesetSelectedTeam extends DraftTeam {
 
     @NotNull
     @Valid
-    Ruleset ruleset;
+    protected Ruleset ruleset;
 
-    public CreationRulesetChosenTeam(DraftTeam team, Ruleset ruleset) {
+    protected Roster roster;
+
+    public RulesetSelectedTeam(DraftTeam team, Ruleset ruleset) {
         super(team);
         this.ruleset = ruleset;
     }
 
-    public CreationRulesetChosenTeam(CreationRulesetChosenTeam team) {
+    public RulesetSelectedTeam(RulesetSelectedTeam team) {
         super(team);
         this.ruleset = team.ruleset;
     }
@@ -74,6 +76,7 @@ public class CreationRulesetChosenTeam extends DraftTeam {
 
         RosterChosenEvent event = new RosterChosenEvent(this, roster);
         this.addEvent(event);
+        this.roster = roster;
 
         return ResultMap.success(null);
     }
@@ -85,7 +88,7 @@ public class CreationRulesetChosenTeam extends DraftTeam {
     //===============================================================================================================
 
     public Result<AggregateRoot> apply(RosterChosenEvent event) {
-        RosterChosenTeam draftTeam = new RosterChosenTeam(event.getTeam(), event.getRoster());
+        RosterSelectedTeam draftTeam = new RosterSelectedTeam(event.getTeam(), event.getRoster());
         return Result.success(draftTeam);
     }
 

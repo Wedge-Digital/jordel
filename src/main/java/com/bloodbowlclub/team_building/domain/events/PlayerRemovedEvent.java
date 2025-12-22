@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 )
 @Getter
 @NoArgsConstructor
-public class PlayerHiredEvent extends DomainEvent {
+public class PlayerRemovedEvent extends DomainEvent {
 
     @NotNull
     @Valid
@@ -29,7 +29,7 @@ public class PlayerHiredEvent extends DomainEvent {
     private RosterSelectedTeam team;
 
 
-    public PlayerHiredEvent(RosterSelectedTeam team, PlayerDefinition player) {
+    public PlayerRemovedEvent(RosterSelectedTeam team, PlayerDefinition player) {
         super(team.getId());
         this.team = team;
         this.player = player;

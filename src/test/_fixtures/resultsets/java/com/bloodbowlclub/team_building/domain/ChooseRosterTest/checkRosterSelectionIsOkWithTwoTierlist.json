@@ -1,5 +1,5 @@
 {
-  "@class" : "com.bloodbowlclub.team_building.domain.team.CreationRulesetChosenTeam",
+  "@class" : "com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam",
   "version" : 0,
   "name" : "Team Name",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
@@ -78,6 +78,20 @@
       "id" : "01KCY8M1561TDF2Q7RD4RWWTS7"
     } ],
     "id" : "01KCY9AVNY783NJEV0TSSADSVR"
+  },
+  "roster" : {
+    "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
+    "version" : 0,
+    "name" : "Pro Elves",
+    "playerDefinitions" : [ {
+      "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+      "name" : "Pro Elf Blitzer",
+      "maxQuantity" : "2",
+      "price" : "110",
+      "id" : "01KCXWFJ5NTW31BNFS5K7APTR1"
+    } ],
+    "crossLimit" : null,
+    "id" : "01KCHTAHAJGV5DGV72XFPA79A0"
   },
   "id" : "01KCAA6DBY2B3M8TKEV7GH5JNN"
 }

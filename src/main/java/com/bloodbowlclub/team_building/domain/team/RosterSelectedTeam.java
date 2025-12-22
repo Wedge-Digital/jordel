@@ -4,6 +4,8 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.team_building.domain.events.PlayerRemovedEvent;
+import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.bloodbowlclub.team_building.domain.ruleset.CreationBudget;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
@@ -20,6 +22,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.context.MessageSource;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,16 +38,12 @@ import static com.bloodbowlclub.shared.constants.MAX_PLAYER_COUNT;
 @SuperBuilder
 @NoArgsConstructor
 @Getter
-public class RosterChosenTeam extends CreationRulesetChosenTeam {
-
-    @NotNull
-    @Valid
-    Roster roster;
+public class RosterSelectedTeam extends RulesetSelectedTeam {
 
     @NotNull
     List<PlayerDefinition> hiredPlayers = new ArrayList<>();
 
-    public RosterChosenTeam(CreationRulesetChosenTeam team, Roster roster) {
+    public RosterSelectedTeam(RulesetSelectedTeam team, Roster roster) {
         super(team);
         this.roster = roster;
     }
@@ -58,6 +57,29 @@ public class RosterChosenTeam extends CreationRulesetChosenTeam {
     @JsonIgnore
     public int getHiredPlayerCount() {
         return this.hiredPlayers.size();
+    }
+
+    @JsonIgnore
+    private boolean isNotHired(PlayerDefinition player) {
+        if (this.hiredPlayers == null || this.hiredPlayers.isEmpty()) {
+            return true;
+        }
+        return this.hiredPlayers.stream().filter(
+                p-> p.equals(player)
+        ).toList().isEmpty();
+    }
+
+    private ResultMap<Void> removePlayer(PlayerDefinition player) {
+        for (Iterator<PlayerDefinition> it = this.hiredPlayers.iterator(); it.hasNext(); ) {
+            PlayerDefinition p = it.next();
+            if (p.equals(player)) {
+                it.remove();
+                PlayerRemovedEvent evt = new PlayerRemovedEvent(this, player);
+                this.addEvent(evt);
+                return ResultMap.success(null);
+            }
+        }
+        return ResultMap.failure("player_removal", "", ErrorCode.UNKNOWN_ERROR);
     }
 
     //===============================================================================================================
@@ -205,8 +227,29 @@ public class RosterChosenTeam extends CreationRulesetChosenTeam {
 
     @Override
     public ResultMap<Void> chooseRoster(Roster roster, MessageSource msg) {
+        if (roster == this.roster) {
+            return ResultMap.success(null);
+        }
         this.hiredPlayers = new ArrayList<>();
-        return super.chooseRoster(roster, msg);
+        ResultMap<Void> rosterSlection = super.chooseRoster(roster, msg);
+        if (rosterSlection.isFailure()) {
+            return rosterSlection;
+        }
+        return rosterSlection;
+    }
+
+    public ResultMap<Void> removePlayer(PlayerDefinition player, MessageSource msg) {
+        if (isNotHired(player)) {
+            return ResultMap.failure(
+                    "team",
+                    msg.getMessage("team_creation.player_not_hired",
+                            new Object[]{player.getId(),player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+        }
+        ResultMap<Void> playerRemoval = removePlayer(player);
+        if (playerRemoval.isSuccess()) {
+           return playerRemoval;
+        }
+        return ResultMap.failure("team", "abormal player remove termination", ErrorCode.INTERNAL_ERROR);
     }
 
     //===============================================================================================================
@@ -215,11 +258,33 @@ public class RosterChosenTeam extends CreationRulesetChosenTeam {
     //
     //===============================================================================================================
 
+    @Override
     public Result<AggregateRoot> apply(PlayerHiredEvent event) {
         if (this.hiredPlayers == null) {
             this.hiredPlayers = new ArrayList<>();
         }
         this.hiredPlayers.add(event.getPlayer());
+        return Result.success(this);
+    }
+
+    @Override
+    public Result<AggregateRoot> apply(RosterChosenEvent event) {
+        Result<AggregateRoot> sup = super.apply(event);
+        if (sup.isSuccess()) {
+            RosterSelectedTeam team = (RosterSelectedTeam) sup.getValue();
+            team.hiredPlayers = new ArrayList<>();
+            return  Result.success(team);
+        }
+        return sup;
+    }
+
+
+    @Override
+    public Result<AggregateRoot> apply(PlayerRemovedEvent event) {
+        ResultMap<Void> playerRemoval = removePlayer(event.getPlayer());
+        if (playerRemoval.isFailure()) {
+            return Result.failure(playerRemoval.getError(), ErrorCode.INTERNAL_ERROR);
+        }
         return Result.success(this);
     }
 
