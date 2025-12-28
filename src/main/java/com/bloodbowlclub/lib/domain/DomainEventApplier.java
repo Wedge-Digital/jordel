@@ -96,4 +96,14 @@ public class DomainEventApplier {
         return Result.failure(err, INTERNAL_ERROR);
     }
 
+    public Result<AggregateRoot> apply(TeamRerollPurchasedEvent event) {
+        String err = "Event not handled by " + this.getClass().getSimpleName();
+        return Result.failure(err, INTERNAL_ERROR);
+    }
+
+    public Result<AggregateRoot> apply(TeamRerollRemovedEvent event) {
+        String err = "Event not handled by " + this.getClass().getSimpleName();
+        return Result.failure(err, INTERNAL_ERROR);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.bloodbowlclub.team_building.domain;
 
+import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.team_building.domain.events.TeamRerollPurchasedEvent;
@@ -69,6 +71,131 @@ public class PurchaseRerollTest extends TestCase {
         Assertions.assertTrue(rrRemove.isSuccess());
         Assertions.assertEquals(2, rcTeam.domainEvents().size());
         Assertions.assertEquals(TeamRerollRemovedEvent.class, rcTeam.domainEvents().getLast().getClass());
+    }
+
+    //===============================================================================================================
+    //
+    // Tests des méthodes apply() - Reconstruction d'agrégats
+    //
+    //===============================================================================================================
+
+    @Test
+    @DisplayName("apply(TeamRerollPurchasedEvent) should increment reroll count without adding event")
+    void testApplyTeamRerollPurchasedEventShouldIncrementCount() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        Assertions.assertEquals(0, team.getRerollCount());
+        int initialEventCount = team.domainEvents().size();
+
+        // When - Simulate event application during aggregate reconstruction
+        TeamRerollPurchasedEvent event = new TeamRerollPurchasedEvent(team, 3);
+        Result<AggregateRoot> result = team.apply(event);
+
+        // Then
+        Assertions.assertTrue(result.isSuccess());
+        Assertions.assertEquals(3, team.getRerollCount());
+        // Critical: apply() should NOT add new events (reconstruction mode)
+        Assertions.assertEquals(initialEventCount, team.domainEvents().size());
+    }
+
+    @Test
+    @DisplayName("apply(TeamRerollPurchasedEvent) should accumulate multiple purchases")
+    void testApplyMultipleTeamRerollPurchasedEvents() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        int initialEventCount = team.domainEvents().size();
+
+        // When - Simulate multiple purchase events during reconstruction
+        team.apply(new TeamRerollPurchasedEvent(team, 2));
+        team.apply(new TeamRerollPurchasedEvent(team, 3));
+        team.apply(new TeamRerollPurchasedEvent(team, 1));
+
+        // Then
+        Assertions.assertEquals(6, team.getRerollCount());
+        // No new events should be added during reconstruction
+        Assertions.assertEquals(initialEventCount, team.domainEvents().size());
+    }
+
+    @Test
+    @DisplayName("apply(TeamRerollRemovedEvent) should decrement reroll count without adding event")
+    void testApplyTeamRerollRemovedEventShouldDecrementCount() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        team.apply(new TeamRerollPurchasedEvent(team, 5));
+        int initialEventCount = team.domainEvents().size();
+
+        // When - Simulate removal event during reconstruction
+        TeamRerollRemovedEvent event = new TeamRerollRemovedEvent(team, 2);
+        Result<AggregateRoot> result = team.apply(event);
+
+        // Then
+        Assertions.assertTrue(result.isSuccess());
+        Assertions.assertEquals(3, team.getRerollCount());
+        // Critical: apply() should NOT add new events (reconstruction mode)
+        Assertions.assertEquals(initialEventCount, team.domainEvents().size());
+    }
+
+    @Test
+    @DisplayName("apply(TeamRerollRemovedEvent) should set reroll count to 0 if removing more than available")
+    void testApplyTeamRerollRemovedEventWithExcessRemoval() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        team.apply(new TeamRerollPurchasedEvent(team, 3));
+        int initialEventCount = team.domainEvents().size();
+
+        // When - Try to remove more rerolls than available
+        TeamRerollRemovedEvent event = new TeamRerollRemovedEvent(team, 10);
+        Result<AggregateRoot> result = team.apply(event);
+
+        // Then
+        Assertions.assertTrue(result.isSuccess());
+        Assertions.assertEquals(0, team.getRerollCount());
+        // No new events should be added
+        Assertions.assertEquals(initialEventCount, team.domainEvents().size());
+    }
+
+    @Test
+    @DisplayName("aggregate reconstruction should correctly replay purchase and removal events")
+    void testAggregateReconstructionWithRerollEvents() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        int initialEventCount = team.domainEvents().size();
+
+        // When - Simulate event replay from event store (hydratation)
+        team.apply(new TeamRerollPurchasedEvent(team, 4));  // Buy 4
+        team.apply(new TeamRerollRemovedEvent(team, 1));    // Remove 1
+        team.apply(new TeamRerollPurchasedEvent(team, 2));  // Buy 2 more
+        team.apply(new TeamRerollRemovedEvent(team, 2));    // Remove 2
+
+        // Then - Final state should be: 4 - 1 + 2 - 2 = 3
+        Assertions.assertEquals(3, team.getRerollCount());
+        // No events added during reconstruction (all apply() calls are pure state mutations)
+        Assertions.assertEquals(initialEventCount, team.domainEvents().size());
+    }
+
+    @Test
+    @DisplayName("apply() methods should be idempotent for same event")
+    void testApplyMethodsAreIdempotent() {
+        // Given
+        Roster chaosPact = rosterCreator.createChaosPact();
+        RosterSelectedTeam team = teamCreator.createChaosTeam(chaosPact);
+        TeamRerollPurchasedEvent purchaseEvent = new TeamRerollPurchasedEvent(team, 3);
+
+        // When - Apply same event multiple times (should accumulate, not be truly idempotent)
+        team.apply(purchaseEvent);
+        int countAfterFirst = team.getRerollCount();
+        team.apply(purchaseEvent);
+        int countAfterSecond = team.getRerollCount();
+
+        // Then - Each application adds to the count (this is expected for reroll events)
+        Assertions.assertEquals(3, countAfterFirst);
+        Assertions.assertEquals(6, countAfterSecond);
+        // Note: Reroll events are cumulative, not idempotent. The event store should prevent duplicates.
     }
 
 

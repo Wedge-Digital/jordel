@@ -90,8 +90,6 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
             PlayerDefinition p = it.next();
             if (p.equals(player)) {
                 it.remove();
-                PlayerRemovedEvent evt = new PlayerRemovedEvent(this, player);
-                this.addEvent(evt);
                 return ResultMap.success(null);
             }
         }
@@ -103,8 +101,6 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
             TeamStaff s = it.next();
             if (s.equals(staff)) {
                 it.remove();
-                TeamStaffRemovedEvent evt = new TeamStaffRemovedEvent(this, s);
-                this.addEvent(evt);
                 return ResultMap.success(null);
             }
         }
@@ -403,7 +399,9 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         }
         ResultMap<Void> playerRemoval = removePlayer(player);
         if (playerRemoval.isSuccess()) {
-           return playerRemoval;
+            PlayerRemovedEvent evt = new PlayerRemovedEvent(this, player);
+            this.addEvent(evt);
+            return playerRemoval;
         }
         return ResultMap.failure("team", "abormal player remove termination", ErrorCode.INTERNAL_ERROR);
     }
@@ -506,7 +504,7 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         Result<AggregateRoot> sup = super.apply(event);
         if (sup.isSuccess()) {
             RosterSelectedTeam team = (RosterSelectedTeam) sup.getValue();
-            team.hiredPlayers = new ArrayList<>();
+            team.resetPurchases();
             return  Result.success(team);
         }
         return sup;
@@ -531,10 +529,28 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return Result.success(this);
     }
 
+    @Override
     public Result<AggregateRoot> apply(TeamStaffRemovedEvent event) {
         ResultMap<Void> staffRemoval = removeStaff(event.getStaff());
         if (staffRemoval.isFailure()) {
             return Result.failure(staffRemoval.getError(), ErrorCode.INTERNAL_ERROR);
+        }
+        return Result.success(this);
+    }
+
+    @Override
+    public Result<AggregateRoot> apply(TeamRerollPurchasedEvent event) {
+        this.rerollCount += event.getRerollCount();
+        return Result.success(this);
+    }
+
+    @Override
+    public Result<AggregateRoot> apply(TeamRerollRemovedEvent event) {
+        int rerollToRemove = event.getRerollCount();
+        if (rerollToRemove > this.rerollCount) {
+            this.rerollCount = 0;
+        } else {
+            this.rerollCount -= rerollToRemove;
         }
         return Result.success(this);
     }

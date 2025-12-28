@@ -10,6 +10,7 @@ import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
 import com.bloodbowlclub.test_utilities.team_creation.PlayerDefinitionCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
+import com.bloodbowlclub.test_utilities.team_creation.StaffCreator;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,9 +22,9 @@ public class HirePlayerTest extends TestCase {
 
     TeamCreator teamCreator = new TeamCreator();
     RosterCreator rosterCreator = new RosterCreator();
-
     RulesetCreator rulesetCreator = new RulesetCreator();
     PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
+    StaffCreator staffCreator = new StaffCreator();
 
     @Test
     @DisplayName("hiring a player should be ok, if no player are previously drafted, and player definition exist in roster")
@@ -218,31 +219,53 @@ public class HirePlayerTest extends TestCase {
     @Test
     @DisplayName("change roster shall reset reroll count")
     void testChangeRosterShouldResetRerollList() {
+        //Given
         Roster darkElfs = rosterCreator.createDarkElves();
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition lineman = playerCreator.createLineman();
-
         ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
         ResultMap<Void> rerollPruchase = teamOfDarkElfs.purchaseReroll(3, messageSource);
-
         Assertions.assertTrue(rerollPruchase.isSuccess());
         Assertions.assertEquals(3, teamOfDarkElfs.getRerollCount());
 
-        // change with another roster shall record an event and reset players hired list
+        // when
         Roster proElves = rosterCreator.createProElves();
         ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
         Assertions.assertTrue(anotherRosterSelecting.isSuccess());
-        Assertions.assertEquals(4, teamOfDarkElfs.domainEvents().size());
+
+        // should contain 3 hireplayer, 1 reroll purchase, 1 roster change
+        Assertions.assertEquals(5, teamOfDarkElfs.domainEvents().size());
         Assertions.assertEquals(0, teamOfDarkElfs.getHiredPlayers().size());
         Assertions.assertEquals(0, teamOfDarkElfs.getRerollCount());
-
     }
 
     @Test
     @DisplayName("change roster shall reset team staff")
     void testChangeRosterShouldResetTeamStaff() {
-        Assertions.assertTrue(false);
+        // Given
+        Roster darkElfs = rosterCreator.createDarkElves();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+
+        ResultMap<Void> staffBuying = teamOfDarkElfs.buyStaff(staffCreator.createCheerleaders(), messageSource);
+        Assertions.assertTrue(staffBuying.isSuccess());
+        Assertions.assertEquals(1, teamOfDarkElfs.getCheerleaders());
+        Assertions.assertEquals(10, teamOfDarkElfs.getStaffBudget());
+
+        // change with same roster, doesn't do anything
+        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs, messageSource);
+        Assertions.assertTrue(sameRosterChanging.isSuccess());
+        Assertions.assertEquals(1, teamOfDarkElfs.getCheerleaders());
+
+        // when - change with another roster shall reset team staff
+        Roster proElves = rosterCreator.createProElves();
+        ResultMap<Void> anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        Assertions.assertTrue(anotherRosterSelecting.isSuccess());
+
+        // then
+        Assertions.assertEquals(0, teamOfDarkElfs.getCheerleaders());
+        Assertions.assertEquals(0, teamOfDarkElfs.getStaffBudget());
     }
 
 }
