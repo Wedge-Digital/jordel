@@ -215,4 +215,34 @@ public class HirePlayerTest extends TestCase {
         Assertions.assertEquals("team:Le joueur 01KCVWCDHJVZAW5XC1TZ96QDTZ/Witch Elf n'a pas été recruté, impossible de le supprimer", playerFiring.getError());
     }
 
+    @Test
+    @DisplayName("change roster shall reset reroll count")
+    void testChangeRosterShouldResetRerollList() {
+        Roster darkElfs = rosterCreator.createDarkElves();
+        Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
+        RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
+        PlayerDefinition lineman = playerCreator.createLineman();
+
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        ResultMap<Void> rerollPruchase = teamOfDarkElfs.purchaseReroll(3, messageSource);
+
+        Assertions.assertTrue(rerollPruchase.isSuccess());
+        Assertions.assertEquals(3, teamOfDarkElfs.getRerollCount());
+
+        // change with another roster shall record an event and reset players hired list
+        Roster proElves = rosterCreator.createProElves();
+        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        Assertions.assertTrue(anotherRosterSelecting.isSuccess());
+        Assertions.assertEquals(4, teamOfDarkElfs.domainEvents().size());
+        Assertions.assertEquals(0, teamOfDarkElfs.getHiredPlayers().size());
+        Assertions.assertEquals(0, teamOfDarkElfs.getRerollCount());
+
+    }
+
+    @Test
+    @DisplayName("change roster shall reset team staff")
+    void testChangeRosterShouldResetTeamStaff() {
+        Assertions.assertTrue(false);
+    }
+
 }

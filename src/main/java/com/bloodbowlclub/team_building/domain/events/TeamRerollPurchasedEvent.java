@@ -18,20 +18,18 @@ import lombok.NoArgsConstructor;
 )
 @Getter
 @NoArgsConstructor
-public class TeamStaffRemovedEvent extends DomainEvent {
+public class TeamRerollPurchasedEvent extends DomainEvent {
 
     @NotNull
     @Valid
     private RosterSelectedTeam team;
 
-    @NotNull
-    @Valid
-    private TeamStaff staff;
+    private int rerollCount;
 
-    public TeamStaffRemovedEvent(RosterSelectedTeam team, TeamStaff staff) {
+    public TeamRerollPurchasedEvent(RosterSelectedTeam team, int rerollCount) {
         super(team.getId());
         this.team = team;
-        this.staff = staff;
+        this.rerollCount = rerollCount;
     }
 
     @Override

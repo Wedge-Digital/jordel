@@ -14,7 +14,7 @@ import com.bloodbowlclub.team_building.domain.team.BaseTeam;
 import com.bloodbowlclub.team_building.domain.team.RulesetSelectedTeam;
 import com.bloodbowlclub.team_building.domain.team.DraftTeam;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
-import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.bloodbowlclub.test_utilities.cloudinary.CloudinaryUrlBuilder;
 import org.junit.jupiter.api.Assertions;
 

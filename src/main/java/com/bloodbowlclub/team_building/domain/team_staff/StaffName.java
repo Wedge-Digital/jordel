@@ -1,4 +1,4 @@
-package com.bloodbowlclub.team_building.domain.team_stuff;
+package com.bloodbowlclub.team_building.domain.team_staff;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
@@ -7,13 +7,13 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
-public class StuffName extends ValueObject<String> {
+public class StaffName extends ValueObject<String> {
 
     @NotEmpty
     @Size(min = 3, max = 100, message = "must be between 3 and 100 characters")
     private final String value;
 
-    public StuffName(String value) {
+    public StaffName(String value) {
         this.value = value;
     }
 

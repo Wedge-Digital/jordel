@@ -2,11 +2,8 @@ package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
-import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
-import com.bloodbowlclub.team_building.domain.roster.CrossLimitID;
-import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
-import com.bloodbowlclub.team_building.domain.roster.Roster;
-import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.roster.*;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 
 import java.util.List;
 
@@ -37,6 +34,7 @@ public class RosterCreator {
                 .name(new RosterName("Chaos Chosen"))
                 .playerDefinitions(List.of(minotaur))
                 .allowedTeamStaff(getFullTeamStaff())
+                .rerollPrice(new RerollBasePrice(70))
                 .build();
     }
 
@@ -46,6 +44,7 @@ public class RosterCreator {
                 .name(new RosterName("Wood Elves"))
                 .playerDefinitions(List.of(warDancer))
                 .allowedTeamStaff(getFullTeamStaff())
+                .rerollPrice(new RerollBasePrice(50))
                 .build();
     }
 
@@ -59,6 +58,7 @@ public class RosterCreator {
                 .name(new RosterName("Dark Elves"))
                 .playerDefinitions(List.of(witches, blitzer, assassin, linemens))
                 .allowedTeamStaff(getFullTeamStaff())
+                .rerollPrice(new RerollBasePrice(50))
                 .build();
     }
 
@@ -69,6 +69,7 @@ public class RosterCreator {
                 .name(new RosterName("Pro Elves"))
                 .playerDefinitions(List.of(proElfBlitzer))
                 .allowedTeamStaff(getFullTeamStaff())
+                .rerollPrice(new RerollBasePrice(50))
                 .build();
     }
 
@@ -89,6 +90,7 @@ public class RosterCreator {
                 .playerDefinitions(List.of(human, minotaur, ogre, troll, ratOgre))
                 .crossLimit(limit)
                 .allowedTeamStaff(getFullTeamStaff())
+                .rerollPrice(new RerollBasePrice(60))
                 .build();
     }
 
@@ -106,6 +108,7 @@ public class RosterCreator {
                 .playerDefinitions(List.of(zombie, ghoul, revenant, Mummy))
                 .crossLimit(null)
                 .allowedTeamStaff(List.of(cheerleadr, coachAssistant))
+                .rerollPrice(new RerollBasePrice(60))
                 .build();
 
     }

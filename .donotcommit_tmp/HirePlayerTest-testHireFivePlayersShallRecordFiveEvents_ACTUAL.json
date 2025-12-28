@@ -22,21 +22,21 @@
           "id" : "01KCSHX7EPNSF162TQE59BHW3P"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Cheerleaders",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Apothecary",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.CoachAssistant",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -44,6 +44,7 @@
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
         "crossLimit" : null,
+        "rerollPrice" : "50",
         "id" : "01KCEZ8SA4XBZF11V4QC0F8AJ3"
       }, {
         "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
@@ -75,21 +76,21 @@
           "id" : "01KCVWJTB9J6D7NJNSPS81N296"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Cheerleaders",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Apothecary",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.CoachAssistant",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -97,6 +98,7 @@
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
         "crossLimit" : null,
+        "rerollPrice" : "50",
         "id" : "01KCF8ZPZMWRX0KDQ6AW3AMQVZ"
       } ],
       "teamBudget" : "1050",
@@ -116,21 +118,21 @@
           "id" : "01KCXWFJ5NTW31BNFS5K7APTR1"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Cheerleaders",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Apothecary",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.CoachAssistant",
+          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -138,6 +140,7 @@
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
         "crossLimit" : null,
+        "rerollPrice" : "50",
         "id" : "01KCHTAHAJGV5DGV72XFPA79A0"
       } ],
       "teamBudget" : "1100",
@@ -175,21 +178,21 @@
       "id" : "01KCVWJTB9J6D7NJNSPS81N296"
     } ],
     "allowedTeamStaff" : [ {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Cheerleaders",
+      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
       "version" : 0,
       "name" : "Cheerleaders",
       "price" : "10",
       "maxQuantity" : "6",
       "id" : "01KD333HSX1F82N7XPJ3S14YKH"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.Apothecary",
+      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
       "version" : 0,
       "name" : "Apothecary",
       "price" : "50",
       "maxQuantity" : "1",
       "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail.CoachAssistant",
+      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
       "version" : 0,
       "name" : "CoachAssistant",
       "price" : "10",
@@ -197,8 +200,10 @@
       "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
     } ],
     "crossLimit" : null,
+    "rerollPrice" : "50",
     "id" : "01KCF8ZPZMWRX0KDQ6AW3AMQVZ"
   },
+  "rerollCount" : 0,
   "hiredPlayers" : [ {
     "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
     "name" : "Witch Elf",

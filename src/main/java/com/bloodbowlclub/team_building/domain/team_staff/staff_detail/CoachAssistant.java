@@ -1,6 +1,6 @@
-package com.bloodbowlclub.team_building.domain.team_stuff.stuff_detail;
+package com.bloodbowlclub.team_building.domain.team_staff.staff_detail;
 
-import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,5 +16,5 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class Cheerleaders extends TeamStaff {
+public class CoachAssistant extends TeamStaff {
 }

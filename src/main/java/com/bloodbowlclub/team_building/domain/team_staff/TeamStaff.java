@@ -1,4 +1,4 @@
-package com.bloodbowlclub.team_building.domain.team_stuff;
+package com.bloodbowlclub.team_building.domain.team_staff;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,11 +21,11 @@ public class TeamStaff extends AggregateRoot {
     @Valid
     @NotNull
     @JsonIgnore
-    private StuffID stuffId;
+    private StaffID staffId;
 
     @Valid
     @NotNull
-    private StuffName name;
+    private StaffName name;
 
     @Valid
     @NotNull
@@ -33,11 +33,11 @@ public class TeamStaff extends AggregateRoot {
 
     @Valid
     @NotNull
-    private StuffMaxQuantity maxQuantity;
+    private StaffMaxQuantity maxQuantity;
 
     @Override
     public String getId() {
-        return stuffId.toString();
+        return staffId.toString();
     }
 
     @Override
@@ -45,6 +45,6 @@ public class TeamStaff extends AggregateRoot {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeamStaff roster = (TeamStaff) o;
-        return this.stuffId.equals(roster.stuffId);
+        return this.staffId.equals(roster.staffId);
     }
 }

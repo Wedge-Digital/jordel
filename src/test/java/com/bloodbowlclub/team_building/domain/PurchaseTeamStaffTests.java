@@ -5,7 +5,7 @@ import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.team_building.domain.events.TeamStaffPurchasedEvent;
 import com.bloodbowlclub.team_building.domain.events.TeamStaffRemovedEvent;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
-import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.bloodbowlclub.test_utilities.team_creation.StaffCreator;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;
@@ -20,11 +20,11 @@ public class PurchaseTeamStaffTests extends TestCase {
     TeamStaff apothecary = staffCreator.createApothecary();
 
     @Test
-    @DisplayName("Buy Stuff should succed")
-    void testBuyStuffShouldSucceed() {
+    @DisplayName("Buy staff should succed")
+    void testBuystaffShouldSucceed() {
         RosterSelectedTeam team = teamCreator.createChaosTeam();
-        ResultMap<Void> stuffBuying = team.buyStaff(cheerleader, messageSource);
-        Assertions.assertTrue(stuffBuying.isSuccess());
+        ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
+        Assertions.assertTrue(staffBuying.isSuccess());
         Assertions.assertEquals(10, team.getStaffBudget());
         Assertions.assertEquals(1, team.getCheerleaders());
         Assertions.assertEquals(1, team.domainEvents().size());
@@ -32,14 +32,14 @@ public class PurchaseTeamStaffTests extends TestCase {
     }
 
     @Test
-    @DisplayName("remove stuff should succeed if stuff is bought")
-    void testRemoveStuffSucceed() {
+    @DisplayName("remove staff should succeed if staff is bought")
+    void testRemovestaffSucceed() {
         RosterSelectedTeam team = teamCreator.createChaosTeam();
-        ResultMap<Void> stuffBuying = team.buyStaff(cheerleader, messageSource);
-        Assertions.assertTrue(stuffBuying.isSuccess());
+        ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
+        Assertions.assertTrue(staffBuying.isSuccess());
 
-        ResultMap<Void> stuffRemoving = team.removeStaff(cheerleader, messageSource);
-        Assertions.assertTrue(stuffRemoving.isSuccess());
+        ResultMap<Void> staffRemoving = team.removeStaff(cheerleader, messageSource);
+        Assertions.assertTrue(staffRemoving.isSuccess());
         Assertions.assertEquals(0, team.getCheerleaders());
         Assertions.assertEquals(2, team.domainEvents().size());
         Assertions.assertEquals(TeamStaffRemovedEvent.class, team.domainEvents().getLast().getClass());
@@ -47,29 +47,29 @@ public class PurchaseTeamStaffTests extends TestCase {
     }
 
     @Test
-    @DisplayName("buy stuff should fail id budget is not sufficient")
+    @DisplayName("buy staff should fail id budget is not sufficient")
     void testBuyShouldFailIfNotEnoughBudgetRemaining() {
         RosterSelectedTeam team = teamCreator.createTeamWithoutBudgetLeft();
-        ResultMap<Void> stuffBuying = team.buyStaff(cheerleader, messageSource);
-        Assertions.assertTrue(stuffBuying.isFailure());
-        Assertions.assertEquals("team.stuff:la team 01KCSJRWAFMN3T35AVZDX1ASXP/teamName ne dispose pas d'un budget suffisant pour recruter le staff 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders", stuffBuying.getError());
+        ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
+        Assertions.assertTrue(staffBuying.isFailure());
+        Assertions.assertEquals("team.staff:la team 01KCSJRWAFMN3T35AVZDX1ASXP/teamName ne dispose pas d'un budget suffisant pour recruter le staff 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders", staffBuying.getError());
     }
 
     @Test
-    @DisplayName("buy stuff should fail if max stuff is already reached")
+    @DisplayName("buy staff should fail if max staff is already reached")
     void testBuyShouldFailIfMaxIsReached() {
         RosterSelectedTeam team = teamCreator.createTeamWithMaxCheerleaders();
-        ResultMap<Void> stuffBuying = team.buyStaff(cheerleader, messageSource);
-        Assertions.assertTrue(stuffBuying.isFailure());
-        Assertions.assertEquals("team.stuff:Le max de staff d'equipe 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders déjà atteint (6) pour l'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName. Achat impossible.", stuffBuying.getError());
+        ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
+        Assertions.assertTrue(staffBuying.isFailure());
+        Assertions.assertEquals("team.staff:Le max de staff d'equipe 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders déjà atteint (6) pour l'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName. Achat impossible.", staffBuying.getError());
     }
 
     @Test
     @DisplayName("buy apo should fails if roster doesn't allow apo")
     void ApoRecruitShouldFailIfApoIsNotAllowed() {
         RosterSelectedTeam team = teamCreator.createUndeadCandidateTeam();
-        ResultMap<Void> stuffBuying = team.buyStaff(apothecary, messageSource);
-        Assertions.assertTrue(stuffBuying.isFailure());
-        Assertions.assertEquals("team.stuff:Le staff 01KD3PDE0W0P8EXM72KKN20RF6/Apothecary n'est pas autorisé pour l'équipe 01KD3NKX4S6FYBYZDN59YQDZ8J/undead team, achat impossible.", stuffBuying.getError());
+        ResultMap<Void> staffBuying = team.buyStaff(apothecary, messageSource);
+        Assertions.assertTrue(staffBuying.isFailure());
+        Assertions.assertEquals("team.staff:Le staff 01KD3PDE0W0P8EXM72KKN20RF6/Apothecary n'est pas autorisé pour l'équipe 01KD3NKX4S6FYBYZDN59YQDZ8J/undead team, achat impossible.", staffBuying.getError());
     }
 }

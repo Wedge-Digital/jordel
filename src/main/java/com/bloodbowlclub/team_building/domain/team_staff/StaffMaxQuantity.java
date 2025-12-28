@@ -1,4 +1,4 @@
-package com.bloodbowlclub.team_building.domain.team_stuff;
+package com.bloodbowlclub.team_building.domain.team_staff;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;
@@ -7,13 +7,13 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
 
 @JsonSerialize(using = ValueObjectSerializer.class)
-public class StuffPrice extends ValueObject<Integer> {
+public class StaffMaxQuantity extends ValueObject {
 
     @Positive
-    @Max(value = 500, message = "{player_price.max}")
+    @Max(value = 6, message = "{stuff.max}")
     private final int value;
 
-    public StuffPrice(int value) {
+    public StaffMaxQuantity(int value) {
         this.value = value;
     }
 
@@ -29,6 +29,6 @@ public class StuffPrice extends ValueObject<Integer> {
     }
 
     public int getValue() {
-        return value;
+        return this.value;
     }
 }

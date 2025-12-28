@@ -4,7 +4,7 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.domain.events.DomainEvent;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
-import com.bloodbowlclub.team_building.domain.team_stuff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
