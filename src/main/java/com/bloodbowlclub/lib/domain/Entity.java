@@ -11,10 +11,11 @@ import lombok.experimental.SuperBuilder;
 import java.util.HashMap;
 
 @JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
+        use = JsonTypeInfo.Id.CUSTOM,
         include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
+        property = "@type"
 )
+@com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver(com.bloodbowlclub.lib.io.serialization.resolvers.EntityTypeIdResolver.class)
 @NoArgsConstructor
 @SuperBuilder
 public abstract class Entity implements Validable {

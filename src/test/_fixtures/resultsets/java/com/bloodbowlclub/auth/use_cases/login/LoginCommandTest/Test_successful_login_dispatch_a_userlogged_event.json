@@ -5,10 +5,10 @@
   "dataSchema" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
   "dataContentType" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
   "data" : {
-    "@class" : "com.bloodbowlclub.auth.domain.user_account.events.AccountRegisteredEvent",
+    "@type" : "user.account.registered",
     "aggregateId" : "Bagouze",
     "userAccount" : {
-      "@class" : "com.bloodbowlclub.auth.domain.user_account.BaseUserAccount",
+      "@type" : "user.account.base",
       "version" : 0,
       "username" : "Bagouze",
       "email" : "gouze@mail.com",
@@ -23,10 +23,10 @@
   "dataSchema" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
   "dataContentType" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
   "data" : {
-    "@class" : "com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent",
+    "@type" : "user.logged",
     "aggregateId" : "Bagouze",
     "userAccount" : {
-      "@class" : "com.bloodbowlclub.auth.domain.user_account.BaseUserAccount",
+      "@type" : "user.account.base",
       "version" : 0,
       "username" : "Bagouze",
       "email" : "gouze@mail.com",

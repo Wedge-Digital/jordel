@@ -8,10 +8,11 @@ import lombok.Data;
 import java.time.Instant;
 
 @JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
+        use = JsonTypeInfo.Id.CUSTOM,
         include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
+        property = "@type"
 )
+@com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver(com.bloodbowlclub.lib.io.serialization.resolvers.DomainEventTypeIdResolver.class)
 @Data
 public abstract class DomainEvent {
     private final String aggregateId;

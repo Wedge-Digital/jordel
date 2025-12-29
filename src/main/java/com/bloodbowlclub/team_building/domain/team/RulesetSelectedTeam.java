@@ -8,7 +8,6 @@ import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.bloodbowlclub.team_building.domain.events.RosterChosenEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -21,11 +20,6 @@ import org.springframework.context.MessageSource;
 import java.util.Locale;
 
 @EqualsAndHashCode(callSuper = true)
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @Data
 @SuperBuilder
 @NoArgsConstructor

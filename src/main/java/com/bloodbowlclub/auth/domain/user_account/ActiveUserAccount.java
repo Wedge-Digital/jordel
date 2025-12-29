@@ -3,7 +3,6 @@ package com.bloodbowlclub.auth.domain.user_account;
 import com.bloodbowlclub.auth.domain.user_account.events.UserLoggedEvent;
 import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.result.Result;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Past;
 import lombok.Data;
@@ -14,11 +13,6 @@ import lombok.experimental.SuperBuilder;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @Data
 @SuperBuilder
 @NoArgsConstructor

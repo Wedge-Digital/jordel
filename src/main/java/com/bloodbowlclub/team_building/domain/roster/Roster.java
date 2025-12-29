@@ -5,7 +5,6 @@ import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
 import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -16,11 +15,6 @@ import lombok.experimental.SuperBuilder;
 import java.util.List;
 import java.util.Objects;
 
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @Data
 @SuperBuilder
 @NoArgsConstructor

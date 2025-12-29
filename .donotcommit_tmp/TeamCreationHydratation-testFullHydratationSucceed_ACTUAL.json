@@ -1,42 +1,42 @@
 {
-  "@class" : "com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam",
+  "@type" : "team.roster.selected",
   "version" : 0,
   "name" : "Bloody Beet Roots",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
   "ruleset" : {
-    "@class" : "com.bloodbowlclub.team_building.domain.ruleset.Ruleset",
+    "@type" : "ruleset",
     "version" : 0,
     "name" : "Euro Draft Ruleset",
     "tierList" : [ {
-      "@class" : "com.bloodbowlclub.team_building.domain.ruleset.RosterTier",
+      "@type" : "entity.roster.tier",
       "name" : "Top Tier",
       "rosterList" : [ {
-        "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
+        "@type" : "roster",
         "version" : 0,
         "name" : "Wood Elves",
         "playerDefinitions" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Wardancer",
           "maxQuantity" : "2",
           "price" : "120",
           "id" : "01KCSHX7EPNSF162TQE59BHW3P"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+          "@type" : "staff.cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
+          "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
+          "@type" : "staff.coach.assistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -47,50 +47,50 @@
         "rerollPrice" : "50",
         "id" : "01KCEZ8SA4XBZF11V4QC0F8AJ3"
       }, {
-        "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
+        "@type" : "roster",
         "version" : 0,
         "name" : "Dark Elves",
         "playerDefinitions" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Witch Elf",
           "maxQuantity" : "2",
           "price" : "110",
           "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Dark elf blitzer",
           "maxQuantity" : "2",
           "price" : "100",
           "id" : "01KCVWG6BCYNQXEZVZT6BA514M"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Dark elf Assassin",
           "maxQuantity" : "2",
           "price" : "90",
           "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Dark elf lineman",
           "maxQuantity" : "16",
           "price" : "65",
           "id" : "01KCVWJTB9J6D7NJNSPS81N296"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+          "@type" : "staff.cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
+          "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
+          "@type" : "staff.coach.assistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -104,35 +104,35 @@
       "teamBudget" : "1050",
       "id" : "01KCY8KRQMR7GMR8R2Y69X48JA"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.ruleset.RosterTier",
+      "@type" : "entity.roster.tier",
       "name" : "Middle Tier",
       "rosterList" : [ {
-        "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
+        "@type" : "roster",
         "version" : 0,
         "name" : "Pro Elves",
         "playerDefinitions" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+          "@type" : "entity.player.definition",
           "name" : "Pro Elf Blitzer",
           "maxQuantity" : "2",
           "price" : "110",
           "id" : "01KCXWFJ5NTW31BNFS5K7APTR1"
         } ],
         "allowedTeamStaff" : [ {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+          "@type" : "staff.cheerleaders",
           "version" : 0,
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
           "id" : "01KD333HSX1F82N7XPJ3S14YKH"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
+          "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
           "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
         }, {
-          "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
+          "@type" : "staff.coach.assistant",
           "version" : 0,
           "name" : "CoachAssistant",
           "price" : "10",
@@ -149,50 +149,50 @@
     "id" : "01KCY9AVNY783NJEV0TSSADSVR"
   },
   "roster" : {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.Roster",
+    "@type" : "roster",
     "version" : 0,
     "name" : "Dark Elves",
     "playerDefinitions" : [ {
-      "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+      "@type" : "entity.player.definition",
       "name" : "Witch Elf",
       "maxQuantity" : "2",
       "price" : "110",
       "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+      "@type" : "entity.player.definition",
       "name" : "Dark elf blitzer",
       "maxQuantity" : "2",
       "price" : "100",
       "id" : "01KCVWG6BCYNQXEZVZT6BA514M"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+      "@type" : "entity.player.definition",
       "name" : "Dark elf Assassin",
       "maxQuantity" : "2",
       "price" : "90",
       "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+      "@type" : "entity.player.definition",
       "name" : "Dark elf lineman",
       "maxQuantity" : "16",
       "price" : "65",
       "id" : "01KCVWJTB9J6D7NJNSPS81N296"
     } ],
     "allowedTeamStaff" : [ {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+      "@type" : "staff.cheerleaders",
       "version" : 0,
       "name" : "Cheerleaders",
       "price" : "10",
       "maxQuantity" : "6",
       "id" : "01KD333HSX1F82N7XPJ3S14YKH"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Apothecary",
+      "@type" : "staff.apothecary",
       "version" : 0,
       "name" : "Apothecary",
       "price" : "50",
       "maxQuantity" : "1",
       "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
     }, {
-      "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
+      "@type" : "staff.coach.assistant",
       "version" : 0,
       "name" : "CoachAssistant",
       "price" : "10",
@@ -205,52 +205,52 @@
   },
   "rerollCount" : 0,
   "hiredPlayers" : [ {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+    "@type" : "entity.player.definition",
     "name" : "Witch Elf",
     "maxQuantity" : "2",
     "price" : "110",
     "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+    "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
     "id" : "01KCVWJTB9J6D7NJNSPS81N296"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+    "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
     "id" : "01KCVWJTB9J6D7NJNSPS81N296"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+    "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
     "id" : "01KCVWJTB9J6D7NJNSPS81N296"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.roster.PlayerDefinition",
+    "@type" : "entity.player.definition",
     "name" : "Dark elf Assassin",
     "maxQuantity" : "2",
     "price" : "90",
     "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
   } ],
   "hiredStaff" : [ {
-    "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+    "@type" : "staff.cheerleaders",
     "version" : 0,
     "name" : "Cheerleaders",
     "price" : "10",
     "maxQuantity" : "6",
     "id" : "01KD333HSX1F82N7XPJ3S14YKH"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders",
+    "@type" : "staff.cheerleaders",
     "version" : 0,
     "name" : "Cheerleaders",
     "price" : "10",
     "maxQuantity" : "6",
     "id" : "01KD333HSX1F82N7XPJ3S14YKH"
   }, {
-    "@class" : "com.bloodbowlclub.team_building.domain.team_staff.staff_detail.CoachAssistant",
+    "@type" : "staff.coach.assistant",
     "version" : 0,
     "name" : "CoachAssistant",
     "price" : "10",

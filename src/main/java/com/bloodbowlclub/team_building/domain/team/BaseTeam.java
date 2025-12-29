@@ -9,7 +9,6 @@ import com.bloodbowlclub.shared.team.TeamName;
 import com.bloodbowlclub.team_building.domain.commands.RegisterNewTeamCommand;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -18,11 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @EqualsAndHashCode(callSuper = true)
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @Data
 @SuperBuilder
 @NoArgsConstructor

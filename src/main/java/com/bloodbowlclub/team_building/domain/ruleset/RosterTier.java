@@ -3,7 +3,6 @@ package com.bloodbowlclub.team_building.domain.ruleset;
 import  com.bloodbowlclub.lib.domain.Entity;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -12,11 +11,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @NoArgsConstructor
 @SuperBuilder
 @Getter

@@ -11,7 +11,6 @@ import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.bloodbowlclub.team_building.domain.team_staff.staff_detail.Cheerleaders;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -31,11 +30,6 @@ import static com.bloodbowlclub.shared.constants.MAX_PLAYER_COUNT;
 import static com.bloodbowlclub.shared.constants.MAX_REROLL_COUNT;
 
 @EqualsAndHashCode(callSuper = true)
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
 @Data
 @SuperBuilder
 @NoArgsConstructor
