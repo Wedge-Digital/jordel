@@ -1,0 +1,4272 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "teams": [
+    {
+      "uid": "HUMAN",
+      "name": "Human",
+      "rerollCost": 50000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "HUMAN__HUMAN_LINEMAN",
+          "positionName": "Human Lineman",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "HUMAN__HALFLING_HOPEFUL",
+          "positionName": "Halfling Hopeful",
+          "cost": 30000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 7,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 3
+        },
+        {
+          "uid": "HUMAN__HUMAN_CATCHER",
+          "positionName": "Human Catcher",
+          "cost": 75000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "CATCH",
+            "DODGE"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HUMAN__HUMAN_THROWER",
+          "positionName": "Human Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HUMAN__HUMAN_BLITZER",
+          "positionName": "Human Blitzer",
+          "cost": 85000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "TACKLE"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HUMAN__OGRE",
+          "positionName": "Ogre",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_3",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "ORC",
+      "name": "Orc",
+      "rerollCost": 60000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "ORC__ORC_LINEMAN",
+          "positionName": "Orc Lineman",
+          "cost": 50000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 10,
+          "skills": [],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "ORC__GOBLIN_LINEMAN",
+          "positionName": "Goblin Lineman",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "ORC__ORC_THROWER",
+          "positionName": "Orc Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "ORC__ORC_BLITZER",
+          "positionName": "Orc Blitzer",
+          "cost": 85000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "BREAK_TACKLE"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "ORC__BIG_UN_BLOCKER",
+          "positionName": "Big Un Blocker",
+          "cost": 95000,
+          "MA": 5,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "MIGHTY_BLOW",
+            "TAUNT",
+            "THICK_SKULL",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "ORC__TROLL",
+          "positionName": "Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "DWARF",
+      "name": "Dwarf",
+      "rerollCost": 60000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "DWARF__DWARF_LINEMAN",
+          "positionName": "Dwarf Lineman",
+          "cost": 70000,
+          "MA": 4,
+          "ST": 3,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "DEFENSIVE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "DWARF__DWARF_RUNNER",
+          "positionName": "Dwarf Runner",
+          "cost": 80000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "SPRINT",
+            "SURE_HANDS",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DWARF__DWARF_BLITZER",
+          "positionName": "Dwarf Blitzer",
+          "cost": 100000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "DIVING_TACKLE",
+            "TACKLE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "PASSING"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DWARF__TROLL_SLAYER",
+          "positionName": "Troll Slayer",
+          "cost": 95000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 5,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "DAUNTLESS",
+            "FRENZY",
+            "HATRED",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DWARF__DEATHROLLER",
+          "positionName": "Deathroller",
+          "cost": 170000,
+          "MA": 5,
+          "ST": 7,
+          "AG": 5,
+          "PA": 6,
+          "AV": 11,
+          "skills": [
+            "BREAK_TACKLE",
+            "DIRTY_PLAYER",
+            "JUGGERNAUT",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "NO_BALL",
+            "SECRET_WEAPON",
+            "STAND_FIRM"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "SKAVEN",
+      "name": "Skaven",
+      "rerollCost": 50000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "SKAVEN__SKAVEN_CLANRAT",
+          "positionName": "Skaven Clanrat",
+          "cost": 50000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "SKAVEN__SKAVEN_THROWER",
+          "positionName": "Skaven Thrower",
+          "cost": 80000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 2,
+          "AV": 8,
+          "skills": [
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SKAVEN__GUTTER_RUNNER",
+          "positionName": "Gutter Runner",
+          "cost": 85000,
+          "MA": 9,
+          "ST": 2,
+          "AG": 2,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "STAB"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SKAVEN__SKAVEN_BLITZER",
+          "positionName": "Skaven Blitzer",
+          "cost": 90000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "STRIP_BALL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SKAVEN__RAT_OGRE",
+          "positionName": "Rat Ogre",
+          "cost": 150000,
+          "MA": 6,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "ANIMAL_SAVAGERY",
+            "FRENZY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PREHENSILE_TAIL"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "BRETONNIAN",
+      "name": "Bretonnian",
+      "rerollCost": 60000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "BRETONNIAN__BRETONNIAN_SQUIRE",
+          "positionName": "Bretonnian Squire",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "WRESTLE"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "BRETONNIAN__KNIGHT_CATCHER",
+          "positionName": "Knight Catcher",
+          "cost": 85000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "CATCH",
+            "DAUNTLESS",
+            "NERVES_OF_STEEL"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "BRETONNIAN__KNIGHT_THROWER",
+          "positionName": "Knight Thrower",
+          "cost": 80000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "DAUNTLESS",
+            "NERVES_OF_STEEL",
+            "PASS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "BRETONNIAN__GRAIL_KNIGHT",
+          "positionName": "Grail Knight",
+          "cost": 95000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "DAUNTLESS",
+            "STEADY_FOOTING"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "CHAOS RENEGADE",
+      "name": "Chaos Renegade",
+      "rerollCost": 70000,
+      "tier": "Tier 3",
+      "specialRules": [
+        "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED"
+      ],
+      "cross_limit": [{
+        "max": 3,
+        "in": [
+          "CHAOS_RENEGADE__OGRE",
+          "CHAOS_RENEGADE__TROLL",
+          "CHAOS_RENEGADE__MINOTAUR",
+          "CHAOS_RENEGADE__RAT_OGRE"]
+        }
+      ],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_HUMAN",
+          "positionName": "Renegade Human",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "ANIMOSITY_(ALL)"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_GOBLIN",
+          "positionName": "Renegade Goblin",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "ANIMOSITY_(ALL)",
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_ORC",
+          "positionName": "Renegade Orc",
+          "cost": 50000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "ANIMOSITY_(ALL)"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_SKAVEN",
+          "positionName": "Renegade Skaven",
+          "cost": 50000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "ANIMOSITY_(ALL)"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_DARK_ELF",
+          "positionName": "Renegade Dark Elf",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "ANIMOSITY_(ALL)"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RENEGADE_HUMAN_THROWER",
+          "positionName": "Renegade Human Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "ANIMOSITY_(ALL)",
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__TROLL",
+          "positionName": "Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "MUTATIONS",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__OGRE",
+          "positionName": "Ogre",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__MINOTAUR",
+          "positionName": "Minotaur",
+          "cost": 150000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "FRENZY",
+            "HORNS",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "UNCHANNELLED_FURY"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_RENEGADE__RAT_OGRE",
+          "positionName": "Rat Ogre",
+          "cost": 150000,
+          "MA": 6,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "ANIMAL_SAVAGERY",
+            "FRENZY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PREHENSILE_TAIL"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "GNOME",
+      "name": "Gnome",
+      "rerollCost": 50000,
+      "tier": "Tier 4",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "GNOME__GNOME_LINEMAN",
+          "positionName": "Gnome Lineman",
+          "cost": 40000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 7,
+          "skills": [
+            "JUMP_UP",
+            "RIGHT_STUFF",
+            "STUNTY",
+            "WRESTLE"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "GNOME__WOODLAND_FOX",
+          "positionName": "Woodland Fox",
+          "cost": 50000,
+          "MA": 7,
+          "ST": 2,
+          "AG": 2,
+          "PA": 6,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "MY_BALL",
+            "SIDESTEP",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [],
+          "max_quantity": 2
+        },
+        {
+          "uid": "GNOME__GNOME_ILLUSIONIST",
+          "positionName": "Gnome Illusionist",
+          "cost": 50000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 3,
+          "AV": 7,
+          "skills": [
+            "JUMP_UP",
+            "STUNTY",
+            "TRICKSTER",
+            "WRESTLE"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "GNOME__GNOME_BEASTMASTER",
+          "positionName": "Gnome Beastmaster",
+          "cost": 55000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "GUARD",
+            "JUMP_UP",
+            "STUNTY",
+            "WRESTLE"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "GNOME__ALTERN_FOREST_TREEMAN",
+          "positionName": "Altern Forest Treeman",
+          "cost": 120000,
+          "MA": 2,
+          "ST": 6,
+          "AG": 5,
+          "PA": 5,
+          "AV": 11,
+          "skills": [
+            "MIGHTY_BLOW",
+            "STAND_FIRM",
+            "STRONG_ARM",
+            "TAKE_ROOT",
+            "THICK_SKULL",
+            "THROW_TEAMMATE",
+            "TIMMM_BER"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "IMPERIAL NOBILITY",
+      "name": "Imperial Nobility",
+      "rerollCost": 60000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "IMPERIAL_NOBILITY__IMPERIAL_RETAINER",
+          "positionName": "Imperial Retainer",
+          "cost": 45000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "FEND"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "IMPERIAL_NOBILITY__IMPERIAL_THROWER",
+          "positionName": "Imperial Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 2,
+          "AV": 9,
+          "skills": [
+            "GIVE_AND_GO",
+            "PASS",
+            "PRO"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "IMPERIAL_NOBILITY__BODYGUARD",
+          "positionName": "Bodyguard",
+          "cost": 85000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "STAND_FIRM",
+            "WRESTLE"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "IMPERIAL_NOBILITY__NOBLE_BLITZER",
+          "positionName": "Noble Blitzer",
+          "cost": 90000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "CATCH",
+            "PRO"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "IMPERIAL_NOBILITY__OGRE",
+          "positionName": "Ogre",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_3",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "TOMB KINGS",
+      "name": "Tomb Kings",
+      "rerollCost": 60000,
+      "tier": "Tier 2",
+      "specialRules": [
+        "MASTERS_OF_UNDEATH"
+      ],
+      "cross_limit": [],
+      "apothecary": false,
+      "availablePlayers": [
+        {
+          "uid": "TOMB_KINGS__SKELETON_LINEMAN",
+          "positionName": "Skeleton Lineman",
+          "cost": 40000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 8,
+          "skills": [
+            "REGENERATION",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "TOMB_KINGS__TOMB_KINGS_THROWER",
+          "positionName": "Tomb Kings Thrower",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 4,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "PASS",
+            "REGENERATION",
+            "SURE_HANDS",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "TOMB_KINGS__TOMB_KINGS_BLITZER",
+          "positionName": "Tomb Kings Blitzer",
+          "cost": 85000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 4,
+          "PA": 5,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "REGENERATION",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "TOMB_KINGS__TOMB_GUARDIAN",
+          "positionName": "Tomb Guardian",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "BRAWLER",
+            "DECAY",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 4
+        }
+      ]
+    },
+    {
+      "uid": "UNDERWORLD DENIZENS",
+      "name": "Underworld Denizens",
+      "rerollCost": 70000,
+      "tier": "Tier 1",
+      "specialRules": [
+        "BRIBERY_AND_CORRUPTION"
+      ],
+      "cross_limit": [
+        {
+          "max": 1,
+          "in": [
+            "UNDERWORLD_DENIZENS__TROLL",
+            "UNDERWORLD_DENIZENS__RAT_OGRE"
+          ]
+        }
+      ],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "UNDERWORLD_DENIZENS__GOBLIN_LINEMAN",
+          "positionName": "Goblin Lineman",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__SNOTLING_LINEMAN",
+          "positionName": "Snotling Lineman",
+          "cost": 15000,
+          "MA": 5,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "INSIGNIFICANT",
+            "RIGHT_STUFF",
+            "SIDESTEP",
+            "STUNTY",
+            "TITCHY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 6
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__SKAVEN_CLANRAT",
+          "positionName": "Skaven Clanrat",
+          "cost": 50000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "ANIMOSITY_(GOBLIN)"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 3
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__SKAVEN_THROWER",
+          "positionName": "Skaven Thrower",
+          "cost": 80000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 2,
+          "AV": 8,
+          "skills": [
+            "ANIMOSITY_(GOBLIN)",
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__GUTTER_RUNNER",
+          "positionName": "Gutter Runner",
+          "cost": 85000,
+          "MA": 9,
+          "ST": 2,
+          "AG": 2,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "ANIMOSITY_(GOBLIN)",
+            "DODGE",
+            "STAB"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__SKAVEN_BLITZER",
+          "positionName": "Skaven Blitzer",
+          "cost": 90000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "ANIMOSITY_(GOBLIN)",
+            "BLOCK",
+            "STRIP_BALL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__TROLL",
+          "positionName": "Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "UNDERWORLD_DENIZENS__RAT_OGRE",
+          "positionName": "Rat Ogre",
+          "cost": 150000,
+          "MA": 6,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "ANIMAL_SAVAGERY",
+            "FRENZY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PREHENSILE_TAIL"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "VAMPIRE",
+      "name": "Vampire",
+      "rerollCost": 60000,
+      "tier": "Tier 2",
+      "specialRules": [
+        "MASTERS_OF_UNDEATH"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "VAMPIRE__THRALL_LINEMAN",
+          "positionName": "Thrall Lineman",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "VAMPIRE__VAMPIRE_RUNNER",
+          "positionName": "Vampire Runner",
+          "cost": 100000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "BLOODLUST_(2+)",
+            "HYPNOTIC_GAZE",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "VAMPIRE__VAMPIRE_THROWER",
+          "positionName": "Vampire Thrower",
+          "cost": 110000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 2,
+          "PA": 2,
+          "AV": 9,
+          "skills": [
+            "BLOODLUST_(2+)",
+            "HYPNOTIC_GAZE",
+            "PASS",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "VAMPIRE__VAMPIRE_BLITZER",
+          "positionName": "Vampire Blitzer",
+          "cost": 110000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 2,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOODLUST_(3+)",
+            "HYPNOTIC_GAZE",
+            "JUGGERNAUT",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [],
+          "max_quantity": 2
+        },
+        {
+          "uid": "VAMPIRE__VARGHEIST",
+          "positionName": "Vargheist",
+          "cost": 150000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "BLOODLUST_(3+)",
+            "CLAWS",
+            "FRENZY",
+            "LONER_4",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "WOOD ELF",
+      "name": "Wood Elf",
+      "rerollCost": 50000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "WOOD_ELF__WOOD_ELF_LINEMAN",
+          "positionName": "Wood Elf Lineman",
+          "cost": 65000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "WOOD_ELF__WOOD_ELF_THROWER",
+          "positionName": "Wood Elf Thrower",
+          "cost": 85000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 2,
+          "AV": 8,
+          "skills": [
+            "PASS",
+            "SAFE_PAIR_OF_HANDS"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "WOOD_ELF__WOOD_ELF_CATCHER",
+          "positionName": "Wood Elf Catcher",
+          "cost": 90000,
+          "MA": 8,
+          "ST": 2,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "CATCH",
+            "DODGE",
+            "SPRINT"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "WOOD_ELF__WARDANCER",
+          "positionName": "Wardancer",
+          "cost": 130000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "BLOCK",
+            "DODGE",
+            "LEAP"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "WOOD_ELF__LOREN_FOREST_TREEMAN",
+          "positionName": "Loren Forest Treeman",
+          "cost": 120000,
+          "MA": 2,
+          "ST": 6,
+          "AG": 5,
+          "PA": 5,
+          "AV": 11,
+          "skills": [
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "STAND_FIRM",
+            "STRONG_ARM",
+            "TAKE_ROOT",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "AMAZON",
+      "name": "Amazon",
+      "rerollCost": 60000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "AMAZON__EAGLE_WARRIOR",
+          "positionName": "Eagle Warrior",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "AMAZON__PYTHON_WARRIOR",
+          "positionName": "Python Warrior",
+          "cost": 80000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "ON_THE_BALL",
+            "PASS",
+            "SAFE_PASS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "AMAZON__PIRANHA_WARRIOR",
+          "positionName": "Piranha Warrior",
+          "cost": 90000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "HIT_AND_RUN",
+            "JUMP_UP"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "AMAZON__JAGUAR_WARRIOR",
+          "positionName": "Jaguar Warrior",
+          "cost": 110000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "DEFENSIVE",
+            "DODGE"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "BLACK ORC",
+      "name": "Black Orc",
+      "rerollCost": 60000,
+      "tier": "Tier 3",
+      "specialRules": [
+        "BRAWLIN_BRUTES",
+        "BRIBERY_AND_CORRUPTION"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "BLACK_ORC__GOBLIN_BRUISER",
+          "positionName": "Goblin Bruiser",
+          "cost": 45000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "BLACK_ORC__BLACK_ORC",
+          "positionName": "Black Orc",
+          "cost": 90000,
+          "MA": 4,
+          "ST": 4,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BRAWLER",
+            "GRAB"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 6
+        },
+        {
+          "uid": "BLACK_ORC__TRAINED_TROLL",
+          "positionName": "Trained Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "CHAOS CHOSEN",
+      "name": "Chaos Chosen",
+      "rerollCost": 50000,
+      "tier": "Tier 3",
+      "specialRules": [
+        "FAVOURED_OF_CHOOSE_ANY"
+      ],
+      "cross_limit": [{
+        "max": 1,
+        "in": [
+          "CHAOS_CHOSEN__TROLL",
+          "CHAOS_CHOSEN__OGRE",
+          "CHAOS_CHOSEN__MINOTAUR"
+        ]
+      }],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "CHAOS_CHOSEN__BEASTMEN_LINEMAN",
+          "positionName": "Beastmen Lineman",
+          "cost": 55000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "HORNS",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "CHAOS_CHOSEN__CHAOS_CHOSEN",
+          "positionName": "Chaos Chosen",
+          "cost": 100000,
+          "MA": 5,
+          "ST": 4,
+          "AG": 3,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ARM_BAR"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "CHAOS_CHOSEN__TROLL",
+          "positionName": "Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_CHOSEN__OGRE",
+          "positionName": "Ogre",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "CHAOS_CHOSEN__MINOTAUR",
+          "positionName": "Minotaur",
+          "cost": 150000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "FRENZY",
+            "HORNS",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "UNCHANNELLED_FURY"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "CHAOS DWARF",
+      "name": "Chaos Dwarf",
+      "rerollCost": 70000,
+      "tier": "Tier 1",
+      "specialRules": [
+        "FAVOURED_OF_HASHUT"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "CHAOS_DWARF__HOBGOBLIN_LINEMAN",
+          "positionName": "Hobgoblin Lineman",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [],
+          "primaryAccess": [
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "CHAOS_DWARF__SNEAKY_STABBA",
+          "positionName": "Sneaky Stabba",
+          "cost": 60000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 5,
+          "AV": 8,
+          "skills": [
+            "SHADOWING",
+            "STAB"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "CHAOS_DWARF__CHAOS_DWARF_BLOCKER",
+          "positionName": "Chaos Dwarf Blocker",
+          "cost": 70000,
+          "MA": 4,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "IRON_HARD_SKIN",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "CHAOS_DWARF__FLAMESMITH",
+          "positionName": "Flamesmith",
+          "cost": 80000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "BRAWLER",
+            "BREATHE_FIRE",
+            "DISTURBING_PRESENCE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "CHAOS_DWARF__BULL_CENTAUR",
+          "positionName": "Bull Centaur",
+          "cost": 130000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "SPRINT",
+            "SURE_FEET",
+            "THICK_SKULL",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "MUTATIONS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "CHAOS_DWARF__MINOTAUR",
+          "positionName": "Minotaur",
+          "cost": 150000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "FRENZY",
+            "HORNS",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "UNCHANNELLED_FURY"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "DARK ELF",
+      "name": "Dark Elf",
+      "rerollCost": 50000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "DARK_ELF__DARK_ELF_LINEMAN",
+          "positionName": "Dark Elf Lineman",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 9,
+          "skills": [],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "DARK_ELF__DARK_ELF_RUNNER",
+          "positionName": "Dark Elf Runner",
+          "cost": 80000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DUMP_OFF",
+            "PUNT"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DARK_ELF__DARK_ELF_ASSASSIN",
+          "positionName": "Dark Elf Assassin",
+          "cost": 90000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "HIT_AND_RUN",
+            "SHADOWING",
+            "STAB"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DARK_ELF__DARK_ELF_BLITZER",
+          "positionName": "Dark Elf Blitzer",
+          "cost": 105000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "BLOCK"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "DARK_ELF__WITCH_ELF",
+          "positionName": "Witch Elf",
+          "cost": 110000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "FRENZY",
+            "JUMP_UP"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "ELVEN UNION",
+      "name": "Elven Union",
+      "rerollCost": 50000,
+      "tier": "Tier 2",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "ELVEN_UNION__ELF_LINEMAN",
+          "positionName": "Elf Lineman",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "FUMBLEROOSKI"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "ELVEN_UNION__ELF_THROWER",
+          "positionName": "Elf Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 2,
+          "AV": 8,
+          "skills": [
+            "HAIL_MARY_PASS",
+            "PASS"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "ELVEN_UNION__ELF_CATCHER",
+          "positionName": "Elf Catcher",
+          "cost": 100000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 2,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "CATCH",
+            "DIVING_CATCH",
+            "NERVES_OF_STEEL"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "ELVEN_UNION__ELF_BLITZER",
+          "positionName": "Elf Blitzer",
+          "cost": 115000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "SIDESTEP"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "GOBLIN",
+      "name": "Goblin",
+      "rerollCost": 60000,
+      "tier": "Tier 4",
+      "specialRules": [
+        "BRIBERY_AND_CORRUPTION"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "GOBLIN__GOBLIN_LINEMAN",
+          "positionName": "Goblin Lineman",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "GOBLIN__LOONY",
+          "positionName": "Loony",
+          "cost": 40000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 6,
+          "AV": 8,
+          "skills": [
+            "CHAINSAW",
+            "NO_BALL",
+            "SECRET_WEAPON",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__BOMMA",
+          "positionName": "Bomma",
+          "cost": 45000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "BOMBARDIER",
+            "DODGE",
+            "SECRET_WEAPON",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__'OOLIGAN",
+          "positionName": "'Ooligan",
+          "cost": 60000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 5,
+          "AV": 8,
+          "skills": [
+            "DIRTY_PLAYER",
+            "DISTURBING_PRESENCE",
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY",
+            "TAUNT"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__DOOM_DIVER",
+          "positionName": "Doom Diver",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 2,
+          "AG": 3,
+          "PA": 6,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY",
+            "SWOOP"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__FANATIC",
+          "positionName": "Fanatic",
+          "cost": 70000,
+          "MA": 3,
+          "ST": 7,
+          "AG": 3,
+          "PA": 6,
+          "AV": 8,
+          "skills": [
+            "BALL_AND_CHAIN",
+            "NO_BALL",
+            "SECRET_WEAPON",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__POGOER",
+          "positionName": "Pogoer",
+          "cost": 75000,
+          "MA": 7,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "POGO",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "GOBLIN__TRAINED_TROLL",
+          "positionName": "Trained Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "HALFLING",
+      "name": "Halfling",
+      "rerollCost": 60000,
+      "tier": "Tier 4",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "HALFLING__HALFLING_HOPEFUL",
+          "positionName": "Halfling Hopeful",
+          "cost": 30000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 7,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "HALFLING__HALFLING_HEFTY",
+          "positionName": "Halfling Hefty",
+          "cost": 50000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "FEND",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HALFLING__HALFLING_CATCHER",
+          "positionName": "Halfling Catcher",
+          "cost": 55000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 7,
+          "skills": [
+            "CATCH",
+            "DODGE",
+            "RIGHT_STUFF",
+            "SPRINT",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HALFLING__ALTERN_FOREST_TREEMAN",
+          "positionName": "Altern Forest Treeman",
+          "cost": 120000,
+          "MA": 2,
+          "ST": 6,
+          "AG": 5,
+          "PA": 5,
+          "AV": 11,
+          "skills": [
+            "MIGHTY_BLOW",
+            "STAND_FIRM",
+            "STRONG_ARM",
+            "TAKE_ROOT",
+            "THICK_SKULL",
+            "THROW_TEAMMATE",
+            "TIMMM_BER"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "HIGH ELF",
+      "name": "High Elf",
+      "rerollCost": 50000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "HIGH_ELF__HIGH_ELF_LINEMAN",
+          "positionName": "High Elf Lineman",
+          "cost": 65000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 9,
+          "skills": [],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "HIGH_ELF__HIGH_ELF_THROWER",
+          "positionName": "High Elf Thrower",
+          "cost": 100000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 2,
+          "PA": 2,
+          "AV": 9,
+          "skills": [
+            "CLOUD_BURSTER",
+            "PASS",
+            "SAFE_PASS"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "HIGH_ELF__HIGH_ELF_CATCHER",
+          "positionName": "High Elf Catcher",
+          "cost": 90000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 2,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "CATCH"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "HIGH_ELF__HIGH_ELF_BLITZER",
+          "positionName": "High Elf Blitzer",
+          "cost": 100000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 2,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOCK"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "KHORNE",
+      "name": "Khorne",
+      "rerollCost": 60000,
+      "tier": "Tier 3",
+      "specialRules": [
+        "BRAWLIN_BRUTES",
+        "FAVOURED_OF_KHORNE"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "KHORNE__BLOODBORN_MARAUDER",
+          "positionName": "Bloodborn Marauder",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "FRENZY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "KHORNE__KHORNGOR",
+          "positionName": "Khorngor",
+          "cost": 70000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "HORNS",
+            "JUGGERNAUT",
+            "JUMP_UP",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "KHORNE__BLOODSEEKER",
+          "positionName": "Bloodseeker",
+          "cost": 105000,
+          "MA": 5,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "FRENZY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "KHORNE__BLOODSPAWN",
+          "positionName": "Bloodspawn",
+          "cost": 160000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "CLAWS",
+            "FRENZY",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "UNCHANNELLED_FURY"
+          ],
+          "primaryAccess": [
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "LIZARDMAN",
+      "name": "Lizardman",
+      "rerollCost": 70000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "LIZARDMAN__SKINK_LINEMAN",
+          "positionName": "Skink Lineman",
+          "cost": 60000,
+          "MA": 8,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "LIZARDMAN__CHAMELEON_SKINK",
+          "positionName": "Chameleon Skink",
+          "cost": 70000,
+          "MA": 7,
+          "ST": 2,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "ON_THE_BALL",
+            "SHADOWING",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "LIZARDMAN__SAURUS_BLOCKER",
+          "positionName": "Saurus Blocker",
+          "cost": 90000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 5,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "JUGGERNAUT",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 6
+        },
+        {
+          "uid": "LIZARDMAN__KROXIGOR",
+          "positionName": "Kroxigor",
+          "cost": 140000,
+          "MA": 6,
+          "ST": 5,
+          "AG": 5,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PREHENSILE_TAIL",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "NECROMANTIC HORROR",
+      "name": "Necromantic Horror",
+      "rerollCost": 70000,
+      "tier": "Tier 2",
+      "specialRules": [
+        "MASTERS_OF_UNDEATH"
+      ],
+      "cross_limit": [],
+      "apothecary": false,
+      "availablePlayers": [
+        {
+          "uid": "NECROMANTIC_HORROR__ZOMBIE_LINEMAN",
+          "positionName": "Zombie Lineman",
+          "cost": 40000,
+          "MA": 4,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "EYE_GOUGE",
+            "REGENERATION",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "NECROMANTIC_HORROR__GHOUL_RUNNER",
+          "positionName": "Ghoul Runner",
+          "cost": 75000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NECROMANTIC_HORROR__WRAITH",
+          "positionName": "Wraith",
+          "cost": 85000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "FOUL_APPEARANCE",
+            "NO_BALL",
+            "REGENERATION",
+            "SIDESTEP"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NECROMANTIC_HORROR__FLESH_GOLEM",
+          "positionName": "Flesh Golem",
+          "cost": 110000,
+          "MA": 4,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "REGENERATION",
+            "STAND_FIRM",
+            "THICK_SKULL",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NECROMANTIC_HORROR__WEREWOLF",
+          "positionName": "Werewolf",
+          "cost": 120000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "CLAWS",
+            "FRENZY",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "NORSE",
+      "name": "Norse",
+      "rerollCost": 60000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "NORSE__NORSE_RAIDER",
+          "positionName": "Norse Raider",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "BLOCK",
+            "DRUNKARD",
+            "THICK_SKULL",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "NORSE__BEER_BOAR",
+          "positionName": "Beer Boar",
+          "cost": 20000,
+          "MA": 5,
+          "ST": 1,
+          "AG": 3,
+          "PA": 6,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "NO_BALL",
+            "PICK_ME_UP",
+            "STUNTY",
+            "TITCHY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NORSE__NORSE_BERSERKER",
+          "positionName": "Norse Berserker",
+          "cost": 90000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 5,
+          "AV": 8,
+          "skills": [
+            "BLOCK",
+            "FRENZY",
+            "JUMP_UP"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NORSE__VALKYRIE",
+          "positionName": "Valkyrie",
+          "cost": 95000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "CATCH",
+            "DAUNTLESS",
+            "PASS",
+            "STRIP_BALL"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NORSE__ULFWERENER",
+          "positionName": "Ulfwerener",
+          "cost": 105000,
+          "MA": 6,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "FRENZY",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NORSE__YHETEE",
+          "positionName": "Yhetee",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "CLAWS",
+            "DISTURBING_PRESENCE",
+            "FRENZY",
+            "LONER_4",
+            "UNCHANNELLED_FURY"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "NURGLE",
+      "name": "Nurgle",
+      "rerollCost": 60000,
+      "tier": "Tier 3",
+      "specialRules": [
+        "BRAWLIN_BRUTES",
+        "FAVOURED_OF_NURGLE"
+      ],
+      "cross_limit": [],
+      "apothecary": false,
+      "availablePlayers": [
+        {
+          "uid": "NURGLE__ROTTER_LINEMAN",
+          "positionName": "Rotter Lineman",
+          "cost": 40000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "DECAY",
+            "PLAGUE_RIDDEN"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "NURGLE__PESTIGOR",
+          "positionName": "Pestigor",
+          "cost": 70000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "HORNS",
+            "PLAGUE_RIDDEN",
+            "REGENERATION",
+            "STEADY_FOOTING",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "NURGLE__BLOATER",
+          "positionName": "Bloater",
+          "cost": 110000,
+          "MA": 4,
+          "ST": 4,
+          "AG": 4,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "DISTURBING_PRESENCE",
+            "FOUL_APPEARANCE",
+            "PLAGUE_RIDDEN",
+            "REGENERATION",
+            "STAND_FIRM",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "MUTATIONS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 4
+        },
+        {
+          "uid": "NURGLE__ROTSPAWN",
+          "positionName": "Rotspawn",
+          "cost": 140000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "DISTURBING_PRESENCE",
+            "FOUL_APPEARANCE",
+            "LONER_4",
+            "MIGHTY_BLOW",
+            "PICK_ME_UP",
+            "PLAGUE_RIDDEN",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "TENTACLES"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "GENERAL",
+            "MUTATIONS"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "OGRE",
+      "name": "Ogre",
+      "rerollCost": 70000,
+      "tier": "Tier 4",
+      "specialRules": [
+        "BRAWLIN_BRUTES",
+        "LOW_COST_LINEMEN"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "OGRE__GNOBLAR_LINEMAN",
+          "positionName": "Gnoblar Lineman",
+          "cost": 15000,
+          "MA": 5,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "SIDESTEP",
+            "STUNTY",
+            "TITCHY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "OGRE__OGRE_BLOCKER",
+          "positionName": "Ogre Blocker",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 5
+        },
+        {
+          "uid": "OGRE__OGRE_RUNT_PUNTER",
+          "positionName": "Ogre Runt Punter",
+          "cost": 145000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "KICK_TEAMMATE",
+            "MIGHTY_BLOW",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "OLD WORLD ALLIANCE",
+      "name": "Old World Alliance",
+      "rerollCost": 70000,
+      "tier": "Tier 1",
+      "specialRules": [],
+      "cross_limit": [{
+        "max": 1,
+        "in": [
+          "OLD_WORLD_ALLIANCE__OGRE",
+          "OLD_WORLD_ALLIANCE__ALTERN_FOREST_TREEMAN"
+        ]
+      }],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "OLD_WORLD_ALLIANCE__HUMAN_LINEMAN",
+          "positionName": "Human Lineman",
+          "cost": 50000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__HALFLING_HOPEFUL",
+          "positionName": "Halfling Hopeful",
+          "cost": 30000,
+          "MA": 5,
+          "ST": 2,
+          "AG": 3,
+          "PA": 4,
+          "AV": 7,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY"
+          ],
+          "secondaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "max_quantity": 3
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__HUMAN_CATCHER",
+          "positionName": "Human Catcher",
+          "cost": 75000,
+          "MA": 8,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 8,
+          "skills": [
+            "CATCH",
+            "DODGE"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__DWARF_LINEMAN",
+          "positionName": "Dwarf Lineman",
+          "cost": 70000,
+          "MA": 4,
+          "ST": 3,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "DEFENSIVE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "STRENGTH"
+          ],
+          "max_quantity": 3
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__HUMAN_THROWER",
+          "positionName": "Human Thrower",
+          "cost": 75000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 9,
+          "skills": [
+            "PASS",
+            "SURE_HANDS"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__DWARF_RUNNER",
+          "positionName": "Dwarf Runner",
+          "cost": 80000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "SPRINT",
+            "SURE_HANDS",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__HUMAN_BLITZER",
+          "positionName": "Human Blitzer",
+          "cost": 85000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 4,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "TACKLE"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__DWARF_BLITZER",
+          "positionName": "Dwarf Blitzer",
+          "cost": 100000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 4,
+          "AV": 10,
+          "skills": [
+            "BLOCK",
+            "DIVING_TACKLE",
+            "TACKLE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "PASSING"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__TROLL_SLAYER",
+          "positionName": "Troll Slayer",
+          "cost": 95000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 5,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "DAUNTLESS",
+            "FRENZY",
+            "HATRED",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__OGRE",
+          "positionName": "Ogre",
+          "cost": 140000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 4,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "BONE_HEAD",
+            "LONER_3",
+            "MIGHTY_BLOW",
+            "THICK_SKULL",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 1
+        },
+        {
+          "uid": "OLD_WORLD_ALLIANCE__ALTERN_FOREST_TREEMAN",
+          "positionName": "Altern Forest Treeman",
+          "cost": 120000,
+          "MA": 2,
+          "ST": 6,
+          "AG": 5,
+          "PA": 5,
+          "AV": 11,
+          "skills": [
+            "MIGHTY_BLOW",
+            "STAND_FIRM",
+            "STRONG_ARM",
+            "TAKE_ROOT",
+            "THICK_SKULL",
+            "THROW_TEAMMATE",
+            "TIMMM_BER"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 1
+        }
+      ]
+    },
+    {
+      "uid": "SHAMBLING UNDEAD",
+      "name": "Shambling Undead",
+      "rerollCost": 70000,
+      "tier": "Tier 2",
+      "specialRules": [
+        "MASTERS_OF_UNDEATH"
+      ],
+      "cross_limit": [],
+      "apothecary": false,
+      "availablePlayers": [
+        {
+          "uid": "SHAMBLING_UNDEAD__SKELETON_LINEMAN",
+          "positionName": "Skeleton Lineman",
+          "cost": 40000,
+          "MA": 5,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 8,
+          "skills": [
+            "REGENERATION",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "SHAMBLING_UNDEAD__ZOMBIE_LINEMAN",
+          "positionName": "Zombie Lineman",
+          "cost": 40000,
+          "MA": 4,
+          "ST": 3,
+          "AG": 4,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "EYE_GOUGE",
+            "REGENERATION",
+            "UNSTEADY"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "STRENGTH"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "SHAMBLING_UNDEAD__GHOUL_RUNNER",
+          "positionName": "Ghoul Runner",
+          "cost": 75000,
+          "MA": 7,
+          "ST": 3,
+          "AG": 3,
+          "PA": 3,
+          "AV": 8,
+          "skills": [
+            "DODGE",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "secondaryAccess": [
+            "DEVIOUS",
+            "PASSING",
+            "STRENGTH"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SHAMBLING_UNDEAD__WIGHT_BLITZER",
+          "positionName": "Wight Blitzer",
+          "cost": 95000,
+          "MA": 6,
+          "ST": 3,
+          "AG": 3,
+          "PA": 5,
+          "AV": 9,
+          "skills": [
+            "BLOCK",
+            "REGENERATION",
+            "TACKLE",
+            "THICK_SKULL"
+          ],
+          "primaryAccess": [
+            "GENERAL",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SHAMBLING_UNDEAD__MUMMY",
+          "positionName": "Mummy",
+          "cost": 125000,
+          "MA": 3,
+          "ST": 5,
+          "AG": 5,
+          "PA": 6,
+          "AV": 10,
+          "skills": [
+            "MIGHTY_BLOW",
+            "REGENERATION"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    },
+    {
+      "uid": "SNOTLING",
+      "name": "Snotling",
+      "rerollCost": 70000,
+      "tier": "Tier 4",
+      "specialRules": [
+        "BRIBERY_AND_CORRUPTION",
+        "LOW_COST_LINEMEN",
+        "SWARMING"
+      ],
+      "cross_limit": [],
+      "apothecary": true,
+      "availablePlayers": [
+        {
+          "uid": "SNOTLING__SNOTLING_LINEMAN",
+          "positionName": "Snotling Lineman",
+          "cost": 15000,
+          "MA": 5,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "INSIGNIFICANT",
+            "RIGHT_STUFF",
+            "SIDESTEP",
+            "STUNTY",
+            "TITCHY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 16
+        },
+        {
+          "uid": "SNOTLING__FUN-HOPPA",
+          "positionName": "Fun-hoppa",
+          "cost": 20000,
+          "MA": 6,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "POGO",
+            "RIGHT_STUFF",
+            "SIDESTEP",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SNOTLING__STILTY_RUNNA",
+          "positionName": "Stilty Runna",
+          "cost": 20000,
+          "MA": 6,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "DODGE",
+            "RIGHT_STUFF",
+            "SIDESTEP",
+            "SPRINT",
+            "STUNTY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SNOTLING__FUNGUS_FLINGA",
+          "positionName": "Fungus Flinga",
+          "cost": 30000,
+          "MA": 5,
+          "ST": 1,
+          "AG": 3,
+          "PA": 4,
+          "AV": 6,
+          "skills": [
+            "BOMBARDIER",
+            "DODGE",
+            "RIGHT_STUFF",
+            "SECRET_WEAPON",
+            "SIDESTEP",
+            "STUNTY",
+            "TITCHY"
+          ],
+          "primaryAccess": [
+            "AGILITY",
+            "DEVIOUS",
+            "PASSING"
+          ],
+          "secondaryAccess": [
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SNOTLING__PUMP_WAGON",
+          "positionName": "Pump Wagon",
+          "cost": 100000,
+          "MA": 5,
+          "ST": 5,
+          "AG": 5,
+          "PA": 6,
+          "AV": 9,
+          "skills": [
+            "DIRTY_PLAYER",
+            "JUGGERNAUT",
+            "MIGHTY_BLOW",
+            "REALLY_STUPID",
+            "STAND_FIRM"
+          ],
+          "primaryAccess": [
+            "DEVIOUS",
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL"
+          ],
+          "max_quantity": 2
+        },
+        {
+          "uid": "SNOTLING__TRAINED_TROLL",
+          "positionName": "Trained Troll",
+          "cost": 115000,
+          "MA": 4,
+          "ST": 5,
+          "AG": 5,
+          "PA": 5,
+          "AV": 10,
+          "skills": [
+            "ALWAYS_HUNGRY",
+            "MIGHTY_BLOW",
+            "PROJECTILE_VOMIT",
+            "REALLY_STUPID",
+            "REGENERATION",
+            "THROW_TEAMMATE"
+          ],
+          "primaryAccess": [
+            "STRENGTH"
+          ],
+          "secondaryAccess": [
+            "AGILITY",
+            "GENERAL",
+            "PASSING"
+          ],
+          "max_quantity": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "special_rules": [
+    {
+      "uid": "BRAWLIN_BRUTES",
+      "label": "Brutes Bagarreuses"
+    },
+    {
+      "uid": "BRIBERY_AND_CORRUPTION",
+      "label": "Chantage et Corruption"
+    },
+    {
+      "uid": "FAVOURED_OF_CHOOSE_ANY",
+      "label": "Favoris de (Choisissez n'importe lequel)"
+    },
+    {
+      "uid": "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED",
+      "label": "Favoris de (Choisissez Khorne, Nurgle, Slaanesh, Tzeentch ou Indivisé)"
+    },
+    {
+      "uid": "FAVOURED_OF_HASHUT",
+      "label": "Favoris de Hashut"
+    },
+    {
+      "uid": "FAVOURED_OF_KHORNE",
+      "label": "Favoris de Khorne"
+    },
+    {
+      "uid": "FAVOURED_OF_NURGLE",
+      "label": "Favoris de Nurgle"
+    },
+    {
+      "uid": "LOW_COST_LINEMEN",
+      "label": "Lineman a vil prix"
+    },
+    {
+      "uid": "MASTERS_OF_UNDEATH",
+      "label": "Maîtres de la non-vie"
+    },
+    {
+      "uid": "SWARMING",
+      "label": "Déferlement"
+    }
+  ]
+}

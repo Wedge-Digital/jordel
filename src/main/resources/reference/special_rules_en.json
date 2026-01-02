@@ -1,0 +1,44 @@
+{
+  "special_rules": [
+    {
+      "uid": "BRAWLIN_BRUTES",
+      "label": "Brawlin' Brutes"
+    },
+    {
+      "uid": "BRIBERY_AND_CORRUPTION",
+      "label": "Bribery and Corruption"
+    },
+    {
+      "uid": "FAVOURED_OF_CHOOSE_ANY",
+      "label": "Favoured of (Choose Any)"
+    },
+    {
+      "uid": "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED",
+      "label": "Favoured of (Choose Either Khorne, Nurgle, Slaanesh, Tzeentch or Undivided)"
+    },
+    {
+      "uid": "FAVOURED_OF_HASHUT",
+      "label": "Favoured of Hashut"
+    },
+    {
+      "uid": "FAVOURED_OF_KHORNE",
+      "label": "Favoured of Khorne"
+    },
+    {
+      "uid": "FAVOURED_OF_NURGLE",
+      "label": "Favoured of Nurgle"
+    },
+    {
+      "uid": "LOW_COST_LINEMEN",
+      "label": "Low Cost Linemen"
+    },
+    {
+      "uid": "MASTERS_OF_UNDEATH",
+      "label": "Masters of Undeath"
+    },
+    {
+      "uid": "SWARMING",
+      "label": "Swarming"
+    }
+  ]
+}

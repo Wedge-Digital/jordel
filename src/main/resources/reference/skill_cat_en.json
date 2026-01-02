@@ -1,0 +1,34 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "skill_categories": [
+    {
+      "id": "GENERAL",
+      "label": "General"
+    },
+    {
+      "id": "AGILITY",
+      "label": "Agility"
+    },
+    {
+      "id": "STRENGTH",
+      "label": "Strength"
+    },
+    {
+      "id": "PASSING",
+      "label": "Passing"
+    },
+    {
+      "id": "DEVIOUS",
+      "label": "Devious"
+    },
+    {
+      "id": "MUTATIONS",
+      "label": "Mutations"
+    },
+    {
+      "id": "TRAITS",
+      "label": "Traits"
+    }
+  ]
+}
