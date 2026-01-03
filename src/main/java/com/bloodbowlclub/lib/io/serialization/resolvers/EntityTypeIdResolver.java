@@ -1,7 +1,6 @@
 package com.bloodbowlclub.lib.io.serialization.resolvers;
 
 import com.bloodbowlclub.lib.domain.Entity;
-import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.ruleset.RosterTier;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -35,7 +34,6 @@ public class EntityTypeIdResolver extends TypeIdResolverBase {
         // Roster Domain Entities
         // ===================================================================
         register("entity.player.definition", PlayerDefinition.class);
-        register("entity.cross.limit", CrossLimit.class);
 
         // ===================================================================
         // Ruleset Domain Entities

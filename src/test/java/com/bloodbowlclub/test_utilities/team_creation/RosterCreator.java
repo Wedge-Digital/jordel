@@ -30,7 +30,7 @@ public class RosterCreator {
     public Roster createChaosChosen() {
         PlayerDefinition minotaur = playerCreator.createMinotaur();
         return Roster.builder()
-                .rosterId(new RosterID("01KCCH67VJYCMKEN0R43F8KVWD"))
+                .rosterId(new RosterID("CHAOS_CHOSEN"))
                 .name(new RosterName("Chaos Chosen"))
                 .playerDefinitions(List.of(minotaur))
                 .allowedTeamStaff(getFullTeamStaff())
@@ -40,7 +40,7 @@ public class RosterCreator {
 
     public Roster createWoodElves() {
         return Roster.builder()
-                .rosterId(new RosterID("01KCEZ8SA4XBZF11V4QC0F8AJ3"))
+                .rosterId(new RosterID("WOOD_ELVES"))
                 .name(new RosterName("Wood Elves"))
                 .playerDefinitions(List.of(warDancer))
                 .allowedTeamStaff(getFullTeamStaff())
@@ -54,7 +54,7 @@ public class RosterCreator {
         PlayerDefinition assassin = playerCreator.createAssassin();
         PlayerDefinition linemens = playerCreator.createLineman();
         return Roster.builder()
-                .rosterId(new RosterID("01KCF8ZPZMWRX0KDQ6AW3AMQVZ"))
+                .rosterId(new RosterID("DARK_ELVES"))
                 .name(new RosterName("Dark Elves"))
                 .playerDefinitions(List.of(witches, blitzer, assassin, linemens))
                 .allowedTeamStaff(getFullTeamStaff())
@@ -65,7 +65,7 @@ public class RosterCreator {
     public Roster createProElves() {
         PlayerDefinition proElfBlitzer = playerCreator.createProElfBlitzer();
         return Roster.builder()
-                .rosterId(new RosterID("01KCHTAHAJGV5DGV72XFPA79A0"))
+                .rosterId(new RosterID("PRO_ELVES"))
                 .name(new RosterName("Pro Elves"))
                 .playerDefinitions(List.of(proElfBlitzer))
                 .allowedTeamStaff(getFullTeamStaff())
@@ -79,16 +79,23 @@ public class RosterCreator {
         PlayerDefinition ogre = playerCreator.createOgre();
         PlayerDefinition troll = playerCreator.createTroll();
         PlayerDefinition ratOgre = playerCreator.createRatOgre();
-        CrossLimit limit = CrossLimit.builder()
-                .crossLimitID(new CrossLimitID("01KCZ08V7R2GRCKSYBCCRKDGDT"))
-                .limitedPlayers(List.of(minotaur,ogre,troll,ratOgre))
-                .limit(3)
-                .build();
+
+        // Cross limit: max 3 Big Guys parmi Minotaur, Ogre, Troll, Rat Ogre
+        CrossLimit bigGuysLimit = new CrossLimit(
+                3,
+                List.of(
+                    minotaur.getId(),
+                    ogre.getId(),
+                    troll.getId(),
+                    ratOgre.getId()
+                )
+        );
+
         return Roster.builder()
-                .rosterId(new RosterID("01KCSGB4E6XWNQNVAQN3PSXKGB"))
+                .rosterId(new RosterID("CHAOS_PACT"))
                 .name(new RosterName("Chaos Pact"))
                 .playerDefinitions(List.of(human, minotaur, ogre, troll, ratOgre))
-                .crossLimit(limit)
+                .crossLimits(List.of(bigGuysLimit))
                 .allowedTeamStaff(getFullTeamStaff())
                 .rerollPrice(new RerollBasePrice(60))
                 .build();
@@ -103,10 +110,10 @@ public class RosterCreator {
         TeamStaff cheerleadr = staffCreator.createCheerleaders();
         TeamStaff coachAssistant = staffCreator.createCoachAssistant();
         return Roster.builder()
-                .rosterId(new RosterID("01KCSGB4E6XWNQNVAQN3PSXKGB"))
-                .name(new RosterName("Chaos Pact"))
+                .rosterId(new RosterID("UNDEAD"))
+                .name(new RosterName("Undead"))
                 .playerDefinitions(List.of(zombie, ghoul, revenant, Mummy))
-                .crossLimit(null)
+                .crossLimits(List.of())
                 .allowedTeamStaff(List.of(cheerleadr, coachAssistant))
                 .rerollPrice(new RerollBasePrice(60))
                 .build();

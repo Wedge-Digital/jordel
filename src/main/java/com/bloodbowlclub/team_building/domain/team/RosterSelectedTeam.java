@@ -6,6 +6,7 @@ import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.team_building.domain.events.*;
 import com.bloodbowlclub.team_building.domain.ruleset.CreationBudget;
+import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
@@ -210,20 +211,28 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
             return ResultMap.success(null);
         }
 
-        if (roster.getCrossLimit().playerIsNotLimited(player)) {
-            return ResultMap.success(null);
+        // Vérifier chaque règle de cross limit
+        for (CrossLimit crossLimit : roster.getCrossLimits()) {
+            // Si le joueur n'est pas concerné par cette règle, passer à la suivante
+            if (crossLimit.doesNotIncludePlayer(player.getId())) {
+                continue;
+            }
+
+            // Compter combien de joueurs déjà embauchés sont concernés par cette règle
+            long limitedPlayerCount = this.hiredPlayers.stream()
+                    .filter(p -> crossLimit.includesPlayer(p.getId()))
+                    .count();
+
+            // Si la limite est atteinte, retourner une erreur
+            if (limitedPlayerCount >= crossLimit.getLimit()) {
+                return ResultMap.failure(
+                        "team.player",
+                        msg.getMessage("team_creation.cross_limit_failed",
+                        new Object[]{getId(), getName()}, Locale.getDefault()),
+                        ErrorCode.UNPROCESSABLE_ENTITY);
+            }
         }
 
-        int limitedPlayerCount = this.hiredPlayers.stream().filter(
-                p -> this.roster.getCrossLimit().getLimitedPlayers().contains(p)
-        ).toList().size();
-
-        if (limitedPlayerCount >= this.roster.getCrossLimit().getLimit()) {
-            return ResultMap.failure(
-                    "team.player",
-                    msg.getMessage("team_creation.cross_limit_failed",
-                    new Object[]{getId(),getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
-        }
         return ResultMap.success(null);
     }
 

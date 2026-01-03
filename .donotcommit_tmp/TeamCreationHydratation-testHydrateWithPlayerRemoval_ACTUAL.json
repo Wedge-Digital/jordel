@@ -19,7 +19,7 @@
           "name" : "Wardancer",
           "maxQuantity" : "2",
           "price" : "120",
-          "id" : "01KCSHX7EPNSF162TQE59BHW3P"
+          "id" : "WOOD_ELVES__WARDANCER"
         } ],
         "allowedTeamStaff" : [ {
           "@type" : "staff.cheerleaders",
@@ -43,9 +43,9 @@
           "maxQuantity" : "6",
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
-        "crossLimit" : null,
+        "crossLimits" : null,
         "rerollPrice" : "50",
-        "id" : "01KCEZ8SA4XBZF11V4QC0F8AJ3"
+        "id" : "WOOD_ELVES"
       }, {
         "@type" : "roster",
         "version" : 0,
@@ -55,25 +55,25 @@
           "name" : "Witch Elf",
           "maxQuantity" : "2",
           "price" : "110",
-          "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
+          "id" : "DARK_ELVES__WITCH_ELF"
         }, {
           "@type" : "entity.player.definition",
           "name" : "Dark elf blitzer",
           "maxQuantity" : "2",
           "price" : "100",
-          "id" : "01KCVWG6BCYNQXEZVZT6BA514M"
+          "id" : "DARK_ELVES__BLITZER"
         }, {
           "@type" : "entity.player.definition",
           "name" : "Dark elf Assassin",
           "maxQuantity" : "2",
           "price" : "90",
-          "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
+          "id" : "DARK_ELVES__ASSASSIN"
         }, {
           "@type" : "entity.player.definition",
           "name" : "Dark elf lineman",
           "maxQuantity" : "16",
           "price" : "65",
-          "id" : "01KCVWJTB9J6D7NJNSPS81N296"
+          "id" : "DARK_ELVES__LINEMAN"
         } ],
         "allowedTeamStaff" : [ {
           "@type" : "staff.cheerleaders",
@@ -97,9 +97,9 @@
           "maxQuantity" : "6",
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
-        "crossLimit" : null,
+        "crossLimits" : null,
         "rerollPrice" : "50",
-        "id" : "01KCF8ZPZMWRX0KDQ6AW3AMQVZ"
+        "id" : "DARK_ELVES"
       } ],
       "teamBudget" : "1050",
       "id" : "01KCY8KRQMR7GMR8R2Y69X48JA"
@@ -113,9 +113,9 @@
         "playerDefinitions" : [ {
           "@type" : "entity.player.definition",
           "name" : "Pro Elf Blitzer",
-          "maxQuantity" : "2",
-          "price" : "110",
-          "id" : "01KCXWFJ5NTW31BNFS5K7APTR1"
+          "maxQuantity" : "4",
+          "price" : "105",
+          "id" : "PRO_ELVES__BLITZER"
         } ],
         "allowedTeamStaff" : [ {
           "@type" : "staff.cheerleaders",
@@ -139,9 +139,9 @@
           "maxQuantity" : "6",
           "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
         } ],
-        "crossLimit" : null,
+        "crossLimits" : null,
         "rerollPrice" : "50",
-        "id" : "01KCHTAHAJGV5DGV72XFPA79A0"
+        "id" : "PRO_ELVES"
       } ],
       "teamBudget" : "1100",
       "id" : "01KCY8M1561TDF2Q7RD4RWWTS7"
@@ -157,25 +157,25 @@
       "name" : "Witch Elf",
       "maxQuantity" : "2",
       "price" : "110",
-      "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
+      "id" : "DARK_ELVES__WITCH_ELF"
     }, {
       "@type" : "entity.player.definition",
       "name" : "Dark elf blitzer",
       "maxQuantity" : "2",
       "price" : "100",
-      "id" : "01KCVWG6BCYNQXEZVZT6BA514M"
+      "id" : "DARK_ELVES__BLITZER"
     }, {
       "@type" : "entity.player.definition",
       "name" : "Dark elf Assassin",
       "maxQuantity" : "2",
       "price" : "90",
-      "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
+      "id" : "DARK_ELVES__ASSASSIN"
     }, {
       "@type" : "entity.player.definition",
       "name" : "Dark elf lineman",
       "maxQuantity" : "16",
       "price" : "65",
-      "id" : "01KCVWJTB9J6D7NJNSPS81N296"
+      "id" : "DARK_ELVES__LINEMAN"
     } ],
     "allowedTeamStaff" : [ {
       "@type" : "staff.cheerleaders",
@@ -199,9 +199,9 @@
       "maxQuantity" : "6",
       "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
     } ],
-    "crossLimit" : null,
+    "crossLimits" : null,
     "rerollPrice" : "50",
-    "id" : "01KCF8ZPZMWRX0KDQ6AW3AMQVZ"
+    "id" : "DARK_ELVES"
   },
   "rerollCount" : 0,
   "hiredPlayers" : [ {
@@ -209,31 +209,31 @@
     "name" : "Witch Elf",
     "maxQuantity" : "2",
     "price" : "110",
-    "id" : "01KCVWCDHJVZAW5XC1TZ96QDTZ"
+    "id" : "DARK_ELVES__WITCH_ELF"
   }, {
     "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
-    "id" : "01KCVWJTB9J6D7NJNSPS81N296"
+    "id" : "DARK_ELVES__LINEMAN"
   }, {
     "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
-    "id" : "01KCVWJTB9J6D7NJNSPS81N296"
+    "id" : "DARK_ELVES__LINEMAN"
   }, {
     "@type" : "entity.player.definition",
     "name" : "Dark elf lineman",
     "maxQuantity" : "16",
     "price" : "65",
-    "id" : "01KCVWJTB9J6D7NJNSPS81N296"
+    "id" : "DARK_ELVES__LINEMAN"
   }, {
     "@type" : "entity.player.definition",
     "name" : "Dark elf Assassin",
     "maxQuantity" : "2",
     "price" : "90",
-    "id" : "01KCVWJ188GT7MV9DNMZ73HK1F"
+    "id" : "DARK_ELVES__ASSASSIN"
   } ],
   "hiredStaff" : [ ],
   "id" : "01KCYVJSQS3CZ9R16ENT7XX20B"

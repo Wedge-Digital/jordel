@@ -684,13 +684,15 @@
       "specialRules": [
         "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED"
       ],
-      "cross_limit": [{
-        "max": 3,
-        "in": [
-          "CHAOS_RENEGADE__OGRE",
-          "CHAOS_RENEGADE__TROLL",
-          "CHAOS_RENEGADE__MINOTAUR",
-          "CHAOS_RENEGADE__RAT_OGRE"]
+      "cross_limit": [
+        {
+          "max": 3,
+          "in": [
+            "CHAOS_RENEGADE__OGRE",
+            "CHAOS_RENEGADE__TROLL",
+            "CHAOS_RENEGADE__MINOTAUR",
+            "CHAOS_RENEGADE__RAT_OGRE"
+          ]
         }
       ],
       "apothecary": true,
@@ -2005,14 +2007,16 @@
       "specialRules": [
         "FAVOURED_OF_CHOOSE_ANY"
       ],
-      "cross_limit": [{
-        "max": 1,
-        "in": [
-          "CHAOS_CHOSEN__TROLL",
-          "CHAOS_CHOSEN__OGRE",
-          "CHAOS_CHOSEN__MINOTAUR"
-        ]
-      }],
+      "cross_limit": [
+        {
+          "limit": 1,
+          "limitedPlayerIds": [
+            "CHAOS_CHOSEN__TROLL",
+            "CHAOS_CHOSEN__OGRE",
+            "CHAOS_CHOSEN__MINOTAUR"
+          ]
+        }
+      ],
       "apothecary": true,
       "availablePlayers": [
         {
@@ -3695,13 +3699,15 @@
       "rerollCost": 70000,
       "tier": "Tier 1",
       "specialRules": [],
-      "cross_limit": [{
-        "max": 1,
-        "in": [
-          "OLD_WORLD_ALLIANCE__OGRE",
-          "OLD_WORLD_ALLIANCE__ALTERN_FOREST_TREEMAN"
-        ]
-      }],
+      "cross_limit": [
+        {
+          "max": 1,
+          "in": [
+            "OLD_WORLD_ALLIANCE__OGRE",
+            "OLD_WORLD_ALLIANCE__ALTERN_FOREST_TREEMAN"
+          ]
+        }
+      ],
       "apothecary": true,
       "availablePlayers": [
         {

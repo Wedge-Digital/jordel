@@ -1,7 +1,6 @@
 package com.bloodbowlclub.lib.domain;
 
 import com.bloodbowlclub.lib.io.serialization.resolvers.EntityTypeIdResolver;
-import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.ruleset.RosterTier;
 import org.junit.jupiter.api.DisplayName;
@@ -23,14 +22,12 @@ public class EntityTypeIdResolverTest {
     void testAllEntityTypesAreRegistered() {
         // Roster Domain Entities
         assertTrue(EntityTypeIdResolver.isRegistered(PlayerDefinition.class));
-        assertTrue(EntityTypeIdResolver.isRegistered(CrossLimit.class));
 
         // Ruleset Domain Entities
         assertTrue(EntityTypeIdResolver.isRegistered(RosterTier.class));
 
         // Check aliases
         assertTrue(EntityTypeIdResolver.isRegistered("entity.player.definition"));
-        assertTrue(EntityTypeIdResolver.isRegistered("entity.cross.limit"));
         assertTrue(EntityTypeIdResolver.isRegistered("entity.roster.tier"));
     }
 
@@ -39,8 +36,6 @@ public class EntityTypeIdResolverTest {
     void testGetAlias() {
         assertEquals("entity.player.definition",
             EntityTypeIdResolver.getAlias(PlayerDefinition.class));
-        assertEquals("entity.cross.limit",
-            EntityTypeIdResolver.getAlias(CrossLimit.class));
         assertEquals("entity.roster.tier",
             EntityTypeIdResolver.getAlias(RosterTier.class));
     }
@@ -50,8 +45,6 @@ public class EntityTypeIdResolverTest {
     void testGetEntityClass() {
         assertEquals(PlayerDefinition.class,
             EntityTypeIdResolver.getEntityClass("entity.player.definition"));
-        assertEquals(CrossLimit.class,
-            EntityTypeIdResolver.getEntityClass("entity.cross.limit"));
         assertEquals(RosterTier.class,
             EntityTypeIdResolver.getEntityClass("entity.roster.tier"));
     }
@@ -111,10 +104,6 @@ public class EntityTypeIdResolverTest {
         PlayerDefinition player = PlayerDefinition.builder().build();
         assertEquals("entity.player.definition", resolver.idFromValue(player));
 
-        // Test CrossLimit
-        CrossLimit crossLimit = CrossLimit.builder().build();
-        assertEquals("entity.cross.limit", resolver.idFromValue(crossLimit));
-
         // Test RosterTier
         RosterTier tier = RosterTier.builder().build();
         assertEquals("entity.roster.tier", resolver.idFromValue(tier));
@@ -149,13 +138,6 @@ public class EntityTypeIdResolverTest {
             "Alias should be at least 50% shorter than full class name");
         assertEquals("entity.player.definition", playerAlias);
 
-        // CrossLimit example
-        String crossLimitAlias = EntityTypeIdResolver.getAlias(CrossLimit.class);
-        String crossLimitFullClassName = "com.bloodbowlclub.team_building.domain.roster.CrossLimit";
-        assertTrue(crossLimitAlias.length() < crossLimitFullClassName.length() / 2,
-            "Alias should be at least 50% shorter than full class name");
-        assertEquals("entity.cross.limit", crossLimitAlias);
-
         // RosterTier example
         String tierAlias = EntityTypeIdResolver.getAlias(RosterTier.class);
         String tierFullClassName = "com.bloodbowlclub.team_building.domain.ruleset.RosterTier";
@@ -179,12 +161,6 @@ public class EntityTypeIdResolverTest {
         String playerAlias = EntityTypeIdResolver.getAlias(playerClass);
         Class<? extends Entity> playerClassBack = EntityTypeIdResolver.getEntityClass(playerAlias);
         assertEquals(playerClass, playerClassBack);
-
-        // CrossLimit
-        Class<? extends Entity> crossLimitClass = CrossLimit.class;
-        String crossLimitAlias = EntityTypeIdResolver.getAlias(crossLimitClass);
-        Class<? extends Entity> crossLimitClassBack = EntityTypeIdResolver.getEntityClass(crossLimitAlias);
-        assertEquals(crossLimitClass, crossLimitClassBack);
 
         // RosterTier
         Class<? extends Entity> tierClass = RosterTier.class;

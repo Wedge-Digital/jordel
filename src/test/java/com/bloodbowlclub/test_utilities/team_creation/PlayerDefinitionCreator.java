@@ -6,7 +6,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createWardancer() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCSHX7EPNSF162TQE59BHW3P"))
+                .playerDefinitionID(new PlayerDefinitionID("WOOD_ELVES__WARDANCER"))
                 .name(new PlayerDefinitionName("Wardancer"))
                 .price(new PlayerPrice(120))
                 .maxQuantity(new PlayerMaxQuantity(2))
@@ -15,7 +15,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createWoodElfLineman() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCWNNJR6HXBS8MXVDVS7JZHM"))
+                .playerDefinitionID(new PlayerDefinitionID("WOOD_ELVES__LINEMAN"))
                 .name(new PlayerDefinitionName("Wood Elf Lineman"))
                 .price(new PlayerPrice(65))
                 .maxQuantity(new PlayerMaxQuantity(16))
@@ -24,7 +24,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createHuman() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCSGVRA218V8TNT1MRHT1P7K"))
+                .playerDefinitionID(new PlayerDefinitionID("HUMAN__LINEMAN"))
                 .name(new PlayerDefinitionName("human"))
                 .price(new PlayerPrice(100))
                 .maxQuantity(new PlayerMaxQuantity(2))
@@ -33,7 +33,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createWitchElf() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCVWCDHJVZAW5XC1TZ96QDTZ"))
+                .playerDefinitionID(new PlayerDefinitionID("DARK_ELVES__WITCH_ELF"))
                 .name(new PlayerDefinitionName("Witch Elf"))
                 .price(new PlayerPrice(110))
                 .maxQuantity(new PlayerMaxQuantity(2))
@@ -42,7 +42,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createBlitzer() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCVWG6BCYNQXEZVZT6BA514M"))
+                .playerDefinitionID(new PlayerDefinitionID("DARK_ELVES__BLITZER"))
                 .name(new PlayerDefinitionName("Dark elf blitzer"))
                 .price(new PlayerPrice(100))
                 .maxQuantity(new PlayerMaxQuantity(2))
@@ -51,7 +51,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createAssassin() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCVWJ188GT7MV9DNMZ73HK1F"))
+                .playerDefinitionID(new PlayerDefinitionID("DARK_ELVES__ASSASSIN"))
                 .name(new PlayerDefinitionName("Dark elf Assassin"))
                 .price(new PlayerPrice(90))
                 .maxQuantity(new PlayerMaxQuantity(2))
@@ -60,7 +60,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createLineman() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCVWJTB9J6D7NJNSPS81N296"))
+                .playerDefinitionID(new PlayerDefinitionID("DARK_ELVES__LINEMAN"))
                 .name(new PlayerDefinitionName("Dark elf lineman"))
                 .price(new PlayerPrice(65))
                 .maxQuantity(new PlayerMaxQuantity(16))
@@ -69,7 +69,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createMinotaur() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCWGE6PAW5FMNCGD7EEKDTWF"))
+                .playerDefinitionID(new PlayerDefinitionID("CHAOS_CHOSEN__MINOTAUR"))
                 .name(new PlayerDefinitionName("Minotaur"))
                 .price(new PlayerPrice(150))
                 .maxQuantity(new PlayerMaxQuantity(1))
@@ -78,7 +78,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createOgre() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCWGHV7EZSZFXVFSX108QB7D"))
+                .playerDefinitionID(new PlayerDefinitionID("CHAOS_CHOSEN__OGRE"))
                 .name(new PlayerDefinitionName("Ogre"))
                 .price(new PlayerPrice(140))
                 .maxQuantity(new PlayerMaxQuantity(1))
@@ -87,7 +87,7 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createRatOgre() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCWGK9PD5YPKVTWNCQNW1F9P"))
+                .playerDefinitionID(new PlayerDefinitionID("SKAVEN__RAT_OGRE"))
                 .name(new PlayerDefinitionName("Rat Ogre"))
                 .price(new PlayerPrice(150))
                 .maxQuantity(new PlayerMaxQuantity(1))
@@ -96,49 +96,52 @@ public class PlayerDefinitionCreator {
 
     public PlayerDefinition createTroll() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCWGMQDTH9Q9WWJWSEYNV7GM"))
+                .playerDefinitionID(new PlayerDefinitionID("CHAOS_CHOSEN__TROLL"))
                 .name(new PlayerDefinitionName("Troll"))
-                .price(new PlayerPrice(115))
+                .price(new PlayerPrice(150))
                 .maxQuantity(new PlayerMaxQuantity(1))
                 .build();
     }
 
     public PlayerDefinition createProElfBlitzer() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KCXWFJ5NTW31BNFS5K7APTR1"))
+                .playerDefinitionID(new PlayerDefinitionID("PRO_ELVES__BLITZER"))
                 .name(new PlayerDefinitionName("Pro Elf Blitzer"))
-                .price(new PlayerPrice(110))
-                .maxQuantity(new PlayerMaxQuantity(2))
+                .price(new PlayerPrice(105))
+                .maxQuantity(new PlayerMaxQuantity(4))
                 .build();
     }
 
-    public PlayerDefinition createZombie(){
+    public PlayerDefinition createZombie() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KD3P063XS6K4YXM5MH0VWBQM"))
+                .playerDefinitionID(new PlayerDefinitionID("UNDEAD__ZOMBIE"))
                 .name(new PlayerDefinitionName("Zombie"))
                 .price(new PlayerPrice(40))
                 .maxQuantity(new PlayerMaxQuantity(16))
                 .build();
     }
-    public PlayerDefinition createGhoul(){
+
+    public PlayerDefinition createGhoul() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KD3P2TRW6DG66Y1PCMWQK2VA"))
+                .playerDefinitionID(new PlayerDefinitionID("UNDEAD__GHOUL"))
                 .name(new PlayerDefinitionName("Ghoul"))
                 .price(new PlayerPrice(75))
-                .maxQuantity(new PlayerMaxQuantity(2))
+                .maxQuantity(new PlayerMaxQuantity(4))
                 .build();
     }
-    public PlayerDefinition createRevenant(){
+
+    public PlayerDefinition createRevenant() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KD3P3P87GB1H8CA9XXGQ44V9"))
+                .playerDefinitionID(new PlayerDefinitionID("UNDEAD__REVENANT"))
                 .name(new PlayerDefinitionName("Revenant"))
-                .price(new PlayerPrice(95))
+                .price(new PlayerPrice(90))
                 .maxQuantity(new PlayerMaxQuantity(2))
                 .build();
     }
-    public PlayerDefinition createMummy(){
+
+    public PlayerDefinition createMummy() {
         return PlayerDefinition.builder()
-                .playerDefinitionID( new PlayerDefinitionID("01KD3P49K9YG2C9Z9PQ6VMF7W5"))
+                .playerDefinitionID(new PlayerDefinitionID("UNDEAD__MUMMY"))
                 .name(new PlayerDefinitionName("Mummy"))
                 .price(new PlayerPrice(125))
                 .maxQuantity(new PlayerMaxQuantity(2))

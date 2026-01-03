@@ -37,7 +37,8 @@ public class Roster extends AggregateRoot {
     @Valid
     private List<TeamStaff> allowedTeamStaff;
 
-    private CrossLimit crossLimit;
+    @Valid
+    private List<CrossLimit> crossLimits;
 
     @Valid
     @NotNull
@@ -63,7 +64,11 @@ public class Roster extends AggregateRoot {
     }
 
     public boolean hasNoCrossLimits() {
-        return this.crossLimit == null;
+        return this.crossLimits == null || this.crossLimits.isEmpty();
+    }
+
+    public boolean hasCrossLimits() {
+        return !hasNoCrossLimits();
     }
 
     //===============================================================================================================

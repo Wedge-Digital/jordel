@@ -87,7 +87,7 @@ public class ChooseRosterTest extends TestCase {
         Assertions.assertEquals(ErrorCode.INTERNAL_ERROR, rosterSelection.getErrorCode());
         Map<String, String> errors = rosterSelection.errorMap();
         HashMap<String,String> expectedErrors = new HashMap<>();
-        expectedErrors.put("team", "Le roster 01KCEZ8SA4XBZF11V4QC0F8AJ3/Wood Elves n'est pas autorisé par les règles de création \"01KCYZ78YX2FHC3H3KD2Q0YE96/Chaos Pact Ruleset\", impossible de valider la sélection du roster.");
+        expectedErrors.put("team", "Le roster WOOD_ELVES/Wood Elves n'est pas autorisé par les règles de création \"01KCYZ78YX2FHC3H3KD2Q0YE96/Chaos Pact Ruleset\", impossible de valider la sélection du roster.");
         Assertions.assertEquals(expectedErrors, errors);
     }
 

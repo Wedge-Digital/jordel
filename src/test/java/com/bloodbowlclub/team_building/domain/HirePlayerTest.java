@@ -43,7 +43,7 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition line = playerCreator.createWardancer();
         ResultMap<Void> hiring = rcTeam.hirePlayer(line, messageSource);
         Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:Le roster 01KCCH67VJYCMKEN0R43F8KVWD/Chaos Chosen ne contient pas de joueur \"01KCSHX7EPNSF162TQE59BHW3P/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
+        Assertions.assertEquals("team.player:Le roster CHAOS_CHOSEN/Chaos Chosen ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class HirePlayerTest extends TestCase {
         ResultMap<Void> hiring = rcTeam.hirePlayer(warDancer, messageSource);
 
         Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:Le roster 01KCSGB4E6XWNQNVAQN3PSXKGB/Chaos Pact ne contient pas de joueur \"01KCSHX7EPNSF162TQE59BHW3P/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
+        Assertions.assertEquals("team.player:Le roster CHAOS_PACT/Chaos Pact ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
     }
 
     @Test
@@ -106,7 +106,7 @@ public class HirePlayerTest extends TestCase {
         ResultMap<Void> hiring = teamWithDarkies.hirePlayer(witches, messageSource);
         Assertions.assertTrue(hiring.isFailure());
         Assertions.assertEquals(2, teamWithDarkies.getHiredPlayerCount());
-        Assertions.assertEquals("team.player:L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de positionnel de type 01KCVWCDHJVZAW5XC1TZ96QDTZ/Witch Elf", hiring.getError());
+        Assertions.assertEquals("team.player:L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de positionnel de type DARK_ELVES__WITCH_ELF/Witch Elf", hiring.getError());
     }
 
     @Test
@@ -139,7 +139,7 @@ public class HirePlayerTest extends TestCase {
 
         ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(witch, witch, assassin, assassin, blitzer, blitzer, lineman, lineman, lineman,lineman,lineman, lineman, lineman), messageSource);
         Assertions.assertTrue(playerHiring.isFailure());
-        Assertions.assertEquals("team.player:la team 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne dispose pas d'un budget suffisant pour recruter le joueur 01KCVWJTB9J6D7NJNSPS81N296/Dark elf lineman", playerHiring.getError());
+        Assertions.assertEquals("team.player:la team 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne dispose pas d'un budget suffisant pour recruter le joueur DARK_ELVES__LINEMAN/Dark elf lineman", playerHiring.getError());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class HirePlayerTest extends TestCase {
         teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
         ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(witch, messageSource);
         Assertions.assertTrue(playerFiring.isFailure());
-        Assertions.assertEquals("team:Le joueur 01KCVWCDHJVZAW5XC1TZ96QDTZ/Witch Elf n'a pas été recruté, impossible de le supprimer", playerFiring.getError());
+        Assertions.assertEquals("team:Le joueur DARK_ELVES__WITCH_ELF/Witch Elf n'a pas été recruté, impossible de le supprimer", playerFiring.getError());
     }
 
     @Test

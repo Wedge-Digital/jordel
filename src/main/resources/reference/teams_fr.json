@@ -2009,8 +2009,8 @@
       ],
       "cross_limit": [
         {
-          "max": 1,
-          "in": [
+          "limit": 1,
+          "limitedPlayerIds": [
             "CHAOS_CHOSEN__TROLL",
             "CHAOS_CHOSEN__OGRE",
             "CHAOS_CHOSEN__MINOTAUR"
