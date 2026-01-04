@@ -3,7 +3,7 @@ package com.bloodbowlclub.shared.ref_data;
 import com.bloodbowlclub.shared.roster.RosterID;
 import com.bloodbowlclub.shared.roster.RosterName;
 import com.bloodbowlclub.team_building.domain.roster.*;
-import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
+import com.bloodbowlclub.team_building.domain.team_staff.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Deserializer personnalisé pour convertir le JSON de référence en objets Roster du domaine.
@@ -20,8 +21,16 @@ import java.util.List;
  */
 public class RosterDeserializer extends StdDeserializer<Roster> {
 
+    private Map<String, TeamStaff> staffByUid;
+
     public RosterDeserializer() {
         super(Roster.class);
+        this.staffByUid = Collections.emptyMap();
+    }
+
+    public RosterDeserializer(Map<String, TeamStaff> staffByUid) {
+        super(Roster.class);
+        this.staffByUid = staffByUid != null ? staffByUid : Collections.emptyMap();
     }
 
     @Override
@@ -81,9 +90,20 @@ public class RosterDeserializer extends StdDeserializer<Roster> {
             }
         }
 
-        // Pour le moment, liste vide pour allowedTeamStaff
-        // TODO: mapper depuis le JSON si nécessaire
-        List<TeamStaff> allowedTeamStaff = Collections.emptyList();
+        // Mapper les staff autorisés
+        List<TeamStaff> allowedTeamStaff = new ArrayList<>();
+        JsonNode staffNode = node.get("allowedStaff");
+        if (staffNode != null && staffNode.isArray()) {
+            for (JsonNode staffUidNode : staffNode) {
+                String staffUid = staffUidNode.asText();
+                TeamStaff staffData = staffByUid.get(staffUid);
+
+                if (staffData != null) {
+                    // Utiliser directement l'objet TeamStaff du cache de référence
+                    allowedTeamStaff.add(staffData);
+                }
+            }
+        }
 
         return Roster.builder()
                 .rosterId(rosterId)

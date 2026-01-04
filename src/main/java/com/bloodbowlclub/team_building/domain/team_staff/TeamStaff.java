@@ -44,8 +44,13 @@ public class TeamStaff extends AggregateRoot {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof TeamStaff)) return false;
         TeamStaff roster = (TeamStaff) o;
         return this.staffId.equals(roster.staffId);
+    }
+
+    @Override
+    public int hashCode() {
+        return staffId != null ? staffId.hashCode() : 0;
     }
 }

@@ -27,21 +27,21 @@
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+          "id" : "CHEERLEADERS"
         }, {
           "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
-          "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
+          "id" : "APOTHECARY"
         }, {
           "@type" : "staff.coach.assistant",
           "version" : 0,
-          "name" : "CoachAssistant",
+          "name" : "Coach Assistants",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
+          "id" : "COACH_ASSISTANTS"
         } ],
         "crossLimits" : null,
         "rerollPrice" : "50",
@@ -81,21 +81,21 @@
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+          "id" : "CHEERLEADERS"
         }, {
           "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
-          "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
+          "id" : "APOTHECARY"
         }, {
           "@type" : "staff.coach.assistant",
           "version" : 0,
-          "name" : "CoachAssistant",
+          "name" : "Coach Assistants",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
+          "id" : "COACH_ASSISTANTS"
         } ],
         "crossLimits" : null,
         "rerollPrice" : "50",
@@ -123,21 +123,21 @@
           "name" : "Cheerleaders",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+          "id" : "CHEERLEADERS"
         }, {
           "@type" : "staff.apothecary",
           "version" : 0,
           "name" : "Apothecary",
           "price" : "50",
           "maxQuantity" : "1",
-          "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
+          "id" : "APOTHECARY"
         }, {
           "@type" : "staff.coach.assistant",
           "version" : 0,
-          "name" : "CoachAssistant",
+          "name" : "Coach Assistants",
           "price" : "10",
           "maxQuantity" : "6",
-          "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
+          "id" : "COACH_ASSISTANTS"
         } ],
         "crossLimits" : null,
         "rerollPrice" : "50",
@@ -183,21 +183,21 @@
       "name" : "Cheerleaders",
       "price" : "10",
       "maxQuantity" : "6",
-      "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+      "id" : "CHEERLEADERS"
     }, {
       "@type" : "staff.apothecary",
       "version" : 0,
       "name" : "Apothecary",
       "price" : "50",
       "maxQuantity" : "1",
-      "id" : "01KD3PDE0W0P8EXM72KKN20RF6"
+      "id" : "APOTHECARY"
     }, {
       "@type" : "staff.coach.assistant",
       "version" : 0,
-      "name" : "CoachAssistant",
+      "name" : "Coach Assistants",
       "price" : "10",
       "maxQuantity" : "6",
-      "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
+      "id" : "COACH_ASSISTANTS"
     } ],
     "crossLimits" : null,
     "rerollPrice" : "50",
@@ -241,21 +241,21 @@
     "name" : "Cheerleaders",
     "price" : "10",
     "maxQuantity" : "6",
-    "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+    "id" : "CHEERLEADERS"
   }, {
     "@type" : "staff.cheerleaders",
     "version" : 0,
     "name" : "Cheerleaders",
     "price" : "10",
     "maxQuantity" : "6",
-    "id" : "01KD333HSX1F82N7XPJ3S14YKH"
+    "id" : "CHEERLEADERS"
   }, {
     "@type" : "staff.coach.assistant",
     "version" : 0,
-    "name" : "CoachAssistant",
+    "name" : "Coach Assistants",
     "price" : "10",
     "maxQuantity" : "6",
-    "id" : "01KD3P89ZPCCQ1TKW26C8QCMW2"
+    "id" : "COACH_ASSISTANTS"
   } ],
   "id" : "01KCYVJSQS3CZ9R16ENT7XX20B"
 }

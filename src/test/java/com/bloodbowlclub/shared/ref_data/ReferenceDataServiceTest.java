@@ -2,7 +2,9 @@ package com.bloodbowlclub.shared.ref_data;
 
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,10 +28,9 @@ class ReferenceDataServiceTest {
     @BeforeEach
     void setUp() {
         // Créer le service manuellement pour éviter les problèmes de contexte Spring
-        ObjectMapper objectMapper = new ObjectMapper();
         ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-        referenceDataService = new ReferenceDataService(objectMapper, resourceLoader);
+        referenceDataService = new ReferenceDataService(resourceLoader);
 
         // Charger les données
         referenceDataService.loadReferenceData();
@@ -47,8 +48,11 @@ class ReferenceDataServiceTest {
         assertNotNull(rosters, "La liste des rosters ne doit pas être null");
         assertFalse(rosters.isEmpty(), "La liste des rosters ne doit pas être vide");
         assertTrue(rosters.size() > 0, "Au moins un roster doit être chargé");
+        assertEquals(30, rosters.size(), "Au moins un roster doit être chargé");
 
-        System.out.println("✓ Nombre de rosters chargés: " + rosters.size());
+        rosters.stream().forEach(roster -> {
+            Assertions.assertTrue(roster.isValid());
+        });
     }
 
     @Test
@@ -70,6 +74,18 @@ class ReferenceDataServiceTest {
         assertFalse(rules.isEmpty(), "La liste des special rules ne doit pas être vide");
 
         System.out.println("✓ Nombre de special rules chargées: " + rules.size());
+    }
+
+    @Test
+    @DisplayName("Les staff doivent être chargés au démarrage")
+    void testStaffAreLoaded() {
+        List<TeamStaff> staff = referenceDataService.getAllStaff();
+
+        assertNotNull(staff, "La liste des staff ne doit pas être null");
+        assertFalse(staff.isEmpty(), "La liste des staff ne doit pas être vide");
+        assertEquals(3, staff.size(), "Il doit y avoir 3 types de staff");
+
+        System.out.println("✓ Nombre de staff chargés: " + staff.size());
     }
 
     // ===========================
@@ -240,6 +256,61 @@ class ReferenceDataServiceTest {
     }
 
     // ===========================
+    // Tests - Accès aux Staff
+    // ===========================
+
+    @Test
+    @DisplayName("Doit récupérer un staff par son UID")
+    void testGetStaffByUid() {
+        Optional<TeamStaff> apothecary = referenceDataService.getStaffByUid("APOTHECARY");
+
+        assertTrue(apothecary.isPresent(), "Le staff APOTHECARY doit exister");
+        assertEquals("APOTHECARY", apothecary.get().getId(), "L'UID doit correspondre");
+        assertEquals("Apothecary", apothecary.get().getName().toString(), "Le nom doit être Apothecary");
+        assertEquals(50, apothecary.get().getPrice().getValue(), "Le prix doit être 50");
+        assertEquals(1, apothecary.get().getMaxQuantity().getValue(), "La quantité max doit être 1");
+
+        System.out.println("✓ Staff trouvé: " + apothecary.get().getId() + " (" + apothecary.get().getName() + ")");
+    }
+
+    @Test
+    @DisplayName("Doit récupérer tous les staff de base")
+    void testGetAllBaseStaff() {
+        List<TeamStaff> allStaff = referenceDataService.getAllStaff();
+
+        assertEquals(3, allStaff.size(), "Il doit y avoir 3 types de staff");
+
+        // Vérifier que les 3 staff de base sont présents
+        assertTrue(referenceDataService.getStaffByUid("APOTHECARY").isPresent(), "APOTHECARY doit être présent");
+        assertTrue(referenceDataService.getStaffByUid("CHEERLEADERS").isPresent(), "CHEERLEADERS doit être présent");
+        assertTrue(referenceDataService.getStaffByUid("COACH_ASSISTANTS").isPresent(), "COACH_ASSISTANTS doit être présent");
+
+        System.out.println("✓ Tous les staff de base sont présents");
+    }
+
+    @Test
+    @DisplayName("Doit retourner Optional.empty pour un staff inexistant")
+    void testGetStaffByUidNotFound() {
+        Optional<TeamStaff> staff = referenceDataService.getStaffByUid("INEXISTANT_STAFF");
+
+        assertFalse(staff.isPresent(), "Un staff inexistant doit retourner Optional.empty");
+    }
+
+    @Test
+    @DisplayName("Doit vérifier les prix des staff")
+    void testStaffPrices() {
+        Optional<TeamStaff> apothecary = referenceDataService.getStaffByUid("APOTHECARY");
+        Optional<TeamStaff> cheerleaders = referenceDataService.getStaffByUid("CHEERLEADERS");
+        Optional<TeamStaff> coaches = referenceDataService.getStaffByUid("COACH_ASSISTANTS");
+
+        assertTrue(apothecary.isPresent() && apothecary.get().getPrice().getValue() == 50, "Apothecary doit coûter 50k");
+        assertTrue(cheerleaders.isPresent() && cheerleaders.get().getPrice().getValue() == 10, "Cheerleaders doivent coûter 10k");
+        assertTrue(coaches.isPresent() && coaches.get().getPrice().getValue() == 10, "Coach Assistants doivent coûter 10k");
+
+        System.out.println("✓ Tous les prix sont corrects");
+    }
+
+    // ===========================
     // Tests - Immutabilité
     // ===========================
 
@@ -265,6 +336,18 @@ class ReferenceDataServiceTest {
         }, "La liste des special rules doit être immuable");
 
         System.out.println("✓ Liste des special rules confirmée immuable");
+    }
+
+    @Test
+    @DisplayName("La liste des staff doit être immuable")
+    void testStaffListIsImmutable() {
+        List<TeamStaff> staff = referenceDataService.getAllStaff();
+
+        assertThrows(UnsupportedOperationException.class, () -> {
+            staff.add(null);
+        }, "La liste des staff doit être immuable");
+
+        System.out.println("✓ Liste des staff confirmée immuable");
     }
 
     // ===========================
@@ -353,6 +436,7 @@ class ReferenceDataServiceTest {
         System.out.println("Rosters: " + referenceDataService.getRosterCount());
         System.out.println("Joueurs: " + referenceDataService.getPlayerCount());
         System.out.println("Special Rules: " + referenceDataService.getAllSpecialRules().size());
+        System.out.println("Staff: " + referenceDataService.getAllStaff().size());
 
         System.out.println("\n--- Tous les rosters chargés ---");
         referenceDataService.getAllRosters()
@@ -368,6 +452,13 @@ class ReferenceDataServiceTest {
                 .forEach(player -> {
                     System.out.println("  • " + player.getId() + " (" + player.getName() + ") - "
                             + player.getPrice().getValue() + "k - Max: " + player.getMaxQuantity().getValue());
+                });
+
+        System.out.println("\n--- Staff disponibles ---");
+        referenceDataService.getAllStaff()
+                .forEach(staff -> {
+                    System.out.println("  • " + staff.getId() + " (" + staff.getName() + ") - "
+                            + staff.getPrice().getValue() + "k - Max: " + staff.getMaxQuantity().getValue());
                 });
 
         System.out.println("========================================\n");

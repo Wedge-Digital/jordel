@@ -1,0 +1,27 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "staff": [
+    {
+      "uid": "APOTHECARY",
+      "name": "Apothicaire",
+      "price": 50,
+      "maxQuantity": 1,
+      "description": "Un Apothicaire peut être utilisé une fois par match pour relancer un jet de Blessure (cela peut inclure un jet de Régénération raté). Cette relance peut être utilisée sur un joueur de l'une ou l'autre équipe. Un Apothicaire ne peut pas être utilisé pour affecter le résultat d'un jet sur la table d'Expulsion."
+    },
+    {
+      "uid": "CHEERLEADERS",
+      "name": "Pom-pom girls",
+      "price": 10,
+      "maxQuantity": 6,
+      "description": "Les Pom-pom girls ajoutent à la RENOMMÉE de l'équipe. Chaque Pom-pom girl donne un modificateur de +1 lors du jet pour déterminer quelle équipe reçoit les acclamations de la foule."
+    },
+    {
+      "uid": "COACH_ASSISTANTS",
+      "name": "Assistants entraîneurs",
+      "price": 10,
+      "maxQuantity": 6,
+      "description": "Les Assistants entraîneurs ajoutent à la RENOMMÉE de l'équipe. Chaque Assistant entraîneur donne un modificateur de +1 lors du jet pour déterminer quels dés de Coaching seront utilisés."
+    }
+  ]
+}

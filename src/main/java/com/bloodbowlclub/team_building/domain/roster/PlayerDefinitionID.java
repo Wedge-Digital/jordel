@@ -16,7 +16,7 @@ public class PlayerDefinitionID extends ValueObject<String> {
 
     @NotEmpty(message = "{playerDefinitionID.notEmpty}")
     @Pattern(
-        regexp = "^[A-Z][A-Z0-9_ ]*__[A-Z][A-Z0-9_ ]*$",
+        regexp = "^[A-Z'][A-Z0-9_' -]*__[A-Z'][A-Z0-9_' -]*$",
         message = "{playerDefinitionID.invalid}"
     )
     private final String value;

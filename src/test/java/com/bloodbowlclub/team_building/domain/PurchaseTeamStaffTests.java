@@ -52,7 +52,7 @@ public class PurchaseTeamStaffTests extends TestCase {
         RosterSelectedTeam team = teamCreator.createTeamWithoutBudgetLeft();
         ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
         Assertions.assertTrue(staffBuying.isFailure());
-        Assertions.assertEquals("team.staff:la team 01KCSJRWAFMN3T35AVZDX1ASXP/teamName ne dispose pas d'un budget suffisant pour recruter le staff 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders", staffBuying.getError());
+        Assertions.assertEquals("team.staff:la team 01KCSJRWAFMN3T35AVZDX1ASXP/teamName ne dispose pas d'un budget suffisant pour recruter le staff CHEERLEADERS/Cheerleaders", staffBuying.getError());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class PurchaseTeamStaffTests extends TestCase {
         RosterSelectedTeam team = teamCreator.createTeamWithMaxCheerleaders();
         ResultMap<Void> staffBuying = team.buyStaff(cheerleader, messageSource);
         Assertions.assertTrue(staffBuying.isFailure());
-        Assertions.assertEquals("team.staff:Le max de staff d'equipe 01KD333HSX1F82N7XPJ3S14YKH/Cheerleaders déjà atteint (6) pour l'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName. Achat impossible.", staffBuying.getError());
+        Assertions.assertEquals("team.staff:Le max de staff d'equipe CHEERLEADERS/Cheerleaders déjà atteint (6) pour l'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName. Achat impossible.", staffBuying.getError());
     }
 
     @Test
@@ -70,6 +70,6 @@ public class PurchaseTeamStaffTests extends TestCase {
         RosterSelectedTeam team = teamCreator.createUndeadCandidateTeam();
         ResultMap<Void> staffBuying = team.buyStaff(apothecary, messageSource);
         Assertions.assertTrue(staffBuying.isFailure());
-        Assertions.assertEquals("team.staff:Le staff 01KD3PDE0W0P8EXM72KKN20RF6/Apothecary n'est pas autorisé pour l'équipe 01KD3NKX4S6FYBYZDN59YQDZ8J/undead team, achat impossible.", staffBuying.getError());
+        Assertions.assertEquals("team.staff:Le staff APOTHECARY/Apothecary n'est pas autorisé pour l'équipe 01KD3NKX4S6FYBYZDN59YQDZ8J/undead team, achat impossible.", staffBuying.getError());
     }
 }

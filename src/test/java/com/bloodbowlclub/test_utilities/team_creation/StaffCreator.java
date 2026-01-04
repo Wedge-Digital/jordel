@@ -12,7 +12,7 @@ public class StaffCreator {
 
     public Cheerleaders createCheerleaders() {
         return Cheerleaders.builder()
-                .staffId(new StaffID("01KD333HSX1F82N7XPJ3S14YKH"))
+                .staffId(new StaffID("CHEERLEADERS"))
                 .name(new StaffName("Cheerleaders"))
                 .price(new StuffPrice(10))
                 .maxQuantity(new StaffMaxQuantity(6))
@@ -21,8 +21,8 @@ public class StaffCreator {
 
     public CoachAssistant createCoachAssistant() {
         return CoachAssistant.builder()
-                .staffId(new StaffID("01KD3P89ZPCCQ1TKW26C8QCMW2"))
-                .name(new StaffName("CoachAssistant"))
+                .staffId(new StaffID("COACH_ASSISTANTS"))
+                .name(new StaffName("Coach Assistants"))
                 .price(new StuffPrice(10))
                 .maxQuantity(new StaffMaxQuantity(6))
                 .build();
@@ -30,7 +30,7 @@ public class StaffCreator {
 
     public Apothecary createApothecary() {
         return Apothecary.builder()
-                .staffId(new StaffID("01KD3PDE0W0P8EXM72KKN20RF6"))
+                .staffId(new StaffID("APOTHECARY"))
                 .name(new StaffName("Apothecary"))
                 .price(new StuffPrice(50))
                 .maxQuantity(new StaffMaxQuantity(1))

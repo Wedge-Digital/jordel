@@ -1,0 +1,27 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "staff": [
+    {
+      "uid": "APOTHECARY",
+      "name": "Apothecary",
+      "price": 50,
+      "maxQuantity": 1,
+      "description": "An Apothecary may be used once per match to re-roll a Casualty roll (this may include a failed Regeneration roll). This re-roll may be used on a player from either team. An Apothecary cannot be used to affect the result of a roll on the Send-off table."
+    },
+    {
+      "uid": "CHEERLEADERS",
+      "name": "Cheerleaders",
+      "price": 10,
+      "maxQuantity": 6,
+      "description": "Cheerleaders add to the team's FAME. Each Cheerleader gives a +1 modifier when making a roll to see which team receives the cheers of the crowd."
+    },
+    {
+      "uid": "COACH_ASSISTANTS",
+      "name": "Coach Assistants",
+      "price": 10,
+      "maxQuantity": 6,
+      "description": "Assistant Coaches add to the team's FAME. Each Assistant Coach gives a +1 modifier when making a roll to see which coach's Coaching Dice will be used."
+    }
+  ]
+}

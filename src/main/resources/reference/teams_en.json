@@ -9,7 +9,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "HUMAN__HUMAN_LINEMAN",
@@ -160,7 +160,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "ORC__ORC_LINEMAN",
@@ -316,7 +316,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "DWARF__DWARF_LINEMAN",
@@ -450,7 +450,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "SKAVEN__SKAVEN_CLANRAT",
@@ -581,7 +581,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "BRETONNIAN__BRETONNIAN_SQUIRE",
@@ -695,7 +695,7 @@
           ]
         }
       ],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "CHAOS_RENEGADE__RENEGADE_HUMAN",
@@ -957,7 +957,7 @@
       "tier": "Tier 4",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "GNOME__GNOME_LINEMAN",
@@ -1092,7 +1092,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "IMPERIAL_NOBILITY__IMPERIAL_RETAINER",
@@ -1221,7 +1221,7 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "apothecary": false,
+      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "TOMB_KINGS__SKELETON_LINEMAN",
@@ -1338,7 +1338,7 @@
           ]
         }
       ],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "UNDERWORLD_DENIZENS__GOBLIN_LINEMAN",
@@ -1558,7 +1558,7 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "VAMPIRE__THRALL_LINEMAN",
@@ -1685,7 +1685,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "WOOD_ELF__WOOD_ELF_LINEMAN",
@@ -1814,7 +1814,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "AMAZON__EAGLE_WARRIOR",
@@ -1919,7 +1919,7 @@
         "BRIBERY_AND_CORRUPTION"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "BLACK_ORC__GOBLIN_BRUISER",
@@ -2017,7 +2017,7 @@
           ]
         }
       ],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "CHAOS_CHOSEN__BEASTMEN_LINEMAN",
@@ -2160,7 +2160,7 @@
         "FAVOURED_OF_HASHUT"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "CHAOS_DWARF__HOBGOBLIN_LINEMAN",
@@ -2318,7 +2318,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "DARK_ELF__DARK_ELF_LINEMAN",
@@ -2444,7 +2444,7 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "ELVEN_UNION__ELF_LINEMAN",
@@ -2547,7 +2547,7 @@
         "BRIBERY_AND_CORRUPTION"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "GOBLIN__GOBLIN_LINEMAN",
@@ -2762,7 +2762,7 @@
       "tier": "Tier 4",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "HALFLING__HALFLING_HOPEFUL",
@@ -2876,7 +2876,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "HIGH_ELF__HIGH_ELF_LINEMAN",
@@ -2977,7 +2977,7 @@
         "FAVOURED_OF_KHORNE"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "KHORNE__BLOODBORN_MARAUDER",
@@ -3087,7 +3087,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "LIZARDMAN__SKINK_LINEMAN",
@@ -3197,7 +3197,7 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "apothecary": false,
+      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "NECROMANTIC_HORROR__ZOMBIE_LINEMAN",
@@ -3332,7 +3332,7 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "NORSE__NORSE_RAIDER",
@@ -3489,7 +3489,7 @@
         "FAVOURED_OF_NURGLE"
       ],
       "cross_limit": [],
-      "apothecary": false,
+      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "NURGLE__ROTTER_LINEMAN",
@@ -3612,7 +3612,7 @@
         "LOW_COST_LINEMEN"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "OGRE__GNOBLAR_LINEMAN",
@@ -3708,7 +3708,7 @@
           ]
         }
       ],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "OLD_WORLD_ALLIANCE__HUMAN_LINEMAN",
@@ -3980,7 +3980,7 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "apothecary": false,
+      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "SHAMBLING_UNDEAD__SKELETON_LINEMAN",
@@ -4113,7 +4113,7 @@
         "SWARMING"
       ],
       "cross_limit": [],
-      "apothecary": true,
+      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
       "availablePlayers": [
         {
           "uid": "SNOTLING__SNOTLING_LINEMAN",

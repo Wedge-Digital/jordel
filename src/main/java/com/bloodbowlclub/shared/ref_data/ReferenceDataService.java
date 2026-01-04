@@ -2,6 +2,7 @@ package com.bloodbowlclub.shared.ref_data;
 
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
+import com.bloodbowlclub.team_building.domain.team_staff.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -31,7 +32,6 @@ public class ReferenceDataService {
 
     private static final Logger log = LoggerFactory.getLogger(ReferenceDataService.class);
 
-    private final ObjectMapper eventStoreObjectMapper;
     private final ResourceLoader resourceLoader;
 
     // ObjectMapper dédié pour les données de référence (sans polymorphisme)
@@ -48,15 +48,24 @@ public class ReferenceDataService {
     private Map<String, SpecialRule> specialRulesById;
     private List<SpecialRule> allSpecialRules;
 
-    public ReferenceDataService(ObjectMapper objectMapper, ResourceLoader resourceLoader) {
-        this.eventStoreObjectMapper = objectMapper;
+    // Caches immuables - Staff
+    private Map<String, TeamStaff> staffById;
+    private List<TeamStaff> allStaff;
+
+    public ReferenceDataService(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
 
         // Créer un ObjectMapper dédié sans configuration polymorphique pour les ref data
         this.refDataObjectMapper = new ObjectMapper();
 
-        // Utiliser un mix-in pour désactiver @JsonTypeInfo sur Roster/AggregateRoot
+        // Utiliser un mix-in pour désactiver @JsonTypeInfo sur Roster/AggregateRoot et TeamStaff
         this.refDataObjectMapper.addMixIn(com.bloodbowlclub.lib.domain.AggregateRoot.class, IgnoreTypeInfoMixin.class);
+        this.refDataObjectMapper.addMixIn(TeamStaff.class, IgnoreTypeInfoMixin.class);
+
+        // Enregistrer le deserializer pour TeamStaff
+        SimpleModule staffModule = new SimpleModule();
+        staffModule.addDeserializer(TeamStaff.class, new TeamStaffDeserializer());
+        this.refDataObjectMapper.registerModule(staffModule);
     }
 
     /**
@@ -74,16 +83,19 @@ public class ReferenceDataService {
     public void loadReferenceData() {
         log.info("Loading reference data into memory...");
         try {
-            // Configurer le deserializer personnalisé sur l'ObjectMapper dédié
+            // Charger d'abord les staff pour les utiliser lors de la désérialisation des rosters
+            Map<String, TeamStaff> staffMap = loadStaff();
+
+            // Configurer le deserializer personnalisé sur l'ObjectMapper dédié avec les données staff
             SimpleModule module = new SimpleModule();
-            module.addDeserializer(Roster.class, new RosterDeserializer());
+            module.addDeserializer(Roster.class, new RosterDeserializer(staffMap));
             refDataObjectMapper.registerModule(module);
 
-            loadRosters();
             loadSpecialRules();
+            loadRosters();
 
-            log.info("Reference data loaded successfully: {} rosters, {} players, {} special rules",
-                    allRosters.size(), playersById.size(), allSpecialRules.size());
+            log.info("Reference data loaded successfully: {} rosters, {} players, {} special rules, {} staff",
+                    allRosters.size(), playersById.size(), allSpecialRules.size(), allStaff.size());
         } catch (Exception e) {
             log.error("Failed to load reference data", e);
             throw new RuntimeException("Cannot start application: reference data loading failed", e);
@@ -142,6 +154,32 @@ public class ReferenceDataService {
                         rule -> rule
                 ))
         );
+    }
+
+    private Map<String, TeamStaff> loadStaff() throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/staff_en.json");
+
+        // Lire le fichier JSON
+        JsonNode root = refDataObjectMapper.readTree(resource.getInputStream());
+        JsonNode staffNode = root.get("staff");
+
+        List<TeamStaff> teamStaffList = new ArrayList<>();
+        if (staffNode != null && staffNode.isArray()) {
+            for (JsonNode node : staffNode) {
+                TeamStaff staff = refDataObjectMapper.treeToValue(node, TeamStaff.class);
+                teamStaffList.add(staff);
+            }
+        }
+
+        this.allStaff = Collections.unmodifiableList(teamStaffList);
+
+        Map<String, TeamStaff> staffMap = teamStaffList.stream().collect(Collectors.toMap(
+                TeamStaff::getId,
+                s -> s
+        ));
+        this.staffById = Collections.unmodifiableMap(staffMap);
+
+        return staffMap;
     }
 
     // ===========================
@@ -236,6 +274,27 @@ public class ReferenceDataService {
     }
 
     // ===========================
+    // Méthodes d'accès - Staff
+    // ===========================
+
+    /**
+     * Récupère un staff par son UID.
+     * @param uid UID du staff (ex: "APOTHECARY", "CHEERLEADERS")
+     * @return Optional contenant le staff si trouvé
+     */
+    public Optional<TeamStaff> getStaffByUid(String uid) {
+        return Optional.ofNullable(staffById.get(uid));
+    }
+
+    /**
+     * Récupère tous les staff.
+     * @return Liste immuable de tous les staff
+     */
+    public List<TeamStaff> getAllStaff() {
+        return allStaff;
+    }
+
+    // ===========================
     // Classes internes - DTOs
     // ===========================
 
@@ -278,4 +337,5 @@ public class ReferenceDataService {
             this.label = label;
         }
     }
+
 }
