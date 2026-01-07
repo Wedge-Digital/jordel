@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
 
 public class StartResetPasswordTest extends TestCase {
 
-    private final JwtService jwtService = new JwtService("my_secret", 10, 100L, messageSource);
+    private final JwtService jwtService = new JwtService("my_secret", 10, 100L);
 
     EventDispatcher dispatcher = new EventDispatcher();
     FakeEventStore eventStore = new FakeEventStore();
@@ -27,15 +27,16 @@ public class StartResetPasswordTest extends TestCase {
 
     private final StartResetPasswordCommandHandler cmdHandler = new StartResetPasswordCommandHandler(
             eventStore,
-            dispatcher,
-            messageSource
+            dispatcher
             );
     private final AuthController ctrl = new AuthController(
             jwtService,
             null,
             null,
             cmdHandler,
-            null );
+            null,
+            messageSource
+            );
 
     private BaseUserAccount getUserAccount(String username) {
         Result<AggregateRoot> userAccount = eventStore.findUser(username);

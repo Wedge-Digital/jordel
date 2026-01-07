@@ -11,13 +11,11 @@ import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
-
-import java.util.Locale;
 
 @Component("completeResetPasswordCommandHandler")
 public class CompleteResetPasswordCommandHandler extends CommandHandler {
@@ -25,10 +23,9 @@ public class CompleteResetPasswordCommandHandler extends CommandHandler {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CompleteResetPasswordCommandHandler.class);
 
     public CompleteResetPasswordCommandHandler(@Qualifier("eventStore") EventStore eventStore,
-                                               @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
-                                               MessageSource messageSource
+                                               @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher
     ) {
-        super(eventStore, businessDispatcher, messageSource);
+        super(eventStore, businessDispatcher);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class CompleteResetPasswordCommandHandler extends CommandHandler {
         Result<AggregateRoot> userSearch = eventStore.findUser(cmd.username());
 
         if (userSearch.isFailure()) {
-            String errorMessage = messageSource.getMessage("user_account.not_existing", new String[]{cmd.username()}, Locale.getDefault());
+            TranslatableMessage errorMessage = new TranslatableMessage("user_account.not_existing", cmd.username());
             return ResultMap.failure("username", errorMessage, ErrorCode.NOT_FOUND);
         }
 
@@ -47,10 +44,9 @@ public class CompleteResetPasswordCommandHandler extends CommandHandler {
                 new Password(cmd.newPassword()));
 
         if (passwordChange.isFailure()) {
-            String errorMessage = messageSource.getMessage(
+            TranslatableMessage errorMessage = new TranslatableMessage(
                     "complete_password_reset.impossible_to_complete",
-                    new String[]{cmd.username()},
-                    Locale.getDefault());
+                    cmd.username());
             return ResultMap.failure("UserAccount", errorMessage, ErrorCode.BAD_REQUEST);
         }
 

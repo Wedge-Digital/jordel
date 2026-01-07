@@ -32,6 +32,6 @@ class DateServiceTests {
         DateService ds = new DateService();
         Result<Date> result = ds.dateTimeFromMysql(tobeParsed);
         Assertions.assertFalse(result.isSuccess());
-        Assertions.assertEquals("Invalid date format", result.getErrorMessage());
+        Assertions.assertEquals("TranslatableMessage{messageKey='date.invalid_format', params=[2023-10-01:11:12:00]}",result.getErrorMessage());
     }
 }

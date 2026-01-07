@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class AgregateShallNotExistPolicyTest extends TestCase {
 
     private final FakeEventStore fakeEventStore =  new FakeEventStore();
-    private final AgregateShallNotExistPolicy agregateShallNotExistPolicy = new AgregateShallNotExistPolicy(messageSource, fakeEventStore);
+    private final AgregateShallNotExistPolicy agregateShallNotExistPolicy = new AgregateShallNotExistPolicy(fakeEventStore);
 
     @Test
     void TestuserIdShallNotExistPolicy_fails_when_id_already_exists() {

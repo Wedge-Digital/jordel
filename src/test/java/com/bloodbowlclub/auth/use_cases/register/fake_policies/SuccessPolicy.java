@@ -1,5 +1,6 @@
 package com.bloodbowlclub.auth.use_cases.register.fake_policies;
 
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.Policy;
 import org.springframework.context.MessageSource;
@@ -9,12 +10,12 @@ import org.springframework.stereotype.Service;
 public class SuccessPolicy extends Policy {
 
     public SuccessPolicy(MessageSource msgSource) {
-        super(msgSource, null);
+        super(null);
     }
 
     @Override
-    public String getErrorMsg(String username) {
-        return "";
+    public TranslatableMessage getErrorMsg(String username) {
+        return new TranslatableMessage("", "");
     }
 
     public ResultMap<Void> check(String username) {

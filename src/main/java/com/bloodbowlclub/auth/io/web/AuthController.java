@@ -12,11 +12,14 @@ import com.bloodbowlclub.auth.io.web.requests.CompleteResetPasswordRequest;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountMapper;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import com.bloodbowlclub.auth.io.web.requests.StartResetPasswordRequest;
+import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.services.result.ResultToResponse;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
@@ -31,21 +34,25 @@ public class AuthController {
     private final CommandHandler registerHandler;
     private final CommandHandler startResetPasswordHandler;
     private final CommandHandler completeResetPasswordHandler;
+    private final MessageSource messageSource;
     private RegisterAccountMapper mapper = RegisterAccountMapper.INSTANCE;
 
-    private final ResultToResponse<Void> commandConverter =  new ResultToResponse<Void>();
+    private final ResultToResponse<Void> commandConverter;
 
     public AuthController(JwtService jwtService,
                           @Qualifier("loginCommandHandler") CommandHandler loginHandler,
                           @Qualifier("registerCommandHandler") CommandHandler registerHandler,
                           @Qualifier("startResetPasswordCommandHandler") CommandHandler startResetPasswordHandler,
-                          @Qualifier("completeResetPasswordCommandHandler") CommandHandler completeResetPasswordHandler
-                          ) {
+                          @Qualifier("completeResetPasswordCommandHandler") CommandHandler completeResetPasswordHandler,
+                          MessageSource messageSource
+    ) {
         this.jwtService = jwtService;
         this.loginHandler = loginHandler;
         this.registerHandler = registerHandler;
         this.startResetPasswordHandler = startResetPasswordHandler;
         this.completeResetPasswordHandler = completeResetPasswordHandler;
+        this.messageSource = messageSource;
+        this.commandConverter = new ResultToResponse<>(messageSource);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -56,7 +63,10 @@ public class AuthController {
                 loginRequest.getPassword());
         ResultMap<Void> loginResult = loginHandler.handle(cmd);
         if (loginResult.isFailure()) {
-            return ResponseEntity.badRequest().body(loginResult.errorMap());
+            // Resolve translatable messages to localized strings
+            return ResponseEntity.badRequest().body(
+                loginResult.getTranslatedErrorMap(messageSource, LocaleContextHolder.getLocale())
+            );
         }
 
         final JwtTokensResponse tokens = this.jwtService.buildAuthTokens(loginRequest.getUsername());
@@ -66,14 +76,16 @@ public class AuthController {
     @RequestMapping(value = "/refresh", method = RequestMethod.POST)
     public ResponseEntity<?> refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         String token = refreshTokenRequest.getToken();
-        if (jwtService.validateJwtToken(token).isSuccess()) {
+        Result<String> validationResult = jwtService.validateJwtToken(token);
+        if (validationResult.isSuccess()) {
             String username = jwtService.getUsernameFromToken(token);
 //            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 //            final JwtTokens tokens = this.jwtService.buildAuthTokens(userDetails.getUsername());
 //            return ResponseEntity.ok(tokens);
             return ResponseEntity.ok(null);
         } else {
-            String errorMessage = jwtService.validateJwtToken(token).getError();
+            // Resolve translatable message to localized string
+            String errorMessage = validationResult.getTranslatedError(messageSource, LocaleContextHolder.getLocale());
             return ResponseEntity.badRequest().body(errorMessage);
         }
     }

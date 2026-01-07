@@ -9,10 +9,9 @@ import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 
@@ -20,17 +19,16 @@ import org.springframework.stereotype.Component;
 public class LoginCommandHandler extends CommandHandler {
 
     public LoginCommandHandler(@Qualifier("eventStore") EventStore eventStore,
-                               AbstractEventDispatcher businessDispatcher,
-                               MessageSource messageSource) {
-        super(eventStore, businessDispatcher, messageSource);
+                               AbstractEventDispatcher businessDispatcher) {
+        super(eventStore, businessDispatcher);
     }
 
-    private String getAccountNotExistMessage(String username){
-        return  messageSource.getMessage("user_account.not_existing", new String[]{username}, LocaleContextHolder.getLocale());
+    private TranslatableMessage getAccountNotExistMessage(String username){
+        return new TranslatableMessage("user_account.not_existing", username);
     }
 
-    private String getBadPasswordMessage(String username){
-        return  messageSource.getMessage("user_account.bad_credentials", new String[]{username}, LocaleContextHolder.getLocale());
+    private TranslatableMessage getBadPasswordMessage(String username){
+        return new TranslatableMessage("user_account.bad_credentials", username);
     }
 
 

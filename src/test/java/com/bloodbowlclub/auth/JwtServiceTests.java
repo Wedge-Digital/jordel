@@ -3,6 +3,7 @@ package com.bloodbowlclub.auth;
 import com.bloodbowlclub.auth.io.services.JwtService;
 import com.bloodbowlclub.lib.config.MessageSourceConfig;
 import com.bloodbowlclub.lib.services.DateService;
+import com.bloodbowlclub.lib.tests.TestCase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,13 +13,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MessageSourceConfig.class)
-class JwtServiceTests {
+class JwtServiceTests extends TestCase {
 
 	private JwtService jwtService;
 
@@ -31,8 +33,7 @@ class JwtServiceTests {
         this.jwtService = new JwtService(
                 "96eee8811a493fac99a85c1fa12095ba56ca533aebafd2f194aeb96ff5b1b1f775893edcf9671d8565d4c8d37d6dc8fd203dd05867778cfcb22b21c35c56e1f4f7939b7c7d886a8df9780665095d1052d4c7f1dd68332073ca61a08f5b69305c3acdf44229f408eac3798b3892683093617df9fdc1220db03f406c87b4c107215e37eba0a6db92faa4defb632f570c02c0001c519391acf1a73062a21ee7d3cd0d7e7b218b1df1c74253dcc265dc6640fc7bf948a3c84b38d4fc9c40398846264c75c4d315d20d6845872e1518c3e8f19b16fb592b2d14d152ad0831d2e5be8b0b7393255dcc44c45b047ff491ca91cbd4d5b1dc9f919904cd9bffe4f1b0d0aa",
                 900000,
-                2592000000L,
-                messageSource);
+                2592000000L);
         this.jwtService.init();
     }
 
@@ -67,7 +68,7 @@ class JwtServiceTests {
 	void TestExpiredTokenIsReallyExpired() {
 		String token = this.buildExpiredToken();
 		Assertions.assertThat(this.jwtService.validateJwtToken(token).isSuccess()).isFalse();
-		Assertions.assertThat(this.jwtService.validateJwtToken(token).getError()).isEqualTo("Token JWT expiré");
+		Assertions.assertThat(this.jwtService.validateJwtToken(token).getTranslatedError(messageSource, Locale.getDefault())).isEqualTo("Token JWT expiré");
 	}
 
 	@Test
@@ -81,7 +82,7 @@ class JwtServiceTests {
 		String badToken = "badToken";
         this.initJwtService();
 		Assertions.assertThat(this.jwtService.validateJwtToken(badToken).isSuccess()).isFalse();
-		Assertions.assertThat(this.jwtService.validateJwtToken(badToken).getError()).isEqualTo("Token JWT non valide");
+		Assertions.assertThat(this.jwtService.validateJwtToken(badToken).getTranslatedError(messageSource, Locale.getDefault())).isEqualTo("Token JWT non valide");
 	}
 
 	@Test

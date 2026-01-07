@@ -3,24 +3,23 @@ import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.use_cases.Policy;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service("aggregateShallNotExistPolicy")
 public class AgregateShallNotExistPolicy extends Policy {
 
 
-    public AgregateShallNotExistPolicy(MessageSource msgSource, @Qualifier("eventStore") EventStore eventStore) {
-        super(msgSource, eventStore);
+    public AgregateShallNotExistPolicy(@Qualifier("eventStore") EventStore eventStore) {
+        super(eventStore);
     }
 
-    public String getErrorMsg(String username) {
-        return msgSource.getMessage("user_registration.username.already_exists", new Object[]{username}, Locale.getDefault());
+    public TranslatableMessage getErrorMsg(String username) {
+        return new TranslatableMessage("user_registration.username.already_exists", username);
     }
 
     public ResultMap<Void> check(String userId) {

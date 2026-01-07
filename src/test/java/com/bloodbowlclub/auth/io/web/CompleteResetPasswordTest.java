@@ -30,8 +30,7 @@ public class CompleteResetPasswordTest extends TestCase {
     private final JwtService jwtService = new JwtService(
             "Vk2B1V8nR3y6oTzP4wq9ZfL8dC1mQ7sN0hJ3Xk5aR9uE2pC6vF0gT8bY2nL4rW6",
             10,
-            100L,
-            messageSource);
+            100L);
 
     FakeEventDispatcher dispatcher = new FakeEventDispatcher();
     FakeEventStore eventStore = new FakeEventStore();
@@ -42,22 +41,19 @@ public class CompleteResetPasswordTest extends TestCase {
 
     private final CompleteResetPasswordCommandHandler cmdHandler = new CompleteResetPasswordCommandHandler(
             eventStore,
-            dispatcher,
-            messageSource
-            );
+            dispatcher);
 
     private final LoginCommandHandler loginHandler = new LoginCommandHandler(
             eventStore,
-            dispatcher,
-            messageSource
-    );
+            dispatcher);
 
     private final AuthController ctrl = new AuthController(
             jwtService,
             loginHandler,
             null,
             null,
-            cmdHandler);
+            cmdHandler,
+            messageSource);
 
 
     @Test

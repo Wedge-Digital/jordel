@@ -18,15 +18,15 @@ public class AuthControllerLoginTest extends TestCase {
     JwtService jwtService = new JwtService(
             "jwt_secret__lkjqlkjqlsdkjqsldfjqsldjkfqslkdfjqslfjqslkdjfqsldjkflqs,:,:.qnsdlikjqsldfjkqsdf",
             8000,
-            90000,
-            messageSource);
+            90000);
 
     AuthController ctrl = new AuthController(
             jwtService,
             loginHandler,
             null,
             null,
-            null
+            null,
+            messageSource
             );
 
 

@@ -54,6 +54,31 @@ The application requires environment variables defined in `.env.{EXEC_PROFILE}.p
 
 Required variables: `DB_URL`, `DB_USER`, `DB_PASSWORD`, `DB_DRIVER`, `DB_DIALECT`, `ALLOWED_HOSTS`, `SMTP_USER`, `SMTP_PASSWORD`
 
+## Quick Reference - État Actuel du Projet
+
+### Bounded Contexts Status
+
+| Context | Status | Architecture | Completion | Manque |
+|---------|--------|--------------|------------|---------|
+| **Auth** | ✅ Production Ready | Event Sourcing | 95% | Token refresh endpoint, OTP SMS auth |
+| **Team Building** | 🚧 In Progress | Event Sourcing | 80% | CommandHandlers, REST Controllers, Projectors, Integration tests |
+| **Authoring** | ✅ Production Ready | CRUD (JPA) | 100% | - |
+| **Shared** | ✅ Production Ready | Service Layer | 100% | - |
+
+### Recent Work (Latest Commits)
+- **bff6862** - Finalisation du ReferenceDataService et des tests associés
+- **e744187** - Add reference data cache service, tests still needs improvements
+- **2f8f5f9** - Refactoring of polymorphic json serialisation to support future evolution
+
+### Fichiers Non Trackés
+- `src/main/java/com/bloodbowlclub/shared/ref_data/RefDataServiceConfig.java` - Configuration du service de référence
+
+### Key Statistics
+- **194 Java files** (~8,637 lines of production code)
+- **58 test files** (~5,166 lines of test code)
+- **Test coverage**: ~60% test-to-source ratio
+- **Internationalization**: French + English (messages, errors, validation, email templates)
+
 ## Architecture Overview
 
 ### Core Pattern: Event Sourcing + CQRS
@@ -347,6 +372,196 @@ msgSource.getMessage("error.user.not.found", null, locale);
 ```
 
 Locale extracted from `Accept-Language` header via `LocaleHeaderFilter`.
+
+## Pièges Courants et Solutions
+
+### ❌ Piège 1: Query sur event_log par autre chose que subject
+```java
+// ❌ WRONG - Très lent, pas d'index
+List<EventEntity> events = eventStore.findByType("EmailValidatedEvent");
+
+// ✅ RIGHT - Index sur subject (aggregate ID)
+List<EventEntity> events = eventStore.findBySubject(username);
+```
+
+**Pourquoi:** La table `event_log` a un index sur `subject` (aggregate ID) mais pas sur `type`. Les queries par type nécessitent un full table scan.
+
+**Solution:** Toujours query par subject. Si vous avez besoin de filtrer par type, faites-le en mémoire après avoir récupéré tous les événements d'un agrégat.
+
+### ❌ Piège 2: Modifier directement le read_cache
+```java
+// ❌ WRONG - Bypass event sourcing, perte de traçabilité
+UserReadModel user = readRepository.findById(username);
+user.setEmail("new@email.com");
+readRepository.save(user);
+
+// ✅ RIGHT - Passer par événements
+Result<ActiveUserAccount> result = eventStore.findUser(username);
+ActiveUserAccount user = result.getValue();
+user.changeEmail(new ChangeEmailCommand(...));
+eventStore.saveAll(user.domainEvents());
+dispatcher.asyncDispatchList(user.domainEvents());
+// Le Projector mettra à jour le read_cache automatiquement
+```
+
+**Pourquoi:** Le read_cache est une projection des événements. Le modifier directement crée une désynchronisation entre event_log (source de vérité) et read_cache.
+
+**Solution:** Toujours passer par la création d'événements. Le Projector se charge de mettre à jour le read_cache.
+
+### ❌ Piège 3: Oublier la validation avant d'ajouter un événement
+```java
+// ❌ WRONG - Événement invalide peut être persisté
+public ResultMap<Void> hirePlayer(HirePlayerCommand cmd) {
+    this.players.add(cmd.player());
+    this.addEvent(new PlayerHiredEvent(...));
+    return ResultMap.success(null);
+}
+
+// ✅ RIGHT - Toujours valider d'abord
+public ResultMap<Void> hirePlayer(HirePlayerCommand cmd) {
+    this.players.add(cmd.player());
+
+    if (!this.isValid()) {
+        this.players.remove(cmd.player()); // Rollback
+        return ResultMap.failure(this.validationErrors());
+    }
+
+    this.addEvent(new PlayerHiredEvent(...));
+    return ResultMap.success(null);
+}
+```
+
+**Pourquoi:** Une fois un événement persisté dans l'event_log, il est permanent (append-only). Un événement invalide pollue l'historique.
+
+**Solution:** Toujours valider l'agrégat après mutation et avant d'ajouter l'événement. Rollback la mutation si la validation échoue.
+
+### ❌ Piège 4: Utiliser @class complet dans JSON
+```json
+// ❌ WRONG - Refactoring du package casse la désérialisation
+{
+  "@class": "com.bloodbowlclub.auth.domain.user_account.ActiveUserAccount",
+  "username": "john"
+}
+
+// ✅ RIGHT - Utiliser alias stable
+{
+  "@type": "user.account.active",
+  "username": "john"
+}
+```
+
+**Pourquoi:** Si vous déplacez `ActiveUserAccount` dans un autre package, tous les événements historiques ne pourront plus être désérialisés.
+
+**Solution:** Utiliser des alias courts et stables via `TypeIdResolver` custom. Les alias sont mappés aux classes dans le code, permettant les refactorings.
+
+### ❌ Piège 5: Lancer des exceptions depuis le domaine
+```java
+// ❌ WRONG - Exceptions non catchées, violation du pattern Result
+public ResultMap<Void> login(LoginCommand cmd) {
+    if (!password.matches(cmd.password())) {
+        throw new InvalidPasswordException();
+    }
+    // ...
+}
+
+// ✅ RIGHT - Toujours retourner Result/ResultMap
+public ResultMap<Void> login(LoginCommand cmd) {
+    if (!password.matches(cmd.password())) {
+        return ResultMap.failure("password", "Invalid password", ErrorCode.UNAUTHORIZED);
+    }
+    // ...
+}
+```
+
+**Pourquoi:** Le pattern Result force la gestion explicite des erreurs. Les exceptions peuvent s'échapper et ne sont pas trackées par le système de types.
+
+**Solution:** Utiliser `Result<T>` pour erreur unique ou `ResultMap<T>` pour erreurs multiples. Mapper aux codes HTTP dans les controllers.
+
+### ❌ Piège 6: Ne pas mettre à jour le Projector lors de l'ajout d'un événement
+```java
+// ❌ WRONG - Le read_cache ne sera jamais mis à jour
+public class NewActionEvent extends UserDomainEvent {
+    // Événement créé, mais aucun Projector ne le traite
+}
+```
+
+**Pourquoi:** Si aucun Projector n'écoute l'événement, le read_cache ne reflétera jamais le changement d'état.
+
+**Solution:** Toujours mettre à jour le Projector correspondant pour gérer le nouvel événement:
+```java
+@Component
+public class UserAccountProjector extends Projector<UserDomainEvent> {
+    @PostConstruct
+    public void initSubscription() {
+        dispatcher.subscribe(NewActionEvent.class, this);
+    }
+
+    @Override
+    protected void receive(UserDomainEvent event) {
+        if (event instanceof NewActionEvent e) {
+            updateReadCacheForNewAction(e);
+        }
+    }
+}
+```
+
+### ❌ Piège 7: Confondre event.applyTo() et aggregate.apply()
+```java
+// ❌ WRONG - Appeler directement aggregate.apply() sans polymorphisme
+UserAccount newState = aggregate.apply(event); // Compile-time error si l'événement n'est pas supporté
+
+// ✅ RIGHT - Toujours utiliser event.applyTo()
+Result<AggregateRoot> result = event.applyTo(aggregate);
+UserAccount newState = (UserAccount) result.getValue();
+```
+
+**Pourquoi:** `event.applyTo(aggregate)` utilise le double dispatch et permet le polymorphisme. `aggregate.apply(event)` ne compile que si l'agrégat a une méthode pour ce type d'événement exact.
+
+**Solution:** Dans l'EventStore et lors de l'hydratation, toujours utiliser `event.applyTo(aggregate)`.
+
+## Carte des Dépendances Entre Modules
+
+```
+┌──────────────────────────────────────────────┐
+│           WebApplication                     │
+│      (Point d'entrée Spring Boot)            │
+└─────────────────┬────────────────────────────┘
+                  │
+        ┌─────────┴────────┐
+        │                  │
+        ▼                  ▼
+┌────────────────┐  ┌─────────────────┐
+│     Auth       │  │  Team Building  │
+│ (Event Sourc.) │  │ (Event Sourc.)  │
+└────────┬───────┘  └────────┬────────┘
+         │                   │
+         │      ┌────────────┴──────┐
+         │      │                   │
+         │      ▼                   ▼
+         │  ┌────────────┐   ┌────────────┐
+         │  │ Authoring  │   │   Shared   │
+         │  │   (CRUD)   │   │  (Ref Data)│
+         │  └─────┬──────┘   └─────┬──────┘
+         │        │                │
+         └────────┴────────┬───────┘
+                           │
+                           ▼
+                  ┌────────────────┐
+                  │      lib/      │
+                  │(Infrastructure)│
+                  │ - EventStore   │
+                  │ - ReadCache    │
+                  │ - Result       │
+                  │ - Dispatcher   │
+                  └────────────────┘
+```
+
+**Règles de dépendance:**
+- ✅ Auth/TeamBuilding/Authoring → lib (infrastructure)
+- ✅ Auth/TeamBuilding → shared (reference data, value objects partagés)
+- ❌ Authoring → PAS de dépendance vers Auth (pour l'instant)
+- ❌ lib → AUCUNE dépendance vers bounded contexts (doit rester générique)
+- ❌ shared → AUCUNE dépendance vers bounded contexts spécifiques
 
 ## Important Conventions
 

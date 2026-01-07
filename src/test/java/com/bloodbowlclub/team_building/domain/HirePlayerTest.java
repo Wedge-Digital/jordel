@@ -7,6 +7,7 @@ import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
+import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.PlayerDefinitionCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.RulesetCreator;
@@ -16,7 +17,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class HirePlayerTest extends TestCase {
 
@@ -26,13 +29,15 @@ public class HirePlayerTest extends TestCase {
     PlayerDefinitionCreator playerCreator = new PlayerDefinitionCreator();
     StaffCreator staffCreator = new StaffCreator();
 
+
+
     @Test
     @DisplayName("hiring a player should be ok, if no player are previously drafted, and player definition exist in roster")
     void testHirePlayerOk() {
         Roster chaosPact = rosterCreator.createChaosPact();
         RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
         PlayerDefinition toHire = chaosPact.getPlayerDefinitions().getFirst();
-        ResultMap<Void> hiring = rcTeam.hirePlayer(toHire, messageSource);
+        ResultMap<Void> hiring = rcTeam.hirePlayer(toHire);
         Assertions.assertTrue(hiring.isSuccess());
     }
 
@@ -41,9 +46,14 @@ public class HirePlayerTest extends TestCase {
     void testHirePlayerWithEmptyRosterFails() {
         RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam();
         PlayerDefinition line = playerCreator.createWardancer();
-        ResultMap<Void> hiring = rcTeam.hirePlayer(line, messageSource);
+        ResultMap<Void> hiring = rcTeam.hirePlayer(line);
         Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:Le roster CHAOS_CHOSEN/Chaos Chosen ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
+        AssertLib.assertResultContainsError(
+                hiring,
+                "team.player",
+                "Le roster CHAOS_CHOSEN/Chaos Chosen ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.",
+                messageSource
+        );
     }
 
     @Test
@@ -54,10 +64,15 @@ public class HirePlayerTest extends TestCase {
 
         Roster woodies = rosterCreator.createWoodElves();
         PlayerDefinition warDancer = woodies.getPlayerDefinitions().getFirst();
-        ResultMap<Void> hiring = rcTeam.hirePlayer(warDancer, messageSource);
+        ResultMap<Void> hiring = rcTeam.hirePlayer(warDancer);
 
         Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:Le roster CHAOS_PACT/Chaos Pact ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.", hiring.getError().strip());
+        AssertLib.assertResultContainsError(
+                hiring,
+                "team.player",
+                "Le roster CHAOS_PACT/Chaos Pact ne contient pas de joueur \"WOOD_ELVES__WARDANCER/Wardancer\", impossible de recruter ce type de joueur.",
+                messageSource
+        );
     }
 
     @Test
@@ -66,20 +81,14 @@ public class HirePlayerTest extends TestCase {
         RosterSelectedTeam with16Players = teamCreator.createRosterTeamWith16Player();
         PlayerDefinition warDancer = playerCreator.createWardancer();
 
-        ResultMap<Void> hiring = with16Players.hirePlayer(warDancer, messageSource);
+        ResultMap<Void> hiring = with16Players.hirePlayer(warDancer);
         Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:L'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName a déjà atteint son maximum de joueurs", hiring.getError());
-    }
-
-    @Test
-    @DisplayName("Hire player should fail if team is invalid")
-    void hiringShouldFailIfTeamIsInvalid() {
-        RosterSelectedTeam with16Players = teamCreator.createRosterTeamWith16Player();
-        PlayerDefinition warDancer = playerCreator.createWardancer();
-
-        ResultMap<Void> hiring = with16Players.hirePlayer(warDancer, messageSource);
-        Assertions.assertTrue(hiring.isFailure());
-        Assertions.assertEquals("team.player:L'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName a déjà atteint son maximum de joueurs", hiring.getError());
+        AssertLib.assertResultContainsError(
+                hiring,
+                "team.player",
+                "L'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName a déjà atteint son maximum de joueurs",
+                messageSource
+        );
     }
 
     @Test
@@ -91,7 +100,7 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition assassin = playerCreator.createAssassin();
         PlayerDefinition linemens = playerCreator.createLineman();
-        ResultMap<Void> hiring = teamWithDarkies.hireManyPlayers(List.of(witches, witches, blitzer, blitzer, assassin, linemens, linemens, linemens, linemens), messageSource);
+        ResultMap<Void> hiring = teamWithDarkies.hireManyPlayers(List.of(witches, witches, blitzer, blitzer, assassin, linemens, linemens, linemens, linemens));
         Assertions.assertTrue(hiring.isSuccess());
         Assertions.assertEquals(teamWithDarkies.getHiredPlayerCount(), 9);
     }
@@ -102,11 +111,15 @@ public class HirePlayerTest extends TestCase {
         Roster darkies = rosterCreator.createDarkElves();
         RosterSelectedTeam teamWithDarkies = teamCreator.createChaosTeam(darkies);
         PlayerDefinition witches = playerCreator.createWitchElf();
-        teamWithDarkies.hireManyPlayers(List.of(witches, witches), messageSource);
-        ResultMap<Void> hiring = teamWithDarkies.hirePlayer(witches, messageSource);
+        teamWithDarkies.hireManyPlayers(List.of(witches, witches));
+        ResultMap<Void> hiring = teamWithDarkies.hirePlayer(witches);
         Assertions.assertTrue(hiring.isFailure());
         Assertions.assertEquals(2, teamWithDarkies.getHiredPlayerCount());
-        Assertions.assertEquals("team.player:L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de positionnel de type DARK_ELVES__WITCH_ELF/Witch Elf", hiring.getError());
+        HashMap<String, String> expectedErrorMessages = new HashMap<>();
+        expectedErrorMessages.put("team.player", "L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de positionnel de type DARK_ELVES__WITCH_ELF/Witch Elf");
+        Assertions.assertEquals(
+                hiring.getTranslatedErrorMap(messageSource, Locale.getDefault()),
+                expectedErrorMessages);
     }
 
     @Test
@@ -118,12 +131,16 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition troll = playerCreator.createTroll();
         PlayerDefinition ratOgre = playerCreator.createRatOgre();
         PlayerDefinition ogre = playerCreator.createOgre();
-        ResultMap<Void> minoHiring = teamWithChaosPact.hireManyPlayers(List.of(minotaur, ogre, troll), messageSource);
+        ResultMap<Void> minoHiring = teamWithChaosPact.hireManyPlayers(List.of(minotaur, ogre, troll));
         Assertions.assertTrue(minoHiring.isSuccess());
 
-        ResultMap<Void> ogreHiring = teamWithChaosPact.hirePlayer(ratOgre, messageSource);
+        ResultMap<Void> ogreHiring = teamWithChaosPact.hirePlayer(ratOgre);
         Assertions.assertTrue(ogreHiring.isFailure());
-        Assertions.assertEquals("team.player:L'equipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de joueurs en limites croisées", ogreHiring.getError());
+        HashMap<String, String> expectedErrorMessages = new HashMap<>();
+        expectedErrorMessages.put("team.player", "L'equipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName a déjà atteint son maximum de joueurs en limites croisées");
+        Assertions.assertEquals(
+                ogreHiring.getTranslatedErrorMap(messageSource, Locale.getDefault()),
+                expectedErrorMessages);
     }
 
     @Test
@@ -137,9 +154,13 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition lineman = playerCreator.createLineman();
         PlayerDefinition assassin = playerCreator.createAssassin();
 
-        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(witch, witch, assassin, assassin, blitzer, blitzer, lineman, lineman, lineman,lineman,lineman, lineman, lineman), messageSource);
-        Assertions.assertTrue(playerHiring.isFailure());
-        Assertions.assertEquals("team.player:la team 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne dispose pas d'un budget suffisant pour recruter le joueur DARK_ELVES__LINEMAN/Dark elf lineman", playerHiring.getError());
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(witch, witch, assassin, assassin, blitzer, blitzer, lineman, lineman, lineman,lineman,lineman, lineman, lineman));
+        AssertLib.assertResultContainsError(
+                playerHiring,
+                "team.player",
+                "la team 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne dispose pas d'un budget suffisant pour recruter le joueur DARK_ELVES__LINEMAN/Dark elf lineman",
+                messageSource
+        );
     }
 
     @Test
@@ -152,7 +173,7 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition assassin = playerCreator.createAssassin();
 
-        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(witch, witch, assassin, assassin, blitzer), messageSource);
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(witch, witch, assassin, assassin, blitzer));
         Assertions.assertTrue(playerHiring.isSuccess());
         Assertions.assertEquals(5, teamOfDarkElfs.domainEvents().size());
         assertEqualsResultset(teamOfDarkElfs);
@@ -166,18 +187,18 @@ public class HirePlayerTest extends TestCase {
         RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition lineman = playerCreator.createLineman();
 
-        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman));
         Assertions.assertTrue(playerHiring.isSuccess());
         Assertions.assertEquals(3, teamOfDarkElfs.domainEvents().size());
 
         // change with same roster, doesn't do anything
-        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs, messageSource);
+        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs);
         Assertions.assertTrue(sameRosterChanging.isSuccess());
         Assertions.assertEquals(3, teamOfDarkElfs.domainEvents().size());
 
         // change with another roster shall record an event and reset players hired list
         Roster proElves = rosterCreator.createProElves();
-        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves);
         Assertions.assertTrue(anotherRosterSelecting.isSuccess());
         Assertions.assertEquals(4, teamOfDarkElfs.domainEvents().size());
         Assertions.assertEquals(0, teamOfDarkElfs.getHiredPlayers().size());
@@ -191,10 +212,10 @@ public class HirePlayerTest extends TestCase {
         RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition lineman = playerCreator.createLineman();
 
-        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman));
         Assertions.assertTrue(playerHiring.isSuccess());
 
-        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(lineman, messageSource);
+        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(lineman);
         Assertions.assertTrue(playerFiring.isSuccess());
         Assertions.assertEquals(2,teamOfDarkElfs.getHiredPlayers().size());
         Assertions.assertEquals(teamOfDarkElfs.domainEvents().size(), 4);
@@ -210,10 +231,15 @@ public class HirePlayerTest extends TestCase {
         PlayerDefinition lineman = playerCreator.createLineman();
         PlayerDefinition witch = playerCreator.createWitchElf();
 
-        teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
-        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(witch, messageSource);
+        teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman));
+        ResultMap<Void> playerFiring = teamOfDarkElfs.removePlayer(witch);
         Assertions.assertTrue(playerFiring.isFailure());
-        Assertions.assertEquals("team:Le joueur DARK_ELVES__WITCH_ELF/Witch Elf n'a pas été recruté, impossible de le supprimer", playerFiring.getError());
+        AssertLib.assertResultContainsError(
+                playerFiring,
+                "team",
+                "Le joueur DARK_ELVES__WITCH_ELF/Witch Elf n'a pas été recruté, impossible de le supprimer",
+                messageSource
+        );
     }
 
     @Test
@@ -224,14 +250,14 @@ public class HirePlayerTest extends TestCase {
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
         PlayerDefinition lineman = playerCreator.createLineman();
-        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman), messageSource);
-        ResultMap<Void> rerollPruchase = teamOfDarkElfs.purchaseReroll(3, messageSource);
+        ResultMap<Void> playerHiring = teamOfDarkElfs.hireManyPlayers(List.of(lineman, lineman, lineman));
+        ResultMap<Void> rerollPruchase = teamOfDarkElfs.purchaseReroll(3);
         Assertions.assertTrue(rerollPruchase.isSuccess());
         Assertions.assertEquals(3, teamOfDarkElfs.getRerollCount());
 
         // when
         Roster proElves = rosterCreator.createProElves();
-        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        ResultMap<Void>  anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves);
         Assertions.assertTrue(anotherRosterSelecting.isSuccess());
 
         // should contain 3 hireplayer, 1 reroll purchase, 1 roster change
@@ -248,19 +274,19 @@ public class HirePlayerTest extends TestCase {
         Ruleset ruleset = rulesetCreator.createRulesetWithTwoTiers();
         RosterSelectedTeam teamOfDarkElfs = teamCreator.createTeam(darkElfs, ruleset);
 
-        ResultMap<Void> staffBuying = teamOfDarkElfs.buyStaff(staffCreator.createCheerleaders(), messageSource);
+        ResultMap<Void> staffBuying = teamOfDarkElfs.buyStaff(staffCreator.createCheerleaders());
         Assertions.assertTrue(staffBuying.isSuccess());
         Assertions.assertEquals(1, teamOfDarkElfs.getCheerleaders());
         Assertions.assertEquals(10, teamOfDarkElfs.getStaffBudget());
 
         // change with same roster, doesn't do anything
-        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs, messageSource);
+        ResultMap<Void> sameRosterChanging = teamOfDarkElfs.chooseRoster(darkElfs);
         Assertions.assertTrue(sameRosterChanging.isSuccess());
         Assertions.assertEquals(1, teamOfDarkElfs.getCheerleaders());
 
         // when - change with another roster shall reset team staff
         Roster proElves = rosterCreator.createProElves();
-        ResultMap<Void> anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves, messageSource);
+        ResultMap<Void> anotherRosterSelecting = teamOfDarkElfs.chooseRoster(proElves);
         Assertions.assertTrue(anotherRosterSelecting.isSuccess());
 
         // then

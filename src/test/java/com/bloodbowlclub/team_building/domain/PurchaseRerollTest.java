@@ -8,6 +8,7 @@ import com.bloodbowlclub.team_building.domain.events.TeamRerollPurchasedEvent;
 import com.bloodbowlclub.team_building.domain.events.TeamRerollRemovedEvent;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.team.RosterSelectedTeam;
+import com.bloodbowlclub.test_utilities.AssertLib;
 import com.bloodbowlclub.test_utilities.team_creation.RosterCreator;
 import com.bloodbowlclub.test_utilities.team_creation.TeamCreator;
 import org.junit.jupiter.api.Assertions;
@@ -27,11 +28,11 @@ public class PurchaseRerollTest extends TestCase {
     void testRerollPurchaseShouldSucceed() {
         Roster chaosPact = rosterCreator.createChaosPact();
         RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
-        ResultMap<Integer> baseRemainingBudget = rcTeam.computeRemainingBudget(messageSource);
-        ResultMap<Void> rrPurchase = rcTeam.purchaseReroll(3 ,messageSource);
+        ResultMap<Integer> baseRemainingBudget = rcTeam.computeRemainingBudget();
+        ResultMap<Void> rrPurchase = rcTeam.purchaseReroll(3);
         Assertions.assertTrue(rrPurchase.isSuccess());
         Assertions.assertEquals(3, rcTeam.getRerollCount());
-        Assertions.assertEquals(baseRemainingBudget.getValue() - 180, rcTeam.computeRemainingBudget(messageSource).getValue());
+        Assertions.assertEquals(baseRemainingBudget.getValue() - 180, rcTeam.computeRemainingBudget().getValue());
         Assertions.assertEquals(1, rcTeam.domainEvents().size());
         Assertions.assertEquals(TeamRerollPurchasedEvent.class, rcTeam.domainEvents().getLast().getClass());
     }
@@ -41,23 +42,33 @@ public class PurchaseRerollTest extends TestCase {
     void testRerollPurchaseShouldFailIfMaxIsReached() {
         Roster chaosPact = rosterCreator.createChaosPact();
         RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
-        ResultMap<Void> rrPurchase = rcTeam.purchaseReroll(3 ,messageSource);
+        ResultMap<Void> rrPurchase = rcTeam.purchaseReroll(3);
         Assertions.assertTrue(rrPurchase.isSuccess());
-        rrPurchase = rcTeam.purchaseReroll(3 ,messageSource);
+        rrPurchase = rcTeam.purchaseReroll(3);
         Assertions.assertTrue(rrPurchase.isSuccess());
-        rrPurchase = rcTeam.purchaseReroll(3 ,messageSource);
+        rrPurchase = rcTeam.purchaseReroll(3);
         Assertions.assertTrue(rrPurchase.isFailure());
         Assertions.assertEquals(6, rcTeam.getRerollCount());
-        Assertions.assertEquals("team.reroll:L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne peut pas acheter 3 relances, cela lui ferait dépasser le maximum de relance autorisé", rrPurchase.getError());
+        AssertLib.assertResultContainsError(
+                rrPurchase,
+                "team.reroll",
+                "L'équipe 01KCSHJS1K5M8JTW9D5A58VY1S/teamName ne peut pas acheter 3 relances, cela lui ferait dépasser le maximum de relance autorisé",
+                messageSource
+        );
     }
 
    @Test
    @DisplayName("Reroll purchase should fail if not enough budget")
    void testRerollPurchaseShouldFailIfNotEnoughBudget() {
         RosterSelectedTeam teamWithoutBudget = teamCreator.createTeamWithoutBudgetLeft();
-        ResultMap<Void> rrPurchase = teamWithoutBudget.purchaseReroll(3 ,messageSource);
+        ResultMap<Void> rrPurchase = teamWithoutBudget.purchaseReroll(3);
         Assertions.assertTrue(rrPurchase.isFailure());
-       Assertions.assertEquals("team.reroll:L'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName n'a pas le budget pour acheter 3 rerolls, achat annulé.", rrPurchase.getError());
+       AssertLib.assertResultContainsError(
+               rrPurchase,
+              "team.reroll",
+               "L'équipe 01KCSJRWAFMN3T35AVZDX1ASXP/teamName n'a pas le budget pour acheter 3 rerolls, achat annulé.",
+               messageSource
+       );
    }
 
     @Test
@@ -65,8 +76,8 @@ public class PurchaseRerollTest extends TestCase {
     void testRerollRemoveShouldSucceed() {
         Roster chaosPact = rosterCreator.createChaosPact();
         RosterSelectedTeam rcTeam =  teamCreator.createChaosTeam(chaosPact);
-        rcTeam.purchaseReroll(3 ,messageSource);
-        ResultMap<Void> rrRemove = rcTeam.removeReroll(2, messageSource);
+        rcTeam.purchaseReroll(3);
+        ResultMap<Void> rrRemove = rcTeam.removeReroll(2);
         Assertions.assertEquals(1, rcTeam.getRerollCount());
         Assertions.assertTrue(rrRemove.isSuccess());
         Assertions.assertEquals(2, rcTeam.domainEvents().size());

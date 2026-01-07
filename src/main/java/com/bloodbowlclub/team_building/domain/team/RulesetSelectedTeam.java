@@ -1,6 +1,7 @@
 package com.bloodbowlclub.team_building.domain.team;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
@@ -15,9 +16,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.context.MessageSource;
-
-import java.util.Locale;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -53,15 +51,24 @@ public class RulesetSelectedTeam extends DraftTeam {
     // Méthodes métier
     //
     //===============================================================================================================
-    public ResultMap<Void> chooseRoster(Roster roster, MessageSource msg) {
+    public ResultMap<Void> chooseRoster(Roster roster) {
         if (!this.isRulesetChosen()) {
-            return ResultMap.failure("team", msg.getMessage("team_creation.no_ruleset", new Object[]{}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+            return ResultMap.failure(
+                    "team",
+                    new TranslatableMessage("team_creation.no_ruleset"),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
 
         if (ruleset.isRosterNotAllowed(roster)) {
-            return ResultMap.failure("team",
-                    msg.getMessage("team_creation.roster_not_allowed",
-                            new Object[]{roster.getId(), roster.getName(), ruleset.getId(), ruleset.getName()}, Locale.getDefault()), ErrorCode.INTERNAL_ERROR);
+            return ResultMap.failure(
+                    "team",
+                    new TranslatableMessage(
+                            "team_creation.roster_not_allowed",
+                            roster.getId(), roster.getName(), ruleset.getId(), ruleset.getName()
+                    ),
+                    ErrorCode.INTERNAL_ERROR
+            );
         }
 
         if (roster.isNotValid()) {

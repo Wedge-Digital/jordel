@@ -11,7 +11,6 @@ import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 @Component("startResetPasswordCommandHandler")
@@ -20,10 +19,9 @@ public class StartResetPasswordCommandHandler extends CommandHandler {
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(StartResetPasswordCommandHandler.class);
 
     public StartResetPasswordCommandHandler(@Qualifier("eventStore") EventStore eventStore,
-                                            @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher,
-                                            MessageSource messageSource
+                                            @Qualifier("eventDispatcher") AbstractEventDispatcher businessDispatcher
     ) {
-        super(eventStore, businessDispatcher, messageSource);
+        super(eventStore, businessDispatcher);
     }
 
     @Override

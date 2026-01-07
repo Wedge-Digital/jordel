@@ -22,12 +22,14 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class LoginCommandTest extends TestCase {
 
     FakeEventStore fakeEventStore = new FakeEventStore();
     FakeEventDispatcher fakeEventDispatcher = new FakeEventDispatcher();
-    LoginCommandHandler handler = new LoginCommandHandler(fakeEventStore, fakeEventDispatcher, messageSource);
+    LoginCommandHandler handler = new LoginCommandHandler(fakeEventStore, fakeEventDispatcher);
     EventEntityFactory factory = new EventEntityFactory();
 
 
@@ -72,7 +74,8 @@ public class LoginCommandTest extends TestCase {
         HashMap<String, String> errors = new HashMap<>();
         String expectedError = messageSource.getMessage("user_account.bad_credentials", new Object[]{username}, LocaleContextHolder.getLocale());
         errors.put("password", expectedError);
-        Assertions.assertEquals(errors, handling.errorMap());
+        Map<String, String> translatedErrors = handling.getTranslatedErrorMap(messageSource, Locale.getDefault());
+        Assertions.assertEquals(errors, translatedErrors);
     }
 
     @Test
@@ -84,7 +87,8 @@ public class LoginCommandTest extends TestCase {
         HashMap<String, String> errors = new HashMap<>();
         String expectedError = messageSource.getMessage("user_account.not_existing", new Object[]{username}, LocaleContextHolder.getLocale());
         errors.put("username", expectedError);
-        Assertions.assertEquals(errors, handling.errorMap());
+        Map<String, String> translatedErrors = handling.getTranslatedErrorMap(messageSource, Locale.getDefault());
+        Assertions.assertEquals(errors, translatedErrors);
     }
 
 }

@@ -193,7 +193,7 @@ public class TeamCreationHydratation extends TestCase {
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition lineman = playerCreator.createLineman();
         PlayerDefinition assassin = playerCreator.createAssassin();
-        rosterChosenTeam.hireManyPlayers(List.of(witch,witch,blitzer,blitzer,lineman,lineman,lineman,assassin), messageSource);
+        rosterChosenTeam.hireManyPlayers(List.of(witch,witch,blitzer,blitzer,lineman,lineman,lineman,assassin));
         return rosterChosenTeam;
     }
 
@@ -209,27 +209,27 @@ public class TeamCreationHydratation extends TestCase {
         PlayerDefinition blitzer = playerCreator.createBlitzer();
         PlayerDefinition lineman = playerCreator.createLineman();
         PlayerDefinition assassin = playerCreator.createAssassin();
-        rosterChosenTeam.hireManyPlayers(List.of(witch,witch,blitzer,blitzer,lineman,lineman,lineman,assassin), messageSource);
-        rosterChosenTeam.removePlayer(witch, messageSource);
-        rosterChosenTeam.removePlayer(blitzer, messageSource);
-        rosterChosenTeam.removePlayer(blitzer, messageSource);
+        rosterChosenTeam.hireManyPlayers(List.of(witch,witch,blitzer,blitzer,lineman,lineman,lineman,assassin));
+        rosterChosenTeam.removePlayer(witch);
+        rosterChosenTeam.removePlayer(blitzer);
+        rosterChosenTeam.removePlayer(blitzer);
         return rosterChosenTeam;
     }
 
     private RosterSelectedTeam buildRefTeamWithStaff(Ruleset ruleset, Roster roster) {
         RosterSelectedTeam team = buildRefTeamWithRemoval(ruleset, roster);
-        team.buyStaff(cheerleader, messageSource);
-        team.buyStaff(cheerleader, messageSource);
-        team.buyStaff(cheerleader, messageSource);
-        team.buyStaff(cheerleader, messageSource);
-        team.buyStaff(apo, messageSource);
-        team.buyStaff(assistant, messageSource);
-        team.buyStaff(assistant, messageSource);
+        team.buyStaff(cheerleader);
+        team.buyStaff(cheerleader);
+        team.buyStaff(cheerleader);
+        team.buyStaff(cheerleader);
+        team.buyStaff(apo);
+        team.buyStaff(assistant);
+        team.buyStaff(assistant);
 
-        team.removeStaff(cheerleader, messageSource);
-        team.removeStaff(cheerleader, messageSource);
-        team.removeStaff(apo, messageSource);
-        team.removeStaff(assistant, messageSource);
+        team.removeStaff(cheerleader);
+        team.removeStaff(cheerleader);
+        team.removeStaff(apo);
+        team.removeStaff(assistant);
         return team;
     }
 
@@ -262,7 +262,7 @@ public class TeamCreationHydratation extends TestCase {
 
         // when
         RosterSelectedTeam referenceTeam = buildReferenceTeam(ruleset, darkies);
-        referenceTeam.chooseRoster(woodies, messageSource);
+        referenceTeam.chooseRoster(woodies);
         Assertions.assertEquals(referenceTeam.getRoster(), woodies);
 
         RosterSelectedTeam hydratedTeam = hydrateFromFullHistoryWithRosterChange(ruleset, darkies, woodies);

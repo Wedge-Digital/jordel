@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class AgregateShallExistPolicyTest extends TestCase {
 
     private final FakeEventStore eventStore = new FakeEventStore();
-    private final AgregateShallExistPolicy agregateShallExistPolicy = new AgregateShallExistPolicy(messageSource, eventStore);
+    private final AgregateShallExistPolicy agregateShallExistPolicy = new AgregateShallExistPolicy(eventStore);
 
     @Test
     void test_userAccountShallExistPolicy_fails_when_no_account_is_present() {

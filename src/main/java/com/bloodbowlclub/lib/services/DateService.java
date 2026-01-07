@@ -19,7 +19,7 @@ public class DateService implements AbstractDateService {
         try {
             computed = sdf.parse(mysqlDate);
         } catch (Exception e) {
-            return Result.failure("Invalid date format", ErrorCode.UNPROCESSABLE_ENTITY);
+            return Result.failure(new TranslatableMessage("date.invalid_format", mysqlDate), ErrorCode.UNPROCESSABLE_ENTITY);
         }
         return Result.success(computed);
     }

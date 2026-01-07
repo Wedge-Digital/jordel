@@ -21,13 +21,14 @@ import org.springframework.lang.Nullable;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 
 public class RegisterAccountCommandHandlerTests extends TestCase {
     private RegisterAccountCommand command;
     private final EventStore eventStore = new FakeEventStore();
     SuccessPolicy successPolicy = new SuccessPolicy(messageSource);
-    FailurePolicy failurePolicy = new FailurePolicy(messageSource, ErrorCode.BAD_REQUEST);
+    FailurePolicy failurePolicy = new FailurePolicy(ErrorCode.BAD_REQUEST);
 
     private void init_command() {
         command = new RegisterAccountCommand(
@@ -56,9 +57,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                new EventDispatcher(),
-                messageSource
-
+                new EventDispatcher()
         );
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());
@@ -73,8 +72,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                eventDispatcher,
-                messageSource
+                eventDispatcher
         );
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());
@@ -88,8 +86,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 failurePolicy,
-                new EventDispatcher(),
-                messageSource);
+                new EventDispatcher());
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
 //        ExpectErrorMessage(commandHandlingResult, "username", "user_registration.username.already_exists", new Object[]{command.username()});
@@ -101,8 +98,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 failurePolicy,
-                new EventDispatcher(),
-                messageSource);
+                new EventDispatcher());
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
     }
@@ -116,13 +112,13 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 new FakeEventStore(),
                 successPolicy,
-                new EventDispatcher(),
-                messageSource);
+                new EventDispatcher());
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isFailure());
         HashMap<String, String> expectedResult = new HashMap<>();
         expectedResult.put("email", messageSource.getMessage("email.invalid",null, Locale.getDefault()));
-        Assertions.assertEquals(expectedResult, commandHandlingResult.errorMap());
+        Map<String, String> translatedErrors = commandHandlingResult.getTranslatedErrorMap(messageSource, Locale.getDefault());
+        Assertions.assertEquals(expectedResult, translatedErrors);
     }
 
     @Test
@@ -132,8 +128,7 @@ public class RegisterAccountCommandHandlerTests extends TestCase {
         RegisterCommandHandler commandHandler = new RegisterCommandHandler(
                 eventStore,
                 successPolicy,
-                new EventDispatcher(),
-                messageSource);
+                new EventDispatcher());
 
         ResultMap<Void> commandHandlingResult = commandHandler.handle(command);
         Assertions.assertTrue(commandHandlingResult.isSuccess());

@@ -1,6 +1,7 @@
 package com.bloodbowlclub.team_building.domain;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
@@ -24,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ChooseRosterTest extends TestCase {
@@ -40,7 +42,7 @@ public class ChooseRosterTest extends TestCase {
     @DisplayName("")
     void testChooseRosterSucceed() {
         AssertLib.AssertHasNoDomainEvent(teamWithFullRuleset);
-        ResultMap<Void> rosterChoice = teamWithFullRuleset.chooseRoster(woodies, messageSource);
+        ResultMap<Void> rosterChoice = teamWithFullRuleset.chooseRoster(woodies);
         Assertions.assertTrue(rosterChoice.isSuccess());
         AssertLib.AssertHasDomainEventOfType(teamWithFullRuleset, RosterChosenEvent.class);
     }
@@ -49,10 +51,10 @@ public class ChooseRosterTest extends TestCase {
     @DisplayName("Change roster shall be possible")
     void testChangeRosterSucceed() {
         AssertLib.AssertHasNoDomainEvent(teamWithFullRuleset);
-        teamWithFullRuleset.chooseRoster(woodies, messageSource);
+        teamWithFullRuleset.chooseRoster(woodies);
         Assertions.assertEquals(1, teamWithFullRuleset.domainEvents().size());
 
-        ResultMap<Void> rosterChange = teamWithFullRuleset.chooseRoster(darkies, messageSource);
+        ResultMap<Void> rosterChange = teamWithFullRuleset.chooseRoster(darkies);
         Assertions.assertTrue(rosterChange.isSuccess());
         Assertions.assertEquals(2, teamWithFullRuleset.domainEvents().size());
     }
@@ -82,10 +84,10 @@ public class ChooseRosterTest extends TestCase {
         Ruleset ruleset = rulesetCreator.createChoasPactRuleset();
 
         RulesetSelectedTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
-        ResultMap<Void> rosterSelection = team.chooseRoster(woodies, messageSource);
+        ResultMap<Void> rosterSelection = team.chooseRoster(woodies);
         Assertions.assertTrue(rosterSelection.isFailure());
         Assertions.assertEquals(ErrorCode.INTERNAL_ERROR, rosterSelection.getErrorCode());
-        Map<String, String> errors = rosterSelection.errorMap();
+        Map<String, String> errors = rosterSelection.getTranslatedErrorMap(messageSource, Locale.getDefault());
         HashMap<String,String> expectedErrors = new HashMap<>();
         expectedErrors.put("team", "Le roster WOOD_ELVES/Wood Elves n'est pas autorisé par les règles de création \"01KCYZ78YX2FHC3H3KD2Q0YE96/Chaos Pact Ruleset\", impossible de valider la sélection du roster.");
         Assertions.assertEquals(expectedErrors, errors);
@@ -98,7 +100,7 @@ public class ChooseRosterTest extends TestCase {
         RulesetSelectedTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
         Roster darkies = rosterCreator.createDarkElves();
-        ResultMap<Void> rosterSelection = team.chooseRoster(darkies, messageSource);
+        ResultMap<Void> rosterSelection = team.chooseRoster(darkies);
         Assertions.assertTrue(rosterSelection.isSuccess());
         AssertLib.AssertHasDomainEventOfType(team, RosterChosenEvent.class);
     }
@@ -110,7 +112,7 @@ public class ChooseRosterTest extends TestCase {
         RulesetSelectedTeam team = TeamCreator.createRulesetChosenTeam(ruleset);
 
         Roster proElves = rosterCreator.createProElves();
-        ResultMap<Void> rosterSelection = team.chooseRoster(proElves, messageSource);
+        ResultMap<Void> rosterSelection = team.chooseRoster(proElves);
         Assertions.assertTrue(rosterSelection.isSuccess());
         AssertLib.AssertHasDomainEventOfType(team, RosterChosenEvent.class);
         assertEqualsResultset(team);

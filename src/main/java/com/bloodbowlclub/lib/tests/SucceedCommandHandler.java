@@ -6,7 +6,7 @@ import com.bloodbowlclub.lib.use_cases.CommandHandler;
 
 public class SucceedCommandHandler extends CommandHandler {
     public SucceedCommandHandler() {
-        super(null, null, null);
+        super(null, null);
     }
 
     @Override

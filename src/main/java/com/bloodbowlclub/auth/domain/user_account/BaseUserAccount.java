@@ -74,7 +74,10 @@ public class BaseUserAccount extends AggregateRoot {
 
     public Result<Void> login(String password) {
         if (this.password == null){
-            return Result.failure(null, ErrorCode.BAD_REQUEST);
+            return Result.failure(
+                new com.bloodbowlclub.lib.services.TranslatableMessage("user_account.password_not_set"),
+                ErrorCode.BAD_REQUEST
+            );
         }
         Result<Void> loginSuccess = this.password.matches(password);
         if (loginSuccess.isFailure()) {
@@ -96,7 +99,11 @@ public class BaseUserAccount extends AggregateRoot {
     }
 
     public ResultMap<Void> completeResetPassword(PasswordResetToken token, Password newPassword) {
-        return ResultMap.failure("UserAccount", "", ErrorCode.BAD_REQUEST);
+        return ResultMap.failure(
+            "UserAccount",
+            new com.bloodbowlclub.lib.services.TranslatableMessage("user_account.cannot_reset_password"),
+            ErrorCode.BAD_REQUEST
+        );
     }
 
     @Override

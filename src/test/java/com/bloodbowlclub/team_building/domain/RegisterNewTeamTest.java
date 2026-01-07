@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class RegisterNewTeamTest extends TestCase {
@@ -54,6 +55,7 @@ public class RegisterNewTeamTest extends TestCase {
         expectedErrors.put("teamId", "Identifiant non valide, doit être un ULID");
         expectedErrors.put("name", "must be between 3 and 100 characters");
         expectedErrors.put("logoUrl", "L'Url n'est pas une url Cloudinary");
-        Assertions.assertEquals(errors.errorMap(), expectedErrors);
+        Map<String, String> translatedErrors = errors.getTranslatedErrorMap(messageSource, Locale.getDefault());
+        Assertions.assertEquals(expectedErrors, translatedErrors);
     }
 }

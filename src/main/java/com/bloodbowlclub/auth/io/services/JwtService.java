@@ -3,6 +3,7 @@ package com.bloodbowlclub.auth.io.services;
 import com.bloodbowlclub.auth.io.web.JwtTokensResponse;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -10,8 +11,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -33,16 +32,12 @@ public class JwtService {
 
     private SecretKey key;
 
-    private final MessageSource messageSource;
-
     public JwtService(@Value("${jwt.secret}") String jwtSecret,
                       @Value("${jwt.expiration.access}") int accessExpirationOffset,
-                      @Value("${jwt.expiration.refresh}") long refreshExpirationOffset,
-                      MessageSource messageSource) {
+                      @Value("${jwt.expiration.refresh}") long refreshExpirationOffset) {
         this.jwtSecret = jwtSecret;
         this.accessExpirationOffset = accessExpirationOffset;
         this.refreshExpirationOffset = refreshExpirationOffset;
-        this.messageSource = messageSource;
     }
 
     // Initializes the key after the class is instantiated and the jwtSecret is injected,
@@ -118,20 +113,15 @@ public class JwtService {
             Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
             return Result.success("no pb");
         } catch (SecurityException e) {
-            String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
+            return Result.failure(new TranslatableMessage("jwt.invalid_token"), ErrorCode.UNAUTHORIZED);
         } catch (MalformedJwtException e) {
-            String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
+            return Result.failure(new TranslatableMessage("jwt.invalid_token"), ErrorCode.UNAUTHORIZED);
         } catch (ExpiredJwtException e) {
-            String errorMessage = messageSource.getMessage("jwt.expired_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.EXPIRED_TOKEN);
+            return Result.failure(new TranslatableMessage("jwt.expired_token"), ErrorCode.EXPIRED_TOKEN);
         } catch (UnsupportedJwtException e) {
-            String errorMessage = messageSource.getMessage("jwt.unknown_jwt_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
+            return Result.failure(new TranslatableMessage("jwt.unknown_jwt_token"), ErrorCode.UNAUTHORIZED);
         } catch (IllegalArgumentException e) {
-            String errorMessage = messageSource.getMessage("jwt.invalid_token", null, LocaleContextHolder.getLocale());
-            return Result.failure(errorMessage, ErrorCode.UNAUTHORIZED);
+            return Result.failure(new TranslatableMessage("jwt.invalid_token"), ErrorCode.UNAUTHORIZED);
         }
     }
 

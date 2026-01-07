@@ -1,6 +1,7 @@
 package com.bloodbowlclub.team_building.domain.ruleset;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
@@ -12,10 +13,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.context.MessageSource;
 
 import java.util.List;
-import java.util.Locale;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -52,13 +51,16 @@ public class Ruleset extends AggregateRoot {
         return tierList.stream().filter(tier -> tier.contains(candidate)).toList().isEmpty() == false;
     }
 
-    public Result<CreationBudget> getCreationBudget(Roster candidate, MessageSource msg) {
+    public Result<CreationBudget> getCreationBudget(Roster candidate) {
         List<RosterTier> targetTier = tierList.stream().filter(t -> t.contains(candidate)).toList();
         if (targetTier.isEmpty()) {
-           return Result.failure(msg.getMessage(
-                   "team_creation.roster_not_present_in_ruleset",
-                   new Object[]{candidate.getName(), getName()}, Locale.getDefault()
-           ), ErrorCode.UNPROCESSABLE_ENTITY);
+           return Result.failure(
+                   new TranslatableMessage(
+                           "team_creation.roster_not_present_in_ruleset",
+                           candidate.getName(), getName()
+                   ),
+                   ErrorCode.UNPROCESSABLE_ENTITY
+           );
         }
         return Result.success(targetTier.getFirst().getTeamBudget());
 

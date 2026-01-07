@@ -7,6 +7,6 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class ChoosenRosterCommand implements Command {
+public class ChooseRosterCommand implements Command {
     Roster chosenRoster;
 }

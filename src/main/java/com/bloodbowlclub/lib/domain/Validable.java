@@ -23,6 +23,7 @@ public interface Validable {
         if(errorMap.isEmpty()){
             return ResultMap.success(null);
         }
-        return ResultMap.failure(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
+        // Using deprecated method during migration - Bean Validation messages are already resolved
+        return ResultMap.failureWithStringMap(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
     }
 }

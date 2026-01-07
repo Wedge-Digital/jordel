@@ -1,6 +1,7 @@
 package com.bloodbowlclub.team_building.domain.team;
 
 import com.bloodbowlclub.lib.domain.AggregateRoot;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
@@ -20,12 +21,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.context.MessageSource;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import static com.bloodbowlclub.shared.constants.MAX_PLAYER_COUNT;
 import static com.bloodbowlclub.shared.constants.MAX_REROLL_COUNT;
@@ -80,7 +79,7 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return !this.hiredStaff.contains(staff);
     }
 
-    private ResultMap<Void> removePlayer(PlayerDefinition player) {
+    private ResultMap<Void> removePlayerInternal(PlayerDefinition player) {
         for (Iterator<PlayerDefinition> it = this.hiredPlayers.iterator(); it.hasNext(); ) {
             PlayerDefinition p = it.next();
             if (p.equals(player)) {
@@ -88,10 +87,14 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
                 return ResultMap.success(null);
             }
         }
-        return ResultMap.failure("player_removal", "", ErrorCode.UNKNOWN_ERROR);
+        return ResultMap.failure(
+                "player_removal",
+                new TranslatableMessage("team_creation.player_not_found_in_team"),
+                ErrorCode.UNKNOWN_ERROR
+        );
     }
 
-    private ResultMap<Void> removeStaff(TeamStaff staff) {
+    private ResultMap<Void> removeStaffInternal(TeamStaff staff) {
         for (Iterator<TeamStaff> it = this.hiredStaff.iterator(); it.hasNext(); ) {
             TeamStaff s = it.next();
             if (s.equals(staff)) {
@@ -99,7 +102,11 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
                 return ResultMap.success(null);
             }
         }
-        return ResultMap.failure("player_removal", "", ErrorCode.UNKNOWN_ERROR);
+        return ResultMap.failure(
+                "staff_removal",
+                new TranslatableMessage("team_creation.staff_not_found_in_team"),
+                ErrorCode.UNKNOWN_ERROR
+        );
     }
 
     @JsonIgnore
@@ -134,8 +141,8 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         ).reduce(0, Integer::sum);
     }
 
-    public ResultMap<Integer> computeRemainingBudget(MessageSource msg) {
-        Result<CreationBudget> findCreationBudget = this.ruleset.getCreationBudget(this.roster, msg);
+    public ResultMap<Integer> computeRemainingBudget() {
+        Result<CreationBudget> findCreationBudget = this.ruleset.getCreationBudget(this.roster);
         if (findCreationBudget.isFailure()) {
             return ResultMap.failure("team.budget", findCreationBudget.getError(), ErrorCode.UNPROCESSABLE_ENTITY);
         }
@@ -158,34 +165,44 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return this.getHiredPlayerCount() >= MAX_PLAYER_COUNT;
     }
 
-    public ResultMap<Void> hireManyPlayers(List<PlayerDefinition> hiringList, MessageSource msg) {
+    public ResultMap<Void> hireManyPlayers(List<PlayerDefinition> hiringList) {
         List<ResultMap<Void>> results = hiringList.stream()
-                .map(playerToHire -> hirePlayer(playerToHire, msg))
+                .map(this::hirePlayer)
                 .toList();
 
         return results.stream()
                 .reduce(ResultMap.success(null), ResultMap::combine);
     }
 
-    ResultMap<Void> checkPlayerIsAllowed(PlayerDefinition player, MessageSource msg) {
+    ResultMap<Void> checkPlayerIsAllowed(PlayerDefinition player) {
         if (roster.doesNotContainPlayer(player)) {
-            return ResultMap.failure("team.player", msg.getMessage(
-                    "team_creation.hire_player_impossible",
-                    new Object[]{roster.getId(),roster.getName(), player.getId(), player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+            return ResultMap.failure(
+                    "team.player",
+                    new TranslatableMessage(
+                            "team_creation.hire_player_impossible",
+                            roster.getId(), roster.getName(), player.getId(), player.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    ResultMap<Void> checkMaxTotalPlayerIsNotReached(MessageSource msg) {
+    ResultMap<Void> checkMaxTotalPlayerIsNotReached() {
         if (this.hiredPlayers != null && maxPlayerHiredReached()) {
-            return ResultMap.failure("team.player", msg.getMessage(
-                    "team_creation.max_players_reached",
-                    new Object[]{getId(), getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+            return ResultMap.failure(
+                    "team.player",
+                    new TranslatableMessage(
+                            "team_creation.max_players_reached",
+                            getId(), getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    ResultMap<Void> checkMaxPlayerOfTypeIsNotReached(PlayerDefinition player, MessageSource msg) {
+    ResultMap<Void> checkMaxPlayerOfTypeIsNotReached(PlayerDefinition player) {
         if (this.hiredPlayers == null) {
             return ResultMap.success(null);
         }
@@ -196,13 +213,17 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         if (hiredPlayersOfType >= player.getMaxQuantity().getValue()) {
             return ResultMap.failure(
                     "team.player",
-                    msg.getMessage("team_creation.max_players_of_type_reached",
-                    new Object[]{getId(),getName(), player.getId(),player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.max_players_of_type_reached",
+                            getId(), getName(), player.getId(), player.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    ResultMap<Void> checkCrosslimits(PlayerDefinition player, MessageSource msg) {
+    ResultMap<Void> checkCrosslimits(PlayerDefinition player) {
         if (this.hiredPlayers == null) {
             return ResultMap.success(null);
         }
@@ -227,9 +248,12 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
             if (limitedPlayerCount >= crossLimit.getLimit()) {
                 return ResultMap.failure(
                         "team.player",
-                        msg.getMessage("team_creation.cross_limit_failed",
-                        new Object[]{getId(), getName()}, Locale.getDefault()),
-                        ErrorCode.UNPROCESSABLE_ENTITY);
+                        new TranslatableMessage(
+                                "team_creation.cross_limit_failed",
+                                getId(), getName()
+                        ),
+                        ErrorCode.UNPROCESSABLE_ENTITY
+                );
             }
         }
 
@@ -238,8 +262,8 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
 
 
 
-    ResultMap<Void> checkBudget(TeamStaff staff, MessageSource msg) {
-        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget(msg);
+    ResultMap<Void> checkBudget(TeamStaff staff) {
+        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget();
         if (remainingBudgetCalcul.isFailure()) {
             return ResultMap.failure(remainingBudgetCalcul.errorMap(), ErrorCode.UNKNOWN_ERROR_CODE);
         }
@@ -248,18 +272,22 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         if (remainingBudget < staff.getPrice().getValue()) {
             return ResultMap.failure(
                     "team.staff",
-                    msg.getMessage("team_creation.insufficient_staff_budget",
-                            new Object[]{getId(), getName(), staff.getId(),staff.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.insufficient_staff_budget",
+                            getId(), getName(), staff.getId(), staff.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
 
-    ResultMap<Void> checkBudget(PlayerDefinition player, MessageSource msg) {
+    ResultMap<Void> checkBudget(PlayerDefinition player) {
         if (this.hiredPlayers == null || this.hiredPlayers.isEmpty()) {
             return ResultMap.success(null);
         }
-        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget(msg);
+        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget();
         if (remainingBudgetCalcul.isFailure()) {
             return ResultMap.failure(remainingBudgetCalcul.errorMap(), ErrorCode.UNKNOWN_ERROR_CODE);
         }
@@ -268,14 +296,18 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         if (remainingBudget < player.getPrice().getValue()) {
             return ResultMap.failure(
                     "team.player",
-                    msg.getMessage("team_creation.insufficient_budget",
-                            new Object[]{getId(), getName(), player.getId(),player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.insufficient_budget",
+                            getId(), getName(), player.getId(), player.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    ResultMap<Void> checkRerollBudget(int rerollCount, MessageSource msg) {
-        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget(msg);
+    ResultMap<Void> checkRerollBudget(int rerollCount) {
+        ResultMap<Integer> remainingBudgetCalcul = computeRemainingBudget();
         if (remainingBudgetCalcul.isFailure()) {
             return ResultMap.failure(remainingBudgetCalcul.errorMap(), ErrorCode.UNKNOWN_ERROR_CODE);
         }
@@ -285,13 +317,17 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         if (remainingBudget < rerollBudget) {
             return ResultMap.failure(
                     "team.reroll",
-                    msg.getMessage("team_creation.insufficient_reroll_budget",
-                            new Object[]{getId(), getName(),rerollCount}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.insufficient_reroll_budget",
+                            getId(), getName(), rerollCount
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    private ResultMap<Void> checkStaffLimitIsNotReached(TeamStaff staff, MessageSource msg) {
+    private ResultMap<Void> checkStaffLimitIsNotReached(TeamStaff staff) {
         if (this.hiredStaff == null || this.hiredStaff.isEmpty()) {
             return ResultMap.success(null);
         }
@@ -303,53 +339,74 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         if (boughtStaffCount >= staff.getMaxQuantity().getValue()) {
             return ResultMap.failure(
                     "team.staff",
-                    msg.getMessage("team_creation.staff_max_reached",
-                            new Object[]{staff.getId(), staff.getName(), staff.getMaxQuantity().getValue(), this.getId(),this.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.staff_max_reached",
+                            staff.getId(), staff.getName(), staff.getMaxQuantity().getValue(), this.getId(), this.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    private ResultMap<Void> checkStaffIsAllowed(TeamStaff staff, MessageSource msg) {
+    private ResultMap<Void> checkStaffIsAllowed(TeamStaff staff) {
         if (this.roster.getAllowedTeamStaff().contains(staff)) {
            return ResultMap.success(null);
         }
         return ResultMap.failure(
                 "team.staff",
-                msg.getMessage("team_creation.staff_not_allowed",
-                        new Object[]{staff.getId(), staff.getName(), this.getId(),this.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                new TranslatableMessage(
+                        "team_creation.staff_not_allowed",
+                        staff.getId(), staff.getName(), this.getId(), this.getName()
+                ),
+                ErrorCode.UNPROCESSABLE_ENTITY
+        );
 
     }
-    
-    private ResultMap<Void> checkRerollMaxNotReached(int rerollCount, MessageSource msg) {
+
+    private ResultMap<Void> checkRerollMaxNotReached(int rerollCount) {
         int potentialRerolCount = this.rerollCount + rerollCount;
         if (potentialRerolCount > MAX_REROLL_COUNT) {
-            return ResultMap.failure("team.reroll",
-                    msg.getMessage("team_creation.max_rr_exceeded",
-                            new Object[]{getId(), getName(), rerollCount}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+            return ResultMap.failure(
+                    "team.reroll",
+                    new TranslatableMessage(
+                            "team_creation.max_rr_exceeded",
+                            getId(), getName(), rerollCount
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         return ResultMap.success(null);
     }
 
-    public ResultMap<Void> hirePlayer(PlayerDefinition player, MessageSource msg) {
+    public ResultMap<Void> hirePlayer(PlayerDefinition player) {
         if (isNotValid()) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.invalid_team",
-                            new Object[]{getId(),getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.invalid_team",
+                            getId(), getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
 
         if (player.isNotValid()) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.invalid_player",
-                    new Object[]{player.getId(),player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.invalid_player",
+                            player.getId(), player.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
 
-        ResultMap<Void> playerCheck = checkPlayerIsAllowed(player, msg);
-        ResultMap<Void> playerTotalCheck = checkMaxTotalPlayerIsNotReached(msg);
-        ResultMap<Void> playerOfTypeCheck = checkMaxPlayerOfTypeIsNotReached(player, msg);
-        ResultMap<Void> crossLimitCheck = checkCrosslimits(player, msg);
-        ResultMap<Void> budgetCheck = checkBudget(player, msg);
+        ResultMap<Void> playerCheck = checkPlayerIsAllowed(player);
+        ResultMap<Void> playerTotalCheck = checkMaxTotalPlayerIsNotReached();
+        ResultMap<Void> playerOfTypeCheck = checkMaxPlayerOfTypeIsNotReached(player);
+        ResultMap<Void> crossLimitCheck = checkCrosslimits(player);
+        ResultMap<Void> budgetCheck = checkBudget(player);
 
         ResultMap<Void> combined = ResultMap.combine(playerCheck, playerTotalCheck, playerOfTypeCheck, crossLimitCheck, budgetCheck);
         if (combined.isFailure()) {
@@ -375,11 +432,11 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
     }
 
     @Override
-    public ResultMap<Void> chooseRoster(Roster roster, MessageSource msg) {
+    public ResultMap<Void> chooseRoster(Roster roster) {
         if (roster == this.roster) {
             return ResultMap.success(null);
         }
-        ResultMap<Void> rosterSelection = super.chooseRoster(roster, msg);
+        ResultMap<Void> rosterSelection = super.chooseRoster(roster);
         if (rosterSelection.isFailure()) {
             return rosterSelection;
         }
@@ -387,39 +444,55 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return rosterSelection;
     }
 
-    public ResultMap<Void> removePlayer(PlayerDefinition player, MessageSource msg) {
+    public ResultMap<Void> removePlayer(PlayerDefinition player) {
         if (isNotValid()) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.invalid_team",
-                            new Object[]{getId(),getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.invalid_team",
+                            getId(), getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         if (playerIsNotHired(player)) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.player_not_hired",
-                            new Object[]{player.getId(),player.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.player_not_hired",
+                            player.getId(), player.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
-        ResultMap<Void> playerRemoval = removePlayer(player);
+        ResultMap<Void> playerRemoval = removePlayerInternal(player);
         if (playerRemoval.isSuccess()) {
             PlayerRemovedEvent evt = new PlayerRemovedEvent(this, player);
             this.addEvent(evt);
             return playerRemoval;
         }
-        return ResultMap.failure("team", "abormal player remove termination", ErrorCode.INTERNAL_ERROR);
+        return ResultMap.failure(
+                "team",
+                new TranslatableMessage("team_creation.abnormal_player_remove"),
+                ErrorCode.INTERNAL_ERROR
+        );
     }
 
-    public ResultMap<Void> buyStaff(TeamStaff staff, MessageSource msg) {
+    public ResultMap<Void> buyStaff(TeamStaff staff) {
         if (isNotValid()) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.invalid_team",
-                            new Object[]{getId(),getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.invalid_team",
+                            getId(), getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
 
-        ResultMap<Void> checkStaffLimit = checkStaffLimitIsNotReached(staff, msg);
-        ResultMap<Void> checkBudget = checkBudget(staff, msg);
-        ResultMap<Void> checkStaff = checkStaffIsAllowed(staff, msg);
+        ResultMap<Void> checkStaffLimit = checkStaffLimitIsNotReached(staff);
+        ResultMap<Void> checkBudget = checkBudget(staff);
+        ResultMap<Void> checkStaff = checkStaffIsAllowed(staff);
 
         ResultMap<Void> combined = ResultMap.combine(checkStaffLimit, checkBudget, checkStaff);
         if (combined.isFailure()) {
@@ -436,32 +509,44 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return ResultMap.success(null);
     }
 
-    public ResultMap<Void> removeStaff(TeamStaff staff, MessageSource msg) {
+    public ResultMap<Void> removeStaff(TeamStaff staff) {
         if (isNotValid()) {
             return ResultMap.failure(
                     "team",
-                    msg.getMessage("team_creation.invalid_team",
-                            new Object[]{getId(),getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.invalid_team",
+                            getId(), getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
         if (staffIsNotPurchased(staff)) {
             return ResultMap.failure(
                     "team.staff",
-                    msg.getMessage("team_creation.staff_not_purchased",
-                            new Object[]{getId(),getName(), staff.getId(), staff.getName()}, Locale.getDefault()), ErrorCode.UNPROCESSABLE_ENTITY);
+                    new TranslatableMessage(
+                            "team_creation.staff_not_purchased",
+                            getId(), getName(), staff.getId(), staff.getName()
+                    ),
+                    ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
-        ResultMap<Void> staffRemoval = this.removeStaff(staff);
+        ResultMap<Void> staffRemoval = this.removeStaffInternal(staff);
         if (staffRemoval.isSuccess()) {
             TeamStaffRemovedEvent evt = new TeamStaffRemovedEvent(this, staff);
             this.addEvent(evt);
             return staffRemoval;
         }
 
-        return ResultMap.failure("team.staff", "abnormal staff remove termination", ErrorCode.INTERNAL_ERROR);
+        return ResultMap.failure(
+                "team.staff",
+                new TranslatableMessage("team_creation.abnormal_staff_remove"),
+                ErrorCode.INTERNAL_ERROR
+        );
     }
 
-    public ResultMap<Void> purchaseReroll(int rerollCount,  MessageSource msg ) {
-        ResultMap<Void> checkMax = checkRerollMaxNotReached(rerollCount, msg);
-        ResultMap<Void> checkBudget = checkRerollBudget(rerollCount, msg);
+    public ResultMap<Void> purchaseReroll(int rerollCount) {
+        ResultMap<Void> checkMax = checkRerollMaxNotReached(rerollCount);
+        ResultMap<Void> checkBudget = checkRerollBudget(rerollCount);
 
         ResultMap<Void> combined = ResultMap.combine(checkMax, checkBudget, checkBudget);
         if (combined.isFailure()) {
@@ -474,7 +559,7 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
         return ResultMap.success(null);
     }
 
-    public ResultMap<Void> removeReroll(int rerollCount,  MessageSource msg ) {
+    public ResultMap<Void> removeReroll(int rerollCount) {
         if (rerollCount <= 0) {
             return ResultMap.success(null);
         }
@@ -516,9 +601,9 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
 
     @Override
     public Result<AggregateRoot> apply(PlayerRemovedEvent event) {
-        ResultMap<Void> playerRemoval = removePlayer(event.getPlayer());
+        ResultMap<Void> playerRemoval = removePlayerInternal(event.getPlayer());
         if (playerRemoval.isFailure()) {
-            return Result.failure(playerRemoval.getError(), ErrorCode.INTERNAL_ERROR);
+            return Result.failure(playerRemoval.getErrorMessage(), ErrorCode.INTERNAL_ERROR);
         }
         return Result.success(this);
     }
@@ -534,9 +619,9 @@ public class RosterSelectedTeam extends RulesetSelectedTeam {
 
     @Override
     public Result<AggregateRoot> apply(TeamStaffRemovedEvent event) {
-        ResultMap<Void> staffRemoval = removeStaff(event.getStaff());
+        ResultMap<Void> staffRemoval = removeStaffInternal(event.getStaff());
         if (staffRemoval.isFailure()) {
-            return Result.failure(staffRemoval.getError(), ErrorCode.INTERNAL_ERROR);
+            return Result.failure(staffRemoval.getErrorMessage(), ErrorCode.INTERNAL_ERROR);
         }
         return Result.success(this);
     }

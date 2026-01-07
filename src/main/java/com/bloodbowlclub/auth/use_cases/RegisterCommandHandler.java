@@ -7,10 +7,10 @@ import com.bloodbowlclub.lib.domain.events.AbstractEventDispatcher;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import com.bloodbowlclub.lib.use_cases.Policy;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 @Component("registerCommandHandler")
@@ -21,10 +21,9 @@ public class RegisterCommandHandler extends CommandHandler {
 
     public RegisterCommandHandler(@Qualifier("eventStore") EventStore eventStore,
                                   @Qualifier("aggregateShallNotExistPolicy") Policy userNameShallNotExistPolicy,
-                                  AbstractEventDispatcher businessDispatcher,
-                                  MessageSource messageSource
+                                  AbstractEventDispatcher businessDispatcher
                                   ) {
-        super(eventStore,  businessDispatcher, messageSource);
+        super(eventStore,  businessDispatcher);
         this.userNameShallNotExistPolicy = userNameShallNotExistPolicy;
     }
 
@@ -34,7 +33,8 @@ public class RegisterCommandHandler extends CommandHandler {
         ResultMap<Void> usernameCheck = this.userNameShallNotExistPolicy.check(command.getUsername());
 
         if (usernameCheck.isFailure()) {
-            return ResultMap.failure("username", usernameCheck.errorMap().get("aggregateId"), ErrorCode.ALREADY_EXISTS);
+            TranslatableMessage errorMessage = usernameCheck.errorMap().get("aggregateId");
+            return ResultMap.failure("username", errorMessage, ErrorCode.ALREADY_EXISTS);
         }
 
         BaseUserAccount newAccount = new BaseUserAccount(command.getUsername());

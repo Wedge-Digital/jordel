@@ -8,7 +8,6 @@ import com.bloodbowlclub.lib.persistance.event_store.EventEntityFactory;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,16 +19,12 @@ public abstract class CommandHandler {
     @Qualifier("EventDispatcher")
     private final AbstractEventDispatcher businessDispatcher;
 
-    protected final MessageSource messageSource;
-
     private EventEntityFactory factory = new EventEntityFactory();
 
     protected CommandHandler(EventStore eventStore,
-                             AbstractEventDispatcher businessDispatcher,
-                             MessageSource messageSource) {
+                             AbstractEventDispatcher businessDispatcher) {
         this.eventStore = eventStore;
         this.businessDispatcher = businessDispatcher;
-        this.messageSource = messageSource;
     }
 
     public abstract ResultMap<Void> handle(Command userCommand);

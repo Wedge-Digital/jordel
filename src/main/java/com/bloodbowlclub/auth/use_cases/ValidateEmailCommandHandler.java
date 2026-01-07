@@ -12,13 +12,14 @@ import com.bloodbowlclub.lib.persistance.event_store.EventStore;
 import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.lib.services.TranslatableMessage;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class ValidateEmailCommandHandler extends CommandHandler {
@@ -28,8 +29,8 @@ public class ValidateEmailCommandHandler extends CommandHandler {
 
     public ValidateEmailCommandHandler(AgregateShallExistPolicy accountShallExistPolicy,
                                        @Qualifier("eventStore") EventStore eventStore,
-                                       AbstractEventDispatcher businessDispatcher, MessageSource messageSource) {
-        super(eventStore, businessDispatcher, messageSource);
+                                       AbstractEventDispatcher businessDispatcher) {
+        super(eventStore, businessDispatcher);
         this.accountShallExistPolicy = accountShallExistPolicy;
         this.businessDispatcher = businessDispatcher;
     }
@@ -46,20 +47,28 @@ public class ValidateEmailCommandHandler extends CommandHandler {
         BaseUserAccount userAccount = new BaseUserAccount(username);
         List<EventEntity> eventList = eventStore.findBySubject(username);
         if (eventList.isEmpty()) {
-            return ResultMap.failure("Account", "no history for account", ErrorCode.NOT_FOUND);
+            return ResultMap.failure(
+                "Account",
+                new TranslatableMessage("user_account.no_history", username),
+                ErrorCode.NOT_FOUND
+            );
         }
         List<DomainEvent> domainEvents = eventList.stream().map(EventEntity::getData).toList();
         Result<AggregateRoot> agregateHydratation = userAccount.hydrate(domainEvents);
 
         if (agregateHydratation.isFailure()) {
-            HashMap<String, String> errorMap = new HashMap<>();
+            Map<String, TranslatableMessage> errorMap = new HashMap<>();
             errorMap.put("user_account", agregateHydratation.getError());
             return ResultMap.failure(errorMap, ErrorCode.UNPROCESSABLE_ENTITY);
         }
 
         AggregateRoot hydrated =  agregateHydratation.getValue();
         if (!(hydrated instanceof BaseUserAccount newAccount)) {
-            return ResultMap.failure("account", "hydratation error", ErrorCode.UNPROCESSABLE_ENTITY);
+            return ResultMap.failure(
+                "account",
+                new TranslatableMessage("user_account.hydration_error", username),
+                ErrorCode.UNPROCESSABLE_ENTITY
+            );
         }
 
         newAccount.validate(command);
