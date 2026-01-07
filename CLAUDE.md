@@ -24,19 +24,30 @@ Jordel is a Blood Bowl league management system built with Java 25 and Spring Bo
 ```
 
 ### Testing
+
+**IMPORTANT: Always load environment variables before running tests**
+
+Tests require environment variables from `.env.test.properties`. Always use this command pattern:
+
 ```bash
-# Run all tests
-./gradlew test
+# Load environment variables and run all tests
+set -a && source .env.test.properties && set +a && ./gradlew test
 
-# Run a specific test class
-./gradlew test --tests "com.bloodbowlclub.auth.use_cases.login.LoginCommandTest"
+# Load environment variables and run a specific test class
+set -a && source .env.test.properties && set +a && ./gradlew test --tests "com.bloodbowlclub.auth.use_cases.login.LoginCommandTest"
 
-# Run tests with pattern matching
-./gradlew test --tests "*LoginTest"
+# Load environment variables and run tests with pattern matching
+set -a && source .env.test.properties && set +a && ./gradlew test --tests "*LoginTest"
 
-# Run tests with verbose output
-./gradlew test --info
+# Load environment variables and run tests with verbose output
+set -a && source .env.test.properties && set +a && ./gradlew test --info
 ```
+
+**Why this is needed:**
+- Tests use `@SpringBootTest` which requires database connection
+- Database credentials are in `.env.test.properties`
+- Without loading these variables, tests will fail with `Cannot load driver class: ${DB_DRIVER}`
+- The `set -a && source ... && set +a` pattern exports all variables from the file
 
 ### Database
 ```bash

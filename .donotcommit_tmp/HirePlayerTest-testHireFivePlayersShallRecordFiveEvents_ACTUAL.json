@@ -1,6 +1,7 @@
 {
   "@type" : "team.roster.selected",
   "version" : 0,
+  "teamId" : "01KCSHJS1K5M8JTW9D5A58VY1S",
   "name" : "teamName",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
   "ruleset" : {
@@ -235,6 +236,5 @@
     "price" : "100",
     "id" : "DARK_ELVES__BLITZER"
   } ],
-  "hiredStaff" : [ ],
-  "id" : "01KCSHJS1K5M8JTW9D5A58VY1S"
+  "hiredStaff" : [ ]
 }

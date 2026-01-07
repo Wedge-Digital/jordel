@@ -61,6 +61,7 @@ public class SecurityConfigurer {
                         .requestMatchers("/customer/**").hasRole(SUPER_ADMIN.toString())
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/authoring/**").authenticated()
+                        .requestMatchers("/team-building/**").authenticated()
                         .requestMatchers("/**").permitAll()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -7,11 +7,13 @@ import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.team_building.domain.team.BaseTeam;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class DraftTeamRegisteredEvent extends DomainEvent {
-    BaseTeam team;
+    private BaseTeam team;
 
     public DraftTeamRegisteredEvent(BaseTeam team) {
         super(team.getId());

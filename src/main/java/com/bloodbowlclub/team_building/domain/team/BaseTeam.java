@@ -24,7 +24,6 @@ public class BaseTeam extends AggregateRoot {
 
     @Valid
     @NotNull
-    @JsonIgnore
     private TeamID teamId;
 
     @Valid
@@ -93,6 +92,7 @@ public class BaseTeam extends AggregateRoot {
     }
 
     @Override
+    @JsonIgnore
     public String getId() {
         return teamId.toString();
     }

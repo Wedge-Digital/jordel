@@ -1,6 +1,7 @@
 {
   "@type" : "team.roster.selected",
   "version" : 0,
+  "teamId" : "01KCYVJSQS3CZ9R16ENT7XX20B",
   "name" : "Bloody Beet Roots",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
   "ruleset" : {
@@ -187,6 +188,5 @@
   },
   "rerollCount" : 0,
   "hiredPlayers" : [ ],
-  "hiredStaff" : [ ],
-  "id" : "01KCYVJSQS3CZ9R16ENT7XX20B"
+  "hiredStaff" : [ ]
 }
