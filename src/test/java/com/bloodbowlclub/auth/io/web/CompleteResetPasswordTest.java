@@ -12,6 +12,7 @@ import com.bloodbowlclub.lib.persistance.event_store.fake.FakeEventStore;
 import com.bloodbowlclub.lib.services.result.exceptions.BadRequest;
 import com.bloodbowlclub.lib.services.result.exceptions.NotFound;
 import com.bloodbowlclub.lib.tests.TestCase;
+import com.bloodbowlclub.lib.web.ApiResponse;
 import com.bloodbowlclub.shared.FakeMailService;
 import com.bloodbowlclub.test_utilities.dispatcher.FakeEventDispatcher;
 import org.junit.jupiter.api.Assertions;
@@ -66,12 +67,12 @@ public class CompleteResetPasswordTest extends TestCase {
                 .build();
 
         // when
-        NotFound ex = assertThrows(NotFound.class, () ->  ctrl.completeResetPassword(req));
+        ResponseEntity<ApiResponse<Void>> ex = ctrl.completeResetPassword(req);
 
         // then
         HashMap<String, String> errors = new HashMap<>();
         errors.put("username", "Le compte utilisateur no-username n'existe pas");
-        Assertions.assertEquals(errors, ex.getErrors());
+        Assertions.assertEquals(errors, ex.getBody().getContent());
     }
 
     @Test
@@ -86,12 +87,12 @@ public class CompleteResetPasswordTest extends TestCase {
                 .token("an-unknown-token")
                 .build();
 
-        BadRequest ex = assertThrows(BadRequest.class, () ->  ctrl.completeResetPassword(req));
+        ResponseEntity<ApiResponse<Void>> ex = ctrl.completeResetPassword(req);
 
         // then
         HashMap<String, String> errors = new HashMap<>();
         errors.put("UserAccount", "Impossible de changer le mot de passe de l'utilisateur another-user");
-        Assertions.assertEquals(errors, ex.getErrors());
+        Assertions.assertEquals(errors, ex.getBody().getContent());
     }
 
     @Test
@@ -108,11 +109,12 @@ public class CompleteResetPasswordTest extends TestCase {
                 .token("an-unknown-token")
                 .build();
 
-        BadRequest ex = assertThrows(BadRequest.class, () ->  ctrl.completeResetPassword(req));
+        ResponseEntity<ApiResponse<Void>> ex = ctrl.completeResetPassword(req);
             // then
         HashMap<String, String> errors = new HashMap<>();
         errors.put("UserAccount", "Impossible de changer le mot de passe de l'utilisateur another-user");
-        Assertions.assertEquals(errors, ex.getErrors());
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, ex.getStatusCode());
+        Assertions.assertEquals(errors, ex.getBody().getContent());
     }
 
     @Test
@@ -127,7 +129,7 @@ public class CompleteResetPasswordTest extends TestCase {
                 .new_password("new-password")
                 .token(resetToken)
                 .build();
-        ResponseEntity<Void> res = ctrl.completeResetPassword(req);
+        ResponseEntity<ApiResponse<Void>> res = ctrl.completeResetPassword(req);
         Assertions.assertEquals(HttpStatus.OK, res.getStatusCode());
 
         List<EventEntity> allEvent = eventStore.findAll();
@@ -147,7 +149,7 @@ public class CompleteResetPasswordTest extends TestCase {
                 .new_password("resetted-password")
                 .token(resetToken)
                 .build();
-        ResponseEntity<Void> res = ctrl.completeResetPassword(req);
+        ResponseEntity<ApiResponse<Void>> res = ctrl.completeResetPassword(req);
         Assertions.assertEquals(HttpStatus.OK, res.getStatusCode());
 
         //When

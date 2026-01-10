@@ -3,6 +3,7 @@ package com.bloodbowlclub.auth.io.web;
 import com.bloodbowlclub.BBCApplication;
 import com.bloodbowlclub.auth.io.web.requests.RegisterAccountRequest;
 import com.bloodbowlclub.lib.services.result.exceptions.AlreadyExist;
+import com.bloodbowlclub.lib.web.ApiResponse;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -44,7 +45,7 @@ public class AuthControllerTest {
                 .username("Bagouze2556")
                 .build();
 
-        ResponseEntity<Void> response = authController.registerUser(request);
+        ResponseEntity<ApiResponse<Void>> response = authController.registerUser(request);
         Assertions.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
         try {
             authController.registerUser(request);

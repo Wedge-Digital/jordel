@@ -1,0 +1,6 @@
+{
+  "result" : "failure",
+  "content" : {
+    "logoUrl" : "L'Url n'est pas une url Cloudinary"
+  }
+}

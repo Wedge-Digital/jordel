@@ -16,6 +16,7 @@ import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.lib.services.result.ResultToResponse;
 import com.bloodbowlclub.lib.use_cases.CommandHandler;
+import com.bloodbowlclub.lib.web.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
@@ -91,7 +92,7 @@ public class AuthController {
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
-    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterAccountRequest candidateAccountRequest) {
+    public ResponseEntity<ApiResponse<Void>> registerUser(@Valid @RequestBody RegisterAccountRequest candidateAccountRequest) {
         RegisterAccountCommand candidateAccount = mapper.requestToCommand( candidateAccountRequest );
         ResultMap<Void> registration = this.registerHandler.handle(candidateAccount);
         return commandConverter.toResponse(registration);
@@ -113,7 +114,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/complete-reset-password", method = RequestMethod.POST)
-    public ResponseEntity<Void> completeResetPassword(@Valid @RequestBody CompleteResetPasswordRequest completeResetPasswordRequest) {
+    public ResponseEntity<ApiResponse<Void>> completeResetPassword(@Valid @RequestBody CompleteResetPasswordRequest completeResetPasswordRequest) {
         CompleteResetPasswordCommand cmd = new CompleteResetPasswordCommand(
                 completeResetPasswordRequest.getUsername(),
                 completeResetPasswordRequest.getToken(),

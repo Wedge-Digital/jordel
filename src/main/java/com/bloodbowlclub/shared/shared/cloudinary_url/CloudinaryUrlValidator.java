@@ -15,7 +15,7 @@ public class CloudinaryUrlValidator implements ConstraintValidator<CloudinaryUrl
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (value == null || value.isBlank()) {
-            return true; // ou false si tu veux l'interdire
+            return false;
         }
         return CLOUDINARY_PATTERN.matcher(value).matches();
     }

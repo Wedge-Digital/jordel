@@ -2,6 +2,7 @@ package com.bloodbowlclub.team_building.io.web;
 
 import com.bloodbowlclub.lib.persistance.event_store.EventEntity;
 import com.bloodbowlclub.lib.persistance.event_store.EventStore;
+import com.bloodbowlclub.lib.web.ApiResponse;
 import com.bloodbowlclub.team_building.domain.events.DraftTeamRegisteredEvent;
 import com.bloodbowlclub.team_building.io.web.requests.RegisterNewTeamRequest;
 import com.bloodbowlclub.test_utilities.ulid.UlidGenerator;
@@ -11,10 +12,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class TeamBuildingControllerTest {
@@ -41,7 +45,7 @@ public class TeamBuildingControllerTest {
         int eventsCountBefore = eventStore.findAll().size();
 
         // Act
-        ResponseEntity<Void> response = teamBuildingController.registerNewTeam(request);
+        ResponseEntity<ApiResponse<Void>> response = teamBuildingController.registerNewTeam(request);
 
         // Assert - HTTP Response
         Assertions.assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
@@ -81,15 +85,12 @@ public class TeamBuildingControllerTest {
                 .build();
 
         // Act & Assert - Should throw UnprocessableEntity
-        try {
-            teamBuildingController.registerNewTeam(request);
-            Assertions.fail("Should have thrown UnprocessableEntity");
-        } catch (com.bloodbowlclub.lib.services.result.exceptions.UnprocessableEntity e) {
-            // Expected exception
-            Assertions.assertNotNull(e.getErrors());
-            Assertions.assertTrue(e.getErrors().containsKey("name"),
-                "Should have validation error for name");
-        }
+        ResponseEntity<ApiResponse<Void>> e = teamBuildingController.registerNewTeam(request);
+        Assertions.assertTrue(e.getBody().isFailure());
+        Map<String, String> ex = new HashMap<>();
+        ex.put("name", "must be between 3 and 100 characters");
+        Assertions.assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, e.getStatusCode());
+        Assertions.assertEquals(ex, e.getBody().getContent());
 
         // Assert - No event saved in event store
         List<EventEntity> teamEvents = eventStore.findBySubject(teamId);
@@ -109,15 +110,12 @@ public class TeamBuildingControllerTest {
                 .build();
 
         // Act & Assert - Should throw UnprocessableEntity
-        try {
-            teamBuildingController.registerNewTeam(request);
-            Assertions.fail("Should have thrown UnprocessableEntity");
-        } catch (com.bloodbowlclub.lib.services.result.exceptions.UnprocessableEntity e) {
-            // Expected exception
-            Assertions.assertNotNull(e.getErrors());
-            Assertions.assertTrue(e.getErrors().containsKey("teamId"),
-                "Should have validation error for teamId");
-        }
+        ResponseEntity<ApiResponse<Void>> resp = teamBuildingController.registerNewTeam(request);
+        Assertions.assertTrue(resp.getBody().isFailure());
+        Map<String, String> ex = new HashMap<>();
+        ex.put("teamId", "Identifiant non valide, doit être un ULID");
+        Assertions.assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, resp.getStatusCode());
+        Assertions.assertEquals(ex, resp.getBody().getContent());
 
         // Assert - No event saved in event store
         List<EventEntity> teamEvents = eventStore.findBySubject("invalid-ulid-123");
@@ -138,15 +136,12 @@ public class TeamBuildingControllerTest {
                 .build();
 
         // Act & Assert - Should throw UnprocessableEntity
-        try {
-            teamBuildingController.registerNewTeam(request);
-            Assertions.fail("Should have thrown UnprocessableEntity");
-        } catch (com.bloodbowlclub.lib.services.result.exceptions.UnprocessableEntity e) {
-            // Expected exception
-            Assertions.assertNotNull(e.getErrors());
-            Assertions.assertTrue(e.getErrors().containsKey("logoUrl"),
-                "Should have validation error for logoUrl");
-        }
+        ResponseEntity<ApiResponse<Void>> resp = teamBuildingController.registerNewTeam(request);
+        Assertions.assertTrue(resp.getBody().isFailure());
+        Map<String, String> ex = new HashMap<>();
+        ex.put("logoUrl", "L'Url n'est pas une url Cloudinary");
+        Assertions.assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, resp.getStatusCode());
+        Assertions.assertEquals(ex, resp.getBody().getContent());
 
         // Assert - No event saved in event store
         List<EventEntity> teamEvents = eventStore.findBySubject(teamId);
