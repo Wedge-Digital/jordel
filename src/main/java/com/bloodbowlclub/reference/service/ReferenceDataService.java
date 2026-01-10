@@ -12,19 +12,21 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
  * Service de cache en RAM pour les données de référence Blood Bowl.
  * Les données sont chargées au démarrage depuis les fichiers JSON et stockées dans des collections immuables.
  * Thread-safe en lecture seule.
+ * Support multi-locale (FR, EN).
  *
  * ISOLÉ de team_building.domain - utilise ses propres modèles (RosterRef, PlayerDefinitionRef, etc.)
  *
  * Usage:
- * - Récupérer un roster: referenceDataService.getRosterById("HUMAN")
- * - Récupérer un joueur: referenceDataService.getPlayerById("HUMAN__LINEMAN")
- * - Lister tous les rosters: referenceDataService.getAllRosters()
+ * - Récupérer un roster: referenceDataService.getRosterById("HUMAN", Locale.ENGLISH)
+ * - Récupérer un joueur: referenceDataService.getPlayerById("HUMAN__LINEMAN", Locale.FRENCH)
+ * - Lister tous les rosters: referenceDataService.getAllRosters(Locale.ENGLISH)
  */
 @Service("referenceDataServiceForAPI")
 public class ReferenceDataService {
@@ -34,44 +36,96 @@ public class ReferenceDataService {
     private final ResourceLoader resourceLoader;
     private final ObjectMapper objectMapper;
 
-    // Caches immuables
-    private Map<String, RosterRef> rostersById;
-    private List<RosterRef> allRosters;
-    private Map<String, PlayerDefinitionRef> playersById;
-    private Map<String, SpecialRuleRef> specialRulesById;
-    private List<SpecialRuleRef> allSpecialRules;
-    private Map<String, TeamStaffRef> staffById;
-    private List<TeamStaffRef> allStaff;
-    private Map<String, SkillRef> skillsById;
-    private List<SkillRef> allSkills;
-    private Map<String, SkillCategoryRef> skillCategoriesById;
-    private List<SkillCategoryRef> allSkillCategories;
+    // Cache par locale - Thread-safe
+    private final Map<Locale, LocalizedReferenceData> dataByLocale = new ConcurrentHashMap<>();
+
+    // Locales supportées
+    private static final Set<Locale> SUPPORTED_LOCALES = Set.of(
+            Locale.ENGLISH,
+            Locale.FRENCH
+    );
 
     public ReferenceDataService(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
         this.objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Charge les données de référence pour toutes les locales supportées au démarrage.
+     */
     @PostConstruct
-    public void loadReferenceData() {
-        log.info("[ReferenceAPI] Loading reference data into memory...");
-        try {
-            loadStaff();
-            loadSpecialRules();
-            loadSkills();
-            loadSkillCategories();
-            loadRosters();
+    public void loadAllReferenceData() {
+        log.info("[ReferenceAPI] Loading reference data for all supported locales...");
+        for (Locale locale : SUPPORTED_LOCALES) {
+            try {
+                loadReferenceData(locale);
+            } catch (Exception e) {
+                log.error("[ReferenceAPI] Failed to load reference data for locale: {}", locale, e);
+            }
+        }
+        log.info("[ReferenceAPI] Reference data loaded for {} locales", dataByLocale.size());
+    }
 
-            log.info("[ReferenceAPI] Reference data loaded: {} rosters, {} players, {} special rules, {} staff, {} skills, {} skill categories",
-                    allRosters.size(), playersById.size(), allSpecialRules.size(), allStaff.size(), allSkills.size(), allSkillCategories.size());
+    /**
+     * Charge les données de référence pour une locale spécifique.
+     *
+     * @param locale la locale pour laquelle charger les données (Locale.ENGLISH, Locale.FRENCH)
+     */
+    public void loadReferenceData(Locale locale) {
+        log.info("[ReferenceAPI] Loading reference data for locale: {}", locale);
+        try {
+            String languageCode = getLanguageCode(locale);
+
+            LocalizedReferenceData data = new LocalizedReferenceData();
+
+            data.staff = loadStaff(languageCode);
+            data.specialRules = loadSpecialRules(languageCode);
+            data.skills = loadSkills(languageCode);
+            data.skillCategories = loadSkillCategories(languageCode);
+            data.rosters = loadRosters(languageCode);
+
+            // Créer l'index global des joueurs
+            data.playersById = createPlayersIndex(data.rosters);
+
+            // Stocker dans le cache
+            dataByLocale.put(locale, data);
+
+            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} staff, {} skills, {} skill categories",
+                    locale, data.rosters.size(), data.playersById.size(), data.specialRules.size(),
+                    data.staff.size(), data.skills.size(), data.skillCategories.size());
         } catch (Exception e) {
-            log.error("[ReferenceAPI] Failed to load reference data", e);
-            throw new RuntimeException("Cannot start application: reference data loading failed", e);
+            log.error("[ReferenceAPI] Failed to load reference data for locale: {}", locale, e);
+            throw new RuntimeException("Cannot load reference data for locale: " + locale, e);
         }
     }
 
-    private void loadRosters() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:reference/teams_en.json");
+    /**
+     * Convertit une Locale en code langue pour les fichiers (en, fr).
+     */
+    private String getLanguageCode(Locale locale) {
+        if (locale.getLanguage().equals("fr")) {
+            return "fr";
+        }
+        return "en"; // Par défaut anglais
+    }
+
+    /**
+     * Récupère les données pour une locale, avec fallback sur l'anglais.
+     */
+    private LocalizedReferenceData getData(Locale locale) {
+        LocalizedReferenceData data = dataByLocale.get(locale);
+        if (data == null) {
+            log.warn("[ReferenceAPI] No data found for locale {}, falling back to English", locale);
+            data = dataByLocale.get(Locale.ENGLISH);
+        }
+        if (data == null) {
+            throw new IllegalStateException("No reference data loaded. Service not initialized properly.");
+        }
+        return data;
+    }
+
+    private List<RosterRef> loadRosters(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/teams_" + languageCode + ".json");
         JsonNode root = objectMapper.readTree(resource.getInputStream());
         JsonNode teamsNode = root.get("teams");
 
@@ -83,21 +137,7 @@ public class ReferenceDataService {
             }
         }
 
-        this.allRosters = Collections.unmodifiableList(new ArrayList<>(rosters));
-        this.rostersById = Collections.unmodifiableMap(
-                rosters.stream().collect(Collectors.toMap(RosterRef::getUid, roster -> roster))
-        );
-
-        // Index global des joueurs
-        Map<String, PlayerDefinitionRef> playersIndex = new HashMap<>();
-        for (RosterRef roster : rosters) {
-            if (roster.getAvailablePlayers() != null) {
-                for (PlayerDefinitionRef player : roster.getAvailablePlayers()) {
-                    playersIndex.put(player.getUid(), player);
-                }
-            }
-        }
-        this.playersById = Collections.unmodifiableMap(playersIndex);
+        return Collections.unmodifiableList(rosters);
     }
 
     private RosterRef deserializeRoster(JsonNode node) {
@@ -210,18 +250,26 @@ public class ReferenceDataService {
                 .build();
     }
 
-    private void loadSpecialRules() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:reference/special_rules_en.json");
-        SpecialRulesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), SpecialRulesWrapper.class);
-        List<SpecialRuleRef> rules = wrapper.getSpecialRules();
-        this.allSpecialRules = Collections.unmodifiableList(new ArrayList<>(rules));
-        this.specialRulesById = Collections.unmodifiableMap(
-                rules.stream().collect(Collectors.toMap(SpecialRuleRef::getUid, rule -> rule))
-        );
+    private Map<String, PlayerDefinitionRef> createPlayersIndex(List<RosterRef> rosters) {
+        Map<String, PlayerDefinitionRef> playersIndex = new HashMap<>();
+        for (RosterRef roster : rosters) {
+            if (roster.getAvailablePlayers() != null) {
+                for (PlayerDefinitionRef player : roster.getAvailablePlayers()) {
+                    playersIndex.put(player.getUid(), player);
+                }
+            }
+        }
+        return Collections.unmodifiableMap(playersIndex);
     }
 
-    private void loadStaff() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:reference/staff_en.json");
+    private List<SpecialRuleRef> loadSpecialRules(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/special_rules_" + languageCode + ".json");
+        SpecialRulesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), SpecialRulesWrapper.class);
+        return Collections.unmodifiableList(new ArrayList<>(wrapper.getSpecialRules()));
+    }
+
+    private List<TeamStaffRef> loadStaff(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/staff_" + languageCode + ".json");
         JsonNode root = objectMapper.readTree(resource.getInputStream());
         JsonNode staffNode = root.get("staff");
 
@@ -239,14 +287,11 @@ public class ReferenceDataService {
             }
         }
 
-        this.allStaff = Collections.unmodifiableList(teamStaffList);
-        this.staffById = Collections.unmodifiableMap(
-                teamStaffList.stream().collect(Collectors.toMap(TeamStaffRef::getUid, s -> s))
-        );
+        return Collections.unmodifiableList(teamStaffList);
     }
 
-    private void loadSkills() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:reference/skills_en.json");
+    private List<SkillRef> loadSkills(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/skills_" + languageCode + ".json");
         JsonNode root = objectMapper.readTree(resource.getInputStream());
         JsonNode skillsNode = root.get("skills");
 
@@ -264,89 +309,90 @@ public class ReferenceDataService {
             }
         }
 
-        this.allSkills = Collections.unmodifiableList(skillsList);
-        this.skillsById = Collections.unmodifiableMap(
-                skillsList.stream().collect(Collectors.toMap(SkillRef::getUid, s -> s))
-        );
+        return Collections.unmodifiableList(skillsList);
     }
 
-    private void loadSkillCategories() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:reference/skill_cat_en.json");
+    private List<SkillCategoryRef> loadSkillCategories(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/skill_cat_" + languageCode + ".json");
         SkillCategoriesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), SkillCategoriesWrapper.class);
-        List<SkillCategoryRef> categories = wrapper.getSkillCategories();
-        this.allSkillCategories = Collections.unmodifiableList(new ArrayList<>(categories));
-        this.skillCategoriesById = Collections.unmodifiableMap(
-                categories.stream().collect(Collectors.toMap(SkillCategoryRef::getUid, cat -> cat))
-        );
+        return Collections.unmodifiableList(new ArrayList<>(wrapper.getSkillCategories()));
     }
 
     // ===========================
     // Méthodes d'accès - Rosters
     // ===========================
 
-    public Optional<RosterRef> getRosterById(String rosterId) {
-        return Optional.ofNullable(rostersById.get(rosterId));
+    public Optional<RosterRef> getRosterById(String rosterId, Locale locale) {
+        LocalizedReferenceData data = getData(locale);
+        return data.rosters.stream()
+                .filter(r -> r.getUid().equals(rosterId))
+                .findFirst();
     }
 
-    public List<RosterRef> getAllRosters() {
-        return allRosters;
+    public List<RosterRef> getAllRosters(Locale locale) {
+        return getData(locale).rosters;
     }
 
-    public boolean rosterExists(String rosterId) {
-        return rostersById.containsKey(rosterId);
+    public boolean rosterExists(String rosterId, Locale locale) {
+        return getRosterById(rosterId, locale).isPresent();
     }
 
-    public int getRosterCount() {
-        return allRosters.size();
+    public int getRosterCount(Locale locale) {
+        return getData(locale).rosters.size();
     }
 
     // ===========================
     // Méthodes d'accès - Players
     // ===========================
 
-    public Optional<PlayerDefinitionRef> getPlayerById(String playerId) {
-        return Optional.ofNullable(playersById.get(playerId));
+    public Optional<PlayerDefinitionRef> getPlayerById(String playerId, Locale locale) {
+        return Optional.ofNullable(getData(locale).playersById.get(playerId));
     }
 
-    public List<PlayerDefinitionRef> getPlayersByRoster(String rosterId) {
-        return getRosterById(rosterId)
+    public List<PlayerDefinitionRef> getPlayersByRoster(String rosterId, Locale locale) {
+        return getRosterById(rosterId, locale)
                 .map(RosterRef::getAvailablePlayers)
                 .orElse(Collections.emptyList());
     }
 
-    public int getPlayerCount() {
-        return playersById.size();
+    public int getPlayerCount(Locale locale) {
+        return getData(locale).playersById.size();
     }
 
     // ===================================
     // Méthodes d'accès - Special Rules
     // ===================================
 
-    public Optional<SpecialRuleRef> getSpecialRuleByUid(String uid) {
-        return Optional.ofNullable(specialRulesById.get(uid));
+    public Optional<SpecialRuleRef> getSpecialRuleByUid(String uid, Locale locale) {
+        return getData(locale).specialRules.stream()
+                .filter(r -> r.getUid().equals(uid))
+                .findFirst();
     }
 
-    public List<SpecialRuleRef> getAllSpecialRules() {
-        return allSpecialRules;
+    public List<SpecialRuleRef> getAllSpecialRules(Locale locale) {
+        return getData(locale).specialRules;
     }
 
     // ===========================
     // Méthodes d'accès - Staff
     // ===========================
 
-    public Optional<TeamStaffRef> getStaffByUid(String uid) {
-        return Optional.ofNullable(staffById.get(uid));
+    public Optional<TeamStaffRef> getStaffByUid(String uid, Locale locale) {
+        return getData(locale).staff.stream()
+                .filter(s -> s.getUid().equals(uid))
+                .findFirst();
     }
 
-    public List<TeamStaffRef> getAllStaff() {
-        return allStaff;
+    public List<TeamStaffRef> getAllStaff(Locale locale) {
+        return getData(locale).staff;
     }
 
-    public List<TeamStaffRef> getStaffByRoster(String rosterId) {
-        return getRosterById(rosterId)
+    public List<TeamStaffRef> getStaffByRoster(String rosterId, Locale locale) {
+        return getRosterById(rosterId, locale)
                 .map(roster -> roster.getAllowedStaffUids().stream()
-                        .map(staffById::get)
-                        .filter(Objects::nonNull)
+                        .map(uid -> getStaffByUid(uid, locale))
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
                         .collect(Collectors.toList()))
                 .orElse(Collections.emptyList());
     }
@@ -355,16 +401,18 @@ public class ReferenceDataService {
     // Méthodes d'accès - Skills
     // ===========================
 
-    public Optional<SkillRef> getSkillByUid(String uid) {
-        return Optional.ofNullable(skillsById.get(uid));
+    public Optional<SkillRef> getSkillByUid(String uid, Locale locale) {
+        return getData(locale).skills.stream()
+                .filter(s -> s.getUid().equals(uid))
+                .findFirst();
     }
 
-    public List<SkillRef> getAllSkills() {
-        return allSkills;
+    public List<SkillRef> getAllSkills(Locale locale) {
+        return getData(locale).skills;
     }
 
-    public List<SkillRef> getSkillsByCategory(String category) {
-        return allSkills.stream()
+    public List<SkillRef> getSkillsByCategory(String category, Locale locale) {
+        return getData(locale).skills.stream()
                 .filter(skill -> skill.getCategory().equals(category))
                 .collect(Collectors.toList());
     }
@@ -373,17 +421,42 @@ public class ReferenceDataService {
     // Méthodes d'accès - Skill Categories
     // ========================================
 
-    public Optional<SkillCategoryRef> getSkillCategoryByUid(String uid) {
-        return Optional.ofNullable(skillCategoriesById.get(uid));
+    public Optional<SkillCategoryRef> getSkillCategoryByUid(String uid, Locale locale) {
+        return getData(locale).skillCategories.stream()
+                .filter(c -> c.getUid().equals(uid))
+                .findFirst();
     }
 
-    public List<SkillCategoryRef> getAllSkillCategories() {
-        return allSkillCategories;
+    public List<SkillCategoryRef> getAllSkillCategories(Locale locale) {
+        return getData(locale).skillCategories;
     }
 
     // ===========================
-    // Classes internes - DTOs
+    // Méthodes utilitaires
     // ===========================
+
+    /**
+     * Retourne les locales supportées et chargées.
+     */
+    public Set<Locale> getSupportedLocales() {
+        return Collections.unmodifiableSet(dataByLocale.keySet());
+    }
+
+    // ===========================
+    // Classes internes
+    // ===========================
+
+    /**
+     * Conteneur pour les données d'une locale spécifique.
+     */
+    private static class LocalizedReferenceData {
+        List<RosterRef> rosters;
+        Map<String, PlayerDefinitionRef> playersById;
+        List<SpecialRuleRef> specialRules;
+        List<TeamStaffRef> staff;
+        List<SkillRef> skills;
+        List<SkillCategoryRef> skillCategories;
+    }
 
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
     private static class SpecialRulesWrapper {
