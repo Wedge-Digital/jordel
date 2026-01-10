@@ -1,4 +1,4 @@
-package com.bloodbowlclub.shared.ref_data;
+package com.bloodbowlclub.team_building.ref_data;
 
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;

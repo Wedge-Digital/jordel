@@ -1,4 +1,4 @@
-package com.bloodbowlclub.shared.ref_data;
+package com.bloodbowlclub.team_building.ref_data;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

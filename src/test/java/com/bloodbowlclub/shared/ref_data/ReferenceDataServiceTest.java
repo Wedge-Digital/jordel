@@ -3,7 +3,7 @@ package com.bloodbowlclub.shared.ref_data;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.team_staff.TeamStaff;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bloodbowlclub.team_building.ref_data.ReferenceDataService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

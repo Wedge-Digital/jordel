@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TeamBuildingController {
 
     private final CommandHandler registerNewTeamHandler;
-    private final MessageSource messageSource;
     private final RegisterNewTeamMapper mapper = RegisterNewTeamMapper.INSTANCE;
     private final ResultToResponse<Void> commandConverter;
 
@@ -30,7 +29,6 @@ public class TeamBuildingController {
             @Qualifier("registerNewTeamCommandHandler") CommandHandler registerNewTeamHandler,
             MessageSource messageSource) {
         this.registerNewTeamHandler = registerNewTeamHandler;
-        this.messageSource = messageSource;
         this.commandConverter = new ResultToResponse<>(messageSource);
     }
 
