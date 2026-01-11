@@ -83,7 +83,7 @@ public class ReferenceDataService {
             data.leagues = loadLeagues(languageCode);
             data.skills = loadSkills(languageCode);
             data.skillCategories = loadSkillCategories(languageCode);
-            data.rosters = loadRosters(languageCode, data.specialRules, data.leagues);
+            data.rosters = loadRosters(languageCode, data.specialRules, data.leagues, data.skills);
 
             // Créer l'index global des joueurs
             data.playersById = createPlayersIndex(data.rosters);
@@ -125,7 +125,7 @@ public class ReferenceDataService {
         return data;
     }
 
-    private List<RosterRef> loadRosters(String languageCode, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs) throws IOException {
+    private List<RosterRef> loadRosters(String languageCode, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs, List<SkillRef> skillRefs) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:reference/teams_" + languageCode + ".json");
         JsonNode root = objectMapper.readTree(resource.getInputStream());
         JsonNode teamsNode = root.get("teams");
@@ -133,7 +133,7 @@ public class ReferenceDataService {
         List<RosterRef> rosters = new ArrayList<>();
         if (teamsNode != null && teamsNode.isArray()) {
             for (JsonNode teamNode : teamsNode) {
-                RosterRef roster = deserializeRoster(teamNode, specialRuleRefs, leagueRefs);
+                RosterRef roster = deserializeRoster(teamNode, specialRuleRefs, leagueRefs, skillRefs);
                 rosters.add(roster);
             }
         }
@@ -141,7 +141,7 @@ public class ReferenceDataService {
         return Collections.unmodifiableList(rosters);
     }
 
-    private RosterRef deserializeRoster(JsonNode node, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs) throws IOException {
+    private RosterRef deserializeRoster(JsonNode node, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs, List<SkillRef> skillRefs) throws IOException {
         String uid = node.get("uid").asText();
         String name = node.get("name").asText();
         Integer rerollCost = node.get("rerollCost").asInt() / 1000;
@@ -188,7 +188,7 @@ public class ReferenceDataService {
         JsonNode playersNode = node.get("availablePlayers");
         if (playersNode != null && playersNode.isArray()) {
             for (JsonNode playerNode : playersNode) {
-                PlayerDefinitionRef player = deserializePlayer(playerNode);
+                PlayerDefinitionRef player = deserializePlayer(playerNode, skillRefs);
                 playerDefinitions.add(player);
             }
         }
@@ -238,12 +238,23 @@ public class ReferenceDataService {
                 .build();
     }
 
-    private PlayerDefinitionRef deserializePlayer(JsonNode playerNode) {
-        List<String> skillUids = new ArrayList<>();
+    private PlayerDefinitionRef deserializePlayer(JsonNode playerNode, List<SkillRef> skillRefs) {
+        // Résolution des skills: conversion des UIDs en objets allégés (uid + name uniquement)
+        List<SkillRefLight> resolvedSkills = new ArrayList<>();
         JsonNode skillsNode = playerNode.get("skills");
         if (skillsNode != null && skillsNode.isArray()) {
             for (JsonNode skillNode : skillsNode) {
-                skillUids.add(skillNode.asText());
+                String skillUid = skillNode.asText();
+                Optional<SkillRef> foundSkill = skillRefs.stream()
+                        .filter(skill -> Objects.equals(skill.getUid(), skillUid))
+                        .findFirst();
+
+                if (foundSkill.isPresent()) {
+                    SkillRef skill = foundSkill.get();
+                    resolvedSkills.add(new SkillRefLight(skill.getUid(), skill.getName()));
+                } else {
+                    log.warn("[ReferenceAPI] Skill '{}' not found in reference data", skillUid);
+                }
             }
         }
 
@@ -273,7 +284,7 @@ public class ReferenceDataService {
                 .agility(new PlayerCharacteristic(playerNode.get("AG").asInt()))
                 .passing(new PlayerCharacteristic(playerNode.get("PA").asInt()))
                 .armourValue(new PlayerCharacteristic(playerNode.get("AV").asInt()))
-                .skills(new SkillsList(skillUids))
+                .skills(resolvedSkills)
                 .primaryAccess(new SkillAccessCategories(primaryAccessList))
                 .secondaryAccess(new SkillAccessCategories(secondaryAccessList))
                 .build();

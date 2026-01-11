@@ -48,7 +48,7 @@ class ReferenceDataServiceStatsTest extends TestCase {
                         " AG:" + player.getAgility().getValue() +
                         " PA:" + player.getPassing().getValue() +
                         " AV:" + player.getArmourValue().getValue());
-                    System.out.println("     Compétences: " + player.getSkills().getSkillUids().size());
+                    System.out.println("     Compétences: " + player.getSkills().size());
                 }
             }
 

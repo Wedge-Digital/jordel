@@ -32,10 +32,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -65,10 +62,16 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -98,10 +101,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DODGE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -131,10 +137,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -164,10 +173,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "TACKLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "TACKLE",
+        "name" : "Tackle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -197,10 +209,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_3", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_3",
+        "name" : "Loner (3+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -246,10 +270,7 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -279,10 +300,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -312,10 +339,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -345,10 +375,13 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "BREAK_TACKLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "BREAK_TACKLE",
+        "name" : "Break Tackle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -378,10 +411,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "MIGHTY_BLOW", "TAUNT", "THICK_SKULL", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "TAUNT",
+        "name" : "Taunt"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -411,10 +453,28 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "LONER_4", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -460,10 +520,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DEFENSIVE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DEFENSIVE",
+        "name" : "Defensive"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -493,10 +559,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "SPRINT", "SURE_HANDS", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -526,10 +598,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DIVING_TACKLE", "TACKLE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DIVING_TACKLE",
+        "name" : "Diving Tackle"
+      }, {
+        "uid" : "TACKLE",
+        "name" : "Tackle"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -559,10 +640,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DAUNTLESS", "FRENZY", "HATRED", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "HATRED",
+        "name" : "Hatred"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -592,10 +685,31 @@
       "armourValue" : {
         "value" : 11
       },
-      "skills" : {
-        "skillUids" : [ "BREAK_TACKLE", "DIRTY_PLAYER", "JUGGERNAUT", "LONER_4", "MIGHTY_BLOW", "NO_BALL", "SECRET_WEAPON", "STAND_FIRM" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BREAK_TACKLE",
+        "name" : "Break Tackle"
+      }, {
+        "uid" : "DIRTY_PLAYER",
+        "name" : "Dirty Player"
+      }, {
+        "uid" : "JUGGERNAUT",
+        "name" : "Juggernaut"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "NO_BALL",
+        "name" : "No Ball"
+      }, {
+        "uid" : "SECRET_WEAPON",
+        "name" : "Secret Weapon"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "STRENGTH" ],
         "empty" : false
@@ -641,10 +755,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -674,10 +785,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -707,10 +821,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "STAB" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "STAB",
+        "name" : "Stab"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -740,10 +857,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "STRIP_BALL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "STRIP_BALL",
+        "name" : "Strip Ball"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -773,10 +893,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMAL_SAVAGERY", "FRENZY", "LONER_4", "MIGHTY_BLOW", "PREHENSILE_TAIL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ANIMAL_SAVAGERY",
+        "name" : "Animal Savagery"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PREHENSILE_TAIL",
+        "name" : "Prehensile Tail"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -822,10 +954,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "WRESTLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "WRESTLE",
+        "name" : "Wrestle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -855,10 +987,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DAUNTLESS", "NERVES_OF_STEEL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "NERVES_OF_STEEL",
+        "name" : "Nerves of Steel"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -888,10 +1026,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "DAUNTLESS", "NERVES_OF_STEEL", "PASS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "NERVES_OF_STEEL",
+        "name" : "Nerves of Steel"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -921,10 +1065,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DAUNTLESS", "STEADY_FOOTING" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "STEADY_FOOTING",
+        "name" : "Steady Footing"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -973,10 +1123,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)" ],
-        "empty" : false
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -1006,10 +1153,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)", "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
         "empty" : false
@@ -1039,10 +1192,7 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)" ],
-        "empty" : false
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -1072,10 +1222,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)" ],
-        "empty" : false
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -1105,10 +1252,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)" ],
-        "empty" : false
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -1138,10 +1282,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(ALL)", "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS", "PASSING" ],
         "empty" : false
@@ -1171,10 +1318,28 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "LONER_4", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1204,10 +1369,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_4", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1237,10 +1414,25 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY", "HORNS", "LONER_4", "MIGHTY_BLOW", "THICK_SKULL", "UNCHANNELLED_FURY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNCHANNELLED_FURY",
+        "name" : "Unchannelled Fury"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1270,10 +1462,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMAL_SAVAGERY", "FRENZY", "LONER_4", "MIGHTY_BLOW", "PREHENSILE_TAIL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ANIMAL_SAVAGERY",
+        "name" : "Animal Savagery"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PREHENSILE_TAIL",
+        "name" : "Prehensile Tail"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1326,10 +1530,19 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "JUMP_UP", "RIGHT_STUFF", "STUNTY", "WRESTLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "WRESTLE",
+        "name" : "Wrestle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -1359,10 +1572,19 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "MY_BALL", "SIDESTEP", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "MY_BALL",
+        "name" : "My Ball"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -1392,10 +1614,19 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "JUMP_UP", "STUNTY", "TRICKSTER", "WRESTLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TRICKSTER",
+        "name" : "Trickster"
+      }, {
+        "uid" : "WRESTLE",
+        "name" : "Wrestle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "PASSING" ],
         "empty" : false
@@ -1425,10 +1656,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "GUARD", "JUMP_UP", "STUNTY", "WRESTLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "GUARD",
+        "name" : "Guard"
+      }, {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "WRESTLE",
+        "name" : "Wrestle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -1458,10 +1698,28 @@
       "armourValue" : {
         "value" : 11
       },
-      "skills" : {
-        "skillUids" : [ "MIGHTY_BLOW", "STAND_FIRM", "STRONG_ARM", "TAKE_ROOT", "THICK_SKULL", "THROW_TEAMMATE", "TIMMM_BER" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "STRONG_ARM",
+        "name" : "Strong Arm"
+      }, {
+        "uid" : "TAKE_ROOT",
+        "name" : "Take Root"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      }, {
+        "uid" : "TIMMM_BER",
+        "name" : "Timmm-ber!"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1507,10 +1765,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "FEND" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FEND",
+        "name" : "Fend"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -1540,10 +1798,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "GIVE_AND_GO", "PASS", "PRO" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "GIVE_AND_GO",
+        "name" : "Give and Go"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "PRO",
+        "name" : "Pro"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -1573,10 +1837,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "STAND_FIRM", "WRESTLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "WRESTLE",
+        "name" : "Wrestle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -1606,10 +1873,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "CATCH", "PRO" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "PRO",
+        "name" : "Pro"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -1639,10 +1912,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_3", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_3",
+        "name" : "Loner (3+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1691,10 +1976,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "REGENERATION", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -1724,10 +2012,19 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "REGENERATION", "SURE_HANDS", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -1757,10 +2054,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "REGENERATION", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -1790,10 +2093,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BRAWLER", "DECAY", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BRAWLER",
+        "name" : "Brawler"
+      }, {
+        "uid" : "DECAY",
+        "name" : "Decay"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -1842,10 +2151,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
         "empty" : false
@@ -1875,10 +2190,25 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "INSIGNIFICANT", "RIGHT_STUFF", "SIDESTEP", "STUNTY", "TITCHY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "INSIGNIFICANT",
+        "name" : "Insignificant"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TITCHY",
+        "name" : "Titchy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
         "empty" : false
@@ -1908,10 +2238,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(GOBLIN)" ],
-        "empty" : false
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -1941,10 +2268,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(GOBLIN)", "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "PASSING" ],
         "empty" : false
@@ -1974,10 +2304,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(GOBLIN)", "DODGE", "STAB" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "STAB",
+        "name" : "Stab"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -2007,10 +2340,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMOSITY_(GOBLIN)", "BLOCK", "STRIP_BALL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "STRIP_BALL",
+        "name" : "Strip Ball"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2040,10 +2376,28 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "LONER_4", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2073,10 +2427,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "ANIMAL_SAVAGERY", "FRENZY", "LONER_4", "MIGHTY_BLOW", "PREHENSILE_TAIL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ANIMAL_SAVAGERY",
+        "name" : "Animal Savagery"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PREHENSILE_TAIL",
+        "name" : "Prehensile Tail"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2129,10 +2495,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -2162,10 +2525,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BLOODLUST_(2+)", "HYPNOTIC_GAZE", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HYPNOTIC_GAZE",
+        "name" : "Hypnotic Gaze"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -2195,10 +2561,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOODLUST_(2+)", "HYPNOTIC_GAZE", "PASS", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HYPNOTIC_GAZE",
+        "name" : "Hypnotic Gaze"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -2228,10 +2600,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOODLUST_(3+)", "HYPNOTIC_GAZE", "JUGGERNAUT", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HYPNOTIC_GAZE",
+        "name" : "Hypnotic Gaze"
+      }, {
+        "uid" : "JUGGERNAUT",
+        "name" : "Juggernaut"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -2261,10 +2639,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOODLUST_(3+)", "CLAWS", "FRENZY", "LONER_4", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CLAWS",
+        "name" : "Claws"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -2313,10 +2700,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -2346,10 +2730,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "SAFE_PAIR_OF_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SAFE_PAIR_OF_HANDS",
+        "name" : "Safe Pair of Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -2379,10 +2766,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DODGE", "SPRINT" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -2412,10 +2805,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DODGE", "LEAP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "LEAP",
+        "name" : "Leap"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -2445,10 +2844,28 @@
       "armourValue" : {
         "value" : 11
       },
-      "skills" : {
-        "skillUids" : [ "LONER_4", "MIGHTY_BLOW", "STAND_FIRM", "STRONG_ARM", "TAKE_ROOT", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "STRONG_ARM",
+        "name" : "Strong Arm"
+      }, {
+        "uid" : "TAKE_ROOT",
+        "name" : "Take Root"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -2494,10 +2911,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -2527,10 +2944,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "ON_THE_BALL", "PASS", "SAFE_PASS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "ON_THE_BALL",
+        "name" : "On the Ball"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SAFE_PASS",
+        "name" : "Safe Pass"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -2560,10 +2986,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "HIT_AND_RUN", "JUMP_UP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "HIT_AND_RUN",
+        "name" : "Hit and Run"
+      }, {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -2593,10 +3025,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "DEFENSIVE", "DODGE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DEFENSIVE",
+        "name" : "Defensive"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -2648,10 +3083,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -2681,10 +3125,13 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BRAWLER", "GRAB" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BRAWLER",
+        "name" : "Brawler"
+      }, {
+        "uid" : "GRAB",
+        "name" : "Grab"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -2714,10 +3161,25 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -2766,10 +3228,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "HORNS", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -2799,10 +3264,10 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ARM_BAR" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ARM_BAR",
+        "name" : "Arm Bar"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2832,10 +3297,28 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "LONER_4", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2865,10 +3348,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_4", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2898,10 +3393,25 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY", "HORNS", "LONER_4", "MIGHTY_BLOW", "THICK_SKULL", "UNCHANNELLED_FURY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNCHANNELLED_FURY",
+        "name" : "Unchannelled Fury"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -2957,10 +3467,7 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS" ],
         "empty" : false
@@ -2990,10 +3497,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "SHADOWING", "STAB" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "SHADOWING",
+        "name" : "Shadowing"
+      }, {
+        "uid" : "STAB",
+        "name" : "Stab"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -3023,10 +3533,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "IRON_HARD_SKIN", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "IRON_HARD_SKIN",
+        "name" : "Iron Hard Skin"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -3056,10 +3572,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BRAWLER", "BREATHE_FIRE", "DISTURBING_PRESENCE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BRAWLER",
+        "name" : "Brawler"
+      }, {
+        "uid" : "BREATHE_FIRE",
+        "name" : "Breathe Fire"
+      }, {
+        "uid" : "DISTURBING_PRESENCE",
+        "name" : "Disturbing Presence"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -3089,10 +3614,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "SPRINT", "SURE_FEET", "THICK_SKULL", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      }, {
+        "uid" : "SURE_FEET",
+        "name" : "Sure Feet"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -3122,10 +3656,25 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY", "HORNS", "LONER_4", "MIGHTY_BLOW", "THICK_SKULL", "UNCHANNELLED_FURY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNCHANNELLED_FURY",
+        "name" : "Unchannelled Fury"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -3171,10 +3720,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3204,10 +3750,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DUMP_OFF", "PUNT" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DUMP_OFF",
+        "name" : "Dump-off"
+      }, {
+        "uid" : "PUNT",
+        "name" : "Punt"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -3237,10 +3786,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "HIT_AND_RUN", "SHADOWING", "STAB" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HIT_AND_RUN",
+        "name" : "Hit and Run"
+      }, {
+        "uid" : "SHADOWING",
+        "name" : "Shadowing"
+      }, {
+        "uid" : "STAB",
+        "name" : "Stab"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -3270,10 +3825,10 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3303,10 +3858,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "FRENZY", "JUMP_UP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3352,10 +3913,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "FUMBLEROOSKI" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FUMBLEROOSKI",
+        "name" : "Fumblerooski"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3385,10 +3946,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "HAIL_MARY_PASS", "PASS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HAIL_MARY_PASS",
+        "name" : "Hail Mary Pass"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -3418,10 +3982,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DIVING_CATCH", "NERVES_OF_STEEL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DIVING_CATCH",
+        "name" : "Diving Catch"
+      }, {
+        "uid" : "NERVES_OF_STEEL",
+        "name" : "Nerves of Steel"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3451,10 +4021,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "SIDESTEP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3506,10 +4079,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -3539,10 +4118,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CHAINSAW", "NO_BALL", "SECRET_WEAPON", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CHAINSAW",
+        "name" : "Chainsaw"
+      }, {
+        "uid" : "NO_BALL",
+        "name" : "No Ball"
+      }, {
+        "uid" : "SECRET_WEAPON",
+        "name" : "Secret Weapon"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS" ],
         "empty" : false
@@ -3572,10 +4160,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BOMBARDIER", "DODGE", "SECRET_WEAPON", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BOMBARDIER",
+        "name" : "Bombardier"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "SECRET_WEAPON",
+        "name" : "Secret Weapon"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "PASSING" ],
         "empty" : false
@@ -3605,10 +4202,25 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DIRTY_PLAYER", "DISTURBING_PRESENCE", "DODGE", "RIGHT_STUFF", "STUNTY", "TAUNT" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DIRTY_PLAYER",
+        "name" : "Dirty Player"
+      }, {
+        "uid" : "DISTURBING_PRESENCE",
+        "name" : "Disturbing Presence"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TAUNT",
+        "name" : "Taunt"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -3638,10 +4250,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY", "SWOOP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "SWOOP",
+        "name" : "Swoop"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -3671,10 +4292,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BALL_AND_CHAIN", "NO_BALL", "SECRET_WEAPON", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BALL_AND_CHAIN",
+        "name" : "Ball and Chain"
+      }, {
+        "uid" : "NO_BALL",
+        "name" : "No Ball"
+      }, {
+        "uid" : "SECRET_WEAPON",
+        "name" : "Secret Weapon"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "STRENGTH" ],
         "empty" : false
@@ -3704,10 +4334,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "POGO", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -3737,10 +4370,25 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -3789,10 +4437,16 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -3822,10 +4476,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "FEND", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "FEND",
+        "name" : "Fend"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "PASSING" ],
         "empty" : false
@@ -3855,10 +4515,22 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DODGE", "RIGHT_STUFF", "SPRINT", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -3888,10 +4560,28 @@
       "armourValue" : {
         "value" : 11
       },
-      "skills" : {
-        "skillUids" : [ "MIGHTY_BLOW", "STAND_FIRM", "STRONG_ARM", "TAKE_ROOT", "THICK_SKULL", "THROW_TEAMMATE", "TIMMM_BER" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "STRONG_ARM",
+        "name" : "Strong Arm"
+      }, {
+        "uid" : "TAKE_ROOT",
+        "name" : "Take Root"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      }, {
+        "uid" : "TIMMM_BER",
+        "name" : "Timmm-ber!"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -3937,10 +4627,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -3970,10 +4657,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "CLOUD_BURSTER", "PASS", "SAFE_PASS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CLOUD_BURSTER",
+        "name" : "Cloud Burster"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SAFE_PASS",
+        "name" : "Safe Pass"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -4003,10 +4696,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -4036,10 +4729,10 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -4091,10 +4784,10 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -4124,10 +4817,19 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "HORNS", "JUGGERNAUT", "JUMP_UP", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "JUGGERNAUT",
+        "name" : "Juggernaut"
+      }, {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -4157,10 +4859,10 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -4190,10 +4892,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "CLAWS", "FRENZY", "LONER_4", "MIGHTY_BLOW", "UNCHANNELLED_FURY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CLAWS",
+        "name" : "Claws"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "UNCHANNELLED_FURY",
+        "name" : "Unchannelled Fury"
+      } ],
       "primaryAccess" : {
         "categories" : [ "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -4239,10 +4953,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -4272,10 +4989,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "ON_THE_BALL", "SHADOWING", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "ON_THE_BALL",
+        "name" : "On the Ball"
+      }, {
+        "uid" : "SHADOWING",
+        "name" : "Shadowing"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "PASSING" ],
         "empty" : false
@@ -4305,10 +5031,13 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "JUGGERNAUT", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "JUGGERNAUT",
+        "name" : "Juggernaut"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -4338,10 +5067,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_4", "MIGHTY_BLOW", "PREHENSILE_TAIL", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PREHENSILE_TAIL",
+        "name" : "Prehensile Tail"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -4390,10 +5131,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "EYE_GOUGE", "REGENERATION", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "EYE_GOUGE",
+        "name" : "Eye Gouge"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -4423,10 +5170,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -4456,10 +5206,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "FOUL_APPEARANCE", "NO_BALL", "REGENERATION", "SIDESTEP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "FOUL_APPEARANCE",
+        "name" : "Foul Appearance"
+      }, {
+        "uid" : "NO_BALL",
+        "name" : "No Ball"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -4489,10 +5251,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "REGENERATION", "STAND_FIRM", "THICK_SKULL", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -4522,10 +5293,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "CLAWS", "FRENZY", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CLAWS",
+        "name" : "Claws"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -4574,10 +5351,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DRUNKARD", "THICK_SKULL", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DRUNKARD",
+        "name" : "Drunkard"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -4607,10 +5393,22 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "NO_BALL", "PICK_ME_UP", "STUNTY", "TITCHY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "NO_BALL",
+        "name" : "No Ball"
+      }, {
+        "uid" : "PICK_ME_UP",
+        "name" : "Pick-me-up"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TITCHY",
+        "name" : "Titchy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -4640,10 +5438,16 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "FRENZY", "JUMP_UP" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "JUMP_UP",
+        "name" : "Jump Up"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -4673,10 +5477,19 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DAUNTLESS", "PASS", "STRIP_BALL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "STRIP_BALL",
+        "name" : "Strip Ball"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
         "empty" : false
@@ -4706,10 +5519,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "FRENZY", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -4739,10 +5555,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "CLAWS", "DISTURBING_PRESENCE", "FRENZY", "LONER_4", "UNCHANNELLED_FURY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CLAWS",
+        "name" : "Claws"
+      }, {
+        "uid" : "DISTURBING_PRESENCE",
+        "name" : "Disturbing Presence"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "UNCHANNELLED_FURY",
+        "name" : "Unchannelled Fury"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -4794,10 +5622,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "DECAY", "PLAGUE_RIDDEN" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DECAY",
+        "name" : "Decay"
+      }, {
+        "uid" : "PLAGUE_RIDDEN",
+        "name" : "Plague Ridden"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
         "empty" : false
@@ -4827,10 +5658,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "HORNS", "PLAGUE_RIDDEN", "REGENERATION", "STEADY_FOOTING", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "HORNS",
+        "name" : "Horns"
+      }, {
+        "uid" : "PLAGUE_RIDDEN",
+        "name" : "Plague Ridden"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "STEADY_FOOTING",
+        "name" : "Steady Footing"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -4860,10 +5703,25 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "DISTURBING_PRESENCE", "FOUL_APPEARANCE", "PLAGUE_RIDDEN", "REGENERATION", "STAND_FIRM", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DISTURBING_PRESENCE",
+        "name" : "Disturbing Presence"
+      }, {
+        "uid" : "FOUL_APPEARANCE",
+        "name" : "Foul Appearance"
+      }, {
+        "uid" : "PLAGUE_RIDDEN",
+        "name" : "Plague Ridden"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
         "empty" : false
@@ -4893,10 +5751,34 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "DISTURBING_PRESENCE", "FOUL_APPEARANCE", "LONER_4", "MIGHTY_BLOW", "PICK_ME_UP", "PLAGUE_RIDDEN", "REALLY_STUPID", "REGENERATION", "TENTACLES" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DISTURBING_PRESENCE",
+        "name" : "Disturbing Presence"
+      }, {
+        "uid" : "FOUL_APPEARANCE",
+        "name" : "Foul Appearance"
+      }, {
+        "uid" : "LONER_4",
+        "name" : "Loner (4+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PICK_ME_UP",
+        "name" : "Pick-me-up"
+      }, {
+        "uid" : "PLAGUE_RIDDEN",
+        "name" : "Plague Ridden"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "TENTACLES",
+        "name" : "Tentacles"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -4951,10 +5833,22 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "SIDESTEP", "STUNTY", "TITCHY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TITCHY",
+        "name" : "Titchy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -4984,10 +5878,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -5017,10 +5920,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "KICK_TEAMMATE", "MIGHTY_BLOW", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "PASSING", "STRENGTH" ],
         "empty" : false
@@ -5066,10 +5975,7 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ ],
-        "empty" : true
-      },
+      "skills" : [ ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -5099,10 +6005,16 @@
       "armourValue" : {
         "value" : 7
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY" ],
         "empty" : false
@@ -5132,10 +6044,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "CATCH", "DODGE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "CATCH",
+        "name" : "Catch"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -5165,10 +6080,16 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DEFENSIVE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DEFENSIVE",
+        "name" : "Defensive"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -5198,10 +6119,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "PASS", "SURE_HANDS" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "PASS",
+        "name" : "Pass"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -5231,10 +6155,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "SPRINT", "SURE_HANDS", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      }, {
+        "uid" : "SURE_HANDS",
+        "name" : "Sure Hands"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "PASSING" ],
         "empty" : false
@@ -5264,10 +6194,13 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "TACKLE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "TACKLE",
+        "name" : "Tackle"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -5297,10 +6230,19 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DIVING_TACKLE", "TACKLE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DIVING_TACKLE",
+        "name" : "Diving Tackle"
+      }, {
+        "uid" : "TACKLE",
+        "name" : "Tackle"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -5330,10 +6272,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "DAUNTLESS", "FRENZY", "HATRED", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "DAUNTLESS",
+        "name" : "Dauntless"
+      }, {
+        "uid" : "FRENZY",
+        "name" : "Frenzy"
+      }, {
+        "uid" : "HATRED",
+        "name" : "Hatred"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -5363,10 +6317,22 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "BONE_HEAD", "LONER_3", "MIGHTY_BLOW", "THICK_SKULL", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BONE_HEAD",
+        "name" : "Bone Head"
+      }, {
+        "uid" : "LONER_3",
+        "name" : "Loner (3+)"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -5396,10 +6362,28 @@
       "armourValue" : {
         "value" : 11
       },
-      "skills" : {
-        "skillUids" : [ "MIGHTY_BLOW", "STAND_FIRM", "STRONG_ARM", "TAKE_ROOT", "THICK_SKULL", "THROW_TEAMMATE", "TIMMM_BER" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      }, {
+        "uid" : "STRONG_ARM",
+        "name" : "Strong Arm"
+      }, {
+        "uid" : "TAKE_ROOT",
+        "name" : "Take Root"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      }, {
+        "uid" : "TIMMM_BER",
+        "name" : "Timmm-ber!"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -5452,10 +6436,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "REGENERATION", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL" ],
         "empty" : false
@@ -5485,10 +6472,16 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "EYE_GOUGE", "REGENERATION", "UNSTEADY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "EYE_GOUGE",
+        "name" : "Eye Gouge"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "UNSTEADY",
+        "name" : "Unsteady"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "GENERAL" ],
         "empty" : false
@@ -5518,10 +6511,13 @@
       "armourValue" : {
         "value" : 8
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "GENERAL" ],
         "empty" : false
@@ -5551,10 +6547,19 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "BLOCK", "REGENERATION", "TACKLE", "THICK_SKULL" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BLOCK",
+        "name" : "Block"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "TACKLE",
+        "name" : "Tackle"
+      }, {
+        "uid" : "THICK_SKULL",
+        "name" : "Thick Skull"
+      } ],
       "primaryAccess" : {
         "categories" : [ "GENERAL", "STRENGTH" ],
         "empty" : false
@@ -5584,10 +6589,13 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "MIGHTY_BLOW", "REGENERATION" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false
@@ -5642,10 +6650,25 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "INSIGNIFICANT", "RIGHT_STUFF", "SIDESTEP", "STUNTY", "TITCHY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "INSIGNIFICANT",
+        "name" : "Insignificant"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TITCHY",
+        "name" : "Titchy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -5675,10 +6698,19 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "POGO", "RIGHT_STUFF", "SIDESTEP", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -5708,10 +6740,22 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "DODGE", "RIGHT_STUFF", "SIDESTEP", "SPRINT", "STUNTY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "SPRINT",
+        "name" : "Sprint"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS" ],
         "empty" : false
@@ -5741,10 +6785,28 @@
       "armourValue" : {
         "value" : 6
       },
-      "skills" : {
-        "skillUids" : [ "BOMBARDIER", "DODGE", "RIGHT_STUFF", "SECRET_WEAPON", "SIDESTEP", "STUNTY", "TITCHY" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "BOMBARDIER",
+        "name" : "Bombardier"
+      }, {
+        "uid" : "DODGE",
+        "name" : "Dodge"
+      }, {
+        "uid" : "RIGHT_STUFF",
+        "name" : "Right Stuff"
+      }, {
+        "uid" : "SECRET_WEAPON",
+        "name" : "Secret Weapon"
+      }, {
+        "uid" : "SIDESTEP",
+        "name" : "Sidestep"
+      }, {
+        "uid" : "STUNTY",
+        "name" : "Stunty"
+      }, {
+        "uid" : "TITCHY",
+        "name" : "Titchy"
+      } ],
       "primaryAccess" : {
         "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ],
         "empty" : false
@@ -5774,10 +6836,22 @@
       "armourValue" : {
         "value" : 9
       },
-      "skills" : {
-        "skillUids" : [ "DIRTY_PLAYER", "JUGGERNAUT", "MIGHTY_BLOW", "REALLY_STUPID", "STAND_FIRM" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "DIRTY_PLAYER",
+        "name" : "Dirty Player"
+      }, {
+        "uid" : "JUGGERNAUT",
+        "name" : "Juggernaut"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "STAND_FIRM",
+        "name" : "Stand Firm"
+      } ],
       "primaryAccess" : {
         "categories" : [ "DEVIOUS", "STRENGTH" ],
         "empty" : false
@@ -5807,10 +6881,25 @@
       "armourValue" : {
         "value" : 10
       },
-      "skills" : {
-        "skillUids" : [ "ALWAYS_HUNGRY", "MIGHTY_BLOW", "PROJECTILE_VOMIT", "REALLY_STUPID", "REGENERATION", "THROW_TEAMMATE" ],
-        "empty" : false
-      },
+      "skills" : [ {
+        "uid" : "ALWAYS_HUNGRY",
+        "name" : "Always Hungry"
+      }, {
+        "uid" : "MIGHTY_BLOW",
+        "name" : "Mighty Blow"
+      }, {
+        "uid" : "PROJECTILE_VOMIT",
+        "name" : "Projectile Vomit"
+      }, {
+        "uid" : "REALLY_STUPID",
+        "name" : "Really Stupid"
+      }, {
+        "uid" : "REGENERATION",
+        "name" : "Regeneration"
+      }, {
+        "uid" : "THROW_TEAMMATE",
+        "name" : "Throw Team-mate"
+      } ],
       "primaryAccess" : {
         "categories" : [ "STRENGTH" ],
         "empty" : false

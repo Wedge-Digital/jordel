@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 /**
  * Représentation d'une définition de joueur dans les données de référence.
  * Immutable, chargée depuis JSON au démarrage.
@@ -51,7 +53,7 @@ public class PlayerDefinitionRef {
 
     // Compétences et accès
     @Valid
-    private final SkillsList skills;
+    private final List<SkillRefLight> skills;
 
     @Valid
     private final SkillAccessCategories primaryAccess;
@@ -61,7 +63,11 @@ public class PlayerDefinitionRef {
 
     // Méthodes métier
     public boolean hasSkill(String skillUid) {
-        return skills != null && skills.contains(skillUid);
+        return skills != null && skills.stream().anyMatch(s -> s.getUid().equals(skillUid));
+    }
+
+    public boolean hasSkills() {
+        return skills != null && !skills.isEmpty();
     }
 
     public boolean hasPrimaryAccess(String category) {

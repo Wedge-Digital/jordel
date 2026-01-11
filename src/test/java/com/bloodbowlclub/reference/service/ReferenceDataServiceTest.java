@@ -94,6 +94,36 @@ class ReferenceDataServiceTest extends TestCase {
     }
 
     @Test
+    void testPlayerSkillsAreResolvedAsObjects() {
+        // Vérifier qu'un joueur avec skills les a bien en tant qu'objets complets (pas juste des UIDs)
+        // Trouver un joueur avec des skills (par exemple un Blitzer)
+        Optional<RosterRef> humanRoster = referenceDataService.getRosterById("HUMAN", Locale.ENGLISH);
+        assertTrue(humanRoster.isPresent(), "Le roster HUMAN devrait exister");
+
+        List<PlayerDefinitionRef> players = humanRoster.get().getAvailablePlayers();
+
+        // Trouver un joueur avec des skills (pas un lineman)
+        Optional<PlayerDefinitionRef> playerWithSkills = players.stream()
+                .filter(PlayerDefinitionRef::hasSkills)
+                .findFirst();
+
+        assertTrue(playerWithSkills.isPresent(), "Le roster HUMAN devrait avoir au moins un joueur avec des skills");
+
+        PlayerDefinitionRef player = playerWithSkills.get();
+        List<SkillRefLight> skills = player.getSkills();
+        assertNotNull(skills, "Les skills ne devraient pas être null");
+        assertFalse(skills.isEmpty(), "Le joueur devrait avoir au moins une skill");
+
+        // Vérifier que les skills sont des objets allégés avec uid ET name
+        SkillRefLight firstSkill = skills.get(0);
+        assertNotNull(firstSkill.getUid(), "La skill devrait avoir un uid");
+        assertNotNull(firstSkill.getName(), "La skill devrait avoir un name (pas juste un uid)");
+
+        System.out.println("✅ Skill résolue pour " + player.getPositionName() + ": " +
+                firstSkill.getUid() + " => " + firstSkill.getName());
+    }
+
+    @Test
     void testLoadSkills() {
         List<SkillRef> skills = referenceDataService.getAllSkills(Locale.ENGLISH);
         assertNotNull(skills);
