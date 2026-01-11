@@ -11,29 +11,29 @@ import java.util.List;
 @Getter
 @EqualsAndHashCode(callSuper = false)
 public class SpecialRulesList extends ValueObject {
-    private final List<String> ruleUids;
+    private final List<SpecialRuleRef> ruleList;
 
-    public SpecialRulesList(List<String> ruleUids) {
-        this.ruleUids = ruleUids != null ?
-            Collections.unmodifiableList(new ArrayList<>(ruleUids)) :
+    public SpecialRulesList(List<SpecialRuleRef> ruleList) {
+        this.ruleList = ruleList != null ?
+            Collections.unmodifiableList(new ArrayList<>(ruleList)) :
             Collections.emptyList();
     }
 
     public boolean isEmpty() {
-        return ruleUids.isEmpty();
+        return ruleList.isEmpty();
     }
 
     public int size() {
-        return ruleUids.size();
+        return ruleList.size();
     }
 
     public boolean contains(String ruleUid) {
-        return ruleUids.contains(ruleUid);
+        return ruleList.contains(ruleUid);
     }
 
     @Override
     public String toString() {
-        return String.join(", ", ruleUids);
+        return ruleList.stream().map(item -> String.join(" ,", item.getLabel() )).toString();
     }
 
     @Override

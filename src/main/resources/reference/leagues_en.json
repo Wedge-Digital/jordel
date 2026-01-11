@@ -1,0 +1,46 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "leagues": [
+    {
+      "uid": "LUSTRIAN_SUPERLEAGUE",
+      "label": "Lustrian Superleague"
+    },
+    {
+      "uid": "BADLANDS_BRAWL",
+      "label": "Badlands Brawl"
+    },
+    {
+      "uid": "OLD_WORLD_CLASSIC",
+      "label": "Old World Classic"
+    },
+    {
+      "uid": "CHAOS_CLASH",
+      "label": "Chaos Clash"
+    },
+    {
+      "uid": "ELVEN_KINGDOMS_LEAGUE",
+      "label": "Elven Kingdoms League"
+    },
+    {
+      "uid": "WORLDS_EDGE_SUPERLEAGUE",
+      "label": "Worlds Edge Superleague"
+    },
+    {
+      "uid": "HALFLING_THIMBLE_CUP",
+      "label": "Halfling Thimble Cup"
+    },
+    {
+      "uid": "WOODLAND_LEAGUE",
+      "label": "Woodland League"
+    },
+    {
+      "uid": "UNDERWORLD_CHALLENGE",
+      "label": "Underworld Challenge"
+    },
+    {
+      "uid": "SYLVANIAN_SPOTLIGHT",
+      "label": "Sylvanian Spotlight"
+    }
+  ]
+}

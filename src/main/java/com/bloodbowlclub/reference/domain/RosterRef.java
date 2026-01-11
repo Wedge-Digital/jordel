@@ -32,7 +32,10 @@ public class RosterRef {
     private final RosterTier tier;
 
     @Valid
-    private final SpecialRulesList specialRules;
+    private final List<SpecialRuleRef> specialRules;
+
+    @Valid
+    private final List<LeagueRef> leagues;
 
     @NotEmpty
     @Valid
@@ -55,6 +58,10 @@ public class RosterRef {
 
     public boolean hasSpecialRules() {
         return this.specialRules != null && !this.specialRules.isEmpty();
+    }
+
+    public boolean hasLeagues() {
+        return this.leagues != null && !this.leagues.isEmpty();
     }
 
     public Optional<PlayerDefinitionRef> findPlayerByUid(String playerUid) {

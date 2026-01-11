@@ -9,7 +9,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "HUMAN__HUMAN_LINEMAN",
@@ -151,6 +155,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "OLD_WORLD_CLASSIC"
       ]
     },
     {
@@ -160,7 +167,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "ORC__ORC_LINEMAN",
@@ -307,6 +318,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "BADLANDS_BRAWL"
       ]
     },
     {
@@ -316,7 +330,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "DWARF__DWARF_LINEMAN",
@@ -441,6 +459,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "WORLDS_EDGE_SUPERLEAGUE"
       ]
     },
     {
@@ -450,7 +471,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "SKAVEN__SKAVEN_CLANRAT",
@@ -572,6 +597,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "UNDERWORLD_CHALLENGE"
       ]
     },
     {
@@ -581,7 +609,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "BRETONNIAN__BRETONNIAN_SQUIRE",
@@ -674,6 +706,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "OLD_WORLD_CLASSIC"
       ]
     },
     {
@@ -695,7 +730,11 @@
           ]
         }
       ],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "CHAOS_RENEGADE__RENEGADE_HUMAN",
@@ -948,6 +987,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "CHAOS_CLASH"
       ]
     },
     {
@@ -957,7 +999,11 @@
       "tier": "Tier 4",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "GNOME__GNOME_LINEMAN",
@@ -1083,6 +1129,10 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "HALFLING_THIMBLE_CUP",
+        "WOODLAND_LEAGUE"
       ]
     },
     {
@@ -1092,7 +1142,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "IMPERIAL_NOBILITY__IMPERIAL_RETAINER",
@@ -1210,6 +1264,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "OLD_WORLD_CLASSIC"
       ]
     },
     {
@@ -1221,7 +1278,10 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "TOMB_KINGS__SKELETON_LINEMAN",
@@ -1319,6 +1379,9 @@
           ],
           "max_quantity": 4
         }
+      ],
+      "leagues": [
+        "SYLVANIAN_SPOTLIGHT"
       ]
     },
     {
@@ -1338,7 +1401,11 @@
           ]
         }
       ],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "UNDERWORLD_DENIZENS__GOBLIN_LINEMAN",
@@ -1547,6 +1614,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "UNDERWORLD_CHALLENGE"
       ]
     },
     {
@@ -1558,7 +1628,11 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "VAMPIRE__THRALL_LINEMAN",
@@ -1676,6 +1750,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "SYLVANIAN_SPOTLIGHT"
       ]
     },
     {
@@ -1685,7 +1762,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "WOOD_ELF__WOOD_ELF_LINEMAN",
@@ -1805,6 +1886,10 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "ELVEN_KINGDOMS_LEAGUE",
+        "WOODLAND_LEAGUE"
       ]
     },
     {
@@ -1814,7 +1899,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "AMAZON__EAGLE_WARRIOR",
@@ -1907,6 +1996,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "LUSTRIAN_SUPERLEAGUE"
       ]
     },
     {
@@ -1919,7 +2011,11 @@
         "BRIBERY_AND_CORRUPTION"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "BLACK_ORC__GOBLIN_BRUISER",
@@ -1997,6 +2093,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "BADLANDS_BRAWL"
       ]
     },
     {
@@ -2017,7 +2116,11 @@
           ]
         }
       ],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "CHAOS_CHOSEN__BEASTMEN_LINEMAN",
@@ -2149,6 +2252,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "CHAOS_CLASH"
       ]
     },
     {
@@ -2160,7 +2266,11 @@
         "FAVOURED_OF_HASHUT"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "CHAOS_DWARF__HOBGOBLIN_LINEMAN",
@@ -2309,6 +2419,10 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "BADLANDS_BRAWL",
+        "CHAOS_CLASH"
       ]
     },
     {
@@ -2318,7 +2432,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "DARK_ELF__DARK_ELF_LINEMAN",
@@ -2435,6 +2553,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "ELVEN_KINGDOMS_LEAGUE"
       ]
     },
     {
@@ -2444,7 +2565,11 @@
       "tier": "Tier 2",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "ELVEN_UNION__ELF_LINEMAN",
@@ -2536,6 +2661,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "ELVEN_KINGDOMS_LEAGUE"
       ]
     },
     {
@@ -2547,7 +2675,11 @@
         "BRIBERY_AND_CORRUPTION"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "GOBLIN__GOBLIN_LINEMAN",
@@ -2753,6 +2885,10 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "BADLANDS_BRAWL",
+        "UNDERWORLD_CHALLENGE"
       ]
     },
     {
@@ -2762,7 +2898,11 @@
       "tier": "Tier 4",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "HALFLING__HALFLING_HOPEFUL",
@@ -2867,6 +3007,10 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "HALFLING_THIMBLE_CUP",
+        "WOODLAND_LEAGUE"
       ]
     },
     {
@@ -2876,7 +3020,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "HIGH_ELF__HIGH_ELF_LINEMAN",
@@ -2965,6 +3113,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "ELVEN_KINGDOMS_LEAGUE"
       ]
     },
     {
@@ -2977,7 +3128,11 @@
         "FAVOURED_OF_KHORNE"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "KHORNE__BLOODBORN_MARAUDER",
@@ -3078,6 +3233,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "CHAOS_CLASH"
       ]
     },
     {
@@ -3087,7 +3245,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "LIZARDMAN__SKINK_LINEMAN",
@@ -3186,6 +3348,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "LUSTRIAN_SUPERLEAGUE"
       ]
     },
     {
@@ -3197,7 +3362,10 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "NECROMANTIC_HORROR__ZOMBIE_LINEMAN",
@@ -3323,6 +3491,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "SYLVANIAN_SPOTLIGHT"
       ]
     },
     {
@@ -3332,7 +3503,11 @@
       "tier": "Tier 1",
       "specialRules": [],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "NORSE__NORSE_RAIDER",
@@ -3477,6 +3652,10 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "CHAOS_CLASH",
+        "OLD_WORLD_CLASSIC"
       ]
     },
     {
@@ -3489,7 +3668,10 @@
         "FAVOURED_OF_NURGLE"
       ],
       "cross_limit": [],
-      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "NURGLE__ROTTER_LINEMAN",
@@ -3600,6 +3782,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "CHAOS_CLASH"
       ]
     },
     {
@@ -3612,7 +3797,11 @@
         "LOW_COST_LINEMEN"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "OGRE__GNOBLAR_LINEMAN",
@@ -3691,6 +3880,10 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "BADLANDS_BRAWL",
+        "WORLDS_EDGE_SUPERLEAGUE"
       ]
     },
     {
@@ -3708,7 +3901,11 @@
           ]
         }
       ],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "OLD_WORLD_ALLIANCE__HUMAN_LINEMAN",
@@ -3969,6 +4166,9 @@
           ],
           "max_quantity": 1
         }
+      ],
+      "leagues": [
+        "OLD_WORLD_CLASSIC"
       ]
     },
     {
@@ -3980,7 +4180,10 @@
         "MASTERS_OF_UNDEATH"
       ],
       "cross_limit": [],
-      "allowedStaff": ["CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "SHAMBLING_UNDEAD__SKELETON_LINEMAN",
@@ -4100,6 +4303,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "SYLVANIAN_SPOTLIGHT"
       ]
     },
     {
@@ -4113,7 +4319,11 @@
         "SWARMING"
       ],
       "cross_limit": [],
-      "allowedStaff": ["APOTHECARY", "CHEERLEADERS", "COACH_ASSISTANTS"],
+      "allowedStaff": [
+        "APOTHECARY",
+        "CHEERLEADERS",
+        "COACH_ASSISTANTS"
+      ],
       "availablePlayers": [
         {
           "uid": "SNOTLING__SNOTLING_LINEMAN",
@@ -4272,6 +4482,9 @@
           ],
           "max_quantity": 2
         }
+      ],
+      "leagues": [
+        "UNDERWORLD_CHALLENGE"
       ]
     }
   ]

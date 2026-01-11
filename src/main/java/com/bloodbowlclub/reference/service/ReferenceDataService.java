@@ -80,9 +80,10 @@ public class ReferenceDataService {
 
             data.staff = loadStaff(languageCode);
             data.specialRules = loadSpecialRules(languageCode);
+            data.leagues = loadLeagues(languageCode);
             data.skills = loadSkills(languageCode);
             data.skillCategories = loadSkillCategories(languageCode);
-            data.rosters = loadRosters(languageCode);
+            data.rosters = loadRosters(languageCode, data.specialRules, data.leagues);
 
             // Créer l'index global des joueurs
             data.playersById = createPlayersIndex(data.rosters);
@@ -90,9 +91,9 @@ public class ReferenceDataService {
             // Stocker dans le cache
             dataByLocale.put(locale, data);
 
-            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} staff, {} skills, {} skill categories",
+            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} leagues, {} staff, {} skills, {} skill categories",
                     locale, data.rosters.size(), data.playersById.size(), data.specialRules.size(),
-                    data.staff.size(), data.skills.size(), data.skillCategories.size());
+                    data.leagues.size(), data.staff.size(), data.skills.size(), data.skillCategories.size());
         } catch (Exception e) {
             log.error("[ReferenceAPI] Failed to load reference data for locale: {}", locale, e);
             throw new RuntimeException("Cannot load reference data for locale: " + locale, e);
@@ -124,7 +125,7 @@ public class ReferenceDataService {
         return data;
     }
 
-    private List<RosterRef> loadRosters(String languageCode) throws IOException {
+    private List<RosterRef> loadRosters(String languageCode, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:reference/teams_" + languageCode + ".json");
         JsonNode root = objectMapper.readTree(resource.getInputStream());
         JsonNode teamsNode = root.get("teams");
@@ -132,7 +133,7 @@ public class ReferenceDataService {
         List<RosterRef> rosters = new ArrayList<>();
         if (teamsNode != null && teamsNode.isArray()) {
             for (JsonNode teamNode : teamsNode) {
-                RosterRef roster = deserializeRoster(teamNode);
+                RosterRef roster = deserializeRoster(teamNode, specialRuleRefs, leagueRefs);
                 rosters.add(roster);
             }
         }
@@ -140,21 +141,48 @@ public class ReferenceDataService {
         return Collections.unmodifiableList(rosters);
     }
 
-    private RosterRef deserializeRoster(JsonNode node) {
+    private RosterRef deserializeRoster(JsonNode node, List<SpecialRuleRef> specialRuleRefs, List<LeagueRef> leagueRefs) throws IOException {
         String uid = node.get("uid").asText();
         String name = node.get("name").asText();
         Integer rerollCost = node.get("rerollCost").asInt() / 1000;
 
         RosterTier tier = node.has("tier") ? new RosterTier(node.get("tier").asText()) : null;
 
-        List<String> specialRuleUids = new ArrayList<>();
+        // Résolution des special rules: conversion des UIDs en objets complets
+        List<SpecialRuleRef> resolvedSpecialRules = new ArrayList<>();
         JsonNode specialRulesNode = node.get("specialRules");
         if (specialRulesNode != null && specialRulesNode.isArray()) {
             for (JsonNode ruleNode : specialRulesNode) {
-                specialRuleUids.add(ruleNode.asText());
+                String ruleUid = ruleNode.asText();
+                Optional<SpecialRuleRef> foundRule = specialRuleRefs.stream()
+                        .filter(rule -> Objects.equals(rule.getUid(), ruleUid))
+                        .findFirst();
+
+                if (foundRule.isPresent()) {
+                    resolvedSpecialRules.add(foundRule.get());
+                } else {
+                    log.warn("[ReferenceAPI] Special rule '{}' not found for roster '{}'", ruleUid, uid);
+                }
             }
         }
-        SpecialRulesList specialRules = new SpecialRulesList(specialRuleUids);
+
+        // Résolution des leagues: conversion des UIDs en objets complets
+        List<LeagueRef> resolvedLeagues = new ArrayList<>();
+        JsonNode leaguesNode = node.get("leagues");
+        if (leaguesNode != null && leaguesNode.isArray()) {
+            for (JsonNode leagueNode : leaguesNode) {
+                String leagueUid = leagueNode.asText();
+                Optional<LeagueRef> foundLeague = leagueRefs.stream()
+                        .filter(league -> Objects.equals(league.getUid(), leagueUid))
+                        .findFirst();
+
+                if (foundLeague.isPresent()) {
+                    resolvedLeagues.add(foundLeague.get());
+                } else {
+                    log.warn("[ReferenceAPI] League '{}' not found for roster '{}'", leagueUid, uid);
+                }
+            }
+        }
 
         List<PlayerDefinitionRef> playerDefinitions = new ArrayList<>();
         JsonNode playersNode = node.get("availablePlayers");
@@ -202,7 +230,8 @@ public class ReferenceDataService {
                 .name(name)
                 .rerollCost(rerollCost)
                 .tier(tier)
-                .specialRules(specialRules)
+                .specialRules(resolvedSpecialRules)
+                .leagues(resolvedLeagues)
                 .availablePlayers(playerDefinitions)
                 .allowedStaffUids(allowedStaffUids)
                 .crossLimits(crossLimits)
@@ -316,6 +345,12 @@ public class ReferenceDataService {
         Resource resource = resourceLoader.getResource("classpath:reference/skill_cat_" + languageCode + ".json");
         SkillCategoriesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), SkillCategoriesWrapper.class);
         return Collections.unmodifiableList(new ArrayList<>(wrapper.getSkillCategories()));
+    }
+
+    private List<LeagueRef> loadLeagues(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/leagues_" + languageCode + ".json");
+        LeaguesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), LeaguesWrapper.class);
+        return Collections.unmodifiableList(new ArrayList<>(wrapper.getLeagues()));
     }
 
     // ===========================
@@ -432,6 +467,20 @@ public class ReferenceDataService {
     }
 
     // ===========================
+    // Méthodes d'accès - Leagues
+    // ===========================
+
+    public Optional<LeagueRef> getLeagueByUid(String uid, Locale locale) {
+        return getData(locale).leagues.stream()
+                .filter(l -> l.getUid().equals(uid))
+                .findFirst();
+    }
+
+    public List<LeagueRef> getAllLeagues(Locale locale) {
+        return getData(locale).leagues;
+    }
+
+    // ===========================
     // Méthodes utilitaires
     // ===========================
 
@@ -453,6 +502,7 @@ public class ReferenceDataService {
         List<RosterRef> rosters;
         Map<String, PlayerDefinitionRef> playersById;
         List<SpecialRuleRef> specialRules;
+        List<LeagueRef> leagues;
         List<TeamStaffRef> staff;
         List<SkillRef> skills;
         List<SkillCategoryRef> skillCategories;
@@ -474,5 +524,14 @@ public class ReferenceDataService {
 
         public List<SkillCategoryRef> getSkillCategories() { return skillCategories; }
         public void setSkillCategories(List<SkillCategoryRef> skillCategories) { this.skillCategories = skillCategories; }
+    }
+
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
+    private static class LeaguesWrapper {
+        @com.fasterxml.jackson.annotation.JsonProperty("leagues")
+        private List<LeagueRef> leagues;
+
+        public List<LeagueRef> getLeagues() { return leagues; }
+        public void setLeagues(List<LeagueRef> leagues) { this.leagues = leagues; }
     }
 }

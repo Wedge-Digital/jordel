@@ -7,10 +7,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "OLD_WORLD_CLASSIC",
+      "label" : "Old World Classic"
+    } ],
     "availablePlayers" : [ {
       "uid" : "HUMAN__HUMAN_LINEMAN",
       "positionName" : "Human Lineman",
@@ -220,10 +221,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "BADLANDS_BRAWL",
+      "label" : "Badlands Brawl"
+    } ],
     "availablePlayers" : [ {
       "uid" : "ORC__ORC_LINEMAN",
       "positionName" : "Orc Lineman",
@@ -433,10 +435,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "WORLDS_EDGE_SUPERLEAGUE",
+      "label" : "Worlds Edge Superleague"
+    } ],
     "availablePlayers" : [ {
       "uid" : "DWARF__DWARF_LINEMAN",
       "positionName" : "Dwarf Lineman",
@@ -613,10 +616,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "UNDERWORLD_CHALLENGE",
+      "label" : "Underworld Challenge"
+    } ],
     "availablePlayers" : [ {
       "uid" : "SKAVEN__SKAVEN_CLANRAT",
       "positionName" : "Skaven Clanrat",
@@ -793,10 +797,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "OLD_WORLD_CLASSIC",
+      "label" : "Old World Classic"
+    } ],
     "availablePlayers" : [ {
       "uid" : "BRETONNIAN__BRETONNIAN_SQUIRE",
       "positionName" : "Bretonnian Squire",
@@ -940,10 +945,14 @@
     "tier" : {
       "value" : "Tier 3"
     },
-    "specialRules" : {
-      "ruleUids" : [ "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "FAVOURED_OF_CHOOSE_EITHER_KHORNE_NURGLE_SLAANESH_TZEENTCH_OR_UNDIVIDED",
+      "label" : "Favoured of (Choose Either Khorne, Nurgle, Slaanesh, Tzeentch or Undivided)"
+    } ],
+    "leagues" : [ {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    } ],
     "availablePlayers" : [ {
       "uid" : "CHAOS_RENEGADE__RENEGADE_HUMAN",
       "positionName" : "Renegade Human",
@@ -1289,10 +1298,14 @@
     "tier" : {
       "value" : "Tier 4"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "HALFLING_THIMBLE_CUP",
+      "label" : "Halfling Thimble Cup"
+    }, {
+      "uid" : "WOODLAND_LEAGUE",
+      "label" : "Woodland League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "GNOME__GNOME_LINEMAN",
       "positionName" : "Gnome Lineman",
@@ -1469,10 +1482,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "OLD_WORLD_CLASSIC",
+      "label" : "Old World Classic"
+    } ],
     "availablePlayers" : [ {
       "uid" : "IMPERIAL_NOBILITY__IMPERIAL_RETAINER",
       "positionName" : "Imperial Retainer",
@@ -1649,10 +1663,14 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ "MASTERS_OF_UNDEATH" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "MASTERS_OF_UNDEATH",
+      "label" : "Masters of Undeath"
+    } ],
+    "leagues" : [ {
+      "uid" : "SYLVANIAN_SPOTLIGHT",
+      "label" : "Sylvanian Spotlight"
+    } ],
     "availablePlayers" : [ {
       "uid" : "TOMB_KINGS__SKELETON_LINEMAN",
       "positionName" : "Skeleton Lineman",
@@ -1796,10 +1814,14 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRIBERY_AND_CORRUPTION" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRIBERY_AND_CORRUPTION",
+      "label" : "Bribery and Corruption"
+    } ],
+    "leagues" : [ {
+      "uid" : "UNDERWORLD_CHALLENGE",
+      "label" : "Underworld Challenge"
+    } ],
     "availablePlayers" : [ {
       "uid" : "UNDERWORLD_DENIZENS__GOBLIN_LINEMAN",
       "positionName" : "Goblin Lineman",
@@ -2079,10 +2101,14 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ "MASTERS_OF_UNDEATH" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "MASTERS_OF_UNDEATH",
+      "label" : "Masters of Undeath"
+    } ],
+    "leagues" : [ {
+      "uid" : "SYLVANIAN_SPOTLIGHT",
+      "label" : "Sylvanian Spotlight"
+    } ],
     "availablePlayers" : [ {
       "uid" : "VAMPIRE__THRALL_LINEMAN",
       "positionName" : "Thrall Lineman",
@@ -2259,10 +2285,14 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "ELVEN_KINGDOMS_LEAGUE",
+      "label" : "Elven Kingdoms League"
+    }, {
+      "uid" : "WOODLAND_LEAGUE",
+      "label" : "Woodland League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "WOOD_ELF__WOOD_ELF_LINEMAN",
       "positionName" : "Wood Elf Lineman",
@@ -2439,10 +2469,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "LUSTRIAN_SUPERLEAGUE",
+      "label" : "Lustrian Superleague"
+    } ],
     "availablePlayers" : [ {
       "uid" : "AMAZON__EAGLE_WARRIOR",
       "positionName" : "Eagle Warrior",
@@ -2586,10 +2617,17 @@
     "tier" : {
       "value" : "Tier 3"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRAWLIN_BRUTES", "BRIBERY_AND_CORRUPTION" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRAWLIN_BRUTES",
+      "label" : "Brawlin' Brutes"
+    }, {
+      "uid" : "BRIBERY_AND_CORRUPTION",
+      "label" : "Bribery and Corruption"
+    } ],
+    "leagues" : [ {
+      "uid" : "BADLANDS_BRAWL",
+      "label" : "Badlands Brawl"
+    } ],
     "availablePlayers" : [ {
       "uid" : "BLACK_ORC__GOBLIN_BRUISER",
       "positionName" : "Goblin Bruiser",
@@ -2700,10 +2738,14 @@
     "tier" : {
       "value" : "Tier 3"
     },
-    "specialRules" : {
-      "ruleUids" : [ "FAVOURED_OF_CHOOSE_ANY" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "FAVOURED_OF_CHOOSE_ANY",
+      "label" : "Favoured of (Choose Any)"
+    } ],
+    "leagues" : [ {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    } ],
     "availablePlayers" : [ {
       "uid" : "CHAOS_CHOSEN__BEASTMEN_LINEMAN",
       "positionName" : "Beastmen Lineman",
@@ -2884,10 +2926,17 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ "FAVOURED_OF_HASHUT" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "FAVOURED_OF_HASHUT",
+      "label" : "Favoured of Hashut"
+    } ],
+    "leagues" : [ {
+      "uid" : "BADLANDS_BRAWL",
+      "label" : "Badlands Brawl"
+    }, {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    } ],
     "availablePlayers" : [ {
       "uid" : "CHAOS_DWARF__HOBGOBLIN_LINEMAN",
       "positionName" : "Hobgoblin Lineman",
@@ -3097,10 +3146,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "ELVEN_KINGDOMS_LEAGUE",
+      "label" : "Elven Kingdoms League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "DARK_ELF__DARK_ELF_LINEMAN",
       "positionName" : "Dark Elf Lineman",
@@ -3277,10 +3327,11 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "ELVEN_KINGDOMS_LEAGUE",
+      "label" : "Elven Kingdoms League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "ELVEN_UNION__ELF_LINEMAN",
       "positionName" : "Elf Lineman",
@@ -3424,10 +3475,17 @@
     "tier" : {
       "value" : "Tier 4"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRIBERY_AND_CORRUPTION" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRIBERY_AND_CORRUPTION",
+      "label" : "Bribery and Corruption"
+    } ],
+    "leagues" : [ {
+      "uid" : "BADLANDS_BRAWL",
+      "label" : "Badlands Brawl"
+    }, {
+      "uid" : "UNDERWORLD_CHALLENGE",
+      "label" : "Underworld Challenge"
+    } ],
     "availablePlayers" : [ {
       "uid" : "GOBLIN__GOBLIN_LINEMAN",
       "positionName" : "Goblin Lineman",
@@ -3703,10 +3761,14 @@
     "tier" : {
       "value" : "Tier 4"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "HALFLING_THIMBLE_CUP",
+      "label" : "Halfling Thimble Cup"
+    }, {
+      "uid" : "WOODLAND_LEAGUE",
+      "label" : "Woodland League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "HALFLING__HALFLING_HOPEFUL",
       "positionName" : "Halfling Hopeful",
@@ -3850,10 +3912,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "ELVEN_KINGDOMS_LEAGUE",
+      "label" : "Elven Kingdoms League"
+    } ],
     "availablePlayers" : [ {
       "uid" : "HIGH_ELF__HIGH_ELF_LINEMAN",
       "positionName" : "High Elf Lineman",
@@ -3997,10 +4060,17 @@
     "tier" : {
       "value" : "Tier 3"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRAWLIN_BRUTES", "FAVOURED_OF_KHORNE" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRAWLIN_BRUTES",
+      "label" : "Brawlin' Brutes"
+    }, {
+      "uid" : "FAVOURED_OF_KHORNE",
+      "label" : "Favoured of Khorne"
+    } ],
+    "leagues" : [ {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    } ],
     "availablePlayers" : [ {
       "uid" : "KHORNE__BLOODBORN_MARAUDER",
       "positionName" : "Bloodborn Marauder",
@@ -4144,10 +4214,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "LUSTRIAN_SUPERLEAGUE",
+      "label" : "Lustrian Superleague"
+    } ],
     "availablePlayers" : [ {
       "uid" : "LIZARDMAN__SKINK_LINEMAN",
       "positionName" : "Skink Lineman",
@@ -4291,10 +4362,14 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ "MASTERS_OF_UNDEATH" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "MASTERS_OF_UNDEATH",
+      "label" : "Masters of Undeath"
+    } ],
+    "leagues" : [ {
+      "uid" : "SYLVANIAN_SPOTLIGHT",
+      "label" : "Sylvanian Spotlight"
+    } ],
     "availablePlayers" : [ {
       "uid" : "NECROMANTIC_HORROR__ZOMBIE_LINEMAN",
       "positionName" : "Zombie Lineman",
@@ -4471,10 +4546,14 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    }, {
+      "uid" : "OLD_WORLD_CLASSIC",
+      "label" : "Old World Classic"
+    } ],
     "availablePlayers" : [ {
       "uid" : "NORSE__NORSE_RAIDER",
       "positionName" : "Norse Raider",
@@ -4684,10 +4763,17 @@
     "tier" : {
       "value" : "Tier 3"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRAWLIN_BRUTES", "FAVOURED_OF_NURGLE" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRAWLIN_BRUTES",
+      "label" : "Brawlin' Brutes"
+    }, {
+      "uid" : "FAVOURED_OF_NURGLE",
+      "label" : "Favoured of Nurgle"
+    } ],
+    "leagues" : [ {
+      "uid" : "CHAOS_CLASH",
+      "label" : "Chaos Clash"
+    } ],
     "availablePlayers" : [ {
       "uid" : "NURGLE__ROTTER_LINEMAN",
       "positionName" : "Rotter Lineman",
@@ -4831,10 +4917,20 @@
     "tier" : {
       "value" : "Tier 4"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRAWLIN_BRUTES", "LOW_COST_LINEMEN" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRAWLIN_BRUTES",
+      "label" : "Brawlin' Brutes"
+    }, {
+      "uid" : "LOW_COST_LINEMEN",
+      "label" : "Low Cost Linemen"
+    } ],
+    "leagues" : [ {
+      "uid" : "BADLANDS_BRAWL",
+      "label" : "Badlands Brawl"
+    }, {
+      "uid" : "WORLDS_EDGE_SUPERLEAGUE",
+      "label" : "Worlds Edge Superleague"
+    } ],
     "availablePlayers" : [ {
       "uid" : "OGRE__GNOBLAR_LINEMAN",
       "positionName" : "Gnoblar Lineman",
@@ -4945,10 +5041,11 @@
     "tier" : {
       "value" : "Tier 1"
     },
-    "specialRules" : {
-      "ruleUids" : [ ],
-      "empty" : true
-    },
+    "specialRules" : [ ],
+    "leagues" : [ {
+      "uid" : "OLD_WORLD_CLASSIC",
+      "label" : "Old World Classic"
+    } ],
     "availablePlayers" : [ {
       "uid" : "OLD_WORLD_ALLIANCE__HUMAN_LINEMAN",
       "positionName" : "Human Lineman",
@@ -5327,10 +5424,14 @@
     "tier" : {
       "value" : "Tier 2"
     },
-    "specialRules" : {
-      "ruleUids" : [ "MASTERS_OF_UNDEATH" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "MASTERS_OF_UNDEATH",
+      "label" : "Masters of Undeath"
+    } ],
+    "leagues" : [ {
+      "uid" : "SYLVANIAN_SPOTLIGHT",
+      "label" : "Sylvanian Spotlight"
+    } ],
     "availablePlayers" : [ {
       "uid" : "SHAMBLING_UNDEAD__SKELETON_LINEMAN",
       "positionName" : "Skeleton Lineman",
@@ -5507,10 +5608,20 @@
     "tier" : {
       "value" : "Tier 4"
     },
-    "specialRules" : {
-      "ruleUids" : [ "BRIBERY_AND_CORRUPTION", "LOW_COST_LINEMEN", "SWARMING" ],
-      "empty" : false
-    },
+    "specialRules" : [ {
+      "uid" : "BRIBERY_AND_CORRUPTION",
+      "label" : "Bribery and Corruption"
+    }, {
+      "uid" : "LOW_COST_LINEMEN",
+      "label" : "Low Cost Linemen"
+    }, {
+      "uid" : "SWARMING",
+      "label" : "Swarming"
+    } ],
+    "leagues" : [ {
+      "uid" : "UNDERWORLD_CHALLENGE",
+      "label" : "Underworld Challenge"
+    } ],
     "availablePlayers" : [ {
       "uid" : "SNOTLING__SNOTLING_LINEMAN",
       "positionName" : "Snotling Lineman",
