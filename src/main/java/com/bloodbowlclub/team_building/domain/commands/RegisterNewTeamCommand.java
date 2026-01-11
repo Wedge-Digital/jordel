@@ -10,4 +10,5 @@ public class RegisterNewTeamCommand implements Command {
         String teamId;
         String teamName;
         String teamLogo;
+        String coachId;
 }

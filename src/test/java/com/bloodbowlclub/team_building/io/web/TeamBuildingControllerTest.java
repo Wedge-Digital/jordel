@@ -39,6 +39,7 @@ public class TeamBuildingControllerTest {
                 .teamId(teamId)
                 .teamName("Les Ours de la Mort")
                 .teamLogo("https://res.cloudinary.com/demo/image/upload/sample.jpg")
+                .coachId("01KEPNMSVJH6KQVNPVCMGKTQC2")
                 .build();
 
         // Count events before
@@ -82,6 +83,7 @@ public class TeamBuildingControllerTest {
                 .teamId(teamId)
                 .teamName("AB") // Too short
                 .teamLogo("https://res.cloudinary.com/demo/image/upload/sample.jpg")
+                .coachId("01KEPNMSVJH6KQVNPVCMGKTQC2")
                 .build();
 
         // Act & Assert - Should throw UnprocessableEntity
@@ -105,6 +107,7 @@ public class TeamBuildingControllerTest {
         // Arrange - Invalid ULID
         RegisterNewTeamRequest request = RegisterNewTeamRequest.builder()
                 .teamId("invalid-ulid-123")
+                .coachId("01KEPNMSVJH6KQVNPVCMGKTQC2")
                 .teamName("Valid Team Name")
                 .teamLogo("https://res.cloudinary.com/demo/image/upload/sample.jpg")
                 .build();
@@ -132,6 +135,7 @@ public class TeamBuildingControllerTest {
         RegisterNewTeamRequest request = RegisterNewTeamRequest.builder()
                 .teamId(teamId)
                 .teamName("Valid Team Name")
+                .coachId("01KEPNMSVJH6KQVNPVCMGKTQC2")
                 .teamLogo("https://example.com/not-cloudinary.jpg")
                 .build();
 

@@ -1,6 +1,7 @@
 package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.lib.services.result.ResultMap;
+import com.bloodbowlclub.shared.coach.CoachID;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
 import com.bloodbowlclub.shared.team.TeamID;
 import com.bloodbowlclub.shared.team.TeamName;
@@ -30,7 +31,11 @@ public class TeamCreator {
     public static BaseTeam createBaseTeam() {
         BaseTeam baseTeam = new BaseTeam();
         Assertions.assertEquals(0, baseTeam.domainEvents().size());
-        RegisterNewTeamCommand newTeamCommand = new RegisterNewTeamCommand("01KCAA6DBY2B3M8TKEV7GH5JNN", "Team Name", CloudinaryUrlBuilder.validUrl);
+        RegisterNewTeamCommand newTeamCommand = new RegisterNewTeamCommand(
+                "01KCAA6DBY2B3M8TKEV7GH5JNN",
+                "Team Name",
+                CloudinaryUrlBuilder.validUrl,
+                "01KEPMTQ496J15RTPPEK6Q7HXG");
         ResultMap<Void> teamRegistration = baseTeam.registerNewTeam(newTeamCommand);
         Assertions.assertTrue(teamRegistration.isSuccess());
         Assertions.assertEquals(1, baseTeam.domainEvents().size());
@@ -80,6 +85,7 @@ public class TeamCreator {
     public RosterSelectedTeam createTeam(Roster roster, Ruleset ruleset) {
         RosterSelectedTeam team = RosterSelectedTeam.builder()
                 .teamId(new TeamID("01KCSHJS1K5M8JTW9D5A58VY1S"))
+                .coachId(new CoachID("01KEPP68Z376XXA7VRT9WCW7VA"))
                 .name(new TeamName("teamName"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
                 .hiredPlayers(new ArrayList<>())

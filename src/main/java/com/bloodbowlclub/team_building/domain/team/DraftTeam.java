@@ -17,7 +17,7 @@ import lombok.experimental.SuperBuilder;
 public class DraftTeam extends BaseTeam {
 
     public DraftTeam(BaseTeam team) {
-        super(team.getTeamId(), team.getName(), team.getLogoUrl());
+        super(team.getTeamId(), team.getName(), team.getLogoUrl(), team.getCoachId());
     }
 
     @Override

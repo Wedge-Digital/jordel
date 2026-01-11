@@ -4,6 +4,7 @@ import com.bloodbowlclub.lib.domain.AggregateRoot;
 import com.bloodbowlclub.lib.services.JsonService;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.tests.TestCase;
+import com.bloodbowlclub.shared.coach.CoachID;
 import com.bloodbowlclub.shared.shared.cloudinary_url.CloudinaryUrl;
 import com.bloodbowlclub.shared.team.TeamID;
 import com.bloodbowlclub.shared.team.TeamName;
@@ -44,6 +45,7 @@ public class TeamCreationHydratation extends TestCase {
                 .teamId(new TeamID("01KCYVJSQS3CZ9R16ENT7XX20B"))
                 .name(new TeamName("Bloody Beet Roots"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .coachId(new CoachID("01KEPP68Z376XXA7VRT9WCW7VA"))
                 .build();
         DraftTeamRegisteredEvent creationEvent = new DraftTeamRegisteredEvent(team);
         BaseTeam base = new BaseTeam();
@@ -186,6 +188,7 @@ public class TeamCreationHydratation extends TestCase {
                 .teamId(new TeamID("01KCYVJSQS3CZ9R16ENT7XX20B"))
                 .name(new TeamName("Bloody Beet Roots"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .coachId(new CoachID("01KEPP68Z376XXA7VRT9WCW7VA"))
                 .build();
         RulesetSelectedTeam rulesetChosenTeam = new RulesetSelectedTeam(team, ruleset);
         RosterSelectedTeam rosterChosenTeam = new RosterSelectedTeam(rulesetChosenTeam, roster);
@@ -202,6 +205,7 @@ public class TeamCreationHydratation extends TestCase {
                 .teamId(new TeamID("01KCYVJSQS3CZ9R16ENT7XX20B"))
                 .name(new TeamName("Bloody Beet Roots"))
                 .logoUrl(new CloudinaryUrl("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg"))
+                .coachId(new CoachID("01KEPP68Z376XXA7VRT9WCW7VA"))
                 .build();
         RulesetSelectedTeam rulesetChosenTeam = new RulesetSelectedTeam(team, ruleset);
         RosterSelectedTeam rosterChosenTeam = new RosterSelectedTeam(rulesetChosenTeam, roster);

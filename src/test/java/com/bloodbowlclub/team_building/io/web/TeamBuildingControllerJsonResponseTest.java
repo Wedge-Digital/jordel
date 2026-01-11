@@ -43,7 +43,8 @@ public class TeamBuildingControllerJsonResponseTest extends TestCase {
         RegisterNewTeamRequest request = RegisterNewTeamRequest.builder()
                 .teamId(teamId)
                 .teamName("Les Ours de la Mort")
-                .teamLogo("")
+                .teamLogo("https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg")
+                .coachId("01KEPP269QA4Z021RCXQTFNPSF")
                 .build();
 
         ResponseEntity<ApiResponse<Void>> entity = ctrl.registerNewTeam(request);

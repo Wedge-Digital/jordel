@@ -47,15 +47,12 @@ public class RegisterNewTeamTest extends TestCase {
     @DisplayName("When creating a new team, I should not be able to choose a shitty name, a no Id, and a dumb Logo")
     public void testTeamCreationShouldFails() {
         BaseTeam baseTeam = new BaseTeam();
-        RegisterNewTeamCommand newTeamCommand = new RegisterNewTeamCommand("coin", "sh", CloudinaryUrlBuilder.invalidUrl);
+
+        RegisterNewTeamCommand newTeamCommand = new RegisterNewTeamCommand("coin", "sh", CloudinaryUrlBuilder.invalidUrl, "coach_id");
         ResultMap<Void> teamRegistration = baseTeam.registerNewTeam(newTeamCommand);
         Assertions.assertFalse(teamRegistration.isSuccess());
         ResultMap<Void> errors = baseTeam.validationErrors();
-        Map<String, String> expectedErrors = new HashMap<>();
-        expectedErrors.put("teamId", "Identifiant non valide, doit être un ULID");
-        expectedErrors.put("name", "must be between 3 and 100 characters");
-        expectedErrors.put("logoUrl", "L'Url n'est pas une url Cloudinary");
         Map<String, String> translatedErrors = errors.getTranslatedErrorMap(messageSource, Locale.getDefault());
-        Assertions.assertEquals(expectedErrors, translatedErrors);
+        assertEqualsResultset(translatedErrors);
     }
 }

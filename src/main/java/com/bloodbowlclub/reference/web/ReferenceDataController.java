@@ -2,6 +2,7 @@ package com.bloodbowlclub.reference.web;
 
 import com.bloodbowlclub.lib.web.ApiResponse;
 import com.bloodbowlclub.reference.domain.RosterRef;
+import com.bloodbowlclub.reference.domain.SkillRef;
 import com.bloodbowlclub.reference.service.ReferenceDataService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -32,5 +33,12 @@ public class ReferenceDataController {
         Locale locale = LocaleContextHolder.getLocale();
         List<RosterRef> rosters = referenceDataService.getAllRosters(locale);
         return ResponseEntity.ok(ApiResponse.success(rosters));
+    }
+
+    @GetMapping("/skills")
+    public ResponseEntity<ApiResponse<List<SkillRef>>> getAllSkills() {
+        Locale locale = LocaleContextHolder.getLocale();
+        List<SkillRef> skills = referenceDataService.getAllSkills(locale);
+        return ResponseEntity.ok(ApiResponse.success(skills));
     }
 }

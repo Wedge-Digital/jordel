@@ -4,6 +4,7 @@
   "teamId" : "01KCSHJS1K5M8JTW9D5A58VY1S",
   "name" : "teamName",
   "logoUrl" : "https://res.cloudinary.com/bloodbowlclub-com/image/upload/v1659445677/user_uploads/x44ke8sgvqrap91mry8i.jpg",
+  "coachId" : "01KEPP68Z376XXA7VRT9WCW7VA",
   "ruleset" : {
     "@type" : "ruleset",
     "version" : 0,

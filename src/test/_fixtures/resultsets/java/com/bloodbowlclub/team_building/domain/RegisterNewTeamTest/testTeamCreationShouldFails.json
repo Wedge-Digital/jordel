@@ -1,0 +1,6 @@
+{
+  "teamId" : "Identifiant non valide, doit être un ULID",
+  "name" : "must be between 3 and 100 characters",
+  "coachId" : "Identifiant non valide, doit être un ULID",
+  "logoUrl" : "L'Url n'est pas une url Cloudinary"
+}

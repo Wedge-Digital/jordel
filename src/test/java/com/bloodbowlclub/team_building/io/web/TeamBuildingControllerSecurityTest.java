@@ -80,6 +80,7 @@ public class TeamBuildingControllerSecurityTest {
                 .teamId(UlidGenerator.generate())
                 .teamName("Authenticated Team")
                 .teamLogo("https://res.cloudinary.com/demo/image/upload/sample.jpg")
+                .coachId("01KEPP68Z376XXA7VRT9WCW7VA")
                 .build();
 
         String requestBody = objectMapper.writeValueAsString(request);

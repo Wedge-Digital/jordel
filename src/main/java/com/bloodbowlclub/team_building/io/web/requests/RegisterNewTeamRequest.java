@@ -24,4 +24,8 @@ public class RegisterNewTeamRequest {
 
     @NotBlank(message = "{team.logo.required}")
     private String teamLogo;
+
+    @NotBlank(message = "{team.id.required}")
+    @Size(min = 26, max = 26, message="invlaid ULID")
+    private String coachId;
 }

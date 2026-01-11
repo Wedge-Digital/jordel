@@ -3,6 +3,7 @@ package com.bloodbowlclub.reference.web;
 import com.bloodbowlclub.lib.tests.TestCase;
 import com.bloodbowlclub.lib.web.ApiResponse;
 import com.bloodbowlclub.reference.domain.RosterRef;
+import com.bloodbowlclub.reference.domain.SkillRef;
 import com.bloodbowlclub.reference.service.ReferenceDataService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ class ReferenceDataControllerTest extends TestCase {
         ReferenceDataController controller = new ReferenceDataController(referenceDataService);
         ResponseEntity<ApiResponse<List<RosterRef>>> result = controller.getAllRosters();
         assertEqualsResultset(result.getBody());
+    }
+
+    @Test
+    void testAllSkills() {
+        ReferenceDataController controller = new ReferenceDataController(referenceDataService);
+        ResponseEntity<ApiResponse<List<SkillRef>>> result = controller.getAllSkills();
+        assertEqualsResultset(result);
     }
 
 }
