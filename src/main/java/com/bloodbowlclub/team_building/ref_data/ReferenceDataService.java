@@ -58,6 +58,9 @@ public class ReferenceDataService {
         // Créer un ObjectMapper dédié sans configuration polymorphique pour les ref data
         this.refDataObjectMapper = new ObjectMapper();
 
+        // Configuration pour un format JSON cohérent
+        this.refDataObjectMapper.enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
+
         // Utiliser un mix-in pour désactiver @JsonTypeInfo sur Roster/AggregateRoot et TeamStaff
         this.refDataObjectMapper.addMixIn(com.bloodbowlclub.lib.domain.AggregateRoot.class, IgnoreTypeInfoMixin.class);
         this.refDataObjectMapper.addMixIn(TeamStaff.class, IgnoreTypeInfoMixin.class);

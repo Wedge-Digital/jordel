@@ -1,6 +1,7 @@
 package com.bloodbowlclub.reference.domain;
 
 import com.bloodbowlclub.lib.domain.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -22,6 +23,7 @@ public class SkillAccessCategories extends ValueObject {
             Collections.emptyList();
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return categories.isEmpty();
     }

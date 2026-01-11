@@ -48,6 +48,8 @@ public class ReferenceDataService {
     public ReferenceDataService(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
         this.objectMapper = new ObjectMapper();
+        // Configuration pour un format JSON cohérent
+        this.objectMapper.enable(com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT);
     }
 
     /**

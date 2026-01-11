@@ -3,6 +3,13 @@ spring:
     import: optional:file:.env.${EXEC_PROFILE}.properties
   application:
     name: jordel
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      indent-output: true
+      write-dates-as-timestamps: false
+    generator:
+      write-numbers-as-strings: false
   security:
     user:
       name: user

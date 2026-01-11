@@ -34,12 +34,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -73,12 +71,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 30000
     }, {
@@ -109,12 +105,10 @@
         "name" : "Dodge"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -145,12 +139,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -181,12 +173,10 @@
         "name" : "Tackle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 85000
     }, {
@@ -226,12 +216,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     } ],
@@ -272,12 +260,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 50000
     }, {
@@ -311,12 +297,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -347,12 +331,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -383,12 +365,10 @@
         "name" : "Break Tackle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 85000
     }, {
@@ -425,12 +405,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 95000
     }, {
@@ -476,12 +454,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     } ],
@@ -531,12 +507,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 70000
     }, {
@@ -570,12 +544,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -612,12 +584,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING" ],
-        "empty" : false
+        "categories" : [ "PASSING" ]
       },
       "costInGold" : 100000
     }, {
@@ -657,12 +627,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS" ]
       },
       "costInGold" : 95000
     }, {
@@ -711,12 +679,10 @@
         "name" : "Stand Firm"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 170000
     } ],
@@ -757,12 +723,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "MUTATIONS", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -793,12 +757,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -829,12 +791,10 @@
         "name" : "Stab"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "costInGold" : 85000
     }, {
@@ -865,12 +825,10 @@
         "name" : "Strip Ball"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "costInGold" : 90000
     }, {
@@ -910,12 +868,10 @@
         "name" : "Prehensile Tail"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ]
       },
       "costInGold" : 150000
     } ],
@@ -959,12 +915,10 @@
         "name" : "Wrestle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -998,12 +952,10 @@
         "name" : "Nerves of Steel"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 85000
     }, {
@@ -1037,12 +989,10 @@
         "name" : "Pass"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -1076,12 +1026,10 @@
         "name" : "Steady Footing"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 95000
     } ],
@@ -1125,12 +1073,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -1164,12 +1110,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "costInGold" : 40000
     }, {
@@ -1194,12 +1138,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -1224,12 +1166,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -1254,12 +1194,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -1290,12 +1228,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -1341,12 +1277,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS", "PASSING" ]
       },
       "costInGold" : 115000
     }, {
@@ -1386,12 +1320,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ]
       },
       "costInGold" : 140000
     }, {
@@ -1434,12 +1366,10 @@
         "name" : "Unchannelled Fury"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "MUTATIONS" ]
       },
       "costInGold" : 150000
     }, {
@@ -1479,12 +1409,10 @@
         "name" : "Prehensile Tail"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 150000
     } ],
@@ -1544,12 +1472,10 @@
         "name" : "Wrestle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -1586,12 +1512,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ ],
-        "empty" : true
+        "categories" : [ ]
       },
       "costInGold" : 50000
     }, {
@@ -1628,12 +1552,10 @@
         "name" : "Wrestle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "costInGold" : 50000
     }, {
@@ -1670,12 +1592,10 @@
         "name" : "Wrestle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 55000
     }, {
@@ -1721,12 +1641,10 @@
         "name" : "Timmm-ber!"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 120000
     } ],
@@ -1770,12 +1688,10 @@
         "name" : "Fend"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 45000
     }, {
@@ -1809,12 +1725,10 @@
         "name" : "Pro"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -1845,12 +1759,10 @@
         "name" : "Wrestle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 85000
     }, {
@@ -1884,12 +1796,10 @@
         "name" : "Pro"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 90000
     }, {
@@ -1929,12 +1839,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     } ],
@@ -1984,12 +1892,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -2026,12 +1932,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -2065,12 +1969,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 85000
     }, {
@@ -2104,12 +2006,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 115000
     } ],
@@ -2162,12 +2062,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -2210,12 +2108,10 @@
         "name" : "Titchy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 15000
     }, {
@@ -2240,12 +2136,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -2276,12 +2170,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -2312,12 +2204,10 @@
         "name" : "Stab"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 85000
     }, {
@@ -2348,12 +2238,10 @@
         "name" : "Strip Ball"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 90000
     }, {
@@ -2399,12 +2287,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     }, {
@@ -2444,12 +2330,10 @@
         "name" : "Prehensile Tail"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 150000
     } ],
@@ -2497,12 +2381,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -2533,12 +2415,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 100000
     }, {
@@ -2572,12 +2452,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 110000
     }, {
@@ -2611,12 +2489,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ ],
-        "empty" : true
+        "categories" : [ ]
       },
       "costInGold" : 110000
     }, {
@@ -2653,12 +2529,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 150000
     } ],
@@ -2702,12 +2576,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -2738,12 +2610,10 @@
         "name" : "Safe Pair of Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 85000
     }, {
@@ -2777,12 +2647,10 @@
         "name" : "Sprint"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 90000
     }, {
@@ -2816,12 +2684,10 @@
         "name" : "Leap"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 130000
     }, {
@@ -2867,12 +2733,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 120000
     } ],
@@ -2916,12 +2780,10 @@
         "name" : "Dodge"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -2958,12 +2820,10 @@
         "name" : "Safe Pass"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -2997,12 +2857,10 @@
         "name" : "Jump Up"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 90000
     }, {
@@ -3033,12 +2891,10 @@
         "name" : "Dodge"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 110000
     } ],
@@ -3097,12 +2953,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 45000
     }, {
@@ -3133,12 +2987,10 @@
         "name" : "Grab"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 90000
     }, {
@@ -3181,12 +3033,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     } ],
@@ -3236,12 +3086,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 55000
     }, {
@@ -3269,12 +3117,10 @@
         "name" : "Arm Bar"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 100000
     }, {
@@ -3320,12 +3166,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     }, {
@@ -3365,12 +3209,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     }, {
@@ -3413,12 +3255,10 @@
         "name" : "Unchannelled Fury"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 150000
     } ],
@@ -3469,12 +3309,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -3505,12 +3343,10 @@
         "name" : "Stab"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 60000
     }, {
@@ -3544,12 +3380,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "costInGold" : 70000
     }, {
@@ -3586,12 +3420,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "costInGold" : 80000
     }, {
@@ -3628,12 +3460,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "MUTATIONS" ]
       },
       "costInGold" : 130000
     }, {
@@ -3676,12 +3506,10 @@
         "name" : "Unchannelled Fury"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 150000
     } ],
@@ -3722,12 +3550,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -3758,12 +3584,10 @@
         "name" : "Punt"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -3797,12 +3621,10 @@
         "name" : "Stab"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 90000
     }, {
@@ -3830,12 +3652,10 @@
         "name" : "Block"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 105000
     }, {
@@ -3869,12 +3689,10 @@
         "name" : "Jump Up"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 110000
     } ],
@@ -3918,12 +3736,10 @@
         "name" : "Fumblerooski"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -3954,12 +3770,10 @@
         "name" : "Pass"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -3993,12 +3807,10 @@
         "name" : "Nerves of Steel"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 100000
     }, {
@@ -4029,12 +3841,10 @@
         "name" : "Sidestep"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 115000
     } ],
@@ -4090,12 +3900,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -4132,12 +3940,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -4174,12 +3980,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 45000
     }, {
@@ -4222,12 +4026,10 @@
         "name" : "Taunt"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 60000
     }, {
@@ -4264,12 +4066,10 @@
         "name" : "Swoop"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -4306,12 +4106,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 70000
     }, {
@@ -4342,12 +4140,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -4390,12 +4186,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     } ],
@@ -4448,12 +4242,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 30000
     }, {
@@ -4487,12 +4279,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -4532,12 +4322,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 55000
     }, {
@@ -4583,12 +4371,10 @@
         "name" : "Timmm-ber!"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 120000
     } ],
@@ -4629,12 +4415,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 65000
     }, {
@@ -4668,12 +4452,10 @@
         "name" : "Safe Pass"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 100000
     }, {
@@ -4701,12 +4483,10 @@
         "name" : "Catch"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 90000
     }, {
@@ -4734,12 +4514,10 @@
         "name" : "Block"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 100000
     } ],
@@ -4789,12 +4567,10 @@
         "name" : "Frenzy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -4831,12 +4607,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ]
       },
       "costInGold" : 70000
     }, {
@@ -4864,12 +4638,10 @@
         "name" : "Frenzy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 105000
     }, {
@@ -4909,12 +4681,10 @@
         "name" : "Unchannelled Fury"
       } ],
       "primaryAccess" : {
-        "categories" : [ "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 160000
     } ],
@@ -4961,12 +4731,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 60000
     }, {
@@ -5003,12 +4771,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 70000
     }, {
@@ -5039,12 +4805,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 90000
     }, {
@@ -5084,12 +4848,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     } ],
@@ -5142,12 +4904,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -5178,12 +4938,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -5223,12 +4981,10 @@
         "name" : "Sidestep"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 85000
     }, {
@@ -5265,12 +5021,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 110000
     }, {
@@ -5304,12 +5058,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 120000
     } ],
@@ -5365,12 +5117,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -5410,12 +5160,10 @@
         "name" : "Titchy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ ],
-        "empty" : true
+        "categories" : [ ]
       },
       "costInGold" : 20000
     }, {
@@ -5449,12 +5197,10 @@
         "name" : "Jump Up"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "PASSING" ]
       },
       "costInGold" : 90000
     }, {
@@ -5491,12 +5237,10 @@
         "name" : "Strip Ball"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 95000
     }, {
@@ -5527,12 +5271,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 105000
     }, {
@@ -5572,12 +5314,10 @@
         "name" : "Unchannelled Fury"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     } ],
@@ -5630,12 +5370,10 @@
         "name" : "Plague Ridden"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -5675,12 +5413,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ]
       },
       "costInGold" : 70000
     }, {
@@ -5723,12 +5459,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "MUTATIONS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 110000
     }, {
@@ -5780,12 +5514,10 @@
         "name" : "Tentacles"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL", "MUTATIONS" ]
       },
       "costInGold" : 140000
     } ],
@@ -5850,12 +5582,10 @@
         "name" : "Titchy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 15000
     }, {
@@ -5892,12 +5622,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL", "PASSING" ]
       },
       "costInGold" : 140000
     }, {
@@ -5931,12 +5659,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "GENERAL" ]
       },
       "costInGold" : 145000
     } ],
@@ -5977,12 +5703,10 @@
       },
       "skills" : [ ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 50000
     }, {
@@ -6016,12 +5740,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "costInGold" : 30000
     }, {
@@ -6052,12 +5774,10 @@
         "name" : "Dodge"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "PASSING", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -6091,12 +5811,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "costInGold" : 70000
     }, {
@@ -6127,12 +5845,10 @@
         "name" : "Sure Hands"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -6166,12 +5882,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 80000
     }, {
@@ -6202,12 +5916,10 @@
         "name" : "Tackle"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 85000
     }, {
@@ -6244,12 +5956,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "PASSING" ],
-        "empty" : false
+        "categories" : [ "PASSING" ]
       },
       "costInGold" : 100000
     }, {
@@ -6289,12 +5999,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY" ],
-        "empty" : false
+        "categories" : [ "AGILITY" ]
       },
       "costInGold" : 95000
     }, {
@@ -6334,12 +6042,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 140000
     }, {
@@ -6385,12 +6091,10 @@
         "name" : "Timmm-ber!"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 120000
     } ],
@@ -6444,12 +6148,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -6483,12 +6185,10 @@
         "name" : "Unsteady"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "STRENGTH" ]
       },
       "costInGold" : 40000
     }, {
@@ -6519,12 +6219,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "PASSING", "STRENGTH" ]
       },
       "costInGold" : 75000
     }, {
@@ -6561,12 +6259,10 @@
         "name" : "Thick Skull"
       } ],
       "primaryAccess" : {
-        "categories" : [ "GENERAL", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "GENERAL", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "costInGold" : 95000
     }, {
@@ -6597,12 +6293,10 @@
         "name" : "Regeneration"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 125000
     } ],
@@ -6670,12 +6364,10 @@
         "name" : "Titchy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 15000
     }, {
@@ -6712,12 +6404,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 20000
     }, {
@@ -6757,12 +6447,10 @@
         "name" : "Stunty"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 20000
     }, {
@@ -6808,12 +6496,10 @@
         "name" : "Titchy"
       } ],
       "primaryAccess" : {
-        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "DEVIOUS", "PASSING" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "GENERAL" ],
-        "empty" : false
+        "categories" : [ "GENERAL" ]
       },
       "costInGold" : 30000
     }, {
@@ -6853,12 +6539,10 @@
         "name" : "Stand Firm"
       } ],
       "primaryAccess" : {
-        "categories" : [ "DEVIOUS", "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "DEVIOUS", "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL" ]
       },
       "costInGold" : 100000
     }, {
@@ -6901,12 +6585,10 @@
         "name" : "Throw Team-mate"
       } ],
       "primaryAccess" : {
-        "categories" : [ "STRENGTH" ],
-        "empty" : false
+        "categories" : [ "STRENGTH" ]
       },
       "secondaryAccess" : {
-        "categories" : [ "AGILITY", "GENERAL", "PASSING" ],
-        "empty" : false
+        "categories" : [ "AGILITY", "GENERAL", "PASSING" ]
       },
       "costInGold" : 115000
     } ],
