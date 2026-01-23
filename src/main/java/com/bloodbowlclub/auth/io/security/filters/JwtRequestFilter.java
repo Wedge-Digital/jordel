@@ -53,6 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String uri = request.getRequestURI();
         return uri.startsWith("/auth")
+            || uri.startsWith("/ref")
             || uri.startsWith("/swagger-ui")
             || uri.startsWith("/v3/api-docs")
             || uri.startsWith("/swagger-resources")

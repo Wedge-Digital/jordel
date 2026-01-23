@@ -6,7 +6,7 @@ import com.bloodbowlclub.lib.services.result.ErrorCode;
 import com.bloodbowlclub.lib.services.result.Result;
 import com.bloodbowlclub.lib.services.result.ResultMap;
 import com.bloodbowlclub.team_building.domain.events.*;
-import com.bloodbowlclub.team_building.domain.ruleset.CreationBudget;
+import com.bloodbowlclub.shared.ruleset.CreationBudget;
 import com.bloodbowlclub.team_building.domain.roster.CrossLimit;
 import com.bloodbowlclub.team_building.domain.roster.PlayerDefinition;
 import com.bloodbowlclub.team_building.domain.roster.Roster;

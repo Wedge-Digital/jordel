@@ -2,8 +2,8 @@ package com.bloodbowlclub.test_utilities.team_creation;
 
 import com.bloodbowlclub.team_building.domain.roster.Roster;
 import com.bloodbowlclub.team_building.domain.ruleset.RosterTier;
-import com.bloodbowlclub.team_building.domain.ruleset.RulesetID;
-import com.bloodbowlclub.team_building.domain.ruleset.RulesetName;
+import com.bloodbowlclub.shared.ruleset.RulesetID;
+import com.bloodbowlclub.shared.ruleset.RulesetName;
 import com.bloodbowlclub.team_building.domain.ruleset.Ruleset;
 
 import java.util.List;

@@ -32,7 +32,7 @@ public class TeamBuildingControllerJsonResponseTest extends TestCase {
     FakeEventStore fakeEventStore = new FakeEventStore();
     FakeEventDispatcher eventDispatcher = new FakeEventDispatcher();
     private RegisterNewTeamCommandHandler cmdHandler = new RegisterNewTeamCommandHandler(fakeEventStore, eventDispatcher);
-    private TeamBuildingController ctrl = new TeamBuildingController(cmdHandler, messageSource);
+    private TeamBuildingController ctrl = new TeamBuildingController(cmdHandler, null, null, messageSource);
 
     @Test
     @Transactional

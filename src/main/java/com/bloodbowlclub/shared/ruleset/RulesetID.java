@@ -1,4 +1,4 @@
-package com.bloodbowlclub.team_building.domain.ruleset;
+package com.bloodbowlclub.shared.ruleset;
 
 import com.bloodbowlclub.lib.domain.EntityID;
 import com.bloodbowlclub.lib.domain.serializers.ValueObjectSerializer;

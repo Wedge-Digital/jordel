@@ -13,7 +13,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode(callSuper = false)
 public class PlayerCharacteristic extends ValueObject {
-    @Min(value = 1, message = "Characteristic value must be at least 1")
+    @Min(value = 0, message = "Characteristic value must be at least 0")
     @Max(value = 10, message = "Characteristic value must be at most 10")
     private final int value;
 

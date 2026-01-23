@@ -86,6 +86,7 @@ public class ReferenceDataService {
             data.skills = loadSkills(languageCode);
             data.skillCategories = loadSkillCategories(languageCode);
             data.rosters = loadRosters(languageCode, data.specialRules, data.leagues, data.skills);
+            data.starPlayers = loadStarPlayers(languageCode, data.leagues, data.skills);
 
             // Créer l'index global des joueurs
             data.playersById = createPlayersIndex(data.rosters);
@@ -93,9 +94,9 @@ public class ReferenceDataService {
             // Stocker dans le cache
             dataByLocale.put(locale, data);
 
-            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} leagues, {} staff, {} skills, {} skill categories",
+            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} leagues, {} staff, {} skills, {} skill categories, {} star players",
                     locale, data.rosters.size(), data.playersById.size(), data.specialRules.size(),
-                    data.leagues.size(), data.staff.size(), data.skills.size(), data.skillCategories.size());
+                    data.leagues.size(), data.staff.size(), data.skills.size(), data.skillCategories.size(), data.starPlayers.size());
         } catch (Exception e) {
             log.error("[ReferenceAPI] Failed to load reference data for locale: {}", locale, e);
             throw new RuntimeException("Cannot load reference data for locale: " + locale, e);
@@ -366,6 +367,147 @@ public class ReferenceDataService {
         return Collections.unmodifiableList(new ArrayList<>(wrapper.getLeagues()));
     }
 
+    private List<StarPlayerRef> loadStarPlayers(String languageCode, List<LeagueRef> leagueRefs, List<SkillRef> skillRefs) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/star_players_" + languageCode + ".json");
+        JsonNode root = objectMapper.readTree(resource.getInputStream());
+        JsonNode starPlayersNode = root.get("star_players");
+
+        List<StarPlayerRef> starPlayers = new ArrayList<>();
+        if (starPlayersNode != null && starPlayersNode.isArray()) {
+            for (JsonNode starPlayerNode : starPlayersNode) {
+                StarPlayerRef starPlayer = deserializeStarPlayer(starPlayerNode, leagueRefs, skillRefs);
+                starPlayers.add(starPlayer);
+            }
+        }
+
+        return Collections.unmodifiableList(starPlayers);
+    }
+
+    private StarPlayerRef deserializeStarPlayer(JsonNode node, List<LeagueRef> leagueRefs, List<SkillRef> skillRefs) {
+        String uid = node.get("uid").asText();
+        String name = node.get("name").asText();
+        Integer cost = node.get("cost").asInt() / 1000;
+
+        // Caractéristiques
+        int ma = node.get("MA").asInt();
+        int st = node.get("ST").asInt();
+        int ag = parseCharacteristic(node.get("AG"));
+        int pa = parseCharacteristic(node.get("PA"));
+        int av = parseCharacteristic(node.get("AV"));
+
+        String playerType = node.has("playerType") ? node.get("playerType").asText() : null;
+
+        // Résolution des skills
+        List<SkillRefLight> resolvedSkills = new ArrayList<>();
+        JsonNode skillsNode = node.get("skills");
+        if (skillsNode != null && skillsNode.isArray()) {
+            for (JsonNode skillNode : skillsNode) {
+                String skillUid = skillNode.asText();
+                Optional<SkillRef> foundSkill = skillRefs.stream()
+                        .filter(skill -> Objects.equals(skill.getUid(), skillUid))
+                        .findFirst();
+
+                if (foundSkill.isPresent()) {
+                    SkillRef skill = foundSkill.get();
+                    resolvedSkills.add(new SkillRefLight(skill.getUid(), skill.getName()));
+                } else {
+                    // Pour les skills spéciaux comme LONER_3, LONER_4, etc., on crée une référence légère
+                    resolvedSkills.add(new SkillRefLight(skillUid, formatSkillName(skillUid)));
+                }
+            }
+        }
+
+        // Capacité spéciale
+        String specialAbilityName = node.get("specialAbilityName").asText();
+        String specialAbilityDescription = node.get("specialAbilityDescription").asText();
+
+        // Résolution des leagues (playsFor)
+        List<LeagueRef> resolvedLeagues = new ArrayList<>();
+        JsonNode playsForNode = node.get("playsFor");
+        if (playsForNode != null && playsForNode.isArray()) {
+            for (JsonNode leagueNode : playsForNode) {
+                String leagueUid = leagueNode.asText();
+                Optional<LeagueRef> foundLeague = leagueRefs.stream()
+                        .filter(league -> Objects.equals(league.getUid(), leagueUid))
+                        .findFirst();
+
+                if (foundLeague.isPresent()) {
+                    resolvedLeagues.add(foundLeague.get());
+                } else {
+                    log.warn("[ReferenceAPI] League '{}' not found for star player '{}'", leagueUid, uid);
+                }
+            }
+        }
+
+        // Équipes disponibles
+        List<String> availableForRosters = new ArrayList<>();
+        JsonNode rostersNode = node.get("availableForRosters");
+        if (rostersNode != null && rostersNode.isArray()) {
+            for (JsonNode rosterNode : rostersNode) {
+                availableForRosters.add(rosterNode.asText());
+            }
+        }
+
+        return StarPlayerRef.builder()
+                .uid(uid)
+                .name(name)
+                .cost(cost)
+                .movement(new PlayerCharacteristic(ma))
+                .strength(new PlayerCharacteristic(st))
+                .agility(new PlayerCharacteristic(ag))
+                .passing(new PlayerCharacteristic(pa))
+                .armourValue(new PlayerCharacteristic(av))
+                .playerType(playerType)
+                .skills(resolvedSkills)
+                .specialAbilityName(specialAbilityName)
+                .specialAbilityDescription(specialAbilityDescription)
+                .playsFor(resolvedLeagues)
+                .availableForRosters(availableForRosters)
+                .build();
+    }
+
+    /**
+     * Formate un UID de skill en nom lisible (ex: LONER_4 -> Loner (4+))
+     */
+    private String formatSkillName(String skillUid) {
+        if (skillUid.startsWith("LONER_")) {
+            String value = skillUid.substring(6);
+            return "Loner (" + value + "+)";
+        }
+        // Conversion générique: SNAKE_CASE -> Title Case
+        return Arrays.stream(skillUid.split("_"))
+                .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase())
+                .collect(Collectors.joining(" "));
+    }
+
+    /**
+     * Parse une caractéristique depuis un JsonNode.
+     * Supporte les formats: entier (6), string avec "+" ("2+", "9+"), ou "-" pour absence de caractéristique.
+     *
+     * @param node le noeud JSON contenant la valeur
+     * @return la valeur entière (0 si "-" ou invalide)
+     */
+    private int parseCharacteristic(JsonNode node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.isInt()) {
+            return node.asInt();
+        }
+        String text = node.asText();
+        if (text == null || text.equals("-") || text.isEmpty()) {
+            return 0;
+        }
+        // Retirer le "+" final si présent (ex: "2+" -> "2")
+        String cleanValue = text.replace("+", "").trim();
+        try {
+            return Integer.parseInt(cleanValue);
+        } catch (NumberFormatException e) {
+            log.warn("[ReferenceAPI] Cannot parse characteristic value: {}", text);
+            return 0;
+        }
+    }
+
     // ===========================
     // Méthodes d'accès - Rosters
     // ===========================
@@ -493,6 +635,42 @@ public class ReferenceDataService {
         return getData(locale).leagues;
     }
 
+    // ================================
+    // Méthodes d'accès - Star Players
+    // ================================
+
+    public Optional<StarPlayerRef> getStarPlayerByUid(String uid, Locale locale) {
+        return getData(locale).starPlayers.stream()
+                .filter(sp -> sp.getUid().equals(uid))
+                .findFirst();
+    }
+
+    public List<StarPlayerRef> getAllStarPlayers(Locale locale) {
+        return getData(locale).starPlayers;
+    }
+
+    /**
+     * Retourne les star players disponibles pour un roster donné.
+     */
+    public List<StarPlayerRef> getStarPlayersByRoster(String rosterId, Locale locale) {
+        return getData(locale).starPlayers.stream()
+                .filter(sp -> sp.canPlayFor(rosterId))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Retourne les star players disponibles pour une league donnée.
+     */
+    public List<StarPlayerRef> getStarPlayersByLeague(String leagueUid, Locale locale) {
+        return getData(locale).starPlayers.stream()
+                .filter(sp -> sp.canPlayInLeague(leagueUid))
+                .collect(Collectors.toList());
+    }
+
+    public int getStarPlayerCount(Locale locale) {
+        return getData(locale).starPlayers.size();
+    }
+
     // ===========================
     // Méthodes utilitaires
     // ===========================
@@ -519,6 +697,7 @@ public class ReferenceDataService {
         List<TeamStaffRef> staff;
         List<SkillRef> skills;
         List<SkillCategoryRef> skillCategories;
+        List<StarPlayerRef> starPlayers;
     }
 
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
