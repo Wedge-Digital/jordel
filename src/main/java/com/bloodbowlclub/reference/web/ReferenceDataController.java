@@ -1,6 +1,7 @@
 package com.bloodbowlclub.reference.web;
 
 import com.bloodbowlclub.lib.web.ApiResponse;
+import com.bloodbowlclub.reference.domain.InducementRef;
 import com.bloodbowlclub.reference.domain.RosterRef;
 import com.bloodbowlclub.reference.domain.SkillRef;
 import com.bloodbowlclub.reference.domain.StarPlayerRef;
@@ -52,5 +53,16 @@ public class ReferenceDataController {
         Locale locale = LocaleContextHolder.getLocale();
         List<StarPlayerRef> starPlayers = referenceDataService.getAllStarPlayers(locale);
         return ResponseEntity.ok(ApiResponse.success(starPlayers));
+    }
+
+    /**
+     * Retourne tous les inducements dans la langue demandée via le header Accept-Language.
+     * Par défaut: anglais.
+     */
+    @GetMapping("/inducements")
+    public ResponseEntity<ApiResponse<List<InducementRef>>> getAllInducements() {
+        Locale locale = LocaleContextHolder.getLocale();
+        List<InducementRef> inducements = referenceDataService.getAllInducements(locale);
+        return ResponseEntity.ok(ApiResponse.success(inducements));
     }
 }

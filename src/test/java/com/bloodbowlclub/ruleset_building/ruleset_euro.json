@@ -1,0 +1,32 @@
+{
+  "name": "euro 2026 v1.2",
+  "custom_rules": [
+    {
+      "name": "Stack only primary"
+
+    }
+  ]
+
+}
+
+// skill purchased of type elite shall be max 3
+// skill purchased of type standard shall be max 3
+// in all skill purchased a skill shall be purchased max 3 times
+// in all skill purchased of type elite, total count should be equals or under 3
+
+// Il y a la possibilité d'achat, basé sur les regles
+
+une equipe est un assemblage de donnée
+les régles de validation sont basées sur :
+- la collecte de donnée de cet assemblage
+- l'application de transformation / groupage de donnée
+- l'application de vérification validantes
+- l'application de restrictions sur les données eligibles à selection'
+
+1/ Collecte
+2/ transformation / groupage
+3/ condition / vérification
+4/
+
+// Liste des opérateurs de collecte
+//

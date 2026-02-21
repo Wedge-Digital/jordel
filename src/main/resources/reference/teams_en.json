@@ -712,7 +712,7 @@
       ]
     },
     {
-      "uid": "CHAOS RENEGADE",
+      "uid": "CHAOS_RENEGADE",
       "name": "Chaos Renegade",
       "rerollCost": 70000,
       "tier": "Tier 3",
@@ -1136,7 +1136,7 @@
       ]
     },
     {
-      "uid": "IMPERIAL NOBILITY",
+      "uid": "IMPERIAL_NOBILITY",
       "name": "Imperial Nobility",
       "rerollCost": 60000,
       "tier": "Tier 2",
@@ -1270,7 +1270,7 @@
       ]
     },
     {
-      "uid": "TOMB KINGS",
+      "uid": "TOMB_KINGS",
       "name": "Tomb Kings",
       "rerollCost": 60000,
       "tier": "Tier 2",
@@ -1385,7 +1385,7 @@
       ]
     },
     {
-      "uid": "UNDERWORLD DENIZENS",
+      "uid": "UNDERWORLD_DENIZENS",
       "name": "Underworld Denizens",
       "rerollCost": 70000,
       "tier": "Tier 1",
@@ -1756,7 +1756,7 @@
       ]
     },
     {
-      "uid": "WOOD ELF",
+      "uid": "WOOD_ELF",
       "name": "Wood Elf",
       "rerollCost": 50000,
       "tier": "Tier 1",
@@ -2002,7 +2002,7 @@
       ]
     },
     {
-      "uid": "BLACK ORC",
+      "uid": "BLACK_ORC",
       "name": "Black Orc",
       "rerollCost": 60000,
       "tier": "Tier 3",
@@ -2099,7 +2099,7 @@
       ]
     },
     {
-      "uid": "CHAOS CHOSEN",
+      "uid": "CHAOS_CHOSEN",
       "name": "Chaos Chosen",
       "rerollCost": 50000,
       "tier": "Tier 3",
@@ -2258,7 +2258,7 @@
       ]
     },
     {
-      "uid": "CHAOS DWARF",
+      "uid": "CHAOS_DWARF",
       "name": "Chaos Dwarf",
       "rerollCost": 70000,
       "tier": "Tier 1",
@@ -2426,7 +2426,7 @@
       ]
     },
     {
-      "uid": "DARK ELF",
+      "uid": "DARK_ELF",
       "name": "Dark Elf",
       "rerollCost": 50000,
       "tier": "Tier 1",
@@ -2559,7 +2559,7 @@
       ]
     },
     {
-      "uid": "ELVEN UNION",
+      "uid": "ELVEN_UNION",
       "name": "Elven Union",
       "rerollCost": 50000,
       "tier": "Tier 2",
@@ -3014,7 +3014,7 @@
       ]
     },
     {
-      "uid": "HIGH ELF",
+      "uid": "HIGH_ELF",
       "name": "High Elf",
       "rerollCost": 50000,
       "tier": "Tier 1",
@@ -3239,8 +3239,8 @@
       ]
     },
     {
-      "uid": "LIZARDMAN",
-      "name": "Lizardman",
+      "uid": "LIZARDMEN",
+      "name": "Lizardmens",
       "rerollCost": 70000,
       "tier": "Tier 1",
       "specialRules": [],
@@ -3354,7 +3354,7 @@
       ]
     },
     {
-      "uid": "NECROMANTIC HORROR",
+      "uid": "NECROMANTIC_HORROR",
       "name": "Necromantic Horror",
       "rerollCost": 70000,
       "tier": "Tier 2",
@@ -3887,7 +3887,7 @@
       ]
     },
     {
-      "uid": "OLD WORLD ALLIANCE",
+      "uid": "OLD_WORLD_ALLIANCE",
       "name": "Old World Alliance",
       "rerollCost": 70000,
       "tier": "Tier 1",
@@ -4172,7 +4172,7 @@
       ]
     },
     {
-      "uid": "SHAMBLING UNDEAD",
+      "uid": "SHAMBLING_UNDEAD",
       "name": "Shambling Undead",
       "rerollCost": 70000,
       "tier": "Tier 2",

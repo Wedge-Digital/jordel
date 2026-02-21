@@ -712,7 +712,7 @@
       ]
     },
     {
-      "uid": "CHAOS RENEGADE",
+      "uid": "CHAOS_RENEGADE",
       "name": "Renégats du Chaos",
       "rerollCost": 70000,
       "tier": "Niveau 3",
@@ -1136,7 +1136,7 @@
       ]
     },
     {
-      "uid": "IMPERIAL NOBILITY",
+      "uid": "IMPERIAL_NOBILITY",
       "name": "Noblesse Impériale",
       "rerollCost": 60000,
       "tier": "Niveau 2",
@@ -1270,7 +1270,7 @@
       ]
     },
     {
-      "uid": "TOMB KINGS",
+      "uid": "TOMB_KINGS",
       "name": "Rois des Tombes",
       "rerollCost": 60000,
       "tier": "Niveau 2",
@@ -1385,7 +1385,7 @@
       ]
     },
     {
-      "uid": "UNDERWORLD DENIZENS",
+      "uid": "UNDERWORLD_DENIZENS",
       "name": "Habitants des Bas-Fonds",
       "rerollCost": 70000,
       "tier": "Niveau 1",
@@ -1756,7 +1756,7 @@
       ]
     },
     {
-      "uid": "WOOD ELF",
+      "uid": "WOOD_ELF",
       "name": "Elfe Sylvain",
       "rerollCost": 50000,
       "tier": "Niveau 1",
@@ -2002,7 +2002,7 @@
       ]
     },
     {
-      "uid": "BLACK ORC",
+      "uid": "BLACK_ORC",
       "name": "Orc Noir",
       "rerollCost": 60000,
       "tier": "Niveau 3",
@@ -2099,7 +2099,7 @@
       ]
     },
     {
-      "uid": "CHAOS CHOSEN",
+      "uid": "CHAOS_CHOSEN",
       "name": "Élus du Chaos",
       "rerollCost": 50000,
       "tier": "Niveau 3",
@@ -2258,7 +2258,7 @@
       ]
     },
     {
-      "uid": "CHAOS DWARF",
+      "uid": "CHAOS_DWARF",
       "name": "Nain du Chaos",
       "rerollCost": 70000,
       "tier": "Niveau 1",
@@ -2426,7 +2426,7 @@
       ]
     },
     {
-      "uid": "DARK ELF",
+      "uid": "DARK_ELF",
       "name": "Elfe Noir",
       "rerollCost": 50000,
       "tier": "Niveau 1",
@@ -2559,7 +2559,7 @@
       ]
     },
     {
-      "uid": "ELVEN UNION",
+      "uid": "ELVEN_UNION",
       "name": "Union Elfique",
       "rerollCost": 50000,
       "tier": "Niveau 2",
@@ -3014,7 +3014,7 @@
       ]
     },
     {
-      "uid": "HIGH ELF",
+      "uid": "HIGH_ELF",
       "name": "Haut Elfe",
       "rerollCost": 50000,
       "tier": "Niveau 1",
@@ -3239,7 +3239,7 @@
       ]
     },
     {
-      "uid": "LIZARDMAN",
+      "uid": "LIZARDMEN",
       "name": "Lizardman",
       "rerollCost": 70000,
       "tier": "Niveau 1",
@@ -3354,7 +3354,7 @@
       ]
     },
     {
-      "uid": "NECROMANTIC HORROR",
+      "uid": "NECROMANTIC_HORROR",
       "name": "Horreur Nécromantique",
       "rerollCost": 70000,
       "tier": "Niveau 2",
@@ -3887,7 +3887,7 @@
       ]
     },
     {
-      "uid": "OLD WORLD ALLIANCE",
+      "uid": "OLD_WORLD_ALLIANCE",
       "name": "Alliance du Vieux Monde",
       "rerollCost": 70000,
       "tier": "Niveau 1",
@@ -4172,7 +4172,7 @@
       ]
     },
     {
-      "uid": "SHAMBLING UNDEAD",
+      "uid": "SHAMBLING_UNDEAD",
       "name": "Morts-Vivants Titubants",
       "rerollCost": 70000,
       "tier": "Niveau 2",

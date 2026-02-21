@@ -1,0 +1,219 @@
+{
+  "bloodbowl_version": "2025",
+  "edition": "Third Season Edition",
+  "inducements": [
+    {
+      "uid": "PRAYERS_TO_NUFFLE",
+      "name": "Prayers to Nuffle",
+      "cost": 10,
+      "reducedCost": null,
+      "maxQuantity": 3,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Roll a D16 (re-rolling duplicates) and consult the Prayers to Nuffle table for effects lasting until the end of the match."
+    },
+    {
+      "uid": "TEMP_AGENCY_CHEERLEADERS",
+      "name": "Temp Agency Cheerleaders",
+      "cost": 5,
+      "reducedCost": null,
+      "maxQuantity": 5,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Increases the number of Cheerleaders on your team by 1 per purchase for this match only."
+    },
+    {
+      "uid": "PART_TIME_ASSISTANT_COACHES",
+      "name": "Part-time Assistant Coaches",
+      "cost": 20,
+      "reducedCost": null,
+      "maxQuantity": 5,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Increases the number of Assistant Coaches on your team by 1 per purchase for this match only."
+    },
+    {
+      "uid": "TEAM_MASCOT",
+      "name": "Team Mascot",
+      "cost": 25,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Grants one additional team re-roll that can only be used on a D6 roll of 4+ (on 1-3, the re-roll is lost). Also allows re-rolling any 1s when rolling on the Cheering Fans table."
+    },
+    {
+      "uid": "WEATHER_MAGE",
+      "name": "Weather Mage",
+      "cost": 25,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Once per match, the Weather Mage can roll on the Weather table with a +2 or -2 modifier of your choice."
+    },
+    {
+      "uid": "BLITZERS_BEST_KEGS",
+      "name": "Blitzer's Best Kegs",
+      "cost": 50,
+      "reducedCost": null,
+      "maxQuantity": 2,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Provides a +1 modifier when rolling to recover KO'd players."
+    },
+    {
+      "uid": "CANOPIC_JAR",
+      "name": "Canopic Jar",
+      "cost": 50,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "At the start of each drive, roll a D6 for one of six different effects (curses or blessings) that last until the end of the drive."
+    },
+    {
+      "uid": "BRIBES",
+      "name": "Bribes",
+      "cost": 100,
+      "reducedCost": 50,
+      "maxQuantity": 3,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "reducedCostFor": ["BRIBERY_AND_CORRUPTION"],
+      "description": "When a player is Sent-off, roll a D6. On a 2+, the player is not Sent-off. A natural 1 always fails. Each Bribe can only be used once."
+    },
+    {
+      "uid": "EXTRA_TEAM_TRAINING",
+      "name": "Extra Team Training",
+      "cost": 100,
+      "reducedCost": null,
+      "maxQuantity": 8,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Grants one additional team re-roll for the duration of the match."
+    },
+    {
+      "uid": "WANDERING_APOTHECARY",
+      "name": "Wandering Apothecary",
+      "cost": 100,
+      "reducedCost": null,
+      "maxQuantity": 2,
+      "category": "COMMON",
+      "restrictedTo": ["APOTHECARY"],
+      "description": "Works exactly like a team Apothecary and can be used once per match. Only available to teams that can hire an Apothecary."
+    },
+    {
+      "uid": "BRETONNIAN_PASTRIES",
+      "name": "Bretonnian Pastries",
+      "cost": 15,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "At the end of each drive, roll a D6 for one KO'd player. On a 2+, the player goes to Reserves. On a 1, nothing happens."
+    },
+    {
+      "uid": "BRETONNIAN_DAMSEL",
+      "name": "Bretonnian Damsel",
+      "cost": 150,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Once per match, the Damsel may cast either the Zap! spell or the High Winds spell."
+    },
+    {
+      "uid": "MERCENARY_PLAYER",
+      "name": "Mercenary Player",
+      "cost": 30,
+      "reducedCost": null,
+      "maxQuantity": 3,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Hire a player from another team's roster at their base cost +30,000 gold. The Mercenary gains the Loner (4+) trait. Team cannot exceed 16 players."
+    },
+    {
+      "uid": "STAR_PLAYER",
+      "name": "Star Player",
+      "cost": 0,
+      "reducedCost": null,
+      "maxQuantity": 2,
+      "category": "COMMON",
+      "restrictedTo": [],
+      "description": "Hire a Star Player at their listed cost. Team cannot exceed 16 players total. Star Players cannot earn SPP or be awarded MVP."
+    },
+    {
+      "uid": "MORTUARY_ASSISTANT",
+      "name": "Mortuary Assistant",
+      "cost": 100,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "SPECIALIZED",
+      "restrictedTo": ["MASTERS_OF_UNDEATH"],
+      "description": "Once per match, you may re-roll a failed Regeneration roll for one of your players."
+    },
+    {
+      "uid": "PLAGUE_DOCTOR",
+      "name": "Plague Doctor",
+      "cost": 100,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "SPECIALIZED",
+      "restrictedTo": ["FAVOURED_OF_NURGLE"],
+      "description": "Once per match, you may either re-roll a failed Regeneration roll OR use as an Apothecary."
+    },
+    {
+      "uid": "RIOTOUS_ROOKIES",
+      "name": "Riotous Rookies",
+      "cost": 150,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "SPECIALIZED",
+      "restrictedTo": ["LOW_COST_LINEMEN"],
+      "description": "After setting up your team with 11 players (using Journeymen if needed), roll 2D3+1 for additional Journeymen. Available to teams with Linemen costing 50,000 or less."
+    },
+    {
+      "uid": "HALFLING_MASTER_CHEF",
+      "name": "Halfling Master Chef",
+      "cost": 300,
+      "reducedCost": 100,
+      "maxQuantity": 1,
+      "category": "SPECIALIZED",
+      "restrictedTo": [],
+      "reducedCostFor": ["HALFLING_THIMBLE_CUP"],
+      "description": "At the start of each half, roll 3D6. For each 4+, gain +1 team re-roll and the opposing team loses 1 team re-roll (to a minimum of 0)."
+    },
+    {
+      "uid": "JOSEF_BUGMAN",
+      "name": "Josef Bugman",
+      "cost": 100,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "INFAMOUS_STAFF",
+      "restrictedTo": [],
+      "description": "Infamous Coaching Staff. Josef provides Bugman's XXXXXX ale which grants special bonuses to the team."
+    },
+    {
+      "uid": "SPORTS_WIZARD",
+      "name": "Sports-Wizard",
+      "cost": 150,
+      "reducedCost": null,
+      "maxQuantity": 1,
+      "category": "WIZARD",
+      "restrictedTo": [],
+      "description": "Once per match, the Wizard may cast one of their available spells: Fireball or Zap!"
+    },
+    {
+      "uid": "DODGY_LEAGUE_REP",
+      "name": "Dodgy League Rep",
+      "cost": 120,
+      "reducedCost": 80,
+      "maxQuantity": 1,
+      "category": "BIASED_REFEREE",
+      "restrictedTo": [],
+      "reducedCostFor": ["BRIBERY_AND_CORRUPTION"],
+      "description": "Biased Referee who can be convinced to look the other way. Provides benefits when fouling and protection against Send-offs."
+    }
+  ]
+}

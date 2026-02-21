@@ -16,5 +16,5 @@ public class Ruleset {
     private RulesetName name;
 
     @Valid
-    private List<Tier> tierList;
+    private List<RulesetTier> tierList;
 }

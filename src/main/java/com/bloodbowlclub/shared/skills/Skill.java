@@ -2,7 +2,7 @@ package com.bloodbowlclub.shared.skills;
 
 public class Skill {
 
-    private SkillId id;
+    private SkillID id;
     private SkillName name;
     private SkillDescription desc;
     private ESkillType type;

@@ -87,6 +87,7 @@ public class ReferenceDataService {
             data.skillCategories = loadSkillCategories(languageCode);
             data.rosters = loadRosters(languageCode, data.specialRules, data.leagues, data.skills);
             data.starPlayers = loadStarPlayers(languageCode, data.leagues, data.skills);
+            data.inducements = loadInducements(languageCode);
 
             // Créer l'index global des joueurs
             data.playersById = createPlayersIndex(data.rosters);
@@ -94,9 +95,9 @@ public class ReferenceDataService {
             // Stocker dans le cache
             dataByLocale.put(locale, data);
 
-            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} leagues, {} staff, {} skills, {} skill categories, {} star players",
+            log.info("[ReferenceAPI] Reference data loaded for {}: {} rosters, {} players, {} special rules, {} leagues, {} staff, {} skills, {} skill categories, {} star players, {} inducements",
                     locale, data.rosters.size(), data.playersById.size(), data.specialRules.size(),
-                    data.leagues.size(), data.staff.size(), data.skills.size(), data.skillCategories.size(), data.starPlayers.size());
+                    data.leagues.size(), data.staff.size(), data.skills.size(), data.skillCategories.size(), data.starPlayers.size(), data.inducements.size());
         } catch (Exception e) {
             log.error("[ReferenceAPI] Failed to load reference data for locale: {}", locale, e);
             throw new RuntimeException("Cannot load reference data for locale: " + locale, e);
@@ -365,6 +366,12 @@ public class ReferenceDataService {
         Resource resource = resourceLoader.getResource("classpath:reference/leagues_" + languageCode + ".json");
         LeaguesWrapper wrapper = objectMapper.readValue(resource.getInputStream(), LeaguesWrapper.class);
         return Collections.unmodifiableList(new ArrayList<>(wrapper.getLeagues()));
+    }
+
+    private List<InducementRef> loadInducements(String languageCode) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:reference/inducements_" + languageCode + ".json");
+        InducementsWrapper wrapper = objectMapper.readValue(resource.getInputStream(), InducementsWrapper.class);
+        return Collections.unmodifiableList(new ArrayList<>(wrapper.getInducements()));
     }
 
     private List<StarPlayerRef> loadStarPlayers(String languageCode, List<LeagueRef> leagueRefs, List<SkillRef> skillRefs) throws IOException {
@@ -671,6 +678,39 @@ public class ReferenceDataService {
         return getData(locale).starPlayers.size();
     }
 
+    // ================================
+    // Méthodes d'accès - Inducements
+    // ================================
+
+    public Optional<InducementRef> getInducementByUid(String uid, Locale locale) {
+        return getData(locale).inducements.stream()
+                .filter(i -> i.getUid().equals(uid))
+                .findFirst();
+    }
+
+    public List<InducementRef> getAllInducements(Locale locale) {
+        return getData(locale).inducements;
+    }
+
+    public List<InducementRef> getInducementsByCategory(String category, Locale locale) {
+        return getData(locale).inducements.stream()
+                .filter(i -> i.getCategory().equals(category))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Retourne les inducements disponibles pour une equipe avec les special rules donnees.
+     */
+    public List<InducementRef> getInducementsForTeam(List<String> teamSpecialRules, Locale locale) {
+        return getData(locale).inducements.stream()
+                .filter(i -> !i.isRestricted() || teamSpecialRules.stream().anyMatch(i::isAvailableFor))
+                .collect(Collectors.toList());
+    }
+
+    public int getInducementCount(Locale locale) {
+        return getData(locale).inducements.size();
+    }
+
     // ===========================
     // Méthodes utilitaires
     // ===========================
@@ -698,6 +738,7 @@ public class ReferenceDataService {
         List<SkillRef> skills;
         List<SkillCategoryRef> skillCategories;
         List<StarPlayerRef> starPlayers;
+        List<InducementRef> inducements;
     }
 
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
@@ -725,5 +766,14 @@ public class ReferenceDataService {
 
         public List<LeagueRef> getLeagues() { return leagues; }
         public void setLeagues(List<LeagueRef> leagues) { this.leagues = leagues; }
+    }
+
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
+    private static class InducementsWrapper {
+        @com.fasterxml.jackson.annotation.JsonProperty("inducements")
+        private List<InducementRef> inducements;
+
+        public List<InducementRef> getInducements() { return inducements; }
+        public void setInducements(List<InducementRef> inducements) { this.inducements = inducements; }
     }
 }
